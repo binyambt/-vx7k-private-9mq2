@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Binyam — Life Control Center</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<meta name="theme-color" content="#292B39">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Life Control">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* LIGHT THEME — CoachPro dashboard style: soft mint→lavender gradient canvas, white cards, teal primary */
+  --bg-a:#D6ECE6;--bg-b:#D8D3EC;--bg-c:#D7DBE1;
+  --bg:#DBE3E5;--bg2:#FFFFFF;--bg3:#F7F9FB;--bg4:#F2F5F8;
+  --card:#FFFFFF;--card2:#F7F9FB;
+  --border:#E7EAF0;--border2:#D8DCE3;
+  --text:#1B2733;--text2:#6B7684;--text3:#A0A8B3;
+  --blue:#14A38C;--blue2:#1BB89F;--blue-g:rgba(20,163,140,0.10);
+  --green:#1fa971;--green2:#2fbd83;--green-g:rgba(31,169,113,0.10);
+  --gold:#E3A93C;--gold2:#F0C860;--gold-g:rgba(227,169,60,0.12);
+  --red:#e0473f;--red2:#ef5b52;--red-g:rgba(224,71,63,0.10);
+  --purple:#9B87E0;--purple2:#B39DDB;--purple-g:rgba(155,135,224,0.12);
+  --teal:#14A38C;--teal2:#1BB89F;
+  --shadow:0 8px 28px rgba(27,39,51,0.08);
+  --shadow-sm:0 2px 10px rgba(27,39,51,0.06);
+  --r:14px;--r-sm:9px;--r-lg:18px;
+  --fs-scale:1;
+}
+body[data-theme="dark"]{
+  /* DARK THEME — Ocean Sunset gradient: #0F2027 (deep navy, dominant bg) · #2C5364 (mid teal, secondary/structure) */
+  --bg-a:#0F2027;--bg-b:#2C5364;--bg-c:#35606F;
+  --bg:#0F2027;--bg2:#182F39;--bg3:#142830;--bg4:#152B34;
+  --card:#182F39;--card2:#1C3742;
+  --border:#2C5364;--border2:#567583;
+  --text:#DFE5E8;--text2:#A0B2B9;--text3:#768F9A;
+  --blue:#5b93f5;--blue2:#7ba7f7;--blue-g:rgba(91,147,245,0.14);
+  --green:#2fbd83;--green2:#4fd39a;--green-g:rgba(47,189,131,0.14);
+  --gold:#e0ac2b;--gold2:#eec158;--gold-g:rgba(224,172,43,0.14);
+  --red:#ef5b52;--red2:#f47b73;--red-g:rgba(239,91,82,0.14);
+  --purple:#8f74ea;--purple2:#a690ef;--purple-g:rgba(143,116,234,0.14);
+  --shadow:0 8px 24px rgba(0,0,0,0.4);
+  --shadow-sm:0 2px 8px rgba(0,0,0,0.3);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:calc(16px * var(--fs-scale));}
+body{background:linear-gradient(135deg,var(--bg-a),var(--bg-b) 55%,var(--bg-c));color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;transition:background .25s,color .25s;background-attachment:fixed;}
+body,.content,.card,.stat-val,.chk-lbl,.prog-lbl{font-size:1rem;}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+
+/* ===== LOCK SCREEN ===== */
+#lock{position:fixed;inset:0;background:linear-gradient(135deg,var(--bg-a),var(--bg-b) 55%,var(--bg-c));display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px;}
+.lock-wrap{display:flex;width:100%;max-width:820px;background:var(--card);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);}
+.lock-quote-side{flex:1;background:linear-gradient(150deg,var(--blue),var(--purple));padding:40px 34px;display:flex;flex-direction:column;justify-content:center;color:#fff;position:relative;min-height:420px;}
+.lq-eyebrow{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;opacity:.75;margin-bottom:18px;font-weight:700;}
+.lq-text{font-family:'Playfair Display',serif;font-size:1.35rem;line-height:1.6;font-weight:700;margin-bottom:14px;min-height:130px;transition:opacity .4s;}
+.lq-source{font-size:.72rem;opacity:.8;letter-spacing:.5px;}
+.lq-dots{display:flex;gap:6px;margin-top:26px;}
+.lq-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);}
+.lq-dot.on{background:#fff;}
+.lock-card{flex:1;padding:48px 40px;width:100%;text-align:center;display:flex;flex-direction:column;justify-content:center;}
+.lock-logo{width:64px;height:64px;background:linear-gradient(135deg,var(--blue),var(--purple));border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#fff;box-shadow:0 8px 22px rgba(20,163,140,0.3);}
+.lock-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:4px;color:var(--text);}
+.lock-sub{font-size:.72rem;color:var(--text3);margin-bottom:26px;letter-spacing:.5px;}
+.lock-input{width:100%;padding:13px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--text);font-size:1rem;text-align:center;letter-spacing:6px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;}
+.lock-input:focus{border-color:var(--blue2);}
+.lock-btn{width:100%;margin-top:12px;padding:13px;background:linear-gradient(135deg,var(--blue),var(--purple));border:none;border-radius:var(--r-sm);color:#fff;font-size:.85rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;}
+.lock-btn:hover{opacity:.9;}
+.lock-err{font-size:.7rem;color:var(--red2);margin-top:8px;display:none;}
+.lock-amharic{font-size:.65rem;color:var(--text3);margin-top:20px;letter-spacing:1px;}
+@media(max-width:700px){.lock-wrap{flex-direction:column;max-width:420px;}.lock-quote-side{min-height:200px;}}
+
+/* ===== NIGHT WARNING OVERLAY ===== */
+#night-overlay{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:8888;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;}
+.night-icon{font-size:60px;margin-bottom:16px;}
+.night-title{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;color:var(--gold2);margin-bottom:12px;}
+.night-text{font-size:.88rem;color:#c9d1d9;line-height:1.8;max-width:480px;margin-bottom:24px;}
+.night-dismiss{padding:12px 32px;background:var(--blue);border:none;border-radius:var(--r-sm);color:#fff;font-size:.85rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* ===== EMERGENCY OVERLAY ===== */
+#sos-overlay{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:8889;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow-y:auto;}
+.sos-inner{max-width:560px;width:100%;text-align:center;}
+.sos-pulse{width:76px;height:76px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 16px;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(218,54,51,.5);}50%{box-shadow:0 0 0 20px rgba(218,54,51,0);}}
+.sos-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:900;color:#fff;margin-bottom:8px;}
+.sos-sub{font-size:.8rem;color:#9aa7b8;margin-bottom:22px;}
+.sos-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;text-align:left;}
+.sos-step{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-sm);padding:12px;}
+.sos-num{width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sos-text{font-size:.78rem;color:#e6edf3;line-height:1.5;}
+.sos-prayer{background:var(--gold-g);border:1px solid rgba(227,179,65,.25);border-radius:var(--r);padding:16px;margin-bottom:16px;font-size:.78rem;color:var(--gold2);font-style:italic;line-height:1.8;}
+.sos-vision{background:var(--blue-g);border:1px solid rgba(56,139,253,.25);border-radius:var(--r);padding:16px;margin-bottom:20px;text-align:left;}
+.sos-vision-title{font-size:.65rem;font-weight:700;color:var(--blue2);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
+.sos-vision-item{font-size:.78rem;color:#c9d1d9;padding:4px 0;display:flex;gap:8px;}
+.breathe-widget{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:20px;margin-bottom:20px;}
+.breathe-title{font-size:.68rem;font-weight:700;color:#9aa7b8;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.breathe-circle{width:76px;height:76px;border-radius:50%;border:3px solid var(--blue2);margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--blue2);font-weight:600;animation:breathe 8s infinite;}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.7;}50%{transform:scale(1.3);opacity:1;}}
+.breathe-label{font-size:.65rem;color:#9aa7b8;margin-top:8px;text-align:center;}
+.sos-dismiss{padding:12px 32px;background:#30363d;border:none;border-radius:var(--r-sm);color:#e6edf3;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;margin-top:8px;}
+
+/* ===== CIRCUIT BREAKER / MINDSET SCREENER OVERLAYS ===== */
+.hard-overlay{position:fixed;inset:0;background:rgba(10,4,4,.96);z-index:8890;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;}
+.hard-icon{font-size:56px;margin-bottom:14px;}
+.hard-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:#f85149;margin-bottom:10px;}
+.hard-text{font-size:.85rem;color:#c9d1d9;line-height:1.8;max-width:460px;margin-bottom:22px;}
+.hard-timer{font-size:2rem;font-weight:800;color:#fff;margin-bottom:22px;font-family:'Playfair Display',serif;}
+.screener-box{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:26px;max-width:440px;width:100%;text-align:left;}
+.screener-q{font-size:.82rem;color:#e6edf3;margin-bottom:10px;font-weight:600;}
+.screener-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.screener-opt{padding:10px 14px;background:#21262d;border:1px solid #30363d;border-radius:9px;color:#c9d1d9;font-size:.78rem;cursor:pointer;text-align:left;}
+.screener-opt.sel{border-color:#388bfd;color:#fff;background:rgba(56,139,253,.12);}
+
+/* ===== TOPBAR ===== */
+#app{display:none;}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.topbar-left{display:flex;align-items:center;gap:12px;}
+.topbar-logo{width:34px;height:34px;background:linear-gradient(135deg,var(--blue),var(--purple));border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#fff;}
+.topbar-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.topbar-sub{font-size:.62rem;color:var(--text3);letter-spacing:.5px;}
+.topbar-right{display:flex;align-items:center;gap:8px;}
+.topbar-date{font-size:.7rem;color:var(--text3);}
+.sos-btn{padding:7px 14px;background:var(--red);border:none;border-radius:var(--r-sm);color:#fff;font-size:.68rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.5px;animation:redpulse 2s infinite;}
+@keyframes redpulse{0%,100%{opacity:1;}50%{opacity:.7;}}
+.icon-btn{padding:7px 10px;background:var(--bg4);border:1px solid var(--border);border-radius:var(--r-sm);color:var(--text2);font-size:.75rem;cursor:pointer;font-family:'Inter',sans-serif;}
+.avatar-btn{width:32px;height:32px;border-radius:50%;overflow:hidden;border:1.5px solid var(--border2);cursor:pointer;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--text2);}
+.avatar-btn img{width:100%;height:100%;object-fit:cover;}
+
+/* ===== LAYOUT ===== */
+.layout{display:flex;min-height:calc(100vh - 60px);}
+.sidebar{width:214px;background:var(--bg2);border-right:1px solid var(--border);padding:16px 10px;flex-shrink:0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:var(--r-sm);cursor:pointer;color:var(--text2);font-size:.82rem;font-weight:500;margin-bottom:2px;transition:all .15s;}
+.nav-item:hover{background:var(--bg3);color:var(--text);}
+.nav-item.active{background:var(--blue-g);color:var(--blue2);font-weight:600;border:1px solid rgba(59,127,240,.25);}
+.nav-icon{font-size:.9rem;width:18px;text-align:center;}
+.sidebar-divider{height:1px;background:var(--border);margin:10px 0;}
+.sidebar-streak{background:linear-gradient(135deg,var(--gold-g),rgba(201,154,28,.04));border:1px solid rgba(227,179,65,.25);border-radius:var(--r);padding:14px;text-align:center;margin-top:14px;}
+.sb-streak-fire{font-size:22px;margin-bottom:4px;}
+.sb-streak-num{font-size:1.9rem;font-weight:700;color:var(--gold2);line-height:1;}
+.sb-streak-lbl{font-size:.62rem;color:var(--gold);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+/* ===== CONTENT ===== */
+.content{flex:1;padding:22px;overflow-x:hidden;}
+.tab-content{display:none;animation:fadein .2s ease;}
+.tab-content.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+.page-header{margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;}
+.page-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin-bottom:3px;}
+.page-sub{font-size:.72rem;color:var(--text3);}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm);}
+.stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.stat-card.c-gold::after{background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.stat-card.c-blue::after{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.stat-card.c-green::after{background:linear-gradient(90deg,var(--green),var(--green2));}
+.stat-card.c-purple::after{background:linear-gradient(90deg,var(--purple),var(--purple2));}
+.stat-card.c-red::after{background:linear-gradient(90deg,var(--red),var(--red2));}
+.stat-icon{font-size:1.2rem;margin-bottom:8px;}
+.stat-lbl{font-size:.62rem;color:var(--text3);font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:5px;}
+.stat-val{font-size:1.55rem;font-weight:700;line-height:1;margin-bottom:4px;}
+.v-gold{color:var(--gold2);}
+.v-blue{color:var(--blue2);}
+.v-green{color:var(--green2);}
+.v-red{color:var(--red2);}
+.v-purple{color:var(--purple2);}
+.stat-sub{font-size:.66rem;color:var(--text3);}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px;box-shadow:var(--shadow-sm);}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:8px;flex-wrap:wrap;}
+.card-title{font-size:.85rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px;}
+.card-badge{font-size:.62rem;padding:3px 8px;border-radius:20px;font-weight:600;}
+.cb-blue{background:var(--blue-g);color:var(--blue2);border:1px solid rgba(59,127,240,.2);}
+.cb-gold{background:var(--gold-g);color:var(--gold2);border:1px solid rgba(227,179,65,.2);}
+.cb-green{background:var(--green-g);color:var(--green2);border:1px solid rgba(63,185,80,.2);}
+.cb-red{background:var(--red-g);color:var(--red2);border:1px solid rgba(248,81,73,.2);}
+.cb-purple{background:var(--purple-g);color:var(--purple2);border:1px solid rgba(143,116,234,.2);}
+
+.prog-item{margin-bottom:13px;}
+.prog-item:last-child{margin-bottom:0;}
+.prog-top{display:flex;justify-content:space-between;margin-bottom:5px;}
+.prog-lbl{font-size:.75rem;color:var(--text2);font-weight:500;}
+.prog-pct{font-size:.75rem;font-weight:700;color:var(--text);}
+.prog-bg{height:6px;background:var(--bg4);border-radius:99px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:99px;transition:width .8s ease;}
+.pf-gold{background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.pf-blue{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.pf-green{background:var(--green2);}
+.pf-red{background:var(--red2);}
+.pf-purple{background:linear-gradient(90deg,var(--purple),var(--purple2));}
+
+.check-section-lbl{font-size:.62rem;font-weight:700;color:var(--text3);letter-spacing:1.2px;text-transform:uppercase;margin:14px 0 7px;padding-bottom:5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.chk-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity .15s;}
+.chk-item:last-child{border-bottom:none;}
+.chk-item:hover{opacity:.85;}
+.chk-box{width:19px;height:19px;border-radius:5px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.chk-box.on{background:var(--green2);border-color:var(--green2);}
+.chk-box.on::after{content:'✓';font-size:11px;color:#fff;font-weight:700;}
+.chk-lbl{font-size:.8rem;color:var(--text2);line-height:1.45;flex:1;}
+.chk-lbl strong{color:var(--text);font-weight:600;}
+.chk-lbl.done{color:var(--text3);text-decoration:line-through;}
+.chk-tag{font-size:.58rem;padding:2px 7px;border-radius:20px;flex-shrink:0;margin-top:3px;font-weight:600;letter-spacing:.5px;}
+.t-spirit{background:var(--gold-g);color:var(--gold2);}
+.t-body{background:var(--green-g);color:var(--green2);}
+.t-guard{background:var(--red-g);color:var(--red2);}
+.t-work{background:var(--blue-g);color:var(--blue2);}
+.t-custom{background:var(--purple-g);color:var(--purple2);}
+.chk-del{font-size:.7rem;color:var(--text3);cursor:pointer;padding:2px 6px;flex-shrink:0;margin-top:1px;}
+.chk-del:hover{color:var(--red2);}
+
+.ring-wrap{display:flex;align-items:center;gap:18px;padding:8px 0;}
+.ring-svg-wrap{position:relative;width:84px;height:84px;flex-shrink:0;}
+.ring-svg-wrap svg{transform:rotate(-90deg);}
+.ring-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring-val{font-size:1.2rem;font-weight:700;}
+.ring-max{font-size:.6rem;color:var(--text3);}
+.ring-info-title{font-size:.85rem;font-weight:600;margin-bottom:3px;}
+.ring-info-sub{font-size:.68rem;color:var(--text3);}
+
+/* DAY GRID */
+.day-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-height:230px;overflow-y:auto;padding-right:2px;}
+.day-box{aspect-ratio:1;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;cursor:default;border:1px solid var(--border);}
+.db-empty{background:var(--bg3);color:var(--text3);}
+.db-win{background:var(--green-g);color:var(--green2);border-color:rgba(47,189,131,.35);}
+.db-fail{background:var(--red-g);color:var(--red2);border-color:rgba(239,91,82,.35);}
+.db-today{background:var(--blue-g);color:var(--blue2);border-color:var(--blue2);}
+
+.trigger-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);}
+.trigger-row:last-child{border-bottom:none;}
+.trigger-name{font-size:.75rem;color:var(--text2);flex:1;}
+.trigger-bar-bg{flex:2;height:8px;background:var(--bg4);border-radius:99px;overflow:hidden;}
+.trigger-bar-fill{height:100%;background:var(--red2);border-radius:99px;transition:width .8s;}
+.trigger-count{font-size:.75rem;font-weight:700;color:var(--red2);min-width:24px;text-align:right;}
+
+/* FINANCE */
+.wallet-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;}
+.wallet-card{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:18px;position:relative;overflow:hidden;cursor:pointer;transition:border-color .2s;}
+.wallet-card:hover{border-color:var(--border2);}
+.wallet-card.selected{border-color:var(--blue2);}
+.wallet-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;border-radius:3px 0 0 3px;}
+.wc-inv::before{background:var(--blue2);}
+.wc-emg::before{background:var(--green2);}
+.wc-trd::before{background:var(--gold2);}
+.wc-per::before{background:var(--purple2);}
+.wallet-name{font-size:.62rem;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.wallet-amount{font-size:1.35rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.wallet-pct{font-size:.68rem;color:var(--text3);}
+.wallet-pct-bar{height:3px;background:var(--border);border-radius:99px;margin-top:8px;overflow:hidden;}
+.wallet-pct-fill{height:100%;border-radius:99px;transition:width .8s;}
+.total-card{background:linear-gradient(135deg,var(--blue-g),var(--purple-g));border:1px solid rgba(59,127,240,.2);border-radius:var(--r);padding:22px;text-align:center;margin-bottom:16px;}
+.total-lbl{font-size:.68rem;font-weight:700;color:var(--blue2);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.total-amount{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.total-sub{font-size:.72rem;color:var(--text3);}
+
+.savings-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;margin-bottom:10px;}
+.savings-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.savings-name{font-size:.82rem;font-weight:600;color:var(--text);}
+.savings-amt{font-size:.7rem;color:var(--text3);}
+.savings-del{font-size:.65rem;color:var(--text3);cursor:pointer;}
+.savings-dep-row{display:flex;gap:6px;margin-top:10px;}
+.savings-dep-row input{flex:1;min-width:0;padding:8px 10px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:.75rem;font-family:'Inter',sans-serif;}
+.savings-dep-row button{flex-shrink:0;padding:8px 12px;border-radius:var(--r-sm);border:none;font-size:.7rem;font-weight:600;cursor:pointer;}
+.sd-add{background:var(--green-g);color:var(--green2);border:1px solid rgba(63,185,80,.25) !important;}
+.sd-sub{background:var(--red-g);color:var(--red2);border:1px solid rgba(248,81,73,.25) !important;}
+.savings-del:hover{color:var(--red2);}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,15,30,.55);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;}
+body[data-theme="dark"] .modal-overlay{background:rgba(0,0,0,.7);}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;width:100%;max-width:440px;box-shadow:var(--shadow);max-height:88vh;overflow-y:auto;}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:20px;}
+.modal-close{float:right;background:none;border:none;color:var(--text3);font-size:20px;cursor:pointer;margin-top:-4px;}
+
+.inp-grp{margin-bottom:12px;}
+.inp-lbl{font-size:.68rem;font-weight:600;color:var(--text2);margin-bottom:5px;display:block;}
+.inp{width:100%;padding:10px 13px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--text);font-size:.82rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;}
+.inp:focus{border-color:var(--blue2);}
+select.inp{cursor:pointer;}
+textarea.inp{resize:none;}
+.inp-row{display:flex;gap:10px;}
+
+.btn{padding:10px 18px;border-radius:var(--r-sm);border:none;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:#2f6fe0;}
+.btn-success{background:var(--green);color:#fff;}
+.btn-danger{background:var(--red-g);color:var(--red2);border:1px solid rgba(239,91,82,.25);}
+.btn-gold{background:var(--gold-g);color:var(--gold2);border:1px solid rgba(227,179,65,.25);}
+.btn-ghost{background:var(--bg4);color:var(--text2);border:1px solid var(--border);}
+.btn-purple{background:var(--purple-g);color:var(--purple2);border:1px solid rgba(143,116,234,.25);}
+.btn-sm{padding:7px 13px;font-size:.72rem;}
+.btn-full{width:100%;}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+
+.identity-banner{background:linear-gradient(135deg,var(--blue-g),var(--purple-g));border:1px solid rgba(59,127,240,.18);border-radius:var(--r);padding:18px 22px;text-align:center;margin-bottom:20px;}
+.ib-title{font-family:'Playfair Display',serif;font-size:.8rem;color:var(--blue2);font-weight:700;margin-bottom:6px;}
+.ib-text{font-size:.75rem;color:var(--text2);line-height:1.8;font-style:italic;}
+
+.dopa-row{display:flex;gap:12px;margin-bottom:8px;flex-wrap:wrap;}
+.dopa-day{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px;flex:1;min-width:110px;text-align:center;}
+.dopa-d-num{font-size:.85rem;font-weight:700;color:var(--blue2);margin-bottom:2px;}
+.dopa-d-lbl{font-size:.58rem;color:var(--text3);line-height:1.4;}
+
+.journal-entry{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;margin-bottom:10px;}
+.journal-date{font-size:.62rem;color:var(--text3);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.journal-section{margin-bottom:7px;}
+.journal-section:last-child{margin-bottom:0;}
+.journal-s-lbl{font-size:.62rem;font-weight:700;margin-bottom:3px;}
+.journal-text{font-size:.75rem;color:var(--text2);line-height:1.6;}
+.ai-feedback{background:var(--blue-g);border:1px solid rgba(59,127,240,.2);border-radius:var(--r-sm);padding:14px;margin-top:12px;font-size:.8rem;color:var(--blue2);line-height:1.7;}
+.ai-feedback-lbl{font-size:.62rem;font-weight:700;color:var(--blue2);letter-spacing:1px;margin-bottom:8px;}
+.ai-feedback-block{margin-bottom:8px;}
+.ai-feedback-block b{color:var(--text);}
+
+.dev-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);}
+.dev-item:last-child{border-bottom:none;}
+.dev-icon{font-size:1.3rem;width:40px;text-align:center;}
+.dev-info{flex:1;}
+.dev-name{font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:2px;}
+.dev-time{font-size:.68rem;color:var(--text3);}
+.dev-toggle{width:44px;height:24px;border-radius:12px;background:var(--border2);border:none;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0;}
+.dev-toggle.on{background:var(--green2);}
+.dev-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s;}
+.dev-toggle.on::after{left:23px;}
+
+/* THE 90 — 90-DAY CALENDAR TRACKER */
+.n90-dial-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:16px;}
+.n90-dial{position:relative;width:84px;height:84px;flex-shrink:0;}
+.n90-dial svg{transform:rotate(-90deg);}
+.n90-dial-track{fill:none;stroke:var(--bg4);stroke-width:6;}
+.n90-dial-fill{fill:none;stroke:var(--gold2);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset .5s ease;}
+.n90-dial-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.n90-dial-num b{font-size:1.05rem;font-weight:700;color:var(--text);}
+.n90-dial-num span{font-size:.52rem;color:var(--text3);letter-spacing:.5px;}
+.n90-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;padding:12px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);}
+.n90-mode-lbl{font-size:.62rem;color:var(--text3);font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-right:2px;}
+.n90-mode-btn{font-size:.75rem;font-weight:600;padding:8px 15px;border-radius:99px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;}
+.n90-mode-btn.active[data-mode="win"]{background:var(--green-g);border-color:var(--green2);color:var(--green2);}
+.n90-mode-btn.active[data-mode="slip"]{background:var(--red-g);border-color:var(--red2);color:var(--red2);}
+.n90-hint{font-size:.68rem;color:var(--text3);margin-left:auto;}
+.n90-month{margin-bottom:20px;}
+.n90-month-title{font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:8px;}
+.n90-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:5px;}
+.n90-weekdays span{font-size:.58rem;text-align:center;color:var(--text3);font-weight:600;text-transform:uppercase;}
+.n90-days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;}
+.n90-day{aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--text2);background:var(--bg3);border:1px solid var(--border);cursor:pointer;transition:all .15s;position:relative;}
+.n90-day:hover:not(.pad):not(.future):not(.outside){border-color:var(--border2);transform:translateY(-1px);}
+.n90-day.pad{visibility:hidden;}
+.n90-day.outside{background:transparent;border-color:transparent;color:var(--text3);opacity:.35;cursor:default;}
+.n90-day.future{background:var(--bg4);color:var(--text3);cursor:not-allowed;opacity:.5;}
+.n90-day.today{border-color:var(--blue2);}
+.n90-day.win{background:var(--green-g);border-color:var(--green2);color:var(--green2);font-weight:700;}
+.n90-day.slip{background:var(--red-g);border-color:var(--red2);color:var(--red2);font-weight:700;}
+.n90-hist-card{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 14px;margin-bottom:8px;}
+.n90-hist-card .n90-hist-label{font-size:.75rem;font-weight:600;color:var(--text);}
+.n90-hist-card .n90-hist-stats{display:flex;gap:14px;font-size:.72rem;font-weight:600;}
+.n90-empty{border:1px dashed var(--border2);border-radius:var(--r-sm);padding:20px;text-align:center;color:var(--text3);font-size:.75rem;line-height:1.7;}
+.n90-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--gold2);border-radius:var(--r-sm);padding:12px 18px;font-size:.78rem;color:var(--gold2);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:var(--shadow);max-width:90vw;text-align:center;z-index:500;}
+.n90-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* BOTTOM NAV */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);z-index:200;padding:6px 0 10px;}
+.bnav-items{display:flex;justify-content:space-around;overflow-x:auto;}
+.bnav-item{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:4px 8px;border-radius:8px;flex-shrink:0;}
+.bnav-icon{font-size:1rem;width:34px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:8px;}
+.bnav-lbl{font-size:.55rem;color:var(--text3);font-weight:500;}
+.bnav-item.active .bnav-lbl{color:var(--blue2);font-weight:600;}
+.bnav-item.active .bnav-icon{background:var(--blue-g);}
+
+/* CHART CONTAINERS — FIXED HEIGHT PREVENTS BOUNCE BUG */
+.chart-wrap{position:relative;width:100%;height:200px;}
+.chart-wrap canvas{width:100% !important;height:100% !important;}
+
+/* QUOTE WIDGET (TRADING) */
+.wisdom-card{background:linear-gradient(135deg,var(--purple-g),var(--blue-g));border:1px solid rgba(116,87,224,.2);border-radius:var(--r);padding:22px;margin-bottom:16px;text-align:center;}
+.wisdom-eyebrow{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--purple2);font-weight:700;margin-bottom:10px;}
+.wisdom-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:8px;}
+.wisdom-author{font-size:.7rem;color:var(--text3);}
+
+.session-row{display:flex;gap:12px;flex-wrap:wrap;}
+.session-card{flex:1;min-width:150px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;text-align:center;}
+.session-status{display:inline-block;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:20px;margin-bottom:8px;letter-spacing:.5px;}
+.session-open{background:var(--green-g);color:var(--green2);}
+.session-closed{background:var(--bg4);color:var(--text3);}
+.session-name{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:2px;}
+.session-time{font-size:.65rem;color:var(--text3);}
+
+.disc-score-badge{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;font-size:.75rem;font-weight:700;color:#fff;}
+
+.euphoria-badge{background:var(--gold-g);border:1px solid rgba(227,179,65,.3);border-radius:var(--r-sm);padding:12px 14px;font-size:.75rem;color:var(--gold2);margin-bottom:14px;display:flex;gap:10px;align-items:center;}
+.locked-banner{background:var(--red-g);border:1px solid rgba(239,91,82,.3);border-radius:var(--r-sm);padding:12px 14px;font-size:.75rem;color:var(--red2);margin-bottom:14px;display:flex;gap:10px;align-items:center;}
+
+/* GOALS */
+.goal-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px;}
+.goal-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;}
+.goal-title{font-size:.95rem;font-weight:700;color:var(--text);}
+.goal-why{font-size:.72rem;color:var(--purple2);font-style:italic;margin-bottom:12px;}
+.milestone-row{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px dashed var(--border);}
+.milestone-row:last-child{border-bottom:none;}
+.milestone-box{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.milestone-box.on{background:var(--green2);border-color:var(--green2);}
+.milestone-box.on::after{content:'✓';font-size:9px;color:#fff;}
+.milestone-lbl{font-size:.72rem;color:var(--text2);flex:1;}
+.milestone-lbl.done{text-decoration:line-through;color:var(--text3);}
+
+/* PROFILE */
+.profile-photo-wrap{width:96px;height:96px;border-radius:50%;overflow:hidden;margin:0 auto 14px;border:2.5px solid var(--border2);background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--text3);}
+.profile-photo-wrap img{width:100%;height:100%;object-fit:cover;}
+
+/* SETTINGS SEGMENT */
+.seg-row{display:flex;gap:6px;background:var(--bg3);border-radius:var(--r-sm);padding:4px;}
+.seg-opt{flex:1;text-align:center;padding:8px;border-radius:7px;font-size:.72rem;font-weight:600;cursor:pointer;color:var(--text2);}
+.seg-opt.on{background:var(--blue);color:#fff;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .bottom-nav{display:block;}
+  .content{padding:14px 12px 84px;}
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .g2{grid-template-columns:1fr;}
+  .g3{grid-template-columns:1fr;}
+  .wallet-grid{grid-template-columns:1fr 1fr;}
+  .dopa-row{flex-wrap:wrap;}
+  .topbar{padding:0 14px;}
+  .topbar-date{display:none;}
+}
+@media(max-width:480px){
+  .day-grid{grid-template-columns:repeat(8,1fr);}
+  .wallet-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- LOCK -->
+<div id="lock">
+  <div class="lock-wrap">
+    <div class="lock-quote-side">
+      <div class="lq-eyebrow">Focus Anchor</div>
+      <div class="lq-text" id="lq-text">Loading...</div>
+      <div class="lq-source" id="lq-source"></div>
+      <div class="lq-dots" id="lq-dots"></div>
+    </div>
+    <div class="lock-card">
+      <div class="lock-logo">B</div>
+      <div class="lock-title">Life Control Center</div>
+      <div class="lock-sub">BINYAM · PERSONAL & CONFIDENTIAL</div>
+      <input class="lock-input" type="password" id="pw" placeholder="••••••••" maxlength="30" onkeydown="if(event.key==='Enter')login()">
+      <button class="lock-btn" onclick="login()">Unlock →</button>
+      <div class="lock-err" id="pw-err">Incorrect password. Try again.</div>
+      <div class="lock-amharic">ለእግዚአብሔር ክብር — For the Glory of God</div>
+    </div>
+  </div>
+</div>
+
+<!-- NIGHT WARNING -->
+<div id="night-overlay">
+  <div class="night-icon">🌙</div>
+  <div class="night-title">It's Time to Rest, Binyam</div>
+  <div class="night-text">It is past 11:30 PM. This is your most dangerous time.<br>Put your phone in another room. Your charger is already there.<br>Open your Bible. Pray. Sleep.<br><br><em>Your future wife, your dreams, your destiny — they are all protected by one simple act: closing this screen.</em></div>
+  <button class="night-dismiss" onclick="dismissNight()">I will put my phone away now ✓</button>
+</div>
+
+<!-- EMERGENCY SOS -->
+<div id="sos-overlay">
+  <div class="sos-inner">
+    <div class="sos-pulse">🛑</div>
+    <div class="sos-title">STOP. BREATHE. READ THIS.</div>
+    <div class="sos-sub">The urge lasts 3–5 minutes. You are stronger than 5 minutes.</div>
+    <div class="breathe-widget">
+      <div class="breathe-title">4-7-8 Breathing Exercise — Do This Now</div>
+      <div class="breathe-circle" id="breathe-circle">Breathe</div>
+      <div class="breathe-label" id="breathe-label">Inhale for 4 seconds → Hold for 7 → Exhale for 8</div>
+    </div>
+    <div class="sos-steps">
+      <div class="sos-step"><div class="sos-num">1</div><div class="sos-text">Say out loud: <strong>"I am not that person anymore. I am Binyam — a man of God."</strong></div></div>
+      <div class="sos-step"><div class="sos-num">2</div><div class="sos-text"><strong>Stand up immediately</strong> and walk to a different room. Movement breaks the mental loop.</div></div>
+      <div class="sos-step"><div class="sos-num">3</div><div class="sos-text"><strong>20 pushups right now.</strong> Physical exhaustion kills dopamine urges in under 3 minutes.</div></div>
+      <div class="sos-step"><div class="sos-num">4</div><div class="sos-text">Send a <strong>voice message</strong> to your accountability person: "I'm struggling right now."</div></div>
+      <div class="sos-step"><div class="sos-num">5</div><div class="sos-text">Open your <strong>Bible app</strong> and read Psalm 46. The urge will pass before you finish.</div></div>
+    </div>
+    <div class="sos-prayer">🙏 "Lord, I am weak in this moment but You are strong. I choose my future over this moment. Protect my mind, my body, and my calling. I will not fall today. Amen."</div>
+    <div class="sos-vision">
+      <div class="sos-vision-title">🎯 Your 3-Year Vision — Remember What You're Building</div>
+      <div class="sos-vision-item">🏠 <span>Your own home — built by your hands and your faith</span></div>
+      <div class="sos-vision-item">💍 <span>A marriage that honors God — she is waiting for a pure man</span></div>
+      <div class="sos-vision-item">📈 <span>Bini Design + NibNova — elite creative agency by graduation</span></div>
+      <div class="sos-vision-item">💰 <span>Financial freedom — trading XAU/USD professionally</span></div>
+      <div class="sos-vision-item">⛪ <span>A thriving church community under your leadership</span></div>
+    </div>
+    <button class="sos-dismiss" onclick="closeSOS()">I survived this urge ✓ Close</button>
+  </div>
+</div>
+
+<!-- CIRCUIT BREAKER LOCK -->
+<div class="hard-overlay" id="cb-overlay">
+  <div class="hard-icon">⛔</div>
+  <div class="hard-title">Trading Locked — Walk Away</div>
+  <div class="hard-text">You've logged consecutive losses today. This is exactly when revenge trading destroys accounts. Close the charts. Trade logging is locked for the rest of today so emotion doesn't make your next decision.</div>
+  <div class="hard-timer" id="cb-timer">Locked until tomorrow</div>
+  <button class="sos-dismiss" onclick="document.getElementById('cb-overlay').style.display='none'">I understand. Closing charts now.</button>
+</div>
+
+<!-- POST-LOSS MINDSET SCREENER -->
+<div class="hard-overlay" id="screener-overlay">
+  <div class="screener-box">
+    <div class="hard-icon" style="font-size:38px;margin-bottom:8px;">🧠</div>
+    <div class="hard-title" style="font-size:1.1rem;">60-Second Mindset Check</div>
+    <div class="screener-q">Do you feel an urge to immediately re-enter a trade to "win it back"?</div>
+    <div class="screener-opts" id="screener-q1"></div>
+    <div class="screener-q">Are you considering increasing your lot size / leverage right now?</div>
+    <div class="screener-opts" id="screener-q2"></div>
+    <button class="btn btn-primary btn-full" onclick="submitScreener()">Confirm & Unlock Inputs</button>
+  </div>
+</div>
+
+<!-- TRANSACTION MODAL -->
+<div class="modal-overlay" id="txn-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeTxn()">×</button>
+    <div class="modal-title">💳 Add Transaction</div>
+    <div class="inp-grp"><label class="inp-lbl">Account</label>
+      <select class="inp" id="txn-account">
+        <option value="inv">Investment Account (65%)</option>
+        <option value="emg">Emergency Savings (10%)</option>
+        <option value="trd">Trading Capital (25%)</option>
+        <option value="per">Personal Account</option>
+      </select>
+    </div>
+    <div class="inp-grp"><label class="inp-lbl">Type</label>
+      <select class="inp" id="txn-type"><option value="dep">Deposit (+)</option><option value="wd">Withdraw (-)</option></select>
+    </div>
+    <div class="inp-grp"><label class="inp-lbl">Amount (ETB)</label><input class="inp" type="number" id="txn-amount" placeholder="0.00"></div>
+    <div class="inp-grp"><label class="inp-lbl">Note</label><input class="inp" id="txn-note" placeholder="e.g. Bini Design client payment"></div>
+    <button class="btn btn-primary btn-full" onclick="addTxn()">Confirm Transaction</button>
+  </div>
+</div>
+
+<!-- LOG SLIP MODAL -->
+<div class="modal-overlay" id="slip-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeSlip()">×</button>
+    <div class="modal-title">📊 Log a Slip</div>
+    <div class="inp-grp"><label class="inp-lbl">What triggered it?</label>
+      <select class="inp" id="slip-trigger">
+        <option value="Phone in Bed">Phone in Bed at Night</option>
+        <option value="Boredom">Boredom / Idle Time</option>
+        <option value="Stress">Stress / Overwhelm</option>
+        <option value="Loneliness">Loneliness</option>
+        <option value="Social Media">Social Media Scrolling</option>
+        <option value="Late Night">Staying Up Too Late</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="inp-grp"><label class="inp-lbl">Note (optional)</label><textarea class="inp" id="slip-note" rows="2" placeholder="What happened?"></textarea></div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn btn-danger btn-full" onclick="confirmSlip()">Log Slip</button>
+      <button class="btn btn-ghost" onclick="closeSlip()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD TASK MODAL -->
+<div class="modal-overlay" id="task-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeTaskModal()">×</button>
+    <div class="modal-title" id="task-modal-title">➕ Add Task</div>
+    <div class="inp-grp"><label class="inp-lbl">Task label</label><input class="inp" id="task-label" placeholder="e.g. Read 10 pages"></div>
+    <div class="inp-grp"><label class="inp-lbl">Section</label>
+      <select class="inp" id="task-section">
+        <option value="m">🌅 Morning</option><option value="w">📊 Work</option>
+        <option value="g">🛡️ Guard</option><option value="n">🌙 Night</option>
+      </select>
+    </div>
+    <input type="hidden" id="task-edit-id">
+    <button class="btn btn-primary btn-full" onclick="saveTaskModal()">Save Task</button>
+  </div>
+</div>
+
+<!-- SAVINGS PLAN MODAL -->
+<div class="modal-overlay" id="savings-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeSavingsModal()">×</button>
+    <div class="modal-title">🎯 New Savings Plan</div>
+    <div class="inp-grp"><label class="inp-lbl">Plan name</label><input class="inp" id="sp-name" placeholder="e.g. New Laptop"></div>
+    <div class="inp-row">
+      <div class="inp-grp" style="flex:1"><label class="inp-lbl">Current (ETB)</label><input class="inp" type="number" id="sp-current" placeholder="0"></div>
+      <div class="inp-grp" style="flex:1"><label class="inp-lbl">Target (ETB)</label><input class="inp" type="number" id="sp-target" placeholder="0"></div>
+    </div>
+    <button class="btn btn-primary btn-full" onclick="saveSavingsPlan()">Create Plan</button>
+  </div>
+</div>
+
+<!-- GOAL MODAL -->
+<div class="modal-overlay" id="goal-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeGoalModal()">×</button>
+    <div class="modal-title">🌠 New Long-Term Goal</div>
+    <div class="inp-grp"><label class="inp-lbl">Goal title</label><input class="inp" id="g-title" placeholder="e.g. Own Home"></div>
+    <div class="inp-grp"><label class="inp-lbl">Why statement (the psychological anchor)</label><textarea class="inp" id="g-why" rows="2" placeholder="Why does this goal matter to you?"></textarea></div>
+    <div class="inp-grp"><label class="inp-lbl">Milestones (one per line)</label><textarea class="inp" id="g-milestones" rows="4" placeholder="Save first 20,000 ETB&#10;Choose location&#10;Secure land&#10;Begin construction"></textarea></div>
+    <button class="btn btn-primary btn-full" onclick="saveGoal()">Create Goal</button>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeSettings()">×</button>
+    <div class="modal-title">⚙️ Settings</div>
+    <div class="inp-grp"><label class="inp-lbl">Theme</label>
+      <div class="seg-row"><div class="seg-opt" id="seg-light" onclick="setTheme('light')">☀️ Light</div><div class="seg-opt" id="seg-dark" onclick="setTheme('dark')">🌙 Dark</div></div>
+    </div>
+    <div class="inp-grp"><label class="inp-lbl">Text Size</label>
+      <div class="seg-row"><div class="seg-opt" id="seg-sm" onclick="setFontSize('sm')">Small</div><div class="seg-opt" id="seg-md" onclick="setFontSize('md')">Medium</div><div class="seg-opt" id="seg-lg" onclick="setFontSize('lg')">Large</div></div>
+    </div>
+    <div class="inp-grp"><label class="inp-lbl">Change Password</label>
+      <input class="inp" type="password" id="set-newpw" placeholder="New password" style="margin-bottom:8px;">
+      <button class="btn btn-gold btn-full" onclick="changePassword()">Update Password</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE MODAL -->
+<div class="modal-overlay" id="profile-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeProfile()">×</button>
+    <div class="modal-title">👤 My Identity</div>
+    <div class="profile-photo-wrap" id="profile-photo-wrap">👤</div>
+    <input type="file" id="profile-photo-input" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)">
+    <button class="btn btn-ghost btn-full" style="margin-bottom:14px;" onclick="document.getElementById('profile-photo-input').click()">📷 Upload Photo</button>
+    <div class="inp-grp"><label class="inp-lbl">Bio — identity, values, dreams</label><textarea class="inp" id="profile-bio" rows="6" placeholder="I am Binyam..."></textarea></div>
+    <button class="btn btn-primary btn-full" onclick="saveProfile()">Save Identity</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo">B</div>
+      <div>
+        <div class="topbar-name">Life Control Center</div>
+        <div class="topbar-sub">TRADER · DESIGNER · CHURCH LEADER</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-date" id="tb-date"></div>
+      <button class="sos-btn" onclick="openSOS()">⚡ SOS</button>
+      <button class="icon-btn" onclick="openSettings()">⚙️</button>
+      <button class="avatar-btn" id="avatar-btn" onclick="openProfile()">👤</button>
+      <button class="icon-btn" onclick="lockApp()">🔒</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar">
+      <div class="nav-item active" onclick="sw('overview',this)"><span class="nav-icon">📊</span> Overview</div>
+      <div class="nav-item" onclick="sw('recovery',this)"><span class="nav-icon">🛡️</span> Recovery</div>
+      <div class="nav-item" onclick="sw('checklist',this)"><span class="nav-icon">✅</span> Daily Tasks</div>
+      <div class="nav-item" onclick="sw('trading',this)"><span class="nav-icon">📈</span> Trading</div>
+      <div class="nav-item" onclick="sw('finance',this)"><span class="nav-icon">💰</span> Finance</div>
+      <div class="nav-item" onclick="sw('goals',this)"><span class="nav-icon">🌠</span> Long-Term Goals</div>
+      <div class="nav-item" onclick="sw('spiritual',this)"><span class="nav-icon">🙏</span> Spiritual</div>
+      <div class="nav-item" onclick="sw('journal',this)"><span class="nav-icon">📖</span> Journal</div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-streak">
+        <div class="sb-streak-fire">🔥</div>
+        <div class="sb-streak-num" id="sb-streak">0</div>
+        <div class="sb-streak-lbl">Day Streak</div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- OVERVIEW -->
+      <div id="tab-overview" class="tab-content active">
+        <div class="page-header">
+          <div><div class="page-title" id="greeting-text">Good morning, Binyam 🌅</div><div class="page-sub" id="ov-date-text"></div></div>
+        </div>
+        <div class="identity-banner">
+          <div class="ib-title">My Identity — Read Every Morning</div>
+          <div class="ib-text">"I am not fighting to stop a habit. I am building the man God called me to be — a trader, a designer, a church leader, and a future husband."<br><small style="color:var(--text3);font-size:.68rem;">ለእግዚአብሔር ክብር — For the Glory of God</small></div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card c-gold"><div class="stat-icon">🔥</div><div class="stat-lbl">Freedom Streak</div><div class="stat-val v-gold" id="ov-streak">0</div><div class="stat-sub">consecutive clean days</div></div>
+          <div class="stat-card c-blue"><div class="stat-icon">✅</div><div class="stat-lbl">Today's Score</div><div class="stat-val v-blue" id="ov-score">0/16</div><div class="stat-sub">tasks completed</div></div>
+          <div class="stat-card c-green"><div class="stat-icon">📈</div><div class="stat-lbl">Win Rate</div><div class="stat-val v-green" id="ov-rate">--%</div><div class="stat-sub">overall success</div></div>
+          <div class="stat-card c-purple"><div class="stat-icon">💰</div><div class="stat-lbl">Total Capital</div><div class="stat-val" style="font-size:1.05rem;color:var(--purple2)" id="ov-capital">0 ETB</div><div class="stat-sub">across all accounts</div></div>
+        </div>
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📊 Life Areas Health</div></div>
+            <div class="prog-item"><div class="prog-top"><span class="prog-lbl">🙏 Spiritual</span><span class="prog-pct" id="la-spirit">0%</span></div><div class="prog-bg"><div class="prog-fill pf-gold" id="lab-spirit" style="width:0%"></div></div></div>
+            <div class="prog-item"><div class="prog-top"><span class="prog-lbl">🛡️ Freedom</span><span class="prog-pct" id="la-freedom">0%</span></div><div class="prog-bg"><div class="prog-fill pf-blue" id="lab-freedom" style="width:0%"></div></div></div>
+            <div class="prog-item"><div class="prog-top"><span class="prog-lbl">💼 Work & Business</span><span class="prog-pct" id="la-work">0%</span></div><div class="prog-bg"><div class="prog-fill pf-purple" id="lab-work" style="width:0%"></div></div></div>
+            <div class="prog-item"><div class="prog-top"><span class="prog-lbl">💰 Financial</span><span class="prog-pct" id="la-finance">0%</span></div><div class="prog-bg"><div class="prog-fill pf-green" id="lab-finance" style="width:0%"></div></div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">📅 Recent Recovery Pattern</div></div>
+            <div class="chart-wrap"><canvas id="overview-chart"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECOVERY -->
+      <div id="tab-recovery" class="tab-content">
+        <div class="page-header"><div><div class="page-title">Recovery Tracker 🛡️</div><div class="page-sub">Strict 30-day cycles. Click a day to log it — click it again to undo. Every cycle auto-archives when it ends.</div></div></div>
+        <div class="stats-row">
+          <div class="stat-card c-gold"><div class="stat-icon">🔥</div><div class="stat-lbl">Current Streak</div><div class="stat-val v-gold" id="rc-streak">0</div><div class="stat-sub">days clean</div></div>
+          <div class="stat-card c-green"><div class="stat-icon">✅</div><div class="stat-lbl">Total Wins</div><div class="stat-val v-green" id="rc-wins">0</div><div class="stat-sub">clean days</div></div>
+          <div class="stat-card c-red"><div class="stat-icon">📉</div><div class="stat-lbl">Total Slips</div><div class="stat-val v-red" id="rc-fails">0</div><div class="stat-sub">logged</div></div>
+          <div class="stat-card c-blue"><div class="stat-icon">🎯</div><div class="stat-lbl">Day of Journey</div><div class="stat-val v-blue" id="rc-day">1</div><div class="stat-sub">since you started</div></div>
+        </div>
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📅 Freedom Map — Cycle <span id="fm-cycle-num">1</span></div><div style="display:flex;gap:8px;font-size:.68rem;"><span style="color:var(--green2)">✓ Win</span><span style="color:var(--red2)">✗ Slip</span></div></div>
+            <div style="font-size:.7rem;color:var(--text3);margin-bottom:12px;" id="fm-cycle-range">—</div>
+            <div class="n90-controls" style="margin-bottom:14px;">
+              <span class="n90-mode-lbl">Logging mode</span>
+              <button class="n90-mode-btn active" data-mode="win" id="fm-btn-win" onclick="fmSetMode('win')">✅ Win</button>
+              <button class="n90-mode-btn" data-mode="slip" id="fm-btn-slip" onclick="fmSetMode('slip')">✕ Slip</button>
+              <span class="n90-hint">Click a day to log it · click again to undo</span>
+            </div>
+            <div id="fm-calendar"></div>
+            <div style="background:var(--blue-g);border:1px solid rgba(59,127,240,.2);border-radius:var(--r-sm);padding:12px 14px;margin-top:14px;font-size:.72rem;color:var(--blue2);">
+              Day <strong id="fm-day-of-cycle">1</strong> of 30 in this cycle. When day 30 ends, this cycle archives automatically and a fresh 30-day cycle begins.
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-header"><div class="card-title">📈 30-Day Win/Slip Pattern</div><div style="display:flex;gap:8px;font-size:.68rem;"><span style="color:var(--green2)">▲ Win</span><span style="color:var(--red2)">▼ Slip</span></div></div>
+              <div class="chart-wrap"><canvas id="recovery-chart"></canvas></div>
+            </div>
+            <div class="card" style="margin-top:0;">
+              <div class="card-header"><div class="card-title">⚠️ Trigger Analysis</div><div class="card-badge cb-red">Your Vulnerabilities</div></div>
+              <div id="trigger-matrix"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🗂️ Archived Cycles</div><div class="card-badge cb-gold" id="fm-hist-count">0 archived</div></div>
+          <div id="fm-history"></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🧠 Dopamine Reset Timeline</div><div class="card-badge cb-blue">Science of Recovery</div></div>
+          <div class="dopa-row">
+            <div class="dopa-day"><div class="dopa-d-num">Day 1–7</div><div class="dopa-d-lbl">Hardest week. Withdrawal real. Stay strong.</div></div>
+            <div class="dopa-day"><div class="dopa-d-num">Day 8–30</div><div class="dopa-d-lbl">Brain recalibrating. Energy returns. Fog lifting.</div></div>
+            <div class="dopa-day"><div class="dopa-d-num">Day 31–60</div><div class="dopa-d-lbl">New pathways forming. Focus improving.</div></div>
+            <div class="dopa-day"><div class="dopa-d-num">Day 61–90</div><div class="dopa-d-lbl">Deep rewiring. Old triggers losing power.</div></div>
+            <div class="dopa-day"><div class="dopa-d-num">Day 90+</div><div class="dopa-d-lbl">Freedom is your new default. Identity transformed.</div></div>
+          </div>
+          <div class="prog-item" style="margin-top:8px;">
+            <div class="prog-top"><span class="prog-lbl">Journey Progress (capped display at 90d milestones, journey itself is ongoing)</span><span class="prog-pct" id="dopa-pct">0%</span></div>
+            <div class="prog-bg"><div class="prog-fill pf-blue" id="dopa-bar" style="width:0%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHECKLIST -->
+      <div id="tab-checklist" class="tab-content">
+        <div class="page-header"><div><div class="page-title">Daily Tasks ✅</div><div class="page-sub">Resets fresh every new date, automatically. Add, edit, or remove tasks anytime.</div></div>
+          <button class="btn btn-primary btn-sm" onclick="openTaskModal()">➕ Add Task</button>
+        </div>
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">Today's Score</div></div>
+            <div class="ring-wrap">
+              <div class="ring-svg-wrap">
+                <svg width="84" height="84" viewBox="0 0 88 88">
+                  <circle cx="44" cy="44" r="37" fill="none" stroke="var(--bg4)" stroke-width="7"/>
+                  <circle cx="44" cy="44" r="37" fill="none" stroke="var(--blue2)" stroke-width="7" stroke-dasharray="232.5" stroke-dashoffset="232.5" stroke-linecap="round" id="ring-circle" style="transition:stroke-dashoffset .8s ease"/>
+                </svg>
+                <div class="ring-num"><div class="ring-val" id="ring-val">0</div><div class="ring-max">/16</div></div>
+              </div>
+              <div><div class="ring-info-title" id="ring-msg">Start your day 💪</div><div class="ring-info-sub" id="ring-pct">0% complete</div></div>
+            </div>
+            <div style="margin-top:14px;">
+              <div class="prog-item"><div class="prog-top"><span class="prog-lbl">🌅 Morning</span><span class="prog-pct" id="sec-m">0/4</span></div><div class="prog-bg"><div class="prog-fill pf-gold" id="secb-m" style="width:0%"></div></div></div>
+              <div class="prog-item"><div class="prog-top"><span class="prog-lbl">📊 Work</span><span class="prog-pct" id="sec-w">0/4</span></div><div class="prog-bg"><div class="prog-fill pf-blue" id="secb-w" style="width:0%"></div></div></div>
+              <div class="prog-item"><div class="prog-top"><span class="prog-lbl">🛡️ Guard</span><span class="prog-pct" id="sec-g">0/4</span></div><div class="prog-bg"><div class="prog-fill pf-red" id="secb-g" style="width:0%"></div></div></div>
+              <div class="prog-item"><div class="prog-top"><span class="prog-lbl">🌙 Night</span><span class="prog-pct" id="sec-n">0/4</span></div><div class="prog-bg"><div class="prog-fill pf-purple" id="secb-n" style="width:0%"></div></div></div>
+            </div>
+          </div>
+          <div class="card" id="task-list-card"></div>
+        </div>
+      </div>
+
+      <!-- TRADING (NEW) -->
+      <div id="tab-trading" class="tab-content">
+        <div class="page-header"><div><div class="page-title">Trading Command Center 📈</div><div class="page-sub">Discipline before capital. Process before profit.</div></div></div>
+
+        <!-- 1. Wisdom quote -->
+        <div class="wisdom-card">
+          <div class="wisdom-eyebrow">Daily Wisdom</div>
+          <div class="wisdom-text" id="tw-quote">Loading...</div>
+          <div class="wisdom-author" id="tw-author"></div>
+        </div>
+
+        <div id="cb-banner"></div>
+        <div id="euphoria-banner"></div>
+
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">💵 Capital Analytics</div><div class="card-badge cb-blue">USD</div></div>
+            <div class="inp-row">
+              <div class="inp-grp" style="flex:1"><label class="inp-lbl">Initial Deposit ($)</label><input class="inp" type="number" id="tr-initial" placeholder="100"></div>
+              <div class="inp-grp" style="flex:1"><label class="inp-lbl">Add Top-up ($)</label><input class="inp" type="number" id="tr-topup" placeholder="0"></div>
+            </div>
+            <button class="btn btn-primary btn-full" onclick="saveTradingCapital()">Save Capital Update</button>
+            <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+              <div><div class="stat-lbl">Current Balance</div><div class="stat-val v-blue" id="tr-balance" style="font-size:1.3rem;">$0.00</div></div>
+              <div style="text-align:right"><div class="stat-lbl">Net P/L</div><div class="stat-val" id="tr-pl" style="font-size:1.3rem;">$0.00 (0%)</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">📉 Daily Closing Balance</div></div>
+            <div class="inp-row">
+              <input class="inp" type="number" id="tr-closing" placeholder="Enter today's closing balance ($)">
+              <button class="btn btn-gold btn-sm" onclick="logClosingBalance()" id="tr-closing-btn">Log</button>
+            </div>
+            <div class="chart-wrap" style="margin-top:14px;"><canvas id="capital-chart"></canvas></div>
+          </div>
+        </div>
+
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">🕐 Live Sessions</div></div>
+            <div class="session-row">
+              <div class="session-card"><div class="session-status" id="sess-london">--</div><div class="session-name">London</div><div class="session-time">08:00–17:00 UK</div></div>
+              <div class="session-card"><div class="session-status" id="sess-ny">--</div><div class="session-name">New York</div><div class="session-time">08:00–17:00 ET</div></div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:14px;">
+              <button class="btn btn-ghost btn-full" onclick="handleUrge('boredom')">😐 Boredom</button>
+              <button class="btn btn-danger btn-full" onclick="handleUrge('greed')">🔥 Greed / FOMO</button>
+            </div>
+            <div id="urge-msg" style="margin-top:10px;font-size:.75rem;color:var(--text2);"></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">☑️ Pre-Trade Checklist</div><div class="card-badge cb-green" id="pretrade-badge">0/4</div></div>
+            <div id="pretrade-list"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">📝 Log a Trade Result</div><div class="card-badge cb-purple">Discipline Score = your checklist %</div></div>
+          <div id="trade-lock-notice" style="display:none;" class="locked-banner">⛔ Locked after consecutive losses. Come back tomorrow with a clear head.</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-success btn-full" id="btn-log-win" onclick="logTrade('win')">✅ Log Win</button>
+            <button class="btn btn-danger btn-full" id="btn-log-loss" onclick="logTrade('loss')">❌ Log Loss</button>
+          </div>
+          <div class="chart-wrap" style="margin-top:16px;"><canvas id="discipline-chart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- FINANCE -->
+      <div id="tab-finance" class="tab-content">
+        <div class="page-header"><div><div class="page-title">Financial Capital 💰</div><div class="page-sub">Track every birr. Build your future systematically.</div></div></div>
+        <div class="total-card">
+          <div class="total-lbl">Total Capital — All Accounts</div>
+          <div class="total-amount" id="total-capital">0 ETB</div>
+          <div class="total-sub">Click any account card to select it for transactions</div>
+        </div>
+        <div class="wallet-grid">
+          <div class="wallet-card wc-inv" onclick="selectWallet('inv',this)">
+            <div class="wallet-name">📈 Investment Account</div>
+            <div class="wallet-amount" id="w-inv">0 ETB</div>
+            <div class="wallet-pct" id="wp-inv">0% of total · Target: 65%</div>
+            <div class="wallet-pct-bar"><div class="wallet-pct-fill" id="wbar-inv" style="width:0%;background:var(--blue2)"></div></div>
+          </div>
+          <div class="wallet-card wc-emg" onclick="selectWallet('emg',this)">
+            <div class="wallet-name">🛡️ Emergency Savings</div>
+            <div class="wallet-amount" id="w-emg">0 ETB</div>
+            <div class="wallet-pct" id="wp-emg">0% of total · Target: 10%</div>
+            <div class="wallet-pct-bar"><div class="wallet-pct-fill" id="wbar-emg" style="width:0%;background:var(--green2)"></div></div>
+          </div>
+          <div class="wallet-card wc-trd" onclick="selectWallet('trd',this)">
+            <div class="wallet-name">💹 Trading Capital</div>
+            <div class="wallet-amount" id="w-trd">0 ETB</div>
+            <div class="wallet-pct" id="wp-trd">0% of total · Target: 25%</div>
+            <div class="wallet-pct-bar"><div class="wallet-pct-fill" id="wbar-trd" style="width:0%;background:var(--gold2)"></div></div>
+          </div>
+          <div class="wallet-card wc-per" onclick="selectWallet('per',this)">
+            <div class="wallet-name">👤 Personal Account</div>
+            <div class="wallet-amount" id="w-per">0 ETB</div>
+            <div class="wallet-pct" id="wp-per">0% of total</div>
+            <div class="wallet-pct-bar"><div class="wallet-pct-fill" id="wbar-per" style="width:0%;background:var(--purple2)"></div></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:16px;">
+          <button class="btn btn-primary" onclick="openTxn()">+ Add Transaction</button>
+        </div>
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">🍕 Capital Allocation</div></div>
+            <div class="chart-wrap" style="height:220px;max-width:260px;margin:0 auto;"><canvas id="pie-chart"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">🎯 Financial Goal</div><div class="card-badge cb-gold">Milestone</div></div>
+            <div style="font-size:.8rem;color:var(--text2);margin-bottom:10px;">Target: <strong style="color:var(--text)">100,000 ETB</strong> Total Capital</div>
+            <div class="prog-item">
+              <div class="prog-top"><span class="prog-lbl">Journey to 100,000 ETB</span><span class="prog-pct" id="goal-pct">0%</span></div>
+              <div class="prog-bg" style="height:12px;"><div class="prog-fill pf-gold" id="goal-bar" style="width:0%"></div></div>
+            </div>
+            <div style="font-size:.72rem;color:var(--text3);margin-top:8px;" id="goal-remaining">0 ETB remaining</div>
+            <div style="margin-top:16px;">
+              <div class="check-section-lbl"><span>Recent Transactions</span></div>
+              <div id="txn-log" style="max-height:160px;overflow-y:auto;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🏦 Custom Savings Plans</div><button class="btn btn-purple btn-sm" onclick="openSavingsModal()">➕ New Plan</button></div>
+          <div id="savings-list"></div>
+        </div>
+      </div>
+
+      <!-- GOALS (NEW) -->
+      <div id="tab-goals" class="tab-content">
+        <div class="page-header"><div><div class="page-title">Long-Term Goals Chronicle 🌠</div><div class="page-sub">The house. The agency. The marriage. Broken into steps you take today.</div></div>
+          <button class="btn btn-primary btn-sm" onclick="openGoalModal()">➕ New Goal</button>
+        </div>
+        <div id="goals-list"></div>
+      </div>
+
+      <!-- SPIRITUAL -->
+      <div id="tab-spiritual" class="tab-content">
+        <div class="page-header"><div><div class="page-title">Spiritual & Mental 🙏</div><div class="page-sub">Your spiritual foundation is your strongest weapon.</div></div></div>
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📿 Daily Devotional</div><div class="card-badge cb-gold">Today</div></div>
+            <div class="dev-item">
+              <div class="dev-icon">🌅</div>
+              <div class="dev-info"><div class="dev-name">Morning Prayer</div><div class="dev-time">Before 7:00 AM · 10+ minutes</div></div>
+              <button class="dev-toggle" id="dev-0" onclick="togDev(0)"></button>
+            </div>
+            <div class="dev-item">
+              <div class="dev-icon">📖</div>
+              <div class="dev-info"><div class="dev-name">Scripture Reading</div><div class="dev-time">Morning · Write one verse</div></div>
+              <button class="dev-toggle" id="dev-1" onclick="togDev(1)"></button>
+            </div>
+            <div class="dev-item">
+              <div class="dev-icon">⛪</div>
+              <div class="dev-info"><div class="dev-name">Intercession for Congregation</div><div class="dev-time">Afternoon · 5 minutes</div></div>
+              <button class="dev-toggle" id="dev-2" onclick="togDev(2)"></button>
+            </div>
+            <div class="dev-item">
+              <div class="dev-icon">🌙</div>
+              <div class="dev-info"><div class="dev-name">Pre-Bed Prayer</div><div class="dev-time">Before 10:30 PM</div></div>
+              <button class="dev-toggle" id="dev-3" onclick="togDev(3)"></button>
+            </div>
+            <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:.75rem;color:var(--text2);">Devotional score</span>
+              <span style="font-size:1.1rem;font-weight:700;color:var(--gold2)" id="dev-score">0/4</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">✍️ AI Mental Journal</div><div class="card-badge cb-blue">Therapeutic Assistant</div></div>
+            <div class="inp-grp"><label class="inp-lbl">How are you feeling right now? Trade stress, urges, anything on your mind.</label><textarea class="inp" id="mental-input" rows="5" placeholder="Write freely. This is your safe space..."></textarea></div>
+            <button class="btn btn-primary btn-full" onclick="getAIFeedback()">Get My Recovery Blueprint →</button>
+            <div id="ai-feedback-box" style="display:none;margin-top:12px;">
+              <div class="ai-feedback-lbl">🤖 PERSONALIZED RECOVERY BLUEPRINT</div>
+              <div class="ai-feedback" id="ai-feedback-text"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">👑 My Identity Declaration</div><div class="card-badge cb-gold">Read When Weak</div></div>
+          <div style="font-size:.9rem;color:var(--text2);line-height:2.1;font-style:italic;text-align:center;padding:8px 0;">
+            I am Binyam. I am a man of God and a church leader.<br>
+            I am a trader, a designer, a creator, and a future husband.<br>
+            <strong style="color:var(--text);">This addiction does not define me.</strong><br>
+            I am 9 years in this battle — and I am still fighting. That makes me a warrior, not a failure.<br>
+            Today I choose freedom. Tomorrow I will choose it again.<br>
+            <span style="color:var(--gold2);">ለእግዚአብሔር ክብር — For the Glory of God.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOURNAL -->
+      <div id="tab-journal" class="tab-content">
+        <div class="page-header"><div><div class="page-title">Daily Journal 📖</div><div class="page-sub">Reflect. Grow. Track your inner journey.</div></div></div>
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><div class="card-title">✍️ Today's Entry</div><div class="card-badge cb-blue" id="j-date-badge"></div></div>
+            <div class="inp-grp"><label class="inp-lbl">🙏 Spiritual — prayer, scripture, spiritual state</label><textarea class="inp" id="j-spirit" rows="3" placeholder="How was your prayer? What spoke to you today?"></textarea></div>
+            <div class="inp-grp"><label class="inp-lbl">⚡ Urge log — did any urge come? What happened?</label><textarea class="inp" id="j-urge" rows="3" placeholder="Be honest. What triggered it? How did you respond?"></textarea></div>
+            <div class="inp-grp"><label class="inp-lbl">🙌 Gratitude — one thing God did today</label><input class="inp" id="j-grateful" placeholder="Today I am grateful for..."></div>
+            <div class="inp-grp"><label class="inp-lbl">🎯 Tomorrow's one goal</label><input class="inp" id="j-tomorrow" placeholder="Tomorrow I will..."></div>
+            <button class="btn btn-primary btn-full" onclick="saveJournal()">💾 Save Entry</button>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">📚 Past Entries</div></div>
+            <div id="journal-log" style="max-height:480px;overflow-y:auto;"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="bnav-items">
+      <div class="bnav-item active" onclick="sw('overview',this,true)"><div class="bnav-icon">📊</div><div class="bnav-lbl">Overview</div></div>
+      <div class="bnav-item" onclick="sw('recovery',this,true)"><div class="bnav-icon">🛡️</div><div class="bnav-lbl">Recovery</div></div>
+      <div class="bnav-item" onclick="sw('checklist',this,true)"><div class="bnav-icon">✅</div><div class="bnav-lbl">Tasks</div></div>
+      <div class="bnav-item" onclick="sw('trading',this,true)"><div class="bnav-icon">📈</div><div class="bnav-lbl">Trading</div></div>
+      <div class="bnav-item" onclick="sw('finance',this,true)"><div class="bnav-icon">💰</div><div class="bnav-lbl">Finance</div></div>
+      <div class="bnav-item" onclick="sw('goals',this,true)"><div class="bnav-icon">🌠</div><div class="bnav-lbl">Goals</div></div>
+      <div class="bnav-item" onclick="sw('spiritual',this,true)"><div class="bnav-icon">🙏</div><div class="bnav-lbl">Spirit</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= STATE ================= */
+const STORE_KEY='binyam_lcc_v2';
+let S = JSON.parse(localStorage.getItem(STORE_KEY)||'{}');
+const defaultTasks=[
+  {id:0,section:'m',tag:'spirit',label:'<strong>Prayer out loud</strong> — "I am a man of God. I am free. I am disciplined."'},
+  {id:1,section:'m',tag:'spirit',label:'<strong>Read one scripture</strong> — write it in your notebook'},
+  {id:2,section:'m',tag:'body',label:'<strong>20 pushups</strong> — body before mind, activate right now'},
+  {id:3,section:'m',tag:'guard',label:'<strong>Phone check</strong> — did it sleep outside the bedroom?'},
+  {id:4,section:'w',tag:'work',label:'<strong>Trading</strong> — MT5 open, XAU/USD reviewed, trade journal logged'},
+  {id:5,section:'w',tag:'work',label:'<strong>Bini Design</strong> — one task: client, portfolio, or skill development'},
+  {id:6,section:'w',tag:'work',label:'<strong>YouTube</strong> — script, clip, or CapCut edit session done'},
+  {id:7,section:'w',tag:'work',label:'<strong>Notion</strong> — 12-month roadmap reviewed, one item updated'},
+  {id:8,section:'g',tag:'guard',label:'<strong>Cold Turkey running</strong> — PC blocks are active'},
+  {id:9,section:'g',tag:'guard',label:'<strong>Telegram timer set</strong> — locks at 8:00pm tonight'},
+  {id:10,section:'g',tag:'guard',label:'<strong>Accountability message sent</strong> — good morning to your person'},
+  {id:11,section:'g',tag:'guard',label:'<strong>Urge log</strong> — any urge today? What did you do?'},
+  {id:12,section:'n',tag:'guard',label:'<strong>Phone to another room</strong> — charge outside the bedroom.'},
+  {id:13,section:'n',tag:'guard',label:'<strong>PC off / Cold Turkey locked</strong> — laptop closed'},
+  {id:14,section:'n',tag:'spirit',label:'<strong>Bible or notebook beside bed</strong> — last thing before sleep'},
+  {id:15,section:'n',tag:'spirit',label:'<strong>Night prayer</strong> — thank God, ask for protection through the night'}
+];
+const def = {
+  days:{}, checks:{}, journal:[], wallets:{inv:0,emg:0,trd:0,per:0}, txns:[],
+  triggers:{}, devs:{}, startDate:new Date().toDateString(),
+  tasks:defaultTasks, nextTaskId:16,
+  savingsPlans:[],
+  profile:{photo:'',bio:''},
+  settings:{theme:'light',fontsize:'md',password:'binyam2025'},
+  goals:[],
+  trading:{initial:0,topups:0,closings:[],trades:[],lockDate:null,lockCount:0},
+  freedomCycle:{start:null,end:null,cycleNumber:1},
+  freedomHistory:[]
+};
+Object.keys(def).forEach(k=>{ if(S[k]===undefined) S[k]=JSON.parse(JSON.stringify(def[k])); });
+if(!S.settings) S.settings={theme:'light',fontsize:'md',password:'binyam2025'};
+function save(){ localStorage.setItem(STORE_KEY,JSON.stringify(S)); }
+
+/* ================= DATE ================= */
+const now = new Date();
+const todayStr = now.toDateString();
+const todayFmt = now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+const hr = now.getHours();
+const greet = hr<12?'Good morning':hr<17?'Good afternoon':'Good evening';
+const greetIcon = hr<12?'🌅':hr<17?'☀️':'🌙';
+
+/* ================= QUOTES ================= */
+const loginQuotes=[
+  {t:"\u201cBe strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.\u201d", s:"Joshua 1:9"},
+  {t:"\u201cNo temptation has overtaken you except what is common to mankind. And God is faithful.\u201d", s:"1 Corinthians 10:13"},
+  {t:"\u201cI can do all this through him who gives me strength.\u201d", s:"Philippians 4:13"},
+  {t:"Discipline is choosing between what you want now and what you want most.", s:"Motivation"},
+  {t:"\u201cCreate in me a pure heart, O God, and renew a steadfast spirit within me.\u201d", s:"Psalm 51:10"},
+  {t:"You don't have to be great to start, but you have to start to be great.", s:"Motivation"},
+  {t:"\u201cThe Lord is my shepherd; I shall not want.\u201d", s:"Psalm 23:1"},
+  {t:"Every master was once a disaster. Keep showing up.", s:"Motivation"}
+];
+const tradingQuotes=[
+  {t:"The market can stay irrational longer than you can stay solvent — respect it.", a:"Trading Wisdom"},
+  {t:"You don't need to be right to make money; you need to manage risk.", a:"Mark Douglas"},
+  {t:"The trading rules you live by must be followed 100% of the time; 95% doesn't cut it.", a:"Mark Douglas"},
+  {t:"Amateurs think about how much money they can make. Professionals think about how much money they could lose.", a:"Trading Wisdom"},
+  {t:"He who has a why to endure can bear almost any how.", a:"Nietzsche (Stoic-adjacent)"},
+  {t:"You have power over your mind — not outside events. Realize this, and you will find strength.", a:"Marcus Aurelius"},
+  {t:"The impediment to action advances action. What stands in the way becomes the way.", a:"Marcus Aurelius"},
+  {t:"Plans are nothing. Discipline is everything.", a:"Trading Wisdom"},
+  {t:"A losing trade is a cost of doing business — a revenge trade is a choice.", a:"Trading Wisdom"}
+];
+function pickDaily(list, seedKey){
+  const seed = new Date().toDateString()+seedKey;
+  let h=0; for(let i=0;i<seed.length;i++) h=(h*31+seed.charCodeAt(i))>>>0;
+  return list[h%list.length];
+}
+
+/* ================= LOGIN CAROUSEL ================= */
+let lqIdx=0, lqTimer=null;
+function renderLoginQuote(){
+  const q=loginQuotes[lqIdx];
+  document.getElementById('lq-text').textContent='\u201c'+q.t.replace(/[\u201c\u201d]/g,'')+'\u201d';
+  document.getElementById('lq-source').textContent=q.s;
+  const dots=document.getElementById('lq-dots');
+  dots.innerHTML=loginQuotes.map((_,i)=>`<div class="lq-dot ${i===lqIdx?'on':''}"></div>`).join('');
+}
+function startLoginCarousel(){
+  renderLoginQuote();
+  lqTimer=setInterval(()=>{ lqIdx=(lqIdx+1)%loginQuotes.length; renderLoginQuote(); },5000);
+}
+startLoginCarousel();
+
+/* ================= PASSWORD / LOCK ================= */
+function login(){
+  const pw = S.settings && S.settings.password ? S.settings.password : 'binyam2025';
+  if(document.getElementById('pw').value===pw){
+    clearInterval(lqTimer);
+    document.getElementById('lock').style.display='none';
+    document.getElementById('app').style.display='block';
+    init();
+  } else {
+    document.getElementById('pw-err').style.display='block';
+    document.getElementById('pw').value='';
+    document.getElementById('pw').focus();
+  }
+}
+function lockApp(){
+  document.getElementById('app').style.display='none';
+  document.getElementById('lock').style.display='flex';
+  document.getElementById('pw').value='';
+  startLoginCarousel();
+}
+
+/* ================= THEME / FONT ================= */
+function applyTheme(){
+  document.body.setAttribute('data-theme', S.settings.theme==='dark'?'dark':'light');
+  const scaleMap={sm:0.92,md:1,lg:1.12};
+  document.documentElement.style.setProperty('--fs-scale', scaleMap[S.settings.fontsize]||1);
+}
+function setTheme(t){ S.settings.theme=t; save(); applyTheme(); refreshSettingsUI(); }
+function setFontSize(f){ S.settings.fontsize=f; save(); applyTheme(); refreshSettingsUI(); }
+function refreshSettingsUI(){
+  ['light','dark'].forEach(t=>document.getElementById('seg-'+(t==='light'?'light':'dark')).classList.toggle('on',S.settings.theme===t));
+  ['sm','md','lg'].forEach(f=>document.getElementById('seg-'+f).classList.toggle('on',S.settings.fontsize===f));
+}
+function openSettings(){ document.getElementById('settings-modal').classList.add('open'); refreshSettingsUI(); }
+function closeSettings(){ document.getElementById('settings-modal').classList.remove('open'); }
+function changePassword(){
+  const v=document.getElementById('set-newpw').value.trim();
+  if(v.length<4){ alert('Password should be at least 4 characters.'); return; }
+  S.settings.password=v; save();
+  document.getElementById('set-newpw').value='';
+  alert('Password updated.');
+}
+
+/* ================= TABS ================= */
+let charts={};
+function sw(tab, el, isMobile=false){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  if(!isMobile){
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    if(el) el.classList.add('active');
+  } else {
+    document.querySelectorAll('.bnav-item').forEach(n=>n.classList.remove('active'));
+    if(el) el.classList.add('active');
+  }
+  setTimeout(()=>renderCharts(tab),50);
+  updateAll();
+}
+
+/* ================= NIGHT CHECK ================= */
+function checkNight(){
+  const h=now.getHours(), m=now.getMinutes();
+  if((h===23&&m>=30) || h<6){
+    document.getElementById('night-overlay').style.display='flex';
+  }
+}
+function dismissNight(){ document.getElementById('night-overlay').style.display='none'; }
+
+/* ================= SOS ================= */
+function openSOS(){ document.getElementById('sos-overlay').style.display='flex'; startBreathe(); }
+function closeSOS(){ document.getElementById('sos-overlay').style.display='none'; stopBreathe(); }
+let breatheInterval=null;
+function startBreathe(){
+  let phase=0; const phases=['Inhale... (4s)','Hold... (7s)','Exhale... (8s)'];
+  const durations=[4000,7000,8000];
+  const el=document.getElementById('breathe-label');
+  const circ=document.getElementById('breathe-circle');
+  function next(){
+    el.textContent=phases[phase];
+    circ.textContent=phases[phase].split('...')[0];
+    breatheInterval=setTimeout(()=>{ phase=(phase+1)%3; next(); },durations[phase]);
+  }
+  next();
+}
+function stopBreathe(){ clearTimeout(breatheInterval); }
+
+/* ================= TASK CRUD ================= */
+function renderTaskListCard(){
+  const card=document.getElementById('task-list-card');
+  const secTitles={m:'🌅 Morning Protocol — Before Phone',w:'📊 Bini Command Center',g:'🛡️ Freedom Guard',n:'🌙 Night Protocol — Before 10:30pm'};
+  const tagClass={spirit:'t-spirit',body:'t-body',guard:'t-guard',work:'t-work',custom:'t-custom'};
+  const c=S.checks[todayStr]||{};
+  let html='';
+  ['m','w','g','n'].forEach(sec=>{
+    const items=S.tasks.filter(t=>t.section===sec);
+    html+=`<div class="check-section-lbl"><span>${secTitles[sec]}</span></div>`;
+    items.forEach(t=>{
+      const on=!!c[t.id];
+      html+=`<div class="chk-item" data-id="${t.id}">
+        <div class="chk-box ${on?'on':''}" onclick="chk(${t.id})"></div>
+        <div class="chk-lbl ${on?'done':''}" onclick="chk(${t.id})">${t.label}</div>
+        <span class="chk-tag ${tagClass[t.tag]||'t-custom'}">${t.tag}</span>
+        <span class="chk-del" onclick="editTask(${t.id})" title="Edit">✎</span>
+        <span class="chk-del" onclick="deleteTask(${t.id})" title="Delete">✕</span>
+      </div>`;
+    });
+  });
+  card.innerHTML=html;
+}
+function chk(id){
+  if(!S.checks[todayStr]) S.checks[todayStr]={};
+  S.checks[todayStr][id]=!S.checks[todayStr][id];
+  save(); renderTaskListCard(); updateCheckUI(); updateAll();
+}
+function openTaskModal(){
+  document.getElementById('task-modal-title').textContent='➕ Add Task';
+  document.getElementById('task-label').value='';
+  document.getElementById('task-section').value='m';
+  document.getElementById('task-edit-id').value='';
+  document.getElementById('task-modal').classList.add('open');
+}
+function editTask(id){
+  const t=S.tasks.find(x=>x.id===id); if(!t)return;
+  document.getElementById('task-modal-title').textContent='✎ Edit Task';
+  document.getElementById('task-label').value=t.label.replace(/<\/?strong>/g,'');
+  document.getElementById('task-section').value=t.section;
+  document.getElementById('task-edit-id').value=id;
+  document.getElementById('task-modal').classList.add('open');
+}
+function closeTaskModal(){ document.getElementById('task-modal').classList.remove('open'); }
+function saveTaskModal(){
+  const label=document.getElementById('task-label').value.trim();
+  const section=document.getElementById('task-section').value;
+  const editId=document.getElementById('task-edit-id').value;
+  if(!label)return;
+  if(editId!==''){
+    const t=S.tasks.find(x=>x.id===parseInt(editId));
+    if(t){ t.label='<strong>'+label+'</strong>'; t.section=section; }
+  } else {
+    S.tasks.push({id:S.nextTaskId++,section,tag:'custom',label:'<strong>'+label+'</strong>'});
+  }
+  save(); closeTaskModal(); renderTaskListCard(); updateCheckUI();
+}
+function deleteTask(id){
+  if(!confirm('Delete this task? Historical scores stay intact.'))return;
+  S.tasks=S.tasks.filter(t=>t.id!==id);
+  save(); renderTaskListCard(); updateCheckUI();
+}
+function updateCheckUI(){
+  const c=S.checks[todayStr]||{};
+  const total=S.tasks.length||1, done=S.tasks.filter(t=>c[t.id]).length;
+  const pct=Math.round((done/total)*100);
+  const circ=232.5;
+  document.getElementById('ring-circle').style.strokeDashoffset=circ-(pct/100)*circ;
+  document.getElementById('ring-val').textContent=done;
+  document.querySelector('.ring-max').textContent='/'+total;
+  document.getElementById('ring-pct').textContent=pct+'% complete';
+  const msgs=['Start your day 💪','Keep going! 🔥','Halfway there! 🎯','Almost done! ⚡','Day complete! 🏆'];
+  document.getElementById('ring-msg').textContent=done===0?msgs[0]:pct<50?msgs[1]:pct<80?msgs[2]:pct<100?msgs[3]:msgs[4];
+  ['m','w','g','n'].forEach(sec=>{
+    const items=S.tasks.filter(t=>t.section===sec);
+    const d=items.filter(t=>c[t.id]).length;
+    const el1=document.getElementById('sec-'+sec), el2=document.getElementById('secb-'+sec);
+    if(el1) el1.textContent=d+'/'+items.length;
+    if(el2) el2.style.width=(items.length?Math.round((d/items.length)*100):0)+'%';
+  });
+  document.getElementById('ov-score').textContent=done+'/'+total;
+  const spiritItems=S.tasks.filter(t=>t.tag==='spirit');
+  const workItems=S.tasks.filter(t=>t.tag==='work');
+  setLA('spirit', spiritItems.length?Math.round((spiritItems.filter(t=>c[t.id]).length/spiritItems.length)*100):0);
+  setLA('work', workItems.length?Math.round((workItems.filter(t=>c[t.id]).length/workItems.length)*100):0);
+}
+function setLA(k,v){ const a=document.getElementById('la-'+k), b=document.getElementById('lab-'+k); if(a)a.textContent=v+'%'; if(b)b.style.width=v+'%'; }
+
+/* ================= RECOVERY (date-keyed, unlimited) ================= */
+function dateKey(d){ return d.toDateString(); }
+function dayNumSince(){
+  const start=new Date(S.startDate);
+  return Math.floor((now-start)/864e5)+1;
+}
+function renderGrid(){
+  // full historical wins/fails (not just visible window)
+  const allWins=Object.values(S.days).filter(v=>v==='win').length;
+  const allFails=Object.values(S.days).filter(v=>v==='fail').length;
+  // streak: walk backward from today by date until a non-win day breaks it
+  let streak=0;
+  for(let i=0;i<100000;i++){
+    const d=new Date(); d.setDate(d.getDate()-i);
+    const v=S.days[dateKey(d)];
+    if(v==='win') streak++;
+    else if(v==='fail') break;
+    else if(i>0) break; // today undecided doesn't break an existing streak start, but stop counting further back
+    else continue;
+  }
+  ['rc-streak','sb-streak','ov-streak'].forEach(id=>{ const el=document.getElementById(id); if(el)el.textContent=streak; });
+  const rcW=document.getElementById('rc-wins'); if(rcW)rcW.textContent=allWins;
+  const rcF=document.getElementById('rc-fails'); if(rcF)rcF.textContent=allFails;
+  const dn=dayNumSince();
+  const rcD=document.getElementById('rc-day'); if(rcD)rcD.textContent=dn;
+  const total=allWins+allFails;
+  const rate=total>0?Math.round((allWins/total)*100):0;
+  const ovR=document.getElementById('ov-rate'); if(ovR)ovR.textContent=(total>0?rate+'%':'--%');
+  const milestoneProgress=Math.min(100, Math.round((streak/90)*100));
+  const dopaP=document.getElementById('dopa-pct'); if(dopaP)dopaP.textContent=milestoneProgress+'%';
+  const dopaB=document.getElementById('dopa-bar'); if(dopaB)dopaB.style.width=milestoneProgress+'%';
+  setLA('freedom',rate);
+  fmRenderAll();
+}
+function markDay(result){
+  S.days[todayStr]=result;
+  save(); renderGrid();
+}
+function openSlip(){ document.getElementById('slip-modal').classList.add('open'); }
+function closeSlip(){ document.getElementById('slip-modal').classList.remove('open'); }
+function confirmSlip(){
+  const t=document.getElementById('slip-trigger').value;
+  S.days[todayStr]='fail';
+  if(!S.triggers[t]) S.triggers[t]=0;
+  S.triggers[t]++;
+  save(); renderGrid(); renderTriggers(); closeSlip();
+}
+function renderTriggers(){
+  const mx=document.getElementById('trigger-matrix');
+  if(!mx)return;
+  const entries=Object.entries(S.triggers).sort((a,b)=>b[1]-a[1]);
+  if(!entries.length){ mx.innerHTML='<div style="font-size:.72rem;color:var(--text3);padding:10px 0;">No slips logged yet. Keep it that way! ✓</div>'; return; }
+  const max=Math.max(...entries.map(e=>e[1]));
+  mx.innerHTML=entries.map(([name,count])=>`
+    <div class="trigger-row">
+      <div class="trigger-name">${name}</div>
+      <div class="trigger-bar-bg"><div class="trigger-bar-fill" style="width:${Math.round((count/max)*100)}%"></div></div>
+      <div class="trigger-count">${count}</div>
+    </div>`).join('');
+}
+
+/* ================= CHARTS (fixed-height containers -> no bounce) ================= */
+function chartColors(){
+  const dark=S.settings.theme==='dark';
+  return { grid: dark?'rgba(48,54,61,.5)':'rgba(225,232,245,.9)', tick: dark?'#6e7681':'#8a97b3' };
+}
+function renderCharts(tab){
+  const cc=chartColors();
+  if(tab==='overview'||tab==='recovery'){
+    const days=[]; for(let i=29;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i); days.push(d); }
+    const labels=days.map(d=>d.getDate());
+    const vals=days.map(d=>{ const v=S.days[dateKey(d)]; return v==='win'?1:v==='fail'?-1:0; });
+    const colors=days.map(d=>{ const v=S.days[dateKey(d)]; return v==='win'?'rgba(47,189,131,.7)':v==='fail'?'rgba(239,91,82,.7)':'rgba(180,190,210,.4)'; });
+    if(tab==='overview'){
+      if(charts['ov']){ charts['ov'].destroy(); delete charts['ov']; }
+      const ctx=document.getElementById('overview-chart');
+      if(ctx){ charts['ov']=new Chart(ctx,{type:'bar',data:{labels,datasets:[{data:vals,backgroundColor:colors,borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:i=>i.raw===1?'✓ Win':i.raw===-1?'✗ Slip':'—'}}},scales:{y:{display:false,min:-1.4,max:1.4},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}}); }
+    }
+    if(tab==='recovery'){
+      if(charts['rc']){ charts['rc'].destroy(); delete charts['rc']; }
+      const ctx2=document.getElementById('recovery-chart');
+      if(ctx2){ charts['rc']=new Chart(ctx2,{type:'bar',data:{labels,datasets:[{data:vals,backgroundColor:colors,borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:i=>i.raw===1?'✓ Win':i.raw===-1?'✗ Slip':'—'}}},scales:{y:{display:false,min:-1.4,max:1.4},x:{ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}}}}}); }
+    }
+  }
+  if(tab==='finance'){
+    if(charts['pie']){ charts['pie'].destroy(); delete charts['pie']; }
+    const ctx=document.getElementById('pie-chart');
+    const w=S.wallets;
+    const total=w.inv+w.emg+w.trd+w.per;
+    if(ctx && total>0){
+      charts['pie']=new Chart(ctx,{type:'doughnut',data:{labels:['Investment','Emergency','Trading','Personal'],datasets:[{data:[w.inv,w.emg,w.trd,w.per],backgroundColor:['rgba(59,127,240,.75)','rgba(47,189,131,.75)','rgba(224,172,43,.75)','rgba(143,116,234,.75)'],borderColor:['#3b7ff0','#2fbd83','#e0ac2b','#8f74ea'],borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:cc.tick,font:{size:11},padding:10}}}}});
+    } else if(ctx){
+      charts['pie']=new Chart(ctx,{type:'doughnut',data:{labels:['No data'],datasets:[{data:[1],backgroundColor:['rgba(180,190,210,.4)'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'65%',plugins:{legend:{display:false}}}});
+    }
+  }
+  if(tab==='trading'){
+    renderCapitalChart(cc); renderDisciplineChart(cc);
+  }
+}
+function renderCapitalChart(cc){
+  cc=cc||chartColors();
+  if(charts['cap']){ charts['cap'].destroy(); delete charts['cap']; }
+  const ctx=document.getElementById('capital-chart');
+  const pts=S.trading.closings.slice(-30);
+  const labels=pts.map(p=>p.date);
+  const data=pts.map(p=>p.balance);
+  if(ctx){
+    charts['cap']=new Chart(ctx,{type:'line',data:{labels,datasets:[{data,borderColor:'rgba(224,172,43,.9)',backgroundColor:'rgba(224,172,43,.12)',tension:.3,fill:true,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false}},scales:{y:{ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
+  }
+}
+function renderDisciplineChart(cc){
+  cc=cc||chartColors();
+  if(charts['disc']){ charts['disc'].destroy(); delete charts['disc']; }
+  const ctx=document.getElementById('discipline-chart');
+  const trades=S.trading.trades.slice(-30);
+  const labels=trades.map((t,i)=>i+1);
+  const data=trades.map(t=>t.discipline);
+  const colors=trades.map(t=>t.result==='win'?'rgba(47,189,131,.8)':'rgba(239,91,82,.8)');
+  if(ctx){
+    charts['disc']=new Chart(ctx,{type:'bar',data:{labels,datasets:[{data,backgroundColor:colors,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:10,ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
+  }
+}
+
+/* ================= FINANCE ================= */
+let selWallet='inv';
+function selectWallet(id,el){
+  selWallet=id;
+  document.querySelectorAll('.wallet-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('txn-account').value=id;
+}
+function openTxn(){ document.getElementById('txn-modal').classList.add('open'); }
+function closeTxn(){ document.getElementById('txn-modal').classList.remove('open'); }
+function addTxn(){
+  const acct=document.getElementById('txn-account').value;
+  const type=document.getElementById('txn-type').value;
+  const amt=parseFloat(document.getElementById('txn-amount').value)||0;
+  const note=document.getElementById('txn-note').value.trim();
+  if(!amt)return;
+  if(type==='dep') S.wallets[acct]+=amt;
+  else S.wallets[acct]=Math.max(0,S.wallets[acct]-amt);
+  S.txns.unshift({id:Date.now(),acct,type,amt,note,date:now.toLocaleDateString(),reversed:false});
+  save(); closeTxn(); renderFinance(); renderCharts('finance');
+  document.getElementById('txn-amount').value='';
+  document.getElementById('txn-note').value='';
+}
+function undoTxn(id){
+  const t=S.txns.find(x=>x.id===id);
+  if(!t || t.reversed)return;
+  if(t.type==='dep') S.wallets[t.acct]=Math.max(0,S.wallets[t.acct]-t.amt);
+  else S.wallets[t.acct]+=t.amt;
+  t.reversed=true;
+  save(); renderFinance(); renderCharts('finance');
+}
+function renderFinance(){
+  const w=S.wallets;
+  const total=w.inv+w.emg+w.trd+w.per;
+  const fmt=n=>n.toLocaleString()+ ' ETB';
+  document.getElementById('total-capital').textContent=fmt(total);
+  document.getElementById('ov-capital').textContent=fmt(total);
+  const accts=[{id:'inv',target:65},{id:'emg',target:10},{id:'trd',target:25},{id:'per',target:0}];
+  accts.forEach(({id,target})=>{
+    const pct=total>0?Math.round((w[id]/total)*100):0;
+    document.getElementById('w-'+id).textContent=fmt(w[id]);
+    document.getElementById('wp-'+id).textContent=pct+'% of total'+(target?` · Target: ${target}%`:'');
+    document.getElementById('wbar-'+id).style.width=Math.min(pct,100)+'%';
+  });
+  const goalPct=Math.min(Math.round((total/100000)*100),100);
+  document.getElementById('goal-pct').textContent=goalPct+'%';
+  document.getElementById('goal-bar').style.width=goalPct+'%';
+  document.getElementById('goal-remaining').textContent=total>=100000?'🎉 Goal reached!':((100000-total).toLocaleString()+' ETB remaining to goal');
+  const log=document.getElementById('txn-log');
+  if(log){
+    if(!S.txns.length){ log.innerHTML='<div style="font-size:.72rem;color:var(--text3);padding:8px 0;">No transactions yet.</div>'; }
+    else {
+      const names={inv:'Investment',emg:'Emergency',trd:'Trading',per:'Personal'};
+      log.innerHTML=S.txns.slice(0,10).map(t=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);${t.reversed?'opacity:.4;':''}">
+          <span style="font-size:.8rem;">${t.type==='dep'?'➕':'➖'}</span>
+          <div style="flex:1"><div style="font-size:.72rem;font-weight:500;color:var(--text);">${names[t.acct]}</div>${t.note?`<div style="font-size:.62rem;color:var(--text3);">${t.note}</div>`:''}</div>
+          <div style="font-size:.72rem;font-weight:700;color:${t.type==='dep'?'var(--green2)':'var(--red2)'};">${t.type==='dep'?'+':'-'}${t.amt.toLocaleString()} ETB</div>
+          ${t.reversed?'<span style="font-size:.6rem;color:var(--text3)">undone</span>':`<span class="chk-del" onclick="undoTxn(${t.id})" title="Undo">↺</span>`}
+        </div>`).join('');
+    }
+  }
+  setLA('finance',Math.min(Math.round((total/100000)*100),100));
+  renderSavings();
+}
+function openSavingsModal(){ document.getElementById('savings-modal').classList.add('open'); }
+function closeSavingsModal(){ document.getElementById('savings-modal').classList.remove('open'); }
+function saveSavingsPlan(){
+  const name=document.getElementById('sp-name').value.trim();
+  const current=parseFloat(document.getElementById('sp-current').value)||0;
+  const target=parseFloat(document.getElementById('sp-target').value)||0;
+  if(!name||!target)return;
+  S.savingsPlans.push({id:Date.now(),name,current,target,deposits:[]});
+  save(); closeSavingsModal(); renderSavings();
+  document.getElementById('sp-name').value='';document.getElementById('sp-current').value='';document.getElementById('sp-target').value='';
+}
+function deleteSavingsPlan(id){ S.savingsPlans=S.savingsPlans.filter(p=>p.id!==id); save(); renderSavings(); }
+function depositSavings(id){
+  const inp=document.getElementById('dep-'+id);
+  const amt=parseFloat(inp.value);
+  if(!amt||amt<=0)return;
+  const p=S.savingsPlans.find(x=>x.id===id); if(!p)return;
+  p.current=(p.current||0)+amt;
+  if(!p.deposits)p.deposits=[];
+  p.deposits.push({amt,type:'deposit',date:todayStr});
+  save(); renderSavings();
+}
+function withdrawSavings(id){
+  const inp=document.getElementById('dep-'+id);
+  const amt=parseFloat(inp.value);
+  if(!amt||amt<=0)return;
+  const p=S.savingsPlans.find(x=>x.id===id); if(!p)return;
+  p.current=Math.max(0,(p.current||0)-amt);
+  if(!p.deposits)p.deposits=[];
+  p.deposits.push({amt,type:'withdraw',date:todayStr});
+  save(); renderSavings();
+}
+function renderSavings(){
+  const el=document.getElementById('savings-list'); if(!el)return;
+  if(!S.savingsPlans.length){ el.innerHTML='<div style="font-size:.72rem;color:var(--text3);">No custom plans yet. Create one for anything outside the 4 core accounts.</div>'; return; }
+  el.innerHTML=S.savingsPlans.map(p=>{
+    const pct=p.target>0?Math.min(100,Math.round((p.current/p.target)*100)):0;
+    const depCount=p.deposits?p.deposits.length:0;
+    return `<div class="savings-item">
+      <div class="savings-top"><span class="savings-name">${p.name}</span><span class="savings-del" onclick="deleteSavingsPlan(${p.id})">✕ remove</span></div>
+      <div class="savings-amt">${p.current.toLocaleString()} / ${p.target.toLocaleString()} ETB — ${pct}%${depCount?' · '+depCount+' entr'+(depCount===1?'y':'ies'):''}</div>
+      <div class="prog-bg" style="margin-top:6px;"><div class="prog-fill pf-purple" style="width:${pct}%"></div></div>
+      <div class="savings-dep-row">
+        <input type="number" id="dep-${p.id}" placeholder="Amount (ETB)">
+        <button class="sd-add" onclick="depositSavings(${p.id})">+ Deposit</button>
+        <button class="sd-sub" onclick="withdrawSavings(${p.id})">− Withdraw</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ================= DEVOTIONAL ================= */
+function togDev(i){
+  const btn=document.getElementById('dev-'+i);
+  if(!S.devs[todayStr]) S.devs[todayStr]={};
+  S.devs[todayStr][i]=!S.devs[todayStr][i];
+  btn.classList.toggle('on',S.devs[todayStr][i]);
+  save(); renderDevScore();
+}
+function restoreDevs(){
+  const d=S.devs[todayStr]||{};
+  for(let i=0;i<4;i++){
+    const btn=document.getElementById('dev-'+i);
+    if(btn) btn.classList.toggle('on',!!d[i]);
+  }
+  renderDevScore();
+}
+function renderDevScore(){
+  const d=S.devs[todayStr]||{};
+  const done=[0,1,2,3].filter(i=>d[i]).length;
+  const el=document.getElementById('dev-score');
+  if(el) el.textContent=done+'/4';
+}
+
+/* ================= AI MENTAL JOURNAL (rule-based therapeutic blueprint) ================= */
+function analyzeMood(text){
+  const t=text.toLowerCase();
+  const flags={
+    loss:/loss|lost|down|red|blew|drawdown/.test(t),
+    revenge:/revenge|win it back|chase|double/.test(t),
+    anxious:/anxious|anxiety|panic|worried|nervous|overwhelm/.test(t),
+    lonely:/lonely|alone|isolat/.test(t),
+    urge:/urge|tempt|triggered|relapse|porn/.test(t),
+    tired:/tired|exhaust|burnt|burnout|sleep/.test(t),
+    hopeful:/grateful|thankful|good day|proud|win|hope/.test(t)
+  };
+  return flags;
+}
+function getAIFeedback(){
+  const text=document.getElementById('mental-input').value.trim();
+  if(!text)return;
+  const f=analyzeMood(text);
+  const wins=Object.values(S.days).filter(v=>v==='win').length;
+  let blocks=[];
+  blocks.push(`<div class="ai-feedback-block"><b>Validation:</b> What you wrote is real, and naming it here — instead of carrying it silently — is the healthier move. You have ${wins} recorded clean day${wins===1?'':'s'} behind you. That is evidence, not luck.</div>`);
+  if(f.loss||f.revenge){
+    blocks.push(`<div class="ai-feedback-block"><b>Trading stress noted:</b> A loss is a cost of doing business, not a verdict on you. The urge to immediately re-enter and "win it back" is your amygdala talking, not your strategy. Close the platform for at least one hour before any new decision.</div>`);
+  }
+  if(f.urge){
+    blocks.push(`<div class="ai-feedback-block"><b>Urge detected:</b> Urges peak and pass within 3–5 minutes if you don't feed them. Use the SOS button now — breathe, move your body, and text your accountability person before doing anything else.</div>`);
+  }
+  if(f.anxious){
+    blocks.push(`<div class="ai-feedback-block"><b>Anxiety:</b> Try box breathing — 4 seconds in, 4 hold, 4 out, 4 hold, five rounds. Anxiety shrinks when your exhale is at least as long as your inhale.</div>`);
+  }
+  if(f.lonely){
+    blocks.push(`<div class="ai-feedback-block"><b>Loneliness:</b> Isolation is when triggers get loudest. Reach out to one real person today, even with a short message. Connection is a discipline too.</div>`);
+  }
+  if(f.tired){
+    blocks.push(`<div class="ai-feedback-block"><b>Fatigue:</b> Willpower runs on sleep. Protect your 10:30pm night protocol tonight — it is not optional, it is your defense system.</div>`);
+  }
+  if(f.hopeful){
+    blocks.push(`<div class="ai-feedback-block"><b>Progress:</b> Notice this good moment on purpose. Write it in your journal tab so future-you can read it on a harder day.</div>`);
+  }
+  blocks.push(`<div class="ai-feedback-block"><b>Next small step:</b> Pick one — 10 pushups, one verse, or a 2-minute prayer — and do it in the next 5 minutes. Healing is built from small, repeated actions, not one big leap.</div>`);
+  document.getElementById('ai-feedback-text').innerHTML=blocks.join('');
+  document.getElementById('ai-feedback-box').style.display='block';
+}
+
+/* ================= JOURNAL ================= */
+function saveJournal(){
+  const sp=document.getElementById('j-spirit').value.trim();
+  const ur=document.getElementById('j-urge').value.trim();
+  const gr=document.getElementById('j-grateful').value.trim();
+  const tm=document.getElementById('j-tomorrow').value.trim();
+  if(!sp&&!ur&&!gr&&!tm)return;
+  S.journal.unshift({date:now.toLocaleDateString(),sp,ur,gr,tm});
+  save(); renderJournal();
+  ['j-spirit','j-urge','j-grateful','j-tomorrow'].forEach(id=>document.getElementById(id).value='');
+}
+function renderJournal(){
+  const log=document.getElementById('journal-log');
+  if(!log)return;
+  if(!S.journal.length){ log.innerHTML='<div style="font-size:.72rem;color:var(--text3);text-align:center;padding:20px;">No entries yet. Write your first one.</div>'; return; }
+  log.innerHTML=S.journal.map(e=>`
+    <div class="journal-entry">
+      <div class="journal-date">${e.date}</div>
+      ${e.sp?`<div class="journal-section"><div class="journal-s-lbl" style="color:var(--gold2)">🙏 SPIRITUAL</div><div class="journal-text">${e.sp}</div></div>`:''}
+      ${e.ur?`<div class="journal-section"><div class="journal-s-lbl" style="color:var(--red2)">⚡ URGE LOG</div><div class="journal-text">${e.ur}</div></div>`:''}
+      ${e.gr?`<div class="journal-section"><div class="journal-s-lbl" style="color:var(--green2)">🙌 GRATEFUL</div><div class="journal-text">${e.gr}</div></div>`:''}
+      ${e.tm?`<div class="journal-section"><div class="journal-s-lbl" style="color:var(--purple2)">🎯 TOMORROW</div><div class="journal-text">${e.tm}</div></div>`:''}
+    </div>`).join('');
+}
+
+/* ================= PROFILE ================= */
+function openProfile(){
+  document.getElementById('profile-bio').value=S.profile.bio||'';
+  const wrap=document.getElementById('profile-photo-wrap');
+  wrap.innerHTML = S.profile.photo? `<img src="${S.profile.photo}">` : '👤';
+  document.getElementById('profile-modal').classList.add('open');
+}
+function closeProfile(){ document.getElementById('profile-modal').classList.remove('open'); }
+function handlePhotoUpload(ev){
+  const file=ev.target.files[0]; if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    document.getElementById('profile-photo-wrap').innerHTML=`<img src="${e.target.result}">`;
+    S.profile._pendingPhoto=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+function saveProfile(){
+  if(S.profile._pendingPhoto){ S.profile.photo=S.profile._pendingPhoto; delete S.profile._pendingPhoto; }
+  S.profile.bio=document.getElementById('profile-bio').value.trim();
+  save(); closeProfile(); renderAvatar();
+}
+function renderAvatar(){
+  const btn=document.getElementById('avatar-btn');
+  btn.innerHTML = S.profile.photo? `<img src="${S.profile.photo}">` : '👤';
+}
+
+/* ================= GOALS ================= */
+function openGoalModal(){ document.getElementById('goal-modal').classList.add('open'); }
+function closeGoalModal(){ document.getElementById('goal-modal').classList.remove('open'); }
+function saveGoal(){
+  const title=document.getElementById('g-title').value.trim();
+  const why=document.getElementById('g-why').value.trim();
+  const ms=document.getElementById('g-milestones').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  if(!title||!ms.length)return;
+  S.goals.push({id:Date.now(),title,why,milestones:ms.map(label=>({label,done:false}))});
+  save(); closeGoalModal(); renderGoals();
+  document.getElementById('g-title').value='';document.getElementById('g-why').value='';document.getElementById('g-milestones').value='';
+}
+function toggleMilestone(gid,idx){
+  const g=S.goals.find(x=>x.id===gid); if(!g)return;
+  g.milestones[idx].done=!g.milestones[idx].done;
+  save(); renderGoals();
+}
+function deleteGoal(id){ if(!confirm('Delete this goal?'))return; S.goals=S.goals.filter(g=>g.id!==id); save(); renderGoals(); }
+function renderGoals(){
+  const el=document.getElementById('goals-list'); if(!el)return;
+  if(!S.goals.length){ el.innerHTML='<div class="card" style="text-align:center;color:var(--text3);font-size:.8rem;">No goals yet. Add the house, the agency, the marriage — whatever you\'re building toward.</div>'; return; }
+  el.innerHTML=S.goals.map(g=>{
+    const done=g.milestones.filter(m=>m.done).length;
+    const pct=Math.round((done/g.milestones.length)*100);
+    return `<div class="goal-card">
+      <div class="goal-top"><div class="goal-title">${g.title}</div><span class="chk-del" onclick="deleteGoal(${g.id})">✕ remove</span></div>
+      ${g.why?`<div class="goal-why">"${g.why}"</div>`:''}
+      <div class="prog-item"><div class="prog-top"><span class="prog-lbl">Progress</span><span class="prog-pct">${pct}%</span></div><div class="prog-bg"><div class="prog-fill pf-blue" style="width:${pct}%"></div></div></div>
+      <div style="margin-top:10px;">
+        ${g.milestones.map((m,i)=>`<div class="milestone-row"><div class="milestone-box ${m.done?'on':''}" onclick="toggleMilestone(${g.id},${i})"></div><div class="milestone-lbl ${m.done?'done':''}">${m.label}</div></div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ================= TRADING SECTION ================= */
+function renderTradingQuote(){
+  const q=pickDaily(tradingQuotes,'trade');
+  document.getElementById('tw-quote').textContent='\u201c'+q.t+'\u201d';
+  document.getElementById('tw-author').textContent='— '+q.a;
+}
+function tradeBalance(){
+  const closings=S.trading.closings;
+  if(closings.length) return closings[closings.length-1].balance;
+  return S.trading.initial + S.trading.topups;
+}
+function saveTradingCapital(){
+  const initial=parseFloat(document.getElementById('tr-initial').value);
+  const topup=parseFloat(document.getElementById('tr-topup').value);
+  if(!isNaN(initial)) S.trading.initial=initial;
+  if(!isNaN(topup) && topup>0) S.trading.topups+=topup;
+  save(); document.getElementById('tr-topup').value='';
+  renderTradingCapital();
+}
+function renderTradingCapital(){
+  const bal=tradeBalance();
+  const base=S.trading.initial+S.trading.topups;
+  const pl=bal-base;
+  const plPct=base>0?((pl/base)*100).toFixed(1):'0.0';
+  document.getElementById('tr-balance').textContent='$'+bal.toFixed(2);
+  const plEl=document.getElementById('tr-pl');
+  plEl.textContent=(pl>=0?'+$':'-$')+Math.abs(pl).toFixed(2)+' ('+(pl>=0?'+':'')+plPct+'%)';
+  plEl.style.color= pl>=0 ? 'var(--green2)' : 'var(--red2)';
+  document.getElementById('tr-initial').value=S.trading.initial||'';
+}
+function logClosingBalance(){
+  const v=parseFloat(document.getElementById('tr-closing').value);
+  if(isNaN(v))return;
+  const prev = S.trading.closings.length ? S.trading.closings[S.trading.closings.length-1].balance : (S.trading.initial+S.trading.topups);
+  S.trading.closings.push({date:now.toLocaleDateString(),balance:v});
+  save(); document.getElementById('tr-closing').value='';
+  renderTradingCapital(); renderCapitalChart(); checkEuphoria(prev,v);
+}
+function checkEuphoria(prev,curr){
+  const banner=document.getElementById('euphoria-banner');
+  const growth = prev>0 ? ((curr-prev)/prev)*100 : 0;
+  if(growth>=15){
+    banner.innerHTML=`<div class="euphoria-badge">🚨 <div><strong>Euphoria check:</strong> That's a steep jump (+${growth.toFixed(1)}% in one closing). Big win streaks are exactly when overconfidence creeps in. Stay humble, keep the same risk %, don't increase size out of excitement.</div></div>`;
+  } else { banner.innerHTML=''; }
+}
+
+/* Pre-trade checklist */
+const pretradeItems=[
+  'Am I calm right now — no anger, no revenge feeling?',
+  'Is it an active session time (London/NY)?',
+  'Is my Risk-to-Reward calculated before entry?',
+  'Have I set my stop-loss before opening the trade?'
+];
+function renderPretrade(){
+  const c = S.trading.pretradeToday && S.trading.pretradeDate===todayStr ? S.trading.pretradeToday : {};
+  if(S.trading.pretradeDate!==todayStr){ S.trading.pretradeDate=todayStr; S.trading.pretradeToday={}; save(); }
+  const el=document.getElementById('pretrade-list');
+  el.innerHTML=pretradeItems.map((label,i)=>{
+    const on=!!S.trading.pretradeToday[i];
+    return `<div class="chk-item"><div class="chk-box ${on?'on':''}" onclick="togPretrade(${i})"></div><div class="chk-lbl ${on?'done':''}" onclick="togPretrade(${i})">${label}</div></div>`;
+  }).join('');
+  const done=Object.values(S.trading.pretradeToday).filter(Boolean).length;
+  document.getElementById('pretrade-badge').textContent=done+'/'+pretradeItems.length;
+}
+function togPretrade(i){
+  if(!S.trading.pretradeToday) S.trading.pretradeToday={};
+  S.trading.pretradeToday[i]=!S.trading.pretradeToday[i];
+  save(); renderPretrade();
+}
+function pretradeScore(){
+  const done=Object.values(S.trading.pretradeToday||{}).filter(Boolean).length;
+  return Math.round((done/pretradeItems.length)*10);
+}
+
+/* Sessions */
+function renderSessions(){
+  const utc=new Date(now.toUTCString().slice(0,-4));
+  const h=utc.getUTCHours();
+  const londonOpen = h>=8 && h<17;
+  const nyOpen = h>=13 && h<22; // approx NY 08-17 ET in UTC (ET=UTC-5, ignoring DST nuance)
+  const lEl=document.getElementById('sess-london'), nEl=document.getElementById('sess-ny');
+  lEl.textContent = londonOpen?'● OPEN':'○ CLOSED';
+  lEl.className='session-status '+(londonOpen?'session-open':'session-closed');
+  nEl.textContent = nyOpen?'● OPEN':'○ CLOSED';
+  nEl.className='session-status '+(nyOpen?'session-open':'session-closed');
+}
+
+/* Anti-FOMO / boredom buttons */
+function handleUrge(kind){
+  const el=document.getElementById('urge-msg');
+  if(kind==='boredom'){
+    el.innerHTML='😐 Boredom is not a trade signal. Close the charts. Go read, walk, or work on Bini Design for 20 minutes — come back only if there is a real setup.';
+  } else {
+    el.innerHTML='🔥 <strong style="color:var(--red2)">Greed/FOMO flagged.</strong> Ask yourself: am I chasing a move I missed? If yes — let it go. There is always another setup. Protecting capital beats catching this one candle.';
+  }
+}
+
+/* Trade logging + circuit breaker + screener */
+function isLocked(){
+  return S.trading.lockDate===todayStr;
+}
+function renderLockState(){
+  const banner=document.getElementById('cb-banner');
+  const notice=document.getElementById('trade-lock-notice');
+  const btnWin=document.getElementById('btn-log-win'), btnLoss=document.getElementById('btn-log-loss');
+  const closingBtn=document.getElementById('tr-closing-btn');
+  if(isLocked()){
+    banner.innerHTML='<div class="locked-banner">⛔ <div><strong>Trading locked for today.</strong> Consecutive losses were logged. Close the platform — inputs unlock automatically tomorrow.</div></div>';
+    notice.style.display='flex';
+    btnWin.disabled=true; btnLoss.disabled=true;
+  } else {
+    banner.innerHTML='';
+    notice.style.display='none';
+    btnWin.disabled=false; btnLoss.disabled=false;
+  }
+}
+function logTrade(result){
+  if(isLocked())return;
+  if(result==='loss'){
+    S.trading.lossStreakDate===todayStr ? S.trading.lossStreak++ : (S.trading.lossStreak=1, S.trading.lossStreakDate=todayStr);
+  } else {
+    S.trading.lossStreak=0; S.trading.lossStreakDate=todayStr;
+  }
+  const discipline=pretradeScore();
+  S.trading.trades.push({date:now.toLocaleDateString(),result,discipline});
+  save();
+  if(result==='loss'){
+    openScreener(()=>{
+      if(S.trading.lossStreak>=2){
+        S.trading.lockDate=todayStr; save(); renderLockState();
+        document.getElementById('cb-overlay').style.display='flex';
+      }
+    });
+  }
+  renderDisciplineChart(); renderLockState();
+}
+let screenerCallback=null;
+function openScreener(cb){
+  screenerCallback=cb;
+  ['screener-q1','screener-q2'].forEach(id=>{
+    document.getElementById(id).innerHTML=`<div class="screener-opt" data-v="yes" onclick="selScreener(this)">Yes, I feel that urge</div><div class="screener-opt" data-v="no" onclick="selScreener(this)">No, I'm level-headed</div>`;
+  });
+  document.getElementById('screener-overlay').style.display='flex';
+}
+function selScreener(el){
+  el.parentElement.querySelectorAll('.screener-opt').forEach(o=>o.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function submitScreener(){
+  document.getElementById('screener-overlay').style.display='none';
+  if(screenerCallback) screenerCallback();
+  screenerCallback=null;
+}
+
+function initTrading(){
+  renderTradingQuote(); renderTradingCapital(); renderPretrade(); renderSessions(); renderLockState();
+  setInterval(renderSessions,60000);
+}
+
+/* ================= UPDATE ALL ================= */
+function updateAll(){ renderGrid(); updateCheckUI(); renderFinance(); renderDevScore(); renderTriggers(); renderGoals(); }
+
+/* ================= FREEDOM MAP — 30-DAY CYCLE CALENDAR ================= */
+const FM_CYCLE=30;
+const FM_MONTHS_FULL=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const FM_WEEKDAYS=['Su','Mo','Tu','We','Th','Fr','Sa'];
+let fmMode='win';
+let fmOpenHistory={};
+
+function fmPad(n){ return String(n).padStart(2,'0'); }
+function fmYmd(d){ return d.getFullYear()+'-'+fmPad(d.getMonth()+1)+'-'+fmPad(d.getDate()); }
+function fmParse(s){ const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
+function fmAddDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
+function fmToday(){ const t=new Date(); return new Date(t.getFullYear(),t.getMonth(),t.getDate()); }
+function fmMMDDYYYY(d){ return fmPad(d.getMonth()+1)+'/'+fmPad(d.getDate())+'/'+d.getFullYear(); }
+
+function fmEnsureCycle(){
+  if(!S.freedomCycle || !S.freedomCycle.start){
+    const start=fmToday();
+    S.freedomCycle={ start:fmYmd(start), end:fmYmd(fmAddDays(start,FM_CYCLE-1)), cycleNumber:(S.freedomCycle&&S.freedomCycle.cycleNumber)||1 };
+    save();
+  }
+}
+
+function fmCheckArchive(){
+  fmEnsureCycle();
+  const today=fmToday();
+  let archived=false, lastLabel='';
+  while(fmParse(S.freedomCycle.end) < today){
+    const c=S.freedomCycle;
+    const startD=fmParse(c.start), endD=fmParse(c.end);
+    let wins=0, fails=0;
+    for(let d=new Date(startD); d<=endD; d=fmAddDays(d,1)){
+      const v=S.days[dateKey(d)];
+      if(v==='win') wins++; else if(v==='fail') fails++;
+    }
+    const label='Start Date: '+fmMMDDYYYY(startD)+' - End Date: '+fmMMDDYYYY(endD);
+    S.freedomHistory.unshift({ cycleNumber:c.cycleNumber, start:c.start, end:c.end, wins, fails, label });
+    const nextStart=fmAddDays(endD,1);
+    S.freedomCycle={ start:fmYmd(nextStart), end:fmYmd(fmAddDays(nextStart,FM_CYCLE-1)), cycleNumber:c.cycleNumber+1 };
+    archived=true; lastLabel=label;
+  }
+  if(archived){ save(); fmToast('Cycle archived — '+lastLabel+'. A fresh 30-day cycle just started.'); }
+}
+
+function fmSetMode(m){
+  fmMode=m;
+  const bw=document.getElementById('fm-btn-win'), bs=document.getElementById('fm-btn-slip');
+  if(bw) bw.classList.toggle('active', m==='win');
+  if(bs) bs.classList.toggle('active', m==='slip');
+}
+
+function fmDayClick(d){
+  const today=fmToday();
+  if(d>today) return;
+  const key=dateKey(d);
+  const want = fmMode==='win' ? 'win' : 'fail';
+  if(S.days[key]===want) delete S.days[key]; else S.days[key]=want;
+  save();
+  fmCheckArchive();
+  renderGrid();
+  renderTriggers();
+  if(document.getElementById('tab-recovery') && document.getElementById('tab-recovery').classList.contains('active')) renderCharts('recovery');
+}
+
+let fmToastTimer;
+function fmToast(msg){
+  let t=document.getElementById('fm-toast');
+  if(!t){ t=document.createElement('div'); t.id='fm-toast'; t.className='n90-toast'; document.body.appendChild(t); }
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(fmToastTimer);
+  fmToastTimer=setTimeout(()=>t.classList.remove('show'),6000);
+}
+
+function fmRenderHeader(){
+  fmEnsureCycle();
+  const c=S.freedomCycle;
+  const startD=fmParse(c.start), endD=fmParse(c.end), today=fmToday();
+  const numEl=document.getElementById('fm-cycle-num'); if(numEl) numEl.textContent=c.cycleNumber;
+  const rangeEl=document.getElementById('fm-cycle-range'); if(rangeEl) rangeEl.textContent=fmMMDDYYYY(startD)+' → '+fmMMDDYYYY(endD);
+  let dayIndex=Math.floor((Math.min(today,endD)-startD)/86400000)+1;
+  if(today<startD) dayIndex=0;
+  if(dayIndex>FM_CYCLE) dayIndex=FM_CYCLE;
+  const dcEl=document.getElementById('fm-day-of-cycle'); if(dcEl) dcEl.textContent=dayIndex;
+}
+
+function fmRenderCalendar(){
+  const cal=document.getElementById('fm-calendar');
+  if(!cal) return;
+  fmEnsureCycle();
+  const c=S.freedomCycle;
+  const startD=fmParse(c.start), endD=fmParse(c.end), today=fmToday();
+  cal.innerHTML='';
+  let cursor=new Date(startD.getFullYear(),startD.getMonth(),1);
+  const lastMonth=new Date(endD.getFullYear(),endD.getMonth(),1);
+
+  while(cursor<=lastMonth){
+    const y=cursor.getFullYear(), m=cursor.getMonth();
+    const block=document.createElement('div'); block.className='n90-month';
+    const title=document.createElement('div'); title.className='n90-month-title'; title.textContent=FM_MONTHS_FULL[m]+' '+y;
+    block.appendChild(title);
+
+    const wk=document.createElement('div'); wk.className='n90-weekdays';
+    FM_WEEKDAYS.forEach(w=>{ const s=document.createElement('span'); s.textContent=w; wk.appendChild(s); });
+    block.appendChild(wk);
+
+    const grid=document.createElement('div'); grid.className='n90-days';
+    const firstOfMonth=new Date(y,m,1);
+    const daysInMonth=new Date(y,m+1,0).getDate();
+    const leadPad=firstOfMonth.getDay();
+    for(let i=0;i<leadPad;i++){ const p=document.createElement('div'); p.className='n90-day pad'; grid.appendChild(p); }
+
+    for(let dnum=1; dnum<=daysInMonth; dnum++){
+      const d=new Date(y,m,dnum);
+      const cell=document.createElement('div');
+      cell.textContent=dnum;
+      const inCycle=d>=startD && d<=endD;
+      const isFuture=d>today;
+      const isToday=fmYmd(d)===fmYmd(today);
+      if(!inCycle){
+        cell.className='n90-day outside';
+      } else if(isFuture){
+        cell.className='n90-day future';
+        cell.title="Not yet — this day hasn't arrived";
+      } else {
+        cell.className='n90-day';
+        const status=S.days[dateKey(d)];
+        if(status==='win') cell.classList.add('win');
+        else if(status==='fail') cell.classList.add('slip');
+        if(isToday) cell.classList.add('today');
+        cell.addEventListener('click', ()=>fmDayClick(d));
+      }
+      grid.appendChild(cell);
+    }
+    block.appendChild(grid);
+    cal.appendChild(block);
+    cursor=new Date(y,m+1,1);
+  }
+}
+
+function fmRenderHistory(){
+  const list=document.getElementById('fm-history');
+  const countEl=document.getElementById('fm-hist-count');
+  if(!list) return;
+  list.innerHTML='';
+  if(countEl) countEl.textContent=S.freedomHistory.length+' archived';
+  if(S.freedomHistory.length===0){
+    const empty=document.createElement('div'); empty.className='n90-empty';
+    empty.textContent='No completed cycles yet — your first 30-day cycle will land here once it closes.';
+    list.appendChild(empty);
+    return;
+  }
+  S.freedomHistory.forEach((p,i)=>{
+    const isOpen=!!fmOpenHistory[i];
+    const card=document.createElement('div');
+    card.className='n90-hist-card';
+    card.style.cursor='pointer';
+    card.style.flexDirection='column';
+    card.style.alignItems='stretch';
+    card.onclick=()=>{ fmOpenHistory[i]=!fmOpenHistory[i]; fmRenderHistory(); };
+    const total=p.wins+p.fails;
+    const rate=total>0?Math.round((p.wins/total)*100):0;
+    card.innerHTML =
+      '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">'+
+        '<span class="n90-hist-label">'+(isOpen?'📂':'📁')+' '+p.label+'</span>'+
+        '<span style="font-size:.68rem;color:var(--text3);">'+(isOpen?'tap to close':'tap to open')+'</span>'+
+      '</div>'+
+      (isOpen ? (
+        '<div style="display:flex;gap:18px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:.78rem;font-weight:600;flex-wrap:wrap;">'+
+          '<span style="color:var(--green2)">✅ Days passed: '+p.wins+'</span>'+
+          '<span style="color:var(--red2)">✗ Days failed: '+p.fails+'</span>'+
+          '<span style="color:var(--text2)">Success rate: '+rate+'%</span>'+
+        '</div>'
+      ) : '');
+    list.appendChild(card);
+  });
+}
+
+function fmRenderAll(){
+  fmCheckArchive();
+  fmRenderHeader();
+  fmRenderCalendar();
+  fmRenderHistory();
+}
+
+
+
+/* ================= INIT ================= */
+function init(){
+  applyTheme();
+  document.getElementById('tb-date').textContent=todayFmt;
+  document.getElementById('ov-date-text').textContent=todayFmt;
+  const gt=document.getElementById('greeting-text');
+  if(gt)gt.textContent=greet+', Binyam '+greetIcon;
+  const jb=document.getElementById('j-date-badge');
+  if(jb)jb.textContent=now.toLocaleDateString();
+  renderTaskListCard();
+  updateCheckUI(); restoreDevs(); renderGrid(); renderFinance(); renderTriggers(); renderJournal(); renderGoals(); renderAvatar();
+  initTrading();
+  renderCharts('overview'); updateAll();
+  checkNight();
+}
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('SW registration failed:',err));
+  });
+}
+</script>
+</body>
+</html>
