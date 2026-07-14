@@ -12,6 +12,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Life Control">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1062,7 +1065,7 @@ const def = {
 };
 Object.keys(def).forEach(k=>{ if(S[k]===undefined) S[k]=JSON.parse(JSON.stringify(def[k])); });
 if(!S.settings) S.settings={theme:'light',fontsize:'md',password:'binyam2025'};
-function save(){ localStorage.setItem(STORE_KEY,JSON.stringify(S)); }
+function save(){ localStorage.setItem(STORE_KEY,JSON.stringify(S)); fbPush(); }
 
 /* ================= DATE ================= */
 const now = new Date();
@@ -1116,12 +1119,70 @@ function startLoginCarousel(){
 startLoginCarousel();
 
 /* ================= PASSWORD / LOCK ================= */
-function login(){
+/* ================= FIREBASE SYNC (cross-device) ================= */
+const FB_CONFIG = {
+  apiKey: "AIzaSyDkacXS7a6-s59N86Pn-7-nf4b67cd4bN8",
+  authDomain: "binyam-life-control.firebaseapp.com",
+  projectId: "binyam-life-control",
+  storageBucket: "binyam-life-control.firebasestorage.app",
+  messagingSenderId: "806513515454",
+  appId: "1:806513515454:web:aeb90bf86af6e817b5b7ef"
+};
+const FB_EMAIL = "bashenafi381@gmail.com";
+firebase.initializeApp(FB_CONFIG);
+const fbAuth = firebase.auth();
+const fbDb = firebase.firestore();
+fbDb.enablePersistence({synchronizeTabs:true}).catch(()=>{});
+
+let fbReady = false;
+
+function fbDocRef(uid){ return fbDb.collection('users').doc(uid).collection('state').doc('main'); }
+
+function fbSignIn(){
+  return new Promise((resolve)=>{
+    const unsub = fbAuth.onAuthStateChanged(async (user)=>{
+      unsub();
+      if(user){ resolve(user); return; }
+      const pw = prompt('Sync password (one-time per device):');
+      if(!pw){ resolve(null); return; }
+      try{
+        const cred = await fbAuth.signInWithEmailAndPassword(FB_EMAIL, pw);
+        resolve(cred.user);
+      }catch(e){
+        alert('Cross-device sync sign-in failed: '+e.message+'\nContinuing with local data only for this session.');
+        resolve(null);
+      }
+    });
+  });
+}
+
+async function fbLoadAndMerge(){
+  const user = await fbSignIn();
+  if(!user) return;
+  fbReady = true;
+  try{
+    const snap = await fbDocRef(user.uid).get();
+    if(snap.exists){
+      const remote = snap.data();
+      if(remote && remote.S){ Object.assign(S, remote.S); }
+    } else {
+      await fbDocRef(user.uid).set({S:S, updatedAt:Date.now()});
+    }
+  }catch(e){ console.warn('Firebase load failed, continuing with local data:', e); }
+}
+
+function fbPush(){
+  if(!fbReady || !fbAuth.currentUser) return;
+  fbDocRef(fbAuth.currentUser.uid).set({S:S, updatedAt:Date.now()}).catch(e=>console.warn('Firebase sync push failed:', e));
+}
+
+async function login(){
   const pw = S.settings && S.settings.password ? S.settings.password : 'binyam2025';
   if(document.getElementById('pw').value===pw){
     clearInterval(lqTimer);
     document.getElementById('lock').style.display='none';
     document.getElementById('app').style.display='block';
+    await fbLoadAndMerge();
     init();
   } else {
     document.getElementById('pw-err').style.display='block';
