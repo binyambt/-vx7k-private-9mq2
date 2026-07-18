@@ -62,26 +62,28 @@ body,.content,.card,.stat-val,.chk-lbl,.prog-lbl{font-size:1rem;}
 
 /* ===== LOCK SCREEN ===== */
 #lock{position:fixed;inset:0;background:linear-gradient(135deg,var(--bg-a),var(--bg-b) 55%,var(--bg-c));display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px;}
-.lock-wrap{display:flex;width:100%;max-width:820px;background:var(--card);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);}
-.lock-quote-side{flex:1;background:linear-gradient(150deg,var(--black-panel),var(--black-panel2));padding:40px 34px;display:flex;flex-direction:column;justify-content:center;color:#fff;position:relative;min-height:420px;}
-.lq-eyebrow{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;opacity:.75;margin-bottom:18px;font-weight:700;}
-.lq-text{font-family:'Playfair Display',serif;font-size:1.35rem;line-height:1.6;font-weight:700;margin-bottom:14px;min-height:130px;transition:opacity .4s;}
-.lq-source{font-size:.72rem;opacity:.8;letter-spacing:.5px;}
-.lq-dots{display:flex;gap:6px;margin-top:26px;}
-.lq-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);}
-.lq-dot.on{background:#fff;}
-.lock-card{flex:1;padding:48px 40px;width:100%;text-align:center;display:flex;flex-direction:column;justify-content:center;}
-.lock-logo{width:64px;height:64px;background:linear-gradient(135deg,var(--black-panel),var(--black-panel2));border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#fff;box-shadow:0 8px 22px rgba(22,22,29,0.35);overflow:hidden;}
-.lock-logo img{width:100%;height:100%;object-fit:cover;}
-.lock-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:4px;color:var(--text);}
-.lock-sub{font-size:.72rem;color:var(--text3);margin-bottom:26px;letter-spacing:.5px;}
-.lock-input{width:100%;padding:13px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--text);font-size:1rem;text-align:center;letter-spacing:6px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;}
+#lock::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(224,172,43,.10),transparent 55%),radial-gradient(circle at 80% 80%,rgba(56,139,253,.10),transparent 55%);pointer-events:none;}
+.lock-wrap{position:relative;display:flex;width:100%;max-width:380px;background:rgba(255,255,255,.10);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.22);}
+[data-theme="dark"] .lock-wrap{background:rgba(30,32,44,.45);border:1px solid rgba(255,255,255,.10);}
+.lock-quote-side{display:none;}
+.lock-card{flex:1;padding:38px 30px 30px;width:100%;text-align:center;display:flex;flex-direction:column;justify-content:center;}
+.lock-logo{width:88px;height:88px;background:linear-gradient(135deg,var(--black-panel),var(--black-panel2));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:#fff;box-shadow:0 8px 22px rgba(22,22,29,0.35),0 0 0 4px rgba(255,255,255,.35);overflow:hidden;}
+[data-theme="dark"] .lock-logo{box-shadow:0 8px 22px rgba(0,0,0,0.45),0 0 0 4px rgba(255,255,255,.12);}
+.lock-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.lock-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:4px;color:var(--text);}
+.lock-sub{font-size:.66rem;color:var(--text3);margin-bottom:22px;letter-spacing:.5px;}
+.lock-input{width:100%;padding:12px;background:rgba(255,255,255,.35);backdrop-filter:blur(6px);border:1.5px solid rgba(255,255,255,.4);border-radius:var(--r-sm);color:var(--text);font-size:1rem;text-align:center;letter-spacing:6px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;}
+[data-theme="dark"] .lock-input{background:rgba(0,0,0,.2);border:1.5px solid rgba(255,255,255,.14);}
 .lock-input:focus{border-color:var(--blue2);}
-.lock-btn{width:100%;margin-top:12px;padding:13px;background:linear-gradient(135deg,var(--black-panel),var(--black-panel2));border:none;border-radius:var(--r-sm);color:#fff;font-size:.85rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;}
+.lock-btn{width:100%;margin-top:12px;padding:12px;background:linear-gradient(135deg,var(--black-panel),var(--black-panel2));border:none;border-radius:var(--r-sm);color:#fff;font-size:.85rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s;}
 .lock-btn:hover{opacity:.9;}
 .lock-err{font-size:.7rem;color:var(--red2);margin-top:8px;display:none;}
-.lock-amharic{font-size:.65rem;color:var(--text3);margin-top:20px;letter-spacing:1px;}
-@media(max-width:700px){.lock-wrap{flex-direction:column;max-width:420px;}.lock-quote-side{min-height:200px;}}
+.lock-amharic{font-size:.62rem;color:var(--text3);margin-top:18px;letter-spacing:1px;}
+.lock-quote-mini{font-size:.7rem;color:var(--text2);font-style:italic;line-height:1.5;margin-top:16px;min-height:34px;}
+.lq-dots{display:flex;gap:6px;margin-top:8px;}
+.lq-dot{width:5px;height:5px;border-radius:50%;background:var(--border2);}
+.lq-dot.on{background:var(--gold2);}
+@media(max-width:700px){.lock-wrap{max-width:340px;}}
 
 /* ===== NIGHT WARNING OVERLAY ===== */
 #night-overlay{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:8888;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;}
@@ -294,7 +296,7 @@ body,.content,.card,.stat-val,.chk-lbl,.prog-lbl{font-size:1rem;}
 .savings-del{font-size:.65rem;color:var(--text3);cursor:pointer;}
 .swot-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);}
 .swot-item:last-child{border-bottom:none;}
-.swot-txt{flex:1;font-size:.78rem;color:var(--text2);}
+.swot-txt{flex:1;font-size:.78rem;color:var(--text);font-weight:700;}
 .principle-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;margin-bottom:10px;}
 .principle-title{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
 .principle-sub{font-size:.75rem;color:var(--text2);padding:3px 0 3px 14px;position:relative;}
@@ -435,7 +437,7 @@ textarea.inp{resize:none;}
 /* GOALS */
 .goal-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px;}
 .goal-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;}
-.goal-title{font-size:.95rem;font-weight:700;color:var(--text);}
+.goal-title{font-size:.95rem;font-weight:700;color:var(--text);white-space:pre-wrap;word-break:break-word;line-height:1.5;}
 .goal-why{font-size:.72rem;color:var(--purple2);font-style:italic;margin-bottom:12px;}
 .milestone-row{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px dashed var(--border);}
 .milestone-row:last-child{border-bottom:none;}
@@ -479,12 +481,6 @@ textarea.inp{resize:none;}
 <!-- LOCK -->
 <div id="lock">
   <div class="lock-wrap">
-    <div class="lock-quote-side">
-      <div class="lq-eyebrow">Focus Anchor</div>
-      <div class="lq-text" id="lq-text">Loading...</div>
-      <div class="lq-source" id="lq-source"></div>
-      <div class="lq-dots" id="lq-dots"></div>
-    </div>
     <div class="lock-card">
       <div class="lock-logo" id="lock-logo">B</div>
       <div class="lock-title">Life Control Center</div>
@@ -492,6 +488,9 @@ textarea.inp{resize:none;}
       <input class="lock-input" type="password" id="pw" placeholder="••••••••" maxlength="30" onkeydown="if(event.key==='Enter')login()">
       <button class="lock-btn" onclick="login()">Unlock →</button>
       <div class="lock-err" id="pw-err">Incorrect password. Try again.</div>
+      <div class="lock-quote-mini" id="lq-text">Loading...</div>
+      <div class="lq-source" id="lq-source" style="font-size:.62rem;"></div>
+      <div class="lq-dots" id="lq-dots" style="justify-content:center;"></div>
       <div class="lock-amharic">ለእግዚአብሔር ክብር — For the Glory of God</div>
     </div>
   </div>
@@ -613,6 +612,18 @@ textarea.inp{resize:none;}
     <div class="inp-grp"><label class="inp-lbl">Section</label>
       <select class="inp" id="task-section"></select>
     </div>
+    <div class="inp-grp"><label class="inp-lbl">Repeats</label>
+      <select class="inp" id="task-day">
+        <option value="">Every day</option>
+        <option value="0">Only Sundays</option>
+        <option value="1">Only Mondays</option>
+        <option value="2">Only Tuesdays</option>
+        <option value="3">Only Wednesdays</option>
+        <option value="4">Only Thursdays</option>
+        <option value="5">Only Fridays</option>
+        <option value="6">Only Saturdays</option>
+      </select>
+    </div>
     <input type="hidden" id="task-edit-id">
     <button class="btn btn-primary btn-full" onclick="saveTaskModal()">Save Task</button>
   </div>
@@ -634,10 +645,11 @@ textarea.inp{resize:none;}
 <div class="modal-overlay" id="principle-modal">
   <div class="modal">
     <button class="modal-close" onclick="closePrincipleModal()">×</button>
-    <div class="modal-title">📁 New Principles Folder</div>
+    <div class="modal-title" id="principle-modal-title">📁 New Principles Folder</div>
     <div class="inp-grp"><label class="inp-lbl">Folder title</label><input class="inp" id="pr-title" placeholder="e.g. Forex / Profitable Trader"></div>
     <div class="inp-grp"><label class="inp-lbl">Sub-rules (one per line)</label><textarea class="inp" id="pr-rules" rows="4" placeholder="Practice every day&#10;View charts daily&#10;Maintain strict discipline"></textarea></div>
-    <button class="btn btn-primary btn-full" onclick="savePrincipleModal()">Create Folder</button>
+    <input type="hidden" id="pr-edit-id">
+    <button class="btn btn-primary btn-full" id="principle-modal-save-btn" onclick="savePrincipleModal()">Create Folder</button>
   </div>
 </div>
 
@@ -658,7 +670,7 @@ textarea.inp{resize:none;}
     <div class="modal-title">💼 New Account</div>
     <div class="inp-grp"><label class="inp-lbl">Account name</label><input class="inp" id="acc-name" placeholder="e.g. USD Investment"></div>
     <div class="inp-grp"><label class="inp-lbl">Currency</label>
-      <div class="seg-row"><div class="seg-opt on" id="acc-cur-etb" onclick="setAccCurrency('ETB')">ETB</div><div class="seg-opt" id="acc-cur-usd" onclick="setAccCurrency('$')">$ USD</div></div>
+      <div class="seg-row"><div class="seg-opt on" id="acc-cur-etb" onclick="setAccCurrency('ETB')">ETB</div><div class="seg-opt" id="acc-cur-usd" onclick="setAccCurrency('$')">USDT</div></div>
     </div>
     <div class="inp-grp"><label class="inp-lbl">Starting balance</label><input class="inp" type="number" id="acc-balance" placeholder="0"></div>
     <button class="btn btn-primary btn-full" onclick="saveAccountModal()">Create Account</button>
@@ -684,12 +696,10 @@ textarea.inp{resize:none;}
   <div class="modal">
     <button class="modal-close" onclick="closeGoalModal()">×</button>
     <div class="modal-title">🌠 New Long-Term Goal</div>
-    <div class="inp-grp"><label class="inp-lbl">Goal title</label><input class="inp" id="g-title" placeholder="e.g. Own Home"></div>
+    <div class="inp-grp"><label class="inp-lbl">Goal — write as much as you want</label><textarea class="inp" id="g-title" rows="6" placeholder="e.g. Own Home — describe it in as much detail as you like: the plan, the timeline, why it matters..." style="resize:vertical;min-height:120px;"></textarea></div>
     <div class="inp-grp"><label class="inp-lbl">Category</label>
       <select class="inp" id="g-category"></select>
     </div>
-    <div class="inp-grp"><label class="inp-lbl">Why statement (the psychological anchor)</label><textarea class="inp" id="g-why" rows="2" placeholder="Why does this goal matter to you?"></textarea></div>
-    <div class="inp-grp"><label class="inp-lbl">Milestones (one per line)</label><textarea class="inp" id="g-milestones" rows="4" placeholder="Save first 20,000 ETB&#10;Choose location&#10;Secure land&#10;Begin construction"></textarea></div>
     <button class="btn btn-primary btn-full" onclick="saveGoal()">Create Goal</button>
   </div>
 </div>
@@ -811,7 +821,10 @@ textarea.inp{resize:none;}
         <div class="g2">
           <div class="card">
             <div class="card-header"><div class="card-title">📅 Freedom Map — Cycle <span id="fm-cycle-num">1</span></div><div style="display:flex;gap:8px;font-size:.68rem;"><span style="color:var(--green2)">✓ Win</span><span style="color:var(--red2)">✗ Slip</span></div></div>
-            <div style="font-size:.7rem;color:var(--text3);margin-bottom:12px;" id="fm-cycle-range">—</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;">
+              <div style="font-size:.7rem;color:var(--text3);" id="fm-cycle-range">—</div>
+              <button class="btn btn-ghost btn-sm" onclick="fmEditStartDate()">✎ Set Start Date</button>
+            </div>
             <div class="n90-controls" style="margin-bottom:14px;">
               <span class="n90-mode-lbl">Logging mode</span>
               <button class="n90-mode-btn active" data-mode="win" id="fm-btn-win" onclick="fmSetMode('win')">✅ Win</button>
@@ -920,18 +933,51 @@ textarea.inp{resize:none;}
               <div class="inp-grp" style="flex:1"><label class="inp-lbl">Add Top-up ($)</label><input class="inp" type="number" id="tr-topup" placeholder="0"></div>
             </div>
             <button class="btn btn-primary btn-full" onclick="saveTradingCapital()">Save Capital Update</button>
-            <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
-              <div><div class="stat-lbl">Current Balance</div><div class="stat-val v-blue" id="tr-balance" style="font-size:1.3rem;">$0.00</div></div>
-              <div style="text-align:right"><div class="stat-lbl">Net P/L</div><div class="stat-val" id="tr-pl" style="font-size:1.3rem;">$0.00 (0%)</div></div>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+              <div style="flex:1;min-width:100px;"><div class="stat-lbl">Total Principal <span class="chk-del" onclick="editStat('principal')" title="Edit">✎</span></div><div class="stat-val" id="tr-principal" style="font-size:1.1rem;">$0.00</div></div>
+              <div style="flex:1;min-width:100px;"><div class="stat-lbl">Current Balance <span class="chk-del" onclick="editStat('balance')" title="Edit">✎</span></div><div class="stat-val v-blue" id="tr-balance" style="font-size:1.1rem;">$0.00</div></div>
+              <div style="flex:1;min-width:100px;"><div class="stat-lbl">Net Profit <span class="chk-del" onclick="editStat('profit')" title="Edit">✎</span></div><div class="stat-val" id="tr-pl" style="font-size:1.1rem;">$0.00</div></div>
+              <div style="flex:1;min-width:100px;"><div class="stat-lbl">Growth % <span class="chk-del" onclick="editStat('growth')" title="Edit">✎</span></div><div class="stat-val" id="tr-growth" style="font-size:1.1rem;">0%</div></div>
+            </div>
+            <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);">
+              <label class="inp-lbl">Add Profit or Loss ($)</label>
+              <div class="inp-row">
+                <input class="inp" type="number" id="tr-pl-amount" placeholder="e.g. 5">
+                <button class="btn btn-success btn-sm" id="btn-log-profit" onclick="logCapitalEntry('profit')">+ Profit</button>
+                <button class="btn btn-danger btn-sm" id="btn-log-loss" onclick="logCapitalEntry('loss')">− Loss</button>
+              </div>
+              <div style="font-size:.68rem;color:var(--text3);margin-top:4px;">This updates your current balance right away and plots on the Profit / Loss Log chart.</div>
+              <div id="pl-entry-msg" style="font-size:.72rem;margin-top:6px;"></div>
+            </div>
+            <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);">
+              <label class="inp-lbl">Withdraw from Profit ($)</label>
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                <div><div class="stat-lbl">Total Profit</div><div class="stat-val v-green" id="tr-avail-profit" style="font-size:1rem;">$0.00</div></div>
+                <div style="text-align:right"><div class="stat-lbl">Total Withdrawn</div><div class="stat-val v-gold" id="tr-total-withdrawn" style="font-size:1rem;">$0.00</div></div>
+              </div>
+              <div class="inp-row">
+                <input class="inp" type="number" id="tr-withdraw" placeholder="Amount to withdraw">
+                <button class="btn btn-gold btn-sm" onclick="performWithdrawal()">Withdraw</button>
+              </div>
+              <div style="font-size:.68rem;color:var(--text3);margin-top:4px;">Withdrawals come out of profit first — your principal stays protected. You can't withdraw more than your current profit.</div>
+              <div id="tr-withdraw-msg" style="font-size:.72rem;margin-top:6px;"></div>
+              <div id="withdraw-history" style="margin-top:12px;"></div>
             </div>
           </div>
           <div class="card">
-            <div class="card-header"><div class="card-title">📉 Daily Closing Balance</div></div>
-            <div class="inp-row">
-              <input class="inp" type="number" id="tr-closing" placeholder="Enter today's closing balance ($)">
-              <button class="btn btn-gold btn-sm" onclick="logClosingBalance()" id="tr-closing-btn">Log</button>
+            <div class="card-header"><div class="card-title">📊 Profit / Loss Log</div><div class="card-badge cb-purple" id="trade-stats-badge">0 entries</div></div>
+            <div class="chart-wrap" style="margin-top:6px;"><canvas id="capital-chart"></canvas></div>
+            <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);">
+              <div class="check-section-lbl"><span>Recent Entries</span></div>
+              <div id="trade-history-list"></div>
             </div>
-            <div class="chart-wrap" style="margin-top:14px;"><canvas id="capital-chart"></canvas></div>
+            <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);">
+              <label class="inp-lbl">Reconcile actual balance (optional)</label>
+              <div class="inp-row">
+                <input class="inp" type="number" id="tr-closing" placeholder="Enter today's actual account balance ($)">
+                <button class="btn btn-ghost btn-sm" onclick="logClosingBalance()" id="tr-closing-btn">Sync</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -949,22 +995,12 @@ textarea.inp{resize:none;}
             <div id="urge-msg" style="margin-top:10px;font-size:.75rem;color:var(--text2);"></div>
           </div>
           <div class="card">
-            <div class="card-header"><div class="card-title">☑️ Pre-Trade Checklist</div><div class="card-badge cb-green" id="pretrade-badge">0/4</div></div>
-            <div id="pretrade-list"></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header"><div class="card-title">📝 Log a Trade Result</div><div class="card-badge cb-purple">Discipline Score = your checklist %</div></div>
-          <div id="trade-lock-notice" style="display:none;" class="locked-banner">⛔ Locked after consecutive losses. Come back tomorrow with a clear head.</div>
-          <div style="display:flex;gap:8px;">
-            <button class="btn btn-success btn-full" id="btn-log-win" onclick="logTrade('win')">✅ Log Win</button>
-            <button class="btn btn-danger btn-full" id="btn-log-loss" onclick="logTrade('loss')">❌ Log Loss</button>
-          </div>
-          <div class="chart-wrap" style="margin-top:16px;"><canvas id="discipline-chart"></canvas></div>
-          <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);">
-            <div class="check-section-lbl"><span>Recent Trades</span></div>
-            <div id="trade-history-list"></div>
+            <div class="card-header"><div class="card-title">📈 Performance</div><div class="card-badge cb-purple" id="trade-stats-badge2">0 entries</div></div>
+            <div style="display:flex;justify-content:space-between;text-align:center;margin-top:6px;">
+              <div style="flex:1"><div class="stat-lbl">Profit Days</div><div class="stat-val v-green" id="ts-wins" style="font-size:1.3rem;">0</div></div>
+              <div style="flex:1"><div class="stat-lbl">Loss Days</div><div class="stat-val v-red" id="ts-losses" style="font-size:1.3rem;">0</div></div>
+              <div style="flex:1"><div class="stat-lbl">Success Rate</div><div class="stat-val v-blue" id="ts-winrate" style="font-size:1.3rem;">0%</div></div>
+            </div>
           </div>
         </div>
 
@@ -985,29 +1021,30 @@ textarea.inp{resize:none;}
         <div class="total-card">
           <div class="total-lbl">Total Capital — All Accounts</div>
           <div class="total-amount" id="total-capital">0 ETB</div>
+          <div class="total-sub" id="total-capital-usdt" style="font-weight:600;">0 USDT</div>
           <div class="total-sub">Click any account card to select it for transactions</div>
         </div>
         <div class="wallet-grid">
           <div class="wallet-card wc-inv" onclick="selectWallet('inv',this)">
-            <div class="wallet-name">📈 Investment Account</div>
+            <div class="wallet-name"><span id="wn-inv">📈 Investment Account</span> <span class="wallet-del" onclick="event.stopPropagation();renameWallet('inv')" title="Rename">✎</span></div>
             <div class="wallet-amount" id="w-inv">0 ETB</div>
             <div class="wallet-pct" id="wp-inv">0% of total · Target: 65%</div>
             <div class="wallet-pct-bar"><div class="wallet-pct-fill" id="wbar-inv" style="width:0%;background:var(--blue2)"></div></div>
           </div>
           <div class="wallet-card wc-emg" onclick="selectWallet('emg',this)">
-            <div class="wallet-name">🛡️ Emergency Savings</div>
+            <div class="wallet-name"><span id="wn-emg">🛡️ Emergency Savings</span> <span class="wallet-del" onclick="event.stopPropagation();renameWallet('emg')" title="Rename">✎</span></div>
             <div class="wallet-amount" id="w-emg">0 ETB</div>
             <div class="wallet-pct" id="wp-emg">0% of total · Target: 10%</div>
             <div class="wallet-pct-bar"><div class="wallet-pct-fill" id="wbar-emg" style="width:0%;background:var(--green2)"></div></div>
           </div>
           <div class="wallet-card wc-trd" onclick="selectWallet('trd',this)">
-            <div class="wallet-name">💹 Trading Capital</div>
+            <div class="wallet-name"><span id="wn-trd">💹 Trading Capital</span> <span class="wallet-del" onclick="event.stopPropagation();renameWallet('trd')" title="Rename">✎</span></div>
             <div class="wallet-amount" id="w-trd">0 ETB</div>
             <div class="wallet-pct" id="wp-trd">0% of total · Target: 25%</div>
             <div class="wallet-pct-bar"><div class="wallet-pct-fill" id="wbar-trd" style="width:0%;background:var(--gold2)"></div></div>
           </div>
           <div class="wallet-card wc-per" onclick="selectWallet('per',this)">
-            <div class="wallet-name">👤 Personal Account</div>
+            <div class="wallet-name"><span id="wn-per">👤 Personal Account</span> <span class="wallet-del" onclick="event.stopPropagation();renameWallet('per')" title="Rename">✎</span></div>
             <div class="wallet-amount" id="w-per">0 ETB</div>
             <div class="wallet-pct" id="wp-per">0% of total</div>
             <div class="wallet-pct-bar"><div class="wallet-pct-fill" id="wbar-per" style="width:0%;background:var(--purple2)"></div></div>
@@ -1046,16 +1083,14 @@ textarea.inp{resize:none;}
           <div class="card-header"><div class="card-title">🏦 Custom Savings Plans</div><button class="btn btn-purple btn-sm" onclick="openSavingsModal()">➕ New Plan</button></div>
           <div id="savings-list"></div>
         </div>
-        <div class="card" id="custom-accounts-card">
-          <div class="card-header"><div class="card-title">💼 Custom Accounts</div><button class="btn btn-purple btn-sm" onclick="openAccountModal()">➕ New Account</button></div>
-          <div id="accounts-list"></div>
-        </div>
         <div class="card">
           <div class="card-header"><div class="card-title">📊 Weekly Transaction Analytics</div><div class="card-badge cb-blue">Last 7 Days</div></div>
           <div class="g2" style="margin-bottom:0;">
             <div style="text-align:center;"><div class="stat-lbl">Total Deposits</div><div class="stat-val v-green" id="wk-deposits" style="font-size:1.3rem;">0 ETB</div></div>
             <div style="text-align:center;"><div class="stat-lbl">Total Withdrawals</div><div class="stat-val v-red" id="wk-withdrawals" style="font-size:1.3rem;">0 ETB</div></div>
           </div>
+          <div style="display:flex;gap:14px;margin-top:12px;font-size:.68rem;"><span style="color:var(--green2);">■ Deposits</span><span style="color:var(--red2);">■ Withdrawals</span></div>
+          <div class="chart-wrap" style="margin-top:8px;"><canvas id="weekly-txn-chart"></canvas></div>
         </div>
       </div>
 
@@ -1222,7 +1257,9 @@ const defaultTaskCategories=[
   {id:'n',title:'🌙 Night Protocol — Before 10:30pm'}
 ];
 const def = {
-  days:{}, checks:{}, journal:[], wallets:{inv:0,emg:0,trd:0,per:0}, txns:[],
+  days:{}, checks:{}, journal:[], wallets:{inv:0,emg:0,trd:0,per:0},
+  walletNames:{inv:'📈 Investment Account',emg:'🛡️ Emergency Savings',trd:'💹 Trading Capital',per:'👤 Personal Account'},
+  txns:[],
   triggers:{}, devs:{}, startDate:new Date().toDateString(),
   tasks:defaultTasks, nextTaskId:16,
   taskCategories:defaultTaskCategories, nextCatId:100,
@@ -1234,7 +1271,7 @@ const def = {
   goals:[],
   goalCategories:['Spiritual','Financial','Relationship','Behavioral','Material'],
   mindsetLog:{}, swot:{strengths:[],weaknesses:[]}, principles:[],
-  trading:{initial:0,topups:0,closings:[],trades:[],lockDate:null,lockCount:0},
+  trading:{initial:0,topups:0,closings:[],trades:[],withdrawals:[],lockDate:null,lockCount:0},
   tradingRules:[
     'Never risk more than 1-2% of account per trade',
     'No trade without a pre-set stop-loss',
@@ -1244,9 +1281,15 @@ const def = {
   ],
   ruleChecks:{}, ruleDocs:[],
   freedomCycle:{start:null,end:null,cycleNumber:1},
-  freedomHistory:[]
+  freedomHistory:[], dayNotes:{}
 };
 Object.keys(def).forEach(k=>{ if(S[k]===undefined) S[k]=JSON.parse(JSON.stringify(def[k])); });
+if(!S.trading) S.trading={initial:0,topups:0,closings:[],trades:[],withdrawals:[],lockDate:null,lockCount:0};
+if(!Array.isArray(S.trading.withdrawals)) S.trading.withdrawals=[];
+if(!Array.isArray(S.trading.closings)) S.trading.closings=[];
+if(!Array.isArray(S.trading.trades)) S.trading.trades=[];
+if(!S.dayNotes) S.dayNotes={};
+if(!S.walletNames) S.walletNames={inv:'📈 Investment Account',emg:'🛡️ Emergency Savings',trd:'💹 Trading Capital',per:'👤 Personal Account'};
 if(!S.settings) S.settings={theme:'light',fontsize:'md',password:'binyam2025',dateformat:'long'};
 if(!S.settings.dateformat) S.settings.dateformat='long';
 let undoStack=[];
@@ -1255,7 +1298,13 @@ function save(){
     const prev=localStorage.getItem(STORE_KEY);
     if(prev){ undoStack.push(prev); if(undoStack.length>25) undoStack.shift(); }
   }catch(e){}
-  localStorage.setItem(STORE_KEY,JSON.stringify(S)); fbPush();
+  try{
+    localStorage.setItem(STORE_KEY,JSON.stringify(S));
+  }catch(e){
+    console.error('Save failed (likely storage quota exceeded):',e);
+    throw e;
+  }
+  fbPush();
 }
 function undoLast(){
   if(!undoStack.length){ showUndoToast('Nothing to undo.'); return; }
@@ -1263,6 +1312,8 @@ function undoLast(){
   localStorage.setItem(STORE_KEY,prev);
   try{ S=JSON.parse(prev); }catch(e){ return; }
   Object.keys(def).forEach(k=>{ if(S[k]===undefined) S[k]=JSON.parse(JSON.stringify(def[k])); });
+  if(!S.trading) S.trading={initial:0,topups:0,closings:[],trades:[],withdrawals:[],lockDate:null,lockCount:0};
+  if(!Array.isArray(S.trading.withdrawals)) S.trading.withdrawals=[];
   refreshEverything();
   showUndoToast('Undone ✓');
 }
@@ -1270,7 +1321,7 @@ function refreshEverything(){
   applyTheme(); refreshDateDisplays();
   renderTaskListCard(); updateCheckUI(); restoreDevs(); renderGrid(); renderFinance();
   renderTriggers(); renderJournal(); renderGoals(); renderAvatar(); renderTomorrowPlan();
-  initMindsetHub(); renderTradeHistory(); renderRulesChecklist(); renderRulesHistory(); renderLockState();
+  initMindsetHub(); renderTradeHistory(); renderTradeStats(); renderRulesChecklist(); renderRulesHistory(); renderLockState();
   const activeTab=document.querySelector('.tab-content.active');
   if(activeTab) renderCharts(activeTab.id.replace('tab-',''));
 }
@@ -1541,28 +1592,37 @@ function stopBreathe(){ clearTimeout(breatheInterval); }
 
 /* ================= TASK CRUD ================= */
 function catTitle(id){ const c=S.taskCategories.find(x=>x.id===id); return c?c.title:id; }
+const WEEKDAY_NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const WEEKDAY_SHORT=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function tasksForToday(){
+  const dow=now.getDay();
+  return S.tasks.filter(t=> t.day===undefined || t.day===null || t.day==='' ? true : Number(t.day)===dow);
+}
 function renderTaskListCard(){
   const card=document.getElementById('task-list-card');
   const tagClass={spirit:'t-spirit',body:'t-body',guard:'t-guard',work:'t-work',custom:'t-custom'};
   const c=S.checks[todayStr]||{};
+  const todays=tasksForToday();
   let html='';
   S.taskCategories.forEach(cat=>{
-    const items=S.tasks.filter(t=>t.section===cat.id);
+    const items=todays.filter(t=>t.section===cat.id);
     html+=`<div class="check-section-lbl"><span>${cat.title}</span><span><span class="chk-del" onclick="editCatModal('${cat.id}')" title="Rename category">✎</span></span></div>`;
     items.forEach(t=>{
       const on=!!c[t.id];
+      const dayBadge = (t.day!==undefined && t.day!==null && t.day!=='') ? `<span class="chk-tag" style="background:var(--purple-g);color:var(--purple2);">📅 ${WEEKDAY_SHORT[Number(t.day)]}</span>` : '';
       html+=`<div class="chk-item" data-id="${t.id}">
         <div class="chk-lbl ${on?'done':''}">${t.label}</div>
         <div class="chk-dn-row">
           <button class="chk-dn-btn ${on===true?'sel-done':''}" onclick="chk(${t.id},true)" title="Done">✓</button>
           <button class="chk-dn-btn nd ${on===false?'sel-notdone':''}" onclick="chk(${t.id},false)" title="Not Done">✕</button>
         </div>
+        ${dayBadge}
         <span class="chk-tag ${tagClass[t.tag]||'t-custom'}">${t.tag}</span>
         <span class="chk-del" onclick="editTask(${t.id})" title="Edit">✎</span>
         <span class="chk-del" onclick="deleteTask(${t.id})" title="Delete">🗑</span>
       </div>`;
     });
-    if(!items.length) html+=`<div style="font-size:.68rem;color:var(--text3);padding:6px 0;">No tasks in this category yet.</div>`;
+    if(!items.length) html+=`<div style="font-size:.68rem;color:var(--text3);padding:6px 0;">No tasks for today in this category.</div>`;
   });
   card.innerHTML=html;
 }
@@ -1580,6 +1640,7 @@ function openTaskModal(){
   document.getElementById('task-modal-title').textContent='➕ Add Task';
   document.getElementById('task-label').value='';
   document.getElementById('task-section').innerHTML=taskSectionOptionsHtml(S.taskCategories[0]&&S.taskCategories[0].id);
+  document.getElementById('task-day').value='';
   document.getElementById('task-edit-id').value='';
   document.getElementById('task-modal').classList.add('open');
 }
@@ -1588,6 +1649,7 @@ function editTask(id){
   document.getElementById('task-modal-title').textContent='✎ Edit Task';
   document.getElementById('task-label').value=t.label.replace(/<\/?strong>/g,'');
   document.getElementById('task-section').innerHTML=taskSectionOptionsHtml(t.section);
+  document.getElementById('task-day').value= (t.day===undefined||t.day===null) ? '' : String(t.day);
   document.getElementById('task-edit-id').value=id;
   document.getElementById('task-modal').classList.add('open');
 }
@@ -1595,13 +1657,15 @@ function closeTaskModal(){ document.getElementById('task-modal').classList.remov
 function saveTaskModal(){
   const label=document.getElementById('task-label').value.trim();
   const section=document.getElementById('task-section').value;
+  const dayVal=document.getElementById('task-day').value;
+  const day = dayVal==='' ? null : Number(dayVal);
   const editId=document.getElementById('task-edit-id').value;
   if(!label)return;
   if(editId!==''){
     const t=S.tasks.find(x=>x.id===parseInt(editId));
-    if(t){ t.label='<strong>'+label+'</strong>'; t.section=section; }
+    if(t){ t.label='<strong>'+label+'</strong>'; t.section=section; t.day=day; }
   } else {
-    S.tasks.push({id:S.nextTaskId++,section,tag:'custom',label:'<strong>'+label+'</strong>'});
+    S.tasks.push({id:S.nextTaskId++,section,tag:'custom',label:'<strong>'+label+'</strong>',day});
   }
   save(); closeTaskModal(); renderTaskListCard(); updateCheckUI();
 }
@@ -1653,7 +1717,8 @@ function deleteCatModal(){
 
 function updateCheckUI(){
   const c=S.checks[todayStr]||{};
-  const total=S.tasks.length||1, done=S.tasks.filter(t=>c[t.id]===true).length;
+  const todays=tasksForToday();
+  const total=todays.length||1, done=todays.filter(t=>c[t.id]===true).length;
   const pct=Math.round((done/total)*100);
   const circ=232.5;
   document.getElementById('ring-circle').style.strokeDashoffset=circ-(pct/100)*circ;
@@ -1666,15 +1731,15 @@ function updateCheckUI(){
   if(secWrap){
     const pfColors=['pf-gold','pf-blue','pf-red','pf-purple','pf-green'];
     secWrap.innerHTML=S.taskCategories.map((cat,i)=>{
-      const items=S.tasks.filter(t=>t.section===cat.id);
+      const items=todays.filter(t=>t.section===cat.id);
       const d=items.filter(t=>c[t.id]===true).length;
       const p=items.length?Math.round((d/items.length)*100):0;
       return `<div class="prog-item"><div class="prog-top"><span class="prog-lbl">${cat.title}</span><span class="prog-pct">${d}/${items.length}</span></div><div class="prog-bg"><div class="prog-fill ${pfColors[i%pfColors.length]}" style="width:${p}%"></div></div></div>`;
     }).join('');
   }
   document.getElementById('ov-score').textContent=done+'/'+total;
-  const spiritItems=S.tasks.filter(t=>t.tag==='spirit');
-  const workItems=S.tasks.filter(t=>t.tag==='work');
+  const spiritItems=todays.filter(t=>t.tag==='spirit');
+  const workItems=todays.filter(t=>t.tag==='work');
   setLA('spirit', spiritItems.length?Math.round((spiritItems.filter(t=>c[t.id]===true).length/spiritItems.length)*100):0);
   setLA('work', workItems.length?Math.round((workItems.filter(t=>c[t.id]===true).length/workItems.length)*100):0);
   renderMissedTasks();
@@ -1690,7 +1755,10 @@ function renderMissedTasks(){
     const d=new Date(); d.setDate(d.getDate()-i);
     const key=d.toDateString();
     const c=S.checks[key]||{};
+    const dow=d.getDay();
     S.tasks.forEach(t=>{
+      const scheduled = (t.day===undefined||t.day===null||t.day==='') ? true : Number(t.day)===dow;
+      if(!scheduled) return;
       if(c[t.id]!==true){
         counts[t.id]=(counts[t.id]||0)+1;
       }
@@ -1793,9 +1861,13 @@ function openSlip(){ document.getElementById('slip-modal').classList.add('open')
 function closeSlip(){ document.getElementById('slip-modal').classList.remove('open'); }
 function confirmSlip(){
   const t=document.getElementById('slip-trigger').value;
+  const note=document.getElementById('slip-note').value.trim();
   S.days[todayStr]='fail';
   if(!S.triggers[t]) S.triggers[t]=0;
   S.triggers[t]++;
+  if(!S.dayNotes) S.dayNotes={};
+  S.dayNotes[todayStr]= note ? (t+': '+note) : t;
+  document.getElementById('slip-note').value='';
   save(); renderGrid(); renderTriggers(); closeSlip();
 }
 function renderTriggers(){
@@ -1841,36 +1913,29 @@ function renderCharts(tab){
     const w=S.wallets;
     const total=w.inv+w.emg+w.trd+w.per;
     if(ctx && total>0){
-      charts['pie']=new Chart(ctx,{type:'doughnut',data:{labels:['Investment','Emergency','Trading','Personal'],datasets:[{data:[w.inv,w.emg,w.trd,w.per],backgroundColor:['rgba(59,127,240,.75)','rgba(47,189,131,.75)','rgba(224,172,43,.75)','rgba(143,116,234,.75)'],borderColor:['#3b7ff0','#2fbd83','#e0ac2b','#8f74ea'],borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:cc.tick,font:{size:11},padding:10}}}}});
+      charts['pie']=new Chart(ctx,{type:'doughnut',data:{labels:[S.walletNames.inv,S.walletNames.emg,S.walletNames.trd,S.walletNames.per],datasets:[{data:[w.inv,w.emg,w.trd,w.per],backgroundColor:['rgba(59,127,240,.75)','rgba(47,189,131,.75)','rgba(224,172,43,.75)','rgba(143,116,234,.75)'],borderColor:['#3b7ff0','#2fbd83','#e0ac2b','#8f74ea'],borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:cc.tick,font:{size:11},padding:10}}}}});
     } else if(ctx){
       charts['pie']=new Chart(ctx,{type:'doughnut',data:{labels:['No data'],datasets:[{data:[1],backgroundColor:['rgba(180,190,210,.4)'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'65%',plugins:{legend:{display:false}}}});
     }
   }
   if(tab==='trading'){
-    renderCapitalChart(cc); renderDisciplineChart(cc);
+    renderCapitalChart(cc); renderTradeStats();
   }
 }
 function renderCapitalChart(cc){
   cc=cc||chartColors();
   if(charts['cap']){ charts['cap'].destroy(); delete charts['cap']; }
   const ctx=document.getElementById('capital-chart');
-  const pts=S.trading.closings.slice(-30);
-  const labels=pts.map(p=>p.date);
-  const data=pts.map(p=>p.balance);
+  const trades=(S.trading.trades||[]).slice(-30);
+  const labels=trades.map(t=>t.date);
+  const data=trades.map(t=> t.result==='win' ? (t.amount||0) : -(t.amount||0));
+  const colors=trades.map(t=> t.result==='win' ? 'rgba(47,189,131,.85)' : 'rgba(239,91,82,.85)');
   if(ctx){
-    charts['cap']=new Chart(ctx,{type:'line',data:{labels,datasets:[{data,borderColor:'rgba(224,172,43,.9)',backgroundColor:'rgba(224,172,43,.12)',tension:.3,fill:true,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false}},scales:{y:{ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
-  }
-}
-function renderDisciplineChart(cc){
-  cc=cc||chartColors();
-  if(charts['disc']){ charts['disc'].destroy(); delete charts['disc']; }
-  const ctx=document.getElementById('discipline-chart');
-  const trades=S.trading.trades.slice(-30);
-  const labels=trades.map((t,i)=>i+1);
-  const data=trades.map(t=>t.discipline);
-  const colors=trades.map(t=>t.result==='win'?'rgba(47,189,131,.8)':'rgba(239,91,82,.8)');
-  if(ctx){
-    charts['disc']=new Chart(ctx,{type:'bar',data:{labels,datasets:[{data,backgroundColor:colors,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:10,ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
+    if(!trades.length){
+      charts['cap']=new Chart(ctx,{type:'bar',data:{labels:['No entries yet'],datasets:[{data:[0],backgroundColor:['rgba(180,190,210,.3)']}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false}},scales:{y:{ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
+    } else {
+      charts['cap']=new Chart(ctx,{type:'bar',data:{labels,datasets:[{data,backgroundColor:colors,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>(c.parsed.y>=0?'+$':'-$')+Math.abs(c.parsed.y).toFixed(2)}}},scales:{y:{ticks:{color:cc.tick,font:{size:9},callback:v=>'$'+v},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
+    }
   }
 }
 
@@ -1905,41 +1970,54 @@ function undoTxn(id){
   t.reversed=true;
   save(); renderFinance(); renderCharts('finance');
 }
+function renameWallet(id){
+  const current=S.walletNames[id];
+  const n=prompt('Rename account:',current);
+  if(n&&n.trim()){ S.walletNames[id]=n.trim(); save(); renderFinance(); }
+}
 function renderFinance(){
   const w=S.wallets;
-  const total=w.inv+w.emg+w.trd+w.per;
+  const coreTotal=w.inv+w.emg+w.trd+w.per;
+  const customEtb=(S.customAccounts||[]).filter(a=>a.currency!=='$').reduce((s,a)=>s+(a.balance||0),0);
+  const customUsdt=(S.customAccounts||[]).filter(a=>a.currency==='$').reduce((s,a)=>s+(a.balance||0),0);
+  const totalEtb=coreTotal+customEtb;
   const fmt=n=>n.toLocaleString()+ ' ETB';
-  document.getElementById('total-capital').textContent=fmt(total);
-  document.getElementById('ov-capital').textContent=fmt(total);
+  document.getElementById('total-capital').textContent=fmt(totalEtb);
+  const usdtEl=document.getElementById('total-capital-usdt');
+  if(usdtEl) usdtEl.textContent=customUsdt.toLocaleString()+' USDT';
+  document.getElementById('ov-capital').textContent=fmt(totalEtb);
   const accts=[{id:'inv',target:65},{id:'emg',target:10},{id:'trd',target:25},{id:'per',target:0}];
   accts.forEach(({id,target})=>{
-    const pct=total>0?Math.round((w[id]/total)*100):0;
+    const pct=coreTotal>0?Math.round((w[id]/coreTotal)*100):0;
     document.getElementById('w-'+id).textContent=fmt(w[id]);
     document.getElementById('wp-'+id).textContent=pct+'% of total'+(target?` · Target: ${target}%`:'');
     document.getElementById('wbar-'+id).style.width=Math.min(pct,100)+'%';
+    const nameEl=document.getElementById('wn-'+id);
+    if(nameEl) nameEl.textContent=S.walletNames[id];
   });
-  const goalPct=Math.min(Math.round((total/100000)*100),100);
+  const goalPct=Math.min(Math.round((totalEtb/100000)*100),100);
   document.getElementById('goal-pct').textContent=goalPct+'%';
   document.getElementById('goal-bar').style.width=goalPct+'%';
-  document.getElementById('goal-remaining').textContent=total>=100000?'🎉 Goal reached!':((100000-total).toLocaleString()+' ETB remaining to goal');
+  document.getElementById('goal-remaining').textContent=totalEtb>=100000?'🎉 Goal reached!':((100000-totalEtb).toLocaleString()+' ETB remaining to goal');
   renderCustomWalletCards();
+  const txnSel=document.getElementById('txn-account');
+  if(txnSel){ [...txnSel.options].forEach(o=>{ if(S.walletNames[o.value]) o.textContent=S.walletNames[o.value]; }); }
   const log=document.getElementById('txn-log');
   if(log){
     if(!S.txns.length){ log.innerHTML='<div style="font-size:.72rem;color:var(--text3);padding:8px 0;">No transactions yet.</div>'; }
     else {
-      const names={inv:'Investment',emg:'Emergency',trd:'Trading',per:'Personal'};
+      const names=S.walletNames;
       log.innerHTML=S.txns.slice(0,10).map(t=>`
         <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);${t.reversed?'opacity:.4;':''}">
           <span style="font-size:.8rem;">${t.type==='dep'?'➕':'➖'}</span>
-          <div style="flex:1"><div style="font-size:.72rem;font-weight:500;color:var(--text);">${names[t.acct]}</div>${t.note?`<div style="font-size:.62rem;color:var(--text3);">${t.note}</div>`:''}</div>
+          <div style="flex:1"><div style="font-size:.72rem;font-weight:500;color:var(--text);">${names[t.acct]||t.acct}</div>${t.note?`<div style="font-size:.62rem;color:var(--text3);">${t.note}</div>`:''}</div>
           <div style="font-size:.72rem;font-weight:700;color:${t.type==='dep'?'var(--green2)':'var(--red2)'};">${t.type==='dep'?'+':'-'}${t.amt.toLocaleString()} ETB</div>
           ${t.reversed?'<span style="font-size:.6rem;color:var(--text3)">undone</span>':`<span class="chk-del" onclick="undoTxn(${t.id})" title="Undo">↺</span>`}
         </div>`).join('');
     }
   }
-  setLA('finance',Math.min(Math.round((total/100000)*100),100));
+  setLA('finance',Math.min(Math.round((totalEtb/100000)*100),100));
   renderSavings();
-  renderAccounts();
   renderWeeklyTxnAnalytics();
 }
 function renderWeeklyTxnAnalytics(){
@@ -1954,6 +2032,32 @@ function renderWeeklyTxnAnalytics(){
   });
   depEl.textContent=dep.toLocaleString()+' ETB';
   wdEl.textContent=wd.toLocaleString()+' ETB';
+  renderWeeklyTxnChart();
+}
+function renderWeeklyTxnChart(){
+  const ctx=document.getElementById('weekly-txn-chart'); if(!ctx)return;
+  const cc=chartColors();
+  if(charts['wktxn']){ charts['wktxn'].destroy(); delete charts['wktxn']; }
+  const WEEKS=6;
+  const weekMs=7*86400000;
+  const nowTs=Date.now();
+  const startOfThisWeek=nowTs-(nowTs%weekMs);
+  const buckets=[];
+  for(let i=WEEKS-1;i>=0;i--){
+    const start=startOfThisWeek-i*weekMs;
+    buckets.push({start,end:start+weekMs,dep:0,wd:0});
+  }
+  S.txns.forEach(t=>{
+    if(t.reversed)return;
+    const ts=t.ts||Date.parse(t.date)||0;
+    const b=buckets.find(bk=>ts>=bk.start&&ts<bk.end);
+    if(b){ if(t.type==='dep') b.dep+=t.amt; else b.wd+=t.amt; }
+  });
+  const labels=buckets.map((b,i)=> i===buckets.length-1 ? 'This wk' : new Date(b.start).toLocaleDateString(undefined,{month:'short',day:'numeric'}));
+  charts['wktxn']=new Chart(ctx,{type:'bar',data:{labels,datasets:[
+    {label:'Deposits',data:buckets.map(b=>b.dep),backgroundColor:'rgba(47,189,131,.8)',borderRadius:4},
+    {label:'Withdrawals',data:buckets.map(b=>b.wd),backgroundColor:'rgba(239,91,82,.8)',borderRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false}},scales:{y:{ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
 }
 function openSavingsModal(){ document.getElementById('savings-modal').classList.add('open'); }
 function closeSavingsModal(){ document.getElementById('savings-modal').classList.remove('open'); }
@@ -2025,80 +2129,55 @@ function saveAccountModal(){
   const balance=parseFloat(document.getElementById('acc-balance').value)||0;
   if(!name)return;
   S.customAccounts.push({id:Date.now(),name,currency:newAccCurrency,balance,history:[]});
-  save(); closeAccountModal(); renderAccounts();
+  save(); closeAccountModal(); renderFinance();
 }
 function renameAccount(id){
   const a=S.customAccounts.find(x=>x.id===id); if(!a)return;
   const n=prompt('Rename account:',a.name);
-  if(n&&n.trim()){ a.name=n.trim(); save(); renderAccounts(); }
+  if(n&&n.trim()){ a.name=n.trim(); save(); renderFinance(); }
 }
 function deleteAccount(id){
   if(!confirm('Delete this account?'))return;
   S.customAccounts=S.customAccounts.filter(a=>a.id!==id);
-  save(); renderAccounts();
-}
-function depositAccount(id){
-  const inp=document.getElementById('accdep-'+id);
-  const amt=parseFloat(inp.value);
-  if(!amt||amt<=0)return;
-  const a=S.customAccounts.find(x=>x.id===id); if(!a)return;
-  a.balance=(a.balance||0)+amt;
-  if(!a.history)a.history=[];
-  a.history.push({amt,type:'deposit',ts:Date.now()});
-  save(); renderAccounts();
-}
-function withdrawAccount(id){
-  const inp=document.getElementById('accdep-'+id);
-  const amt=parseFloat(inp.value);
-  if(!amt||amt<=0)return;
-  const a=S.customAccounts.find(x=>x.id===id); if(!a)return;
-  a.balance=Math.max(0,(a.balance||0)-amt);
-  if(!a.history)a.history=[];
-  a.history.push({amt,type:'withdraw',ts:Date.now()});
-  save(); renderAccounts();
-}
-function renderAccounts(){
-  const el=document.getElementById('accounts-list'); if(!el)return;
-  renderCustomWalletCards();
-  if(!S.customAccounts||!S.customAccounts.length){ el.innerHTML='<div style="font-size:.72rem;color:var(--text3);">No custom accounts yet. Add one for anything in USD or a separate ETB pool.</div>'; return; }
-  el.innerHTML=S.customAccounts.map(a=>{
-    const sym = a.currency==='$' ? '$' : '';
-    const suffix = a.currency==='$' ? '' : ' ETB';
-    return `<div class="savings-item">
-      <div class="savings-top"><span class="savings-name">${a.name} <span class="chk-del" onclick="renameAccount(${a.id})" title="Rename">✎</span></span><span class="savings-del" onclick="deleteAccount(${a.id})">✕ remove</span></div>
-      <div class="savings-amt">${sym}${(a.balance||0).toLocaleString()}${suffix}</div>
-      <div class="savings-dep-row">
-        <input type="number" id="accdep-${a.id}" placeholder="Amount">
-        <button class="sd-add" onclick="depositAccount(${a.id})">+ Deposit</button>
-        <button class="sd-sub" onclick="withdrawAccount(${a.id})">− Withdraw</button>
-      </div>
-    </div>`;
-  }).join('');
+  save(); renderFinance();
 }
 function renderCustomWalletCards(){
   const el=document.getElementById('custom-wallet-cards'); if(!el)return;
   if(!S.customAccounts||!S.customAccounts.length){ el.innerHTML=''; return; }
   el.innerHTML=S.customAccounts.map(a=>{
-    const sym = a.currency==='$' ? '$' : '';
-    const suffix = a.currency==='$' ? '' : ' ETB';
-    return `<div class="wallet-card wc-custom" onclick="focusCustomAccount(${a.id})">
+    const sym = '';
+    const suffix = a.currency==='$' ? ' USDT' : ' ETB';
+    return `<div class="wallet-card wc-custom">
       <span class="wallet-del" onclick="event.stopPropagation();deleteAccount(${a.id})" title="Delete">✕</span>
-      <div class="wallet-name">💼 ${a.name}</div>
+      <div class="wallet-name">💼 ${a.name} <span class="wallet-del" style="position:static;margin-left:4px;" onclick="event.stopPropagation();renameAccount(${a.id})" title="Rename">✎</span></div>
       <div class="wallet-amount">${sym}${(a.balance||0).toLocaleString()}${suffix}</div>
-      <div class="wallet-pct">Tap to deposit / withdraw</div>
+      <div class="wallet-pct">Tap +/− to deposit or withdraw</div>
+      <div style="display:flex;gap:6px;margin-top:8px;">
+        <button class="btn btn-ghost btn-sm" style="flex:1;" onclick="event.stopPropagation();depositAccountPrompt(${a.id})">+ Deposit</button>
+        <button class="btn btn-ghost btn-sm" style="flex:1;" onclick="event.stopPropagation();withdrawAccountPrompt(${a.id})">− Withdraw</button>
+      </div>
     </div>`;
   }).join('');
 }
-function focusCustomAccount(id){
-  const card=document.getElementById('custom-accounts-card');
-  if(card){
-    card.scrollIntoView({behavior:'smooth',block:'center'});
-    card.style.transition='box-shadow .3s';
-    card.style.boxShadow='0 0 0 3px var(--purple2)';
-    setTimeout(()=>{ card.style.boxShadow=''; },1600);
-  }
-  const inp=document.getElementById('accdep-'+id);
-  if(inp) setTimeout(()=>inp.focus(),400);
+function depositAccountPrompt(id){
+  const a=S.customAccounts.find(x=>x.id===id); if(!a)return;
+  const v=prompt('Deposit how much into "'+a.name+'"?');
+  const amt=parseFloat(v);
+  if(!amt||amt<=0)return;
+  a.balance=(a.balance||0)+amt;
+  if(!a.history)a.history=[];
+  a.history.push({amt,type:'deposit',ts:Date.now()});
+  save(); renderFinance();
+}
+function withdrawAccountPrompt(id){
+  const a=S.customAccounts.find(x=>x.id===id); if(!a)return;
+  const v=prompt('Withdraw how much from "'+a.name+'"?');
+  const amt=parseFloat(v);
+  if(!amt||amt<=0)return;
+  a.balance=Math.max(0,(a.balance||0)-amt);
+  if(!a.history)a.history=[];
+  a.history.push({amt,type:'withdraw',ts:Date.now()});
+  save(); renderFinance();
 }
 function togDev(i){
   const btn=document.getElementById('dev-'+i);
@@ -2237,9 +2316,35 @@ function renderSwot(){
 }
 
 /* ---- Custom Principles Folders ---- */
-function openPrincipleModal(){ document.getElementById('pr-title').value=''; document.getElementById('pr-rules').value=''; document.getElementById('principle-modal').classList.add('open'); }
+function openPrincipleModal(){
+  document.getElementById('pr-title').value='';
+  document.getElementById('pr-rules').value='';
+  document.getElementById('pr-edit-id').value='';
+  document.getElementById('principle-modal-title').textContent='📁 New Principles Folder';
+  document.getElementById('principle-modal-save-btn').textContent='Create Folder';
+  document.getElementById('principle-modal').classList.add('open');
+}
+function editPrinciple(id){
+  const p=S.principles.find(x=>x.id===id); if(!p)return;
+  document.getElementById('pr-title').value=p.title;
+  document.getElementById('pr-rules').value=(p.rules||[]).join('\n');
+  document.getElementById('pr-edit-id').value=p.id;
+  document.getElementById('principle-modal-title').textContent='✎ Edit Principles Folder';
+  document.getElementById('principle-modal-save-btn').textContent='Save Changes';
+  document.getElementById('principle-modal').classList.add('open');
+}
 function closePrincipleModal(){ document.getElementById('principle-modal').classList.remove('open'); }
 function savePrincipleModal(){
+  const editId=document.getElementById('pr-edit-id').value;
+  if(editId){
+    const p=S.principles.find(x=>x.id===Number(editId)); if(!p)return;
+    const title=document.getElementById('pr-title').value.trim();
+    const rules=document.getElementById('pr-rules').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    if(!title||!rules.length)return;
+    p.title=title; p.rules=rules;
+    save(); closePrincipleModal(); renderPrinciples();
+    return;
+  }
   const title=document.getElementById('pr-title').value.trim();
   const rules=document.getElementById('pr-rules').value.split('\n').map(s=>s.trim()).filter(Boolean);
   if(!title||!rules.length)return;
@@ -2256,7 +2361,7 @@ function renderPrinciples(){
   if(!S.principles.length){ el.innerHTML='<div style="font-size:.72rem;color:var(--text3);">No folders yet. Create one for a set of rules you live by (e.g. "Forex / Profitable Trader").</div>'; return; }
   el.innerHTML=S.principles.map(p=>`
     <div class="principle-card">
-      <div class="principle-title"><span>${p.title}</span><span class="chk-del" onclick="deletePrinciple(${p.id})">✕ remove</span></div>
+      <div class="principle-title"><span>${p.title}</span><span><span class="chk-del" style="margin-right:10px;color:var(--text2);" onclick="editPrinciple(${p.id})">✎ edit</span><span class="chk-del" onclick="deletePrinciple(${p.id})">✕ remove</span></span></div>
       ${p.rules.map(r=>`<div class="principle-sub">${r}</div>`).join('')}
     </div>`).join('');
 }
@@ -2274,15 +2379,28 @@ function handlePhotoUpload(ev){
   const file=ev.target.files[0]; if(!file)return;
   const reader=new FileReader();
   reader.onload=function(e){
-    document.getElementById('profile-photo-wrap').innerHTML=`<img src="${e.target.result}">`;
-    S.profile._pendingPhoto=e.target.result;
+    const img=new Image();
+    img.onload=function(){
+      const maxDim=300;
+      let w=img.width, h=img.height;
+      if(w>h){ if(w>maxDim){ h=Math.round(h*maxDim/w); w=maxDim; } }
+      else { if(h>maxDim){ w=Math.round(w*maxDim/h); h=maxDim; } }
+      const canvas=document.createElement('canvas');
+      canvas.width=w; canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      const compressed=canvas.toDataURL('image/jpeg',0.75);
+      document.getElementById('profile-photo-wrap').innerHTML=`<img src="${compressed}">`;
+      S.profile._pendingPhoto=compressed;
+    };
+    img.src=e.target.result;
   };
   reader.readAsDataURL(file);
 }
 function saveProfile(){
   if(S.profile._pendingPhoto){ S.profile.photo=S.profile._pendingPhoto; delete S.profile._pendingPhoto; }
   S.profile.bio=document.getElementById('profile-bio').value.trim();
-  save(); closeProfile(); renderAvatar();
+  try{ save(); }catch(e){ alert('Could not save photo — it may be too large. Try a smaller image.'); }
+  closeProfile(); renderAvatar();
 }
 function renderAvatar(){
   const btn=document.getElementById('avatar-btn');
@@ -2303,23 +2421,21 @@ function openGoalModal(){
 function closeGoalModal(){ document.getElementById('goal-modal').classList.remove('open'); }
 function saveGoal(){
   const title=document.getElementById('g-title').value.trim();
-  const why=document.getElementById('g-why').value.trim();
   let category=document.getElementById('g-category').value;
-  const ms=document.getElementById('g-milestones').value.split('\n').map(s=>s.trim()).filter(Boolean);
-  if(!title||!ms.length)return;
+  if(!title)return;
   if(category==='__custom__'){
     const nc=prompt('New category name:');
     if(!nc||!nc.trim()) return;
     category=nc.trim();
     if(!S.goalCategories.includes(category)) S.goalCategories.push(category);
   }
-  S.goals.push({id:Date.now(),title,why,category,milestones:ms.map(label=>({label,done:false}))});
+  S.goals.push({id:Date.now(),title,category,done:false});
   save(); closeGoalModal(); renderGoals();
-  document.getElementById('g-title').value='';document.getElementById('g-why').value='';document.getElementById('g-milestones').value='';
+  document.getElementById('g-title').value='';
 }
-function toggleMilestone(gid,idx){
+function toggleGoalDone(gid){
   const g=S.goals.find(x=>x.id===gid); if(!g)return;
-  g.milestones[idx].done=!g.milestones[idx].done;
+  g.done=!g.done;
   save(); renderGoals();
 }
 function deleteGoal(id){ if(!confirm('Delete this goal?'))return; S.goals=S.goals.filter(g=>g.id!==id); save(); renderGoals(); }
@@ -2335,15 +2451,11 @@ function renderGoals(){
   const visible = goalFilter==='All' ? S.goals : S.goals.filter(g=>(g.category||'Material')===goalFilter);
   if(!visible.length){ el.innerHTML='<div class="card" style="text-align:center;color:var(--text3);font-size:.8rem;">No goals here yet. Add the house, the agency, the marriage — whatever you\'re building toward.</div>'; return; }
   el.innerHTML=visible.map(g=>{
-    const done=g.milestones.filter(m=>m.done).length;
-    const pct=Math.round((done/g.milestones.length)*100);
+    const done=!!g.done;
     return `<div class="goal-card">
       <div class="goal-top"><div><div class="goal-title">${g.title}</div><span class="card-badge cb-purple" style="margin-top:4px;display:inline-block;">${g.category||'Material'}</span></div><span class="chk-del" onclick="deleteGoal(${g.id})">✕ remove</span></div>
-      ${g.why?`<div class="goal-why">"${g.why}"</div>`:''}
-      <div class="prog-item"><div class="prog-top"><span class="prog-lbl">Progress</span><span class="prog-pct">${pct}%</span></div><div class="prog-bg"><div class="prog-fill pf-blue" style="width:${pct}%"></div></div></div>
-      <div style="margin-top:10px;">
-        ${g.milestones.map((m,i)=>`<div class="milestone-row"><div class="milestone-box ${m.done?'on':''}" onclick="toggleMilestone(${g.id},${i})"></div><div class="milestone-lbl ${m.done?'done':''}">${m.label}</div></div>`).join('')}
-      </div>
+      <div class="prog-item"><div class="prog-top"><span class="prog-lbl">Status</span><span class="prog-pct">${done?'100%':'0%'}</span></div><div class="prog-bg"><div class="prog-fill pf-blue" style="width:${done?100:0}%"></div></div></div>
+      <button class="btn ${done?'btn-success':'btn-ghost'} btn-full" style="margin-top:10px;" onclick="toggleGoalDone(${g.id})">${done?'✅ Achieved':'Mark as Achieved'}</button>
     </div>`;
   }).join('');
 }
@@ -2359,6 +2471,15 @@ function tradeBalance(){
   if(closings.length) return closings[closings.length-1].balance;
   return S.trading.initial + S.trading.topups;
 }
+function tradeTotalPrincipal(){ return S.trading.initial + S.trading.topups; }
+function tradeTotalWithdrawn(){ return (S.trading.withdrawals||[]).reduce((sum,w)=>sum+w.amount,0); }
+function tradeNetProfit(){
+  return (tradeBalance() + tradeTotalWithdrawn()) - tradeTotalPrincipal();
+}
+function tradeGrowthPct(){
+  const principal=tradeTotalPrincipal();
+  return principal>0 ? (tradeNetProfit()/principal)*100 : 0;
+}
 function saveTradingCapital(){
   const initial=parseFloat(document.getElementById('tr-initial').value);
   const topup=parseFloat(document.getElementById('tr-topup').value);
@@ -2367,16 +2488,99 @@ function saveTradingCapital(){
   save(); document.getElementById('tr-topup').value='';
   renderTradingCapital();
 }
+function performWithdrawal(){
+  const inp=document.getElementById('tr-withdraw');
+  const msg=document.getElementById('tr-withdraw-msg');
+  const amount=parseFloat(inp.value);
+  if(!amount||amount<=0){ msg.textContent='Enter a valid withdrawal amount.'; msg.style.color='var(--red2)'; return; }
+  const profit=tradeNetProfit();
+  if(amount>profit){
+    msg.textContent='Error: withdrawal exceeds available profit ($'+profit.toFixed(2)+'). Principal stays protected.';
+    msg.style.color='var(--red2)';
+    return;
+  }
+  const newBalance=tradeBalance()-amount;
+  S.trading.closings.push({date:now.toLocaleDateString(),balance:newBalance});
+  if(!S.trading.withdrawals) S.trading.withdrawals=[];
+  S.trading.withdrawals.push({id:Date.now(),date:now.toLocaleDateString(),amount});
+  save();
+  inp.value='';
+  msg.textContent='Withdrew $'+amount.toFixed(2)+' from profit ✅';
+  msg.style.color='var(--green2)';
+  renderTradingCapital(); renderCapitalChart();
+}
+function deleteWithdrawal(id){
+  if(!confirm('Remove this withdrawal record? This does not automatically restore the balance — adjust your balance manually if needed.'))return;
+  S.trading.withdrawals=S.trading.withdrawals.filter(w=>w.id!==id);
+  save(); renderTradingCapital();
+}
+function renderWithdrawHistory(){
+  const el=document.getElementById('withdraw-history'); if(!el)return;
+  const list=(S.trading.withdrawals||[]).slice(-10).reverse();
+  if(!list.length){ el.innerHTML='<div style="font-size:.68rem;color:var(--text3);">No withdrawals yet.</div>'; return; }
+  el.innerHTML='<div class="check-section-lbl"><span>Withdrawal History</span></div>'+list.map(w=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border);font-size:.72rem;">
+      <span style="color:var(--text2);">${w.date}</span>
+      <span style="color:var(--gold2);font-weight:600;">-$${w.amount.toFixed(2)}</span>
+      ${w.id?`<span class="chk-del" onclick="deleteWithdrawal(${w.id})" title="Remove">🗑</span>`:'<span></span>'}
+    </div>`).join('');
+}
+function editStat(kind){
+  const principal=tradeTotalPrincipal();
+  const withdrawn=tradeTotalWithdrawn();
+  const bal=tradeBalance();
+  const profit=tradeNetProfit();
+  const growth=tradeGrowthPct();
+  if(kind==='principal'){
+    const v=prompt('Set Total Principal ($):', principal.toFixed(2));
+    if(v===null)return;
+    const n=parseFloat(v); if(isNaN(n)||n<0){ alert('Enter a valid number.'); return; }
+    S.trading.initial = n - S.trading.topups;
+    save();
+  } else if(kind==='balance'){
+    const v=prompt('Set Current Balance ($):', bal.toFixed(2));
+    if(v===null)return;
+    const n=parseFloat(v); if(isNaN(n)||n<0){ alert('Enter a valid number.'); return; }
+    S.trading.closings.push({date:now.toLocaleDateString(),balance:n});
+    save();
+  } else if(kind==='profit'){
+    const v=prompt('Set Net Profit ($):', profit.toFixed(2));
+    if(v===null)return;
+    const n=parseFloat(v); if(isNaN(n)){ alert('Enter a valid number.'); return; }
+    const newBal = n - withdrawn + principal;
+    S.trading.closings.push({date:now.toLocaleDateString(),balance:Math.max(0,newBal)});
+    save();
+  } else if(kind==='growth'){
+    const v=prompt('Set Growth % :', growth.toFixed(1));
+    if(v===null)return;
+    const n=parseFloat(v); if(isNaN(n)){ alert('Enter a valid number.'); return; }
+    if(principal<=0){ alert('Set your Total Principal first.'); return; }
+    const newProfit = (n/100)*principal;
+    const newBal = newProfit - withdrawn + principal;
+    S.trading.closings.push({date:now.toLocaleDateString(),balance:Math.max(0,newBal)});
+    save();
+  }
+  renderTradingCapital(); renderCapitalChart();
+}
 function renderTradingCapital(){
   const bal=tradeBalance();
-  const base=S.trading.initial+S.trading.topups;
-  const pl=bal-base;
-  const plPct=base>0?((pl/base)*100).toFixed(1):'0.0';
+  const principal=tradeTotalPrincipal();
+  const profit=tradeNetProfit();
+  const growthPct=tradeGrowthPct();
+  const withdrawn=tradeTotalWithdrawn();
   document.getElementById('tr-balance').textContent='$'+bal.toFixed(2);
+  document.getElementById('tr-principal').textContent='$'+principal.toFixed(2);
   const plEl=document.getElementById('tr-pl');
-  plEl.textContent=(pl>=0?'+$':'-$')+Math.abs(pl).toFixed(2)+' ('+(pl>=0?'+':'')+plPct+'%)';
-  plEl.style.color= pl>=0 ? 'var(--green2)' : 'var(--red2)';
+  plEl.textContent=(profit>=0?'+$':'-$')+Math.abs(profit).toFixed(2);
+  plEl.style.color= profit>=0 ? 'var(--green2)' : 'var(--red2)';
+  const growthEl=document.getElementById('tr-growth');
+  growthEl.textContent=(growthPct>=0?'+':'')+growthPct.toFixed(1)+'%';
+  growthEl.style.color= growthPct>=0 ? 'var(--green2)' : 'var(--red2)';
   document.getElementById('tr-initial').value=S.trading.initial||'';
+  const availEl=document.getElementById('tr-avail-profit');
+  if(availEl){ availEl.textContent=(profit>=0?'$':'-$')+Math.abs(profit).toFixed(2); availEl.style.color= profit>=0 ? 'var(--green2)' : 'var(--red2)'; }
+  const wdEl=document.getElementById('tr-total-withdrawn'); if(wdEl) wdEl.textContent='$'+withdrawn.toFixed(2);
+  renderWithdrawHistory();
 }
 function logClosingBalance(){
   const v=parseFloat(document.getElementById('tr-closing').value);
@@ -2392,34 +2596,6 @@ function checkEuphoria(prev,curr){
   if(growth>=15){
     banner.innerHTML=`<div class="euphoria-badge">🚨 <div><strong>Euphoria check:</strong> That's a steep jump (+${growth.toFixed(1)}% in one closing). Big win streaks are exactly when overconfidence creeps in. Stay humble, keep the same risk %, don't increase size out of excitement.</div></div>`;
   } else { banner.innerHTML=''; }
-}
-
-/* Pre-trade checklist */
-const pretradeItems=[
-  'Am I calm right now — no anger, no revenge feeling?',
-  'Is it an active session time (London/NY)?',
-  'Is my Risk-to-Reward calculated before entry?',
-  'Have I set my stop-loss before opening the trade?'
-];
-function renderPretrade(){
-  const c = S.trading.pretradeToday && S.trading.pretradeDate===todayStr ? S.trading.pretradeToday : {};
-  if(S.trading.pretradeDate!==todayStr){ S.trading.pretradeDate=todayStr; S.trading.pretradeToday={}; save(); }
-  const el=document.getElementById('pretrade-list');
-  el.innerHTML=pretradeItems.map((label,i)=>{
-    const on=!!S.trading.pretradeToday[i];
-    return `<div class="chk-item"><div class="chk-box ${on?'on':''}" onclick="togPretrade(${i})"></div><div class="chk-lbl ${on?'done':''}" onclick="togPretrade(${i})">${label}</div></div>`;
-  }).join('');
-  const done=Object.values(S.trading.pretradeToday).filter(Boolean).length;
-  document.getElementById('pretrade-badge').textContent=done+'/'+pretradeItems.length;
-}
-function togPretrade(i){
-  if(!S.trading.pretradeToday) S.trading.pretradeToday={};
-  S.trading.pretradeToday[i]=!S.trading.pretradeToday[i];
-  save(); renderPretrade();
-}
-function pretradeScore(){
-  const done=Object.values(S.trading.pretradeToday||{}).filter(Boolean).length;
-  return Math.round((done/pretradeItems.length)*10);
 }
 
 /* Sessions */
@@ -2451,30 +2627,49 @@ function isLocked(){
 }
 function renderLockState(){
   const banner=document.getElementById('cb-banner');
-  const notice=document.getElementById('trade-lock-notice');
-  const btnWin=document.getElementById('btn-log-win'), btnLoss=document.getElementById('btn-log-loss');
-  const closingBtn=document.getElementById('tr-closing-btn');
+  const btnProfit=document.getElementById('btn-log-profit'), btnLoss=document.getElementById('btn-log-loss');
   if(isLocked()){
     banner.innerHTML='<div class="locked-banner">⛔ <div><strong>Trading locked for today.</strong> Consecutive losses were logged. Close the platform — inputs unlock automatically tomorrow.</div></div>';
-    notice.style.display='flex';
-    btnWin.disabled=true; btnLoss.disabled=true;
+    if(btnProfit) btnProfit.disabled=true; if(btnLoss) btnLoss.disabled=true;
   } else {
     banner.innerHTML='';
-    notice.style.display='none';
-    btnWin.disabled=false; btnLoss.disabled=false;
+    if(btnProfit) btnProfit.disabled=false; if(btnLoss) btnLoss.disabled=false;
   }
 }
-function logTrade(result){
+const lossMessages=[
+  'Loss logged. Breathe — losses are part of the process. Don\'t chase it back.',
+  'Loss logged. Stick to your plan. Revenge trading is how a small loss becomes a big one.',
+  'Loss logged. Step away for a few minutes if you feel the urge to "win it back" immediately.'
+];
+const profitMessages=[
+  'Profit logged 🎉 Stay disciplined — don\'t oversize the next trade because of this win.',
+  'Profit logged 🎉 Nice. Lock it in mentally and keep following your rules, not your emotions.',
+  'Profit logged 🎉 One good trade doesn\'t mean the next one is guaranteed. Stay consistent.'
+];
+function logCapitalEntry(type){
   if(isLocked())return;
+  const inp=document.getElementById('tr-pl-amount');
+  const msg=document.getElementById('pl-entry-msg');
+  const amt=parseFloat(inp.value);
+  if(!amt||amt<=0){ msg.textContent='Enter a valid amount.'; msg.style.color='var(--red2)'; return; }
+  const prevBal=tradeBalance();
+  const newBal = type==='profit' ? prevBal+amt : Math.max(0,prevBal-amt);
+  S.trading.closings.push({date:now.toLocaleDateString(),balance:newBal});
+  const result = type==='profit' ? 'win' : 'loss';
   if(result==='loss'){
     S.trading.lossStreakDate===todayStr ? S.trading.lossStreak++ : (S.trading.lossStreak=1, S.trading.lossStreakDate=todayStr);
   } else {
     S.trading.lossStreak=0; S.trading.lossStreakDate=todayStr;
   }
-  const discipline=pretradeScore();
-  S.trading.trades.push({id:Date.now(),date:now.toLocaleDateString(),result,discipline});
+  S.trading.trades.push({id:Date.now(),date:now.toLocaleDateString(),result,amount:amt});
   save();
-  if(result==='loss'){
+  inp.value='';
+  if(type==='profit'){
+    msg.style.color='var(--green2)';
+    msg.textContent='+$'+amt.toFixed(2)+' — '+profitMessages[Math.floor(Math.random()*profitMessages.length)];
+  } else {
+    msg.style.color='var(--red2)';
+    msg.textContent='-$'+amt.toFixed(2)+' — '+lossMessages[Math.floor(Math.random()*lossMessages.length)];
     openScreener(()=>{
       if(S.trading.lossStreak>=2){
         S.trading.lockDate=todayStr; save(); renderLockState();
@@ -2482,21 +2677,35 @@ function logTrade(result){
       }
     });
   }
-  renderDisciplineChart(); renderLockState(); renderTradeHistory();
+  renderTradingCapital(); renderCapitalChart(); renderTradeStats(); renderTradeHistory(); renderLockState(); checkEuphoria(prevBal,newBal);
 }
 function deleteTrade(id){
-  if(!confirm('Delete this trade entry? This cannot be undone (except with Ctrl+Z).'))return;
+  if(!confirm('Delete this entry? This cannot be undone (except with Ctrl+Z).'))return;
   S.trading.trades=S.trading.trades.filter(t=>t.id!==id);
-  save(); renderDisciplineChart(); renderTradeHistory();
+  save(); renderCapitalChart(); renderTradeStats(); renderTradeHistory();
+}
+function renderTradeStats(){
+  const trades=S.trading.trades||[];
+  const wins=trades.filter(t=>t.result==='win').length;
+  const losses=trades.filter(t=>t.result==='loss').length;
+  const total=trades.length;
+  const rate=total>0?Math.round((wins/total)*100):0;
+  const badgeTxt=total+' entr'+(total===1?'y':'ies');
+  const b1=document.getElementById('trade-stats-badge'); if(b1) b1.textContent=badgeTxt;
+  const b2=document.getElementById('trade-stats-badge2'); if(b2) b2.textContent=badgeTxt;
+  const w=document.getElementById('ts-wins'); if(w) w.textContent=wins;
+  const l=document.getElementById('ts-losses'); if(l) l.textContent=losses;
+  const r=document.getElementById('ts-winrate'); if(r) r.textContent=rate+'%';
 }
 function renderTradeHistory(){
   const el=document.getElementById('trade-history-list'); if(!el)return;
   const recent=[...S.trading.trades].reverse().slice(0,10);
-  if(!recent.length){ el.innerHTML='<div style="font-size:.72rem;color:var(--text3);padding:6px 0;">No trades logged yet.</div>'; return; }
+  if(!recent.length){ el.innerHTML='<div style="font-size:.72rem;color:var(--text3);padding:6px 0;">No entries logged yet.</div>'; return; }
   el.innerHTML=recent.map(t=>`
     <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
-      <span style="font-size:.8rem;">${t.result==='win'?'✅':'❌'}</span>
-      <div style="flex:1"><div style="font-size:.72rem;font-weight:500;color:var(--text);">${t.date}</div><div style="font-size:.62rem;color:var(--text3);">Discipline: ${t.discipline}/10</div></div>
+      <span style="font-size:.8rem;">${t.result==='win'?'💰':'📉'}</span>
+      <div style="flex:1"><div style="font-size:.72rem;font-weight:500;color:var(--text);">${t.date}</div></div>
+      <div style="font-size:.72rem;font-weight:700;color:${t.result==='win'?'var(--green2)':'var(--red2)'};">${t.result==='win'?'+':'-'}$${(t.amount||0).toFixed(2)}</div>
       <span class="chk-del" onclick="deleteTrade(${t.id})" title="Delete">🗑</span>
     </div>`).join('');
 }
@@ -2562,8 +2771,8 @@ function submitScreener(){
 }
 
 function initTrading(){
-  renderTradingQuote(); renderTradingCapital(); renderPretrade(); renderSessions(); renderLockState();
-  renderTradeHistory(); renderRulesChecklist(); renderRulesHistory();
+  renderTradingQuote(); renderTradingCapital(); renderSessions(); renderLockState();
+  renderTradeHistory(); renderTradeStats(); renderRulesChecklist(); renderRulesHistory();
   setInterval(renderSessions,60000);
 }
 
@@ -2584,12 +2793,29 @@ function fmAddDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r
 function fmToday(){ const t=new Date(); return new Date(t.getFullYear(),t.getMonth(),t.getDate()); }
 function fmMMDDYYYY(d){ return fmPad(d.getMonth()+1)+'/'+fmPad(d.getDate())+'/'+d.getFullYear(); }
 
+function fmDefaultStart(){
+  const t=fmToday();
+  let d=new Date(t.getFullYear(),t.getMonth(),12);
+  if(d>t) d=new Date(t.getFullYear(),t.getMonth()-1,12);
+  return d;
+}
 function fmEnsureCycle(){
   if(!S.freedomCycle || !S.freedomCycle.start){
-    const start=fmToday();
+    const start=fmDefaultStart();
     S.freedomCycle={ start:fmYmd(start), end:fmYmd(fmAddDays(start,FM_CYCLE-1)), cycleNumber:(S.freedomCycle&&S.freedomCycle.cycleNumber)||1 };
     save();
   }
+}
+function fmEditStartDate(){
+  const current=(S.freedomCycle&&S.freedomCycle.start) || fmYmd(fmDefaultStart());
+  const input=prompt('Set the start date for this 30-day cycle (YYYY-MM-DD):',current);
+  if(!input)return;
+  const m=input.trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(!m){ alert('Please enter the date as YYYY-MM-DD, e.g. 2026-07-12'); return; }
+  const start=new Date(Number(m[1]),Number(m[2])-1,Number(m[3]));
+  if(isNaN(start.getTime())){ alert('That date is not valid.'); return; }
+  S.freedomCycle={ start:fmYmd(start), end:fmYmd(fmAddDays(start,FM_CYCLE-1)), cycleNumber:(S.freedomCycle&&S.freedomCycle.cycleNumber)||1 };
+  save(); fmCheckArchive(); fmRenderAll();
 }
 
 function fmCheckArchive(){
@@ -2625,7 +2851,23 @@ function fmDayClick(d){
   if(d>today) return;
   const key=dateKey(d);
   const want = fmMode==='win' ? 'win' : 'fail';
-  if(S.days[key]===want) delete S.days[key]; else S.days[key]=want;
+  const existing=S.days[key];
+  if(existing===want){
+    const note=S.dayNotes&&S.dayNotes[key];
+    if(note){
+      const keep=confirm('📝 Note for this day:\n\n"'+note+'"\n\nClick OK to keep this entry, Cancel to remove it.');
+      if(keep) return;
+    }
+    delete S.days[key];
+    if(S.dayNotes) delete S.dayNotes[key];
+  } else {
+    S.days[key]=want;
+    if(want==='fail'){
+      const note=prompt('What happened? (optional — you can read this back later by clicking the day again)','');
+      if(note&&note.trim()){ if(!S.dayNotes)S.dayNotes={}; S.dayNotes[key]=note.trim(); }
+      else if(S.dayNotes&&S.dayNotes[key]) delete S.dayNotes[key];
+    }
+  }
   save();
   fmCheckArchive();
   renderGrid();
@@ -2695,9 +2937,11 @@ function fmRenderCalendar(){
       } else {
         cell.className='n90-day';
         const status=S.days[dateKey(d)];
+        const note=S.dayNotes&&S.dayNotes[dateKey(d)];
         if(status==='win') cell.classList.add('win');
         else if(status==='fail') cell.classList.add('slip');
         if(isToday) cell.classList.add('today');
+        if(note){ cell.title='📝 '+note; cell.style.position='relative'; }
         cell.addEventListener('click', ()=>fmDayClick(d));
       }
       grid.appendChild(cell);
