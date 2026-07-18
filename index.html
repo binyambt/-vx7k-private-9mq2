@@ -337,6 +337,14 @@ textarea.inp{resize:none;}
 .btn:disabled{opacity:.4;cursor:not-allowed;}
 
 .identity-banner{background:linear-gradient(135deg,var(--blue-g),var(--purple-g));border:1px solid rgba(59,127,240,.18);border-radius:var(--r);padding:18px 22px;text-align:center;margin-bottom:20px;}
+.glance-card{border-radius:var(--r);padding:14px 18px;margin-bottom:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;justify-content:space-between;}
+.glance-card.g-ok{background:var(--green-g);border:1px solid rgba(47,189,131,.25);}
+.glance-card.g-neutral{background:var(--blue-g);border:1px solid rgba(59,127,240,.2);}
+.glance-card.g-alert{background:var(--red-g);border:1px solid rgba(239,91,82,.3);}
+.glance-msg{font-size:.82rem;font-weight:600;color:var(--text);flex:1;min-width:180px;}
+.glance-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.glance-pill{font-size:.68rem;font-weight:600;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--text2);white-space:nowrap;}
+[data-theme="dark"] .glance-pill{background:rgba(255,255,255,.08);}
 .ib-title{font-family:'Playfair Display',serif;font-size:.8rem;color:var(--blue2);font-weight:700;margin-bottom:6px;}
 .ib-text{font-size:.75rem;color:var(--text2);line-height:1.8;font-style:italic;}
 
@@ -723,6 +731,13 @@ textarea.inp{resize:none;}
       <input class="inp" type="password" id="set-newpw" placeholder="New password" style="margin-bottom:8px;">
       <button class="btn btn-gold btn-full" onclick="changePassword()">Update Password</button>
     </div>
+    <div class="inp-grp"><label class="inp-lbl">Backup & Restore</label>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:8px;">Download a full backup of everything in this app. Keep it somewhere safe — if your phone is lost or your browser data is cleared before it syncs, this is how you get everything back.</div>
+      <button class="btn btn-primary btn-full" style="margin-bottom:8px;" onclick="exportBackup()">⬇️ Download Backup (.json)</button>
+      <input type="file" id="restore-file-input" accept="application/json" style="display:none" onchange="handleRestoreFile(event)">
+      <button class="btn btn-ghost btn-full" onclick="document.getElementById('restore-file-input').click()">⬆️ Restore from Backup</button>
+      <div id="restore-msg" style="font-size:.72rem;margin-top:6px;"></div>
+    </div>
   </div>
 </div>
 
@@ -788,6 +803,7 @@ textarea.inp{resize:none;}
           <div class="ib-title">My Identity — Read Every Morning</div>
           <div class="ib-text">"I am not fighting to stop a habit. I am building the man God called me to be — a trader, a designer, a church leader, and a future husband."<br><small style="color:var(--text3);font-size:.68rem;">ለእግዚአብሔር ክብር — For the Glory of God</small></div>
         </div>
+        <div id="today-glance"></div>
         <div class="stats-row">
           <div class="stat-card c-gold"><div class="stat-icon">🔥</div><div class="stat-lbl">Freedom Streak</div><div class="stat-val v-gold" id="ov-streak">0</div><div class="stat-sub">consecutive clean days</div></div>
           <div class="stat-card c-blue"><div class="stat-icon">✅</div><div class="stat-lbl">Today's Score</div><div class="stat-val v-blue" id="ov-score">0/16</div><div class="stat-sub">tasks completed</div></div>
@@ -806,6 +822,10 @@ textarea.inp{resize:none;}
             <div class="card-header"><div class="card-title">📅 Recent Recovery Pattern</div></div>
             <div class="chart-wrap"><canvas id="overview-chart"></canvas></div>
           </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🗓️ This Week, All Together</div><div class="card-badge cb-blue">Last 7 Days</div></div>
+          <div id="weekly-summary-list"></div>
         </div>
       </div>
 
@@ -1206,6 +1226,7 @@ textarea.inp{resize:none;}
           </div>
           <div class="card">
             <div class="card-header"><div class="card-title">📚 Past Entries</div></div>
+            <input class="inp" id="journal-search" placeholder="🔍 Search your entries..." style="margin-bottom:12px;" oninput="renderJournal()">
             <div id="journal-log" style="max-height:480px;overflow-y:auto;"></div>
           </div>
         </div>
@@ -1292,6 +1313,12 @@ if(!S.dayNotes) S.dayNotes={};
 if(!S.walletNames) S.walletNames={inv:'📈 Investment Account',emg:'🛡️ Emergency Savings',trd:'💹 Trading Capital',per:'👤 Personal Account'};
 if(!S.settings) S.settings={theme:'light',fontsize:'md',password:'binyam2025',dateformat:'long'};
 if(!S.settings.dateformat) S.settings.dateformat='long';
+if(!S._fmForcedStart12){
+  const _fmStart=fmDefaultStart();
+  S.freedomCycle={ start:fmYmd(_fmStart), end:fmYmd(fmAddDays(_fmStart,29)), cycleNumber:(S.freedomCycle&&S.freedomCycle.cycleNumber)||1 };
+  S._fmForcedStart12=true;
+  localStorage.setItem(STORE_KEY,JSON.stringify(S));
+}
 let undoStack=[];
 function save(){
   try{
@@ -1322,8 +1349,77 @@ function refreshEverything(){
   renderTaskListCard(); updateCheckUI(); restoreDevs(); renderGrid(); renderFinance();
   renderTriggers(); renderJournal(); renderGoals(); renderAvatar(); renderTomorrowPlan();
   initMindsetHub(); renderTradeHistory(); renderTradeStats(); renderRulesChecklist(); renderRulesHistory(); renderLockState();
+  renderTodayGlance(); renderWeeklySummary();
   const activeTab=document.querySelector('.tab-content.active');
   if(activeTab) renderCharts(activeTab.id.replace('tab-',''));
+}
+function renderWeeklySummary(){
+  const el=document.getElementById('weekly-summary-list'); if(!el)return;
+  let recWins=0, recFails=0;
+  let taskDone=0, taskTotal=0;
+  for(let i=0;i<7;i++){
+    const d=new Date(); d.setDate(d.getDate()-i);
+    const key=dateKey(d);
+    const status=S.days[key];
+    if(status==='win') recWins++; else if(status==='fail') recFails++;
+    const c=S.checks[key]||{};
+    const dayTasks=tasksForDate(d);
+    taskTotal+=dayTasks.length;
+    taskDone+=dayTasks.filter(t=>c[t.id]===true).length;
+  }
+  const recPct = (recWins+recFails)>0 ? Math.round((recWins/(recWins+recFails))*100) : null;
+  const taskPct = taskTotal>0 ? Math.round((taskDone/taskTotal)*100) : 0;
+  const cutoff=Date.now()-7*86400000;
+  const weekTrades=(S.trading.trades||[]).filter(t=>t.id>=cutoff);
+  const tWins=weekTrades.filter(t=>t.result==='win').length;
+  const tradePct = weekTrades.length ? Math.round((tWins/weekTrades.length)*100) : null;
+  let dep=0, wd=0;
+  S.txns.forEach(t=>{
+    if(t.reversed)return;
+    const ts=t.ts||Date.parse(t.date)||0;
+    if(ts>=cutoff){ if(t.type==='dep') dep+=t.amt; else wd+=t.amt; }
+  });
+  const netSavings=dep-wd;
+  const rows=[
+    {icon:'🛡️',label:'Recovery',val: recPct===null ? 'No days logged' : recPct+'% clean ('+recWins+'/'+(recWins+recFails)+')', pct: recPct===null?0:recPct, cls:'pf-blue'},
+    {icon:'✅',label:'Task Consistency',val: taskTotal===0 ? 'No tasks scheduled' : taskDone+'/'+taskTotal+' done ('+taskPct+'%)', pct:taskPct, cls:'pf-gold'},
+    {icon:'📈',label:'Trading Discipline',val: tradePct===null ? 'No entries logged' : tWins+'/'+weekTrades.length+' profitable ('+tradePct+'%)', pct: tradePct===null?0:tradePct, cls:'pf-purple'},
+    {icon:'💰',label:'Savings Growth',val: (netSavings>=0?'+':'')+netSavings.toLocaleString()+' ETB net', pct: Math.max(0,Math.min(100,50+netSavings/100)), cls: netSavings>=0?'pf-green':'pf-red'}
+  ];
+  el.innerHTML=rows.map(r=>`<div class="prog-item"><div class="prog-top"><span class="prog-lbl">${r.icon} ${r.label}</span><span class="prog-pct">${r.val}</span></div><div class="prog-bg"><div class="prog-fill ${r.cls}" style="width:${r.pct}%"></div></div></div>`).join('');
+}
+function renderTodayGlance(){
+  const el=document.getElementById('today-glance'); if(!el)return;
+  const c=S.checks[todayStr]||{};
+  const todays=tasksForToday();
+  const done=todays.filter(t=>c[t.id]===true).length;
+  const total=todays.length;
+  fmEnsureCycle();
+  const fc=S.freedomCycle;
+  const startD=fmParse(fc.start), endD=fmParse(fc.end), today=fmToday();
+  let dayIndex=Math.floor((Math.min(today,endD)-startD)/86400000)+1;
+  if(today<startD) dayIndex=0;
+  if(dayIndex>FM_CYCLE) dayIndex=FM_CYCLE;
+  const locked=isLocked();
+  const hrNow=new Date().getHours();
+  let mode='g-neutral', msg='';
+  if(total>0 && done===total){
+    mode='g-ok'; msg="🏆 Today's tasks are complete. Well done.";
+  } else if(done===0 && hrNow>=18){
+    mode='g-alert'; msg="⏰ You haven't checked in today. Don't let the day slip by — even one task counts.";
+  } else if(done===0){
+    mode='g-neutral'; msg="Let's get started — nothing logged yet today.";
+  } else {
+    mode='g-neutral'; msg=`${done}/${total} tasks done — keep going.`;
+  }
+  el.innerHTML=`<div class="glance-card ${mode}">
+    <div class="glance-msg">${msg}</div>
+    <div class="glance-pills">
+      <span class="glance-pill">📅 Day ${dayIndex}/${FM_CYCLE}</span>
+      <span class="glance-pill">✅ ${done}/${total} tasks</span>
+      <span class="glance-pill">${locked?'🔒 Trading locked':'📈 Trading open'}</span>
+    </div>
+  </div>`;
 }
 let undoToastTimer;
 function showUndoToast(msg){
@@ -1545,6 +1641,38 @@ function changePassword(){
   document.getElementById('set-newpw').value='';
   alert('Password updated.');
 }
+function exportBackup(){
+  const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const d=new Date();
+  a.href=url;
+  a.download='life-control-backup-'+d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+'.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function handleRestoreFile(ev){
+  const file=ev.target.files[0]; if(!file)return;
+  const msg=document.getElementById('restore-msg');
+  const reader=new FileReader();
+  reader.onload=function(e){
+    let data;
+    try{ data=JSON.parse(e.target.result); }
+    catch(err){ msg.style.color='var(--red2)'; msg.textContent='That file isn\'t a valid backup.'; return; }
+    if(!confirm('This will replace everything currently in the app with this backup. Continue?')) return;
+    try{
+      localStorage.setItem(STORE_KEY,JSON.stringify(data));
+      S=data;
+      Object.keys(def).forEach(k=>{ if(S[k]===undefined) S[k]=JSON.parse(JSON.stringify(def[k])); });
+      msg.style.color='var(--green2)';
+      msg.textContent='Backup restored ✅ Reloading...';
+      setTimeout(()=>location.reload(),900);
+    }catch(err){
+      msg.style.color='var(--red2)'; msg.textContent='Could not restore that backup.';
+    }
+  };
+  reader.readAsText(file);
+}
 
 /* ================= TABS ================= */
 let charts={};
@@ -1596,6 +1724,10 @@ const WEEKDAY_NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday'
 const WEEKDAY_SHORT=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 function tasksForToday(){
   const dow=now.getDay();
+  return S.tasks.filter(t=> t.day===undefined || t.day===null || t.day==='' ? true : Number(t.day)===dow);
+}
+function tasksForDate(d){
+  const dow=d.getDay();
   return S.tasks.filter(t=> t.day===undefined || t.day===null || t.day==='' ? true : Number(t.day)===dow);
 }
 function renderTaskListCard(){
@@ -1743,6 +1875,7 @@ function updateCheckUI(){
   setLA('spirit', spiritItems.length?Math.round((spiritItems.filter(t=>c[t.id]===true).length/spiritItems.length)*100):0);
   setLA('work', workItems.length?Math.round((workItems.filter(t=>c[t.id]===true).length/workItems.length)*100):0);
   renderMissedTasks();
+  renderTodayGlance(); renderWeeklySummary();
 }
 function setLA(k,v){ const a=document.getElementById('la-'+k), b=document.getElementById('lab-'+k); if(a)a.textContent=v+'%'; if(b)b.style.width=v+'%'; }
 
@@ -1970,6 +2103,17 @@ function undoTxn(id){
   t.reversed=true;
   save(); renderFinance(); renderCharts('finance');
 }
+function deleteTxn(id){
+  const t=S.txns.find(x=>x.id===id);
+  if(!t)return;
+  if(!confirm('Delete this transaction permanently? '+(t.reversed?'':'This will also reverse its effect on the account balance.')))return;
+  if(!t.reversed){
+    if(t.type==='dep') S.wallets[t.acct]=Math.max(0,S.wallets[t.acct]-t.amt);
+    else S.wallets[t.acct]+=t.amt;
+  }
+  S.txns=S.txns.filter(x=>x.id!==id);
+  save(); renderFinance(); renderCharts('finance');
+}
 function renameWallet(id){
   const current=S.walletNames[id];
   const n=prompt('Rename account:',current);
@@ -2013,6 +2157,7 @@ function renderFinance(){
           <div style="flex:1"><div style="font-size:.72rem;font-weight:500;color:var(--text);">${names[t.acct]||t.acct}</div>${t.note?`<div style="font-size:.62rem;color:var(--text3);">${t.note}</div>`:''}</div>
           <div style="font-size:.72rem;font-weight:700;color:${t.type==='dep'?'var(--green2)':'var(--red2)'};">${t.type==='dep'?'+':'-'}${t.amt.toLocaleString()} ETB</div>
           ${t.reversed?'<span style="font-size:.6rem;color:var(--text3)">undone</span>':`<span class="chk-del" onclick="undoTxn(${t.id})" title="Undo">↺</span>`}
+          <span class="chk-del" onclick="deleteTxn(${t.id})" title="Delete permanently">🗑</span>
         </div>`).join('');
     }
   }
@@ -2259,8 +2404,15 @@ function saveJournal(){
 function renderJournal(){
   const log=document.getElementById('journal-log');
   if(!log)return;
+  const searchEl=document.getElementById('journal-search');
+  const q=searchEl?searchEl.value.trim().toLowerCase():'';
+  let entries=S.journal;
+  if(q){
+    entries=entries.filter(e=> [e.date,e.sp,e.ur,e.gr,e.tm].filter(Boolean).join(' ').toLowerCase().includes(q));
+  }
   if(!S.journal.length){ log.innerHTML='<div style="font-size:.72rem;color:var(--text3);text-align:center;padding:20px;">No entries yet. Write your first one.</div>'; return; }
-  log.innerHTML=S.journal.map(e=>`
+  if(!entries.length){ log.innerHTML='<div style="font-size:.72rem;color:var(--text3);text-align:center;padding:20px;">No entries match "'+q+'".</div>'; return; }
+  log.innerHTML=entries.map(e=>`
     <div class="journal-entry">
       <div class="journal-date">${e.date}</div>
       ${e.sp?`<div class="journal-section"><div class="journal-s-lbl" style="color:var(--gold2)">🙏 SPIRITUAL</div><div class="journal-text">${e.sp}</div></div>`:''}
@@ -2635,6 +2787,7 @@ function renderLockState(){
     banner.innerHTML='';
     if(btnProfit) btnProfit.disabled=false; if(btnLoss) btnLoss.disabled=false;
   }
+  const glanceEl=document.getElementById('today-glance'); if(glanceEl){ renderTodayGlance(); renderWeeklySummary(); }
 }
 const lossMessages=[
   'Loss logged. Breathe — losses are part of the process. Don\'t chase it back.',
@@ -3009,6 +3162,7 @@ function init(){
   updateCheckUI(); restoreDevs(); renderGrid(); renderFinance(); renderTriggers(); renderJournal(); renderGoals(); renderAvatar();
   initTrading(); initMindsetHub();
   renderCharts('overview'); updateAll();
+  renderTodayGlance(); renderWeeklySummary();
   checkNight();
 }
 
