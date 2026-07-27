@@ -212,6 +212,14 @@ body,.content,.card,.stat-val,.chk-lbl,.prog-lbl{font-size:1rem;}
 .pf-green{background:var(--green2);}
 .pf-red{background:var(--red2);}
 .pf-purple{background:linear-gradient(90deg,var(--purple),var(--purple2));}
+.glance-card{border-radius:var(--r);padding:14px 18px;margin-bottom:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;justify-content:space-between;}
+.glance-card.g-ok{background:var(--green-g);border:1px solid rgba(47,189,131,.25);}
+.glance-card.g-neutral{background:var(--blue-g);border:1px solid rgba(59,127,240,.2);}
+.glance-card.g-alert{background:var(--red-g);border:1px solid rgba(239,91,82,.3);}
+.glance-msg{font-size:.82rem;font-weight:600;color:var(--text);flex:1;min-width:180px;}
+.glance-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.glance-pill{font-size:.68rem;font-weight:600;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--text2);white-space:nowrap;}
+[data-theme="dark"] .glance-pill{background:rgba(255,255,255,.08);}
 
 .check-section-lbl{font-size:.62rem;font-weight:700;color:var(--text3);letter-spacing:1.2px;text-transform:uppercase;margin:14px 0 7px;padding-bottom:5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
 .chk-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity .15s;}
@@ -400,53 +408,6 @@ textarea.inp{resize:none;}
 .n90-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--gold2);border-radius:var(--r-sm);padding:12px 18px;font-size:.78rem;color:var(--gold2);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:var(--shadow);max-width:90vw;text-align:center;z-index:500;}
 .n90-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-/* ===== FX SESSION COMMAND CENTER ===== */
-.fx-hero{display:grid;grid-template-columns:260px 1fr;gap:20px;align-items:center;margin-top:4px;}
-.fx-clock-wrap{display:flex;flex-direction:column;align-items:center;}
-#fx-clock-svg{width:100%;max-width:260px;height:auto;}
-.fx-legend{padding-left:16px;border-left:1px solid var(--border);}
-.fx-legend-title{font-size:.68rem;font-weight:700;color:var(--text3);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px;}
-.fx-legend-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:.75rem;}
-.fx-legend-row:last-child{border-bottom:none;}
-.fx-swatch{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
-.fx-leg-name{color:var(--text);font-weight:600;min-width:68px;}
-.fx-leg-time{font-family:'JetBrains Mono',monospace;color:var(--text2);font-size:.68rem;margin-left:auto;}
-.fx-kz-row{display:flex;align-items:center;gap:7px;font-size:.7rem;color:var(--text2);padding:3px 0;}
-.fx-kz-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.fx-kz-txt strong{color:var(--text);}
-.fx-pill{font-size:.6rem;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;}
-.fx-kv{display:flex;justify-content:space-between;font-size:.73rem;padding:5px 0;border-bottom:1px solid var(--border);}
-.fx-kv:last-of-type{border-bottom:none;}
-.fx-kv span:first-child{color:var(--text3);}
-.fx-kv span:last-child{color:var(--text);font-weight:500;}
-.fx-vol-bar{height:4px;border-radius:2px;background:var(--bg4);margin-top:8px;overflow:hidden;}
-.fx-vol-bar div{height:100%;border-radius:2px;}
-.fx-note{font-size:.7rem;color:var(--text2);line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);}
-.fx-overlap-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 14px;margin-bottom:6px;}
-.fx-overlap-prime{background:var(--gold-g);border-color:rgba(245,158,11,.25);}
-.fx-ampm-row{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--border);}
-.fx-ampm-row:last-child{border-bottom:none;}
-.fx-ampm-badge{font-size:.62rem;font-weight:700;padding:2px 6px;border-radius:5px;background:var(--bg4);color:var(--text2);flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace;}
-.fx-table{width:100%;border-collapse:collapse;font-size:.73rem;}
-.fx-table thead th{text-align:left;font-size:.63rem;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;padding:9px 12px;background:var(--bg3);border-bottom:1px solid var(--border);}
-.fx-table tbody td{padding:9px 12px;border-top:1px solid var(--border);color:var(--text2);vertical-align:top;line-height:1.5;}
-.fx-table tbody tr:hover{background:var(--bg3);}
-.fx-td-session{font-weight:700;}
-.fx-dots{display:inline-flex;gap:3px;}
-.fx-dot{width:7px;height:7px;border-radius:50%;background:var(--border2);}
-.fx-dot.on{background:var(--gold2);}
-.fx-concept{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:13px;margin-bottom:8px;}
-.fx-concept:last-child{margin-bottom:0;}
-.fx-concept-num{font-size:.63rem;font-weight:700;color:var(--blue2);letter-spacing:1px;font-family:'JetBrains Mono',monospace;margin-bottom:4px;}
-.fx-concept-title{font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:4px;}
-.fx-concept-body{font-size:.7rem;color:var(--text2);line-height:1.6;}
-.fx-terminal{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:.7rem;line-height:2.1;}
-.fx-rule-ok::before{content:"✓  ";color:var(--green2);}
-.fx-rule-no::before{content:"✕  ";color:var(--red2);}
-.fx-rule-ok,.fx-rule-no{color:var(--text2);}
-.fx-rule-ok strong,.fx-rule-no strong{color:var(--text);}
-@media(max-width:700px){.fx-hero{grid-template-columns:1fr;}.fx-legend{border-left:none;border-top:1px solid var(--border);padding:14px 0 0;}}
-
 /* BOTTOM NAV */
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);z-index:200;padding:6px 0 10px;}
 .bnav-items{display:flex;justify-content:space-around;overflow-x:auto;}
@@ -455,12 +416,9 @@ textarea.inp{resize:none;}
 .bnav-lbl{font-size:.55rem;color:var(--text3);font-weight:500;}
 .bnav-item.active .bnav-lbl{color:var(--blue2);font-weight:600;}
 .bnav-item.active .bnav-icon{box-shadow:0 0 0 2px var(--border2);}
-/* MORE DRAWER */
-.more-drawer-item{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:8px 4px;border-radius:10px;transition:background .15s;}
-.more-drawer-item:hover{background:var(--bg3);}
-.more-drawer-icon{width:44px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
-.more-drawer-icon svg{width:18px;height:18px;}
-.more-drawer-lbl{font-size:.6rem;color:var(--text2);font-weight:500;text-align:center;}
+.more-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:8px 4px;border-radius:10px;transition:background .15s;}
+.more-item:hover{background:var(--bg3);}
+.more-lbl{font-size:.6rem;color:var(--text2);font-weight:500;text-align:center;}
 
 /* CHART CONTAINERS — FIXED HEIGHT PREVENTS BOUNCE BUG */
 .chart-wrap{position:relative;width:100%;height:200px;}
@@ -511,7 +469,7 @@ textarea.inp{resize:none;}
 @media(max-width:900px){
   .sidebar{display:none;}
   .bottom-nav{display:block;}
-  .content{padding-bottom:80px;}
+  .content{padding-bottom:72px;}
   .content{padding:14px 12px 84px;}
   .stats-row{grid-template-columns:repeat(2,1fr);gap:10px;}
   .g2{grid-template-columns:1fr;}
@@ -526,50 +484,6 @@ textarea.inp{resize:none;}
   .wallet-grid{grid-template-columns:1fr;}
   .stats-row{grid-template-columns:repeat(2,1fr);}
 }
-/* ===== BOOK LIBRARY ===== */
-.book-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px;box-shadow:var(--shadow-sm);position:relative;cursor:pointer;transition:border-color .2s,box-shadow .2s;}
-.book-card:hover{border-color:var(--border2);box-shadow:var(--shadow);}
-.book-card-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:10px;}
-.book-spine{width:44px;height:60px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;font-weight:700;color:#fff;}
-.book-spine-trading{background:linear-gradient(135deg,#2563eb,#3b82f6);}
-.book-spine-self{background:linear-gradient(135deg,#7c3aed,#a78bfa);}
-.book-spine-spiritual{background:linear-gradient(135deg,#d97706,#f59e0b);}
-.book-spine-business{background:linear-gradient(135deg,#059669,#10b981);}
-.book-spine-other{background:linear-gradient(135deg,#374151,#6b7280);}
-.book-meta{flex:1;min-width:0;}
-.book-title-text{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:3px;line-height:1.3;}
-.book-author-text{font-size:.72rem;color:var(--text3);margin-bottom:6px;}
-.book-tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
-.book-cat-badge{font-size:.6rem;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--blue-g);color:var(--blue2);border:1px solid rgba(59,127,240,.2);}
-.book-status-badge{font-size:.6rem;padding:2px 7px;border-radius:20px;font-weight:600;}
-.bs-reading{background:var(--gold-g);color:var(--gold2);border:1px solid rgba(224,138,30,.2);}
-.bs-finished{background:var(--green-g);color:var(--green2);border:1px solid rgba(31,169,113,.2);}
-.bs-wishlist{background:var(--purple-g);color:var(--purple2);border:1px solid rgba(139,92,246,.2);}
-.book-stars{font-size:.75rem;letter-spacing:1px;}
-.book-dates{font-size:.65rem;color:var(--text3);margin-top:4px;}
-.book-lessons-preview{font-size:.75rem;color:var(--text2);line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
-.book-lessons-preview strong{color:var(--text);font-size:.68rem;letter-spacing:.5px;text-transform:uppercase;}
-.book-quote-preview{font-size:.72rem;color:var(--text3);font-style:italic;margin-top:6px;padding:6px 10px;background:var(--bg3);border-left:3px solid var(--border2);border-radius:0 4px 4px 0;}
-.book-actions{position:absolute;top:14px;right:14px;display:flex;gap:6px;opacity:0;transition:opacity .15s;}
-.book-card:hover .book-actions{opacity:1;}
-.book-action-btn{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:.65rem;cursor:pointer;color:var(--text2);font-family:'Inter',sans-serif;}
-.book-action-btn:hover{background:var(--bg4);}
-.book-recommend-row{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:.7rem;color:var(--text3);}
-/* Star buttons in modal */
-.star-btn{background:none;border:none;font-size:1.3rem;cursor:pointer;padding:2px;opacity:.4;transition:opacity .15s,transform .15s;}
-.star-btn.active,.star-btn:hover{opacity:1;transform:scale(1.2);}
-/* Recommend buttons */
-.recommend-btn{padding:6px 12px;border-radius:8px;border:1.5px solid var(--border);background:transparent;color:var(--text2);font-size:.72rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;}
-.recommend-btn.active{border-color:var(--green2);background:var(--green-g);color:var(--green2);}
-/* Filter tabs */
-.book-filter-btn{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);color:var(--text2);font-size:.72rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;white-space:nowrap;}
-.book-filter-btn.active{border-color:var(--blue2);background:var(--blue-g);color:var(--blue2);font-weight:600;}
-/* Detail modal sections */
-.bd-section{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);}
-.bd-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
-.bd-section-lbl{font-size:.62rem;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
-.bd-section-text{font-size:.82rem;color:var(--text2);line-height:1.7;}
-.bd-quote-block{background:var(--bg3);border-left:3px solid var(--gold2);border-radius:0 6px 6px 0;padding:8px 12px;margin-top:4px;font-style:italic;font-size:.78rem;color:var(--text2);}
 </style>
 </head>
 <body>
@@ -653,108 +567,6 @@ textarea.inp{resize:none;}
     <div class="screener-q">Are you considering increasing your lot size / leverage right now?</div>
     <div class="screener-opts" id="screener-q2"></div>
     <button class="btn btn-primary btn-full" onclick="submitScreener()">Confirm & Unlock Inputs</button>
-  </div>
-</div>
-
-<!-- BOOK LIBRARY MODAL -->
-<div class="modal-overlay" id="book-modal">
-  <div class="modal" style="max-width:520px;">
-    <div class="modal-title">
-      <span id="book-modal-title">📚 Add Book</span>
-      <button class="modal-close" onclick="closeBookModal()">×</button>
-    </div>
-    <input type="hidden" id="book-edit-id">
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <div class="inp-grp" style="grid-column:1/-1;">
-        <label class="inp-lbl">Book Title *</label>
-        <input class="inp" id="book-title" placeholder="e.g. Trading in the Zone">
-      </div>
-      <div class="inp-grp">
-        <label class="inp-lbl">Author Name *</label>
-        <input class="inp" id="book-author" placeholder="e.g. Mark Douglas">
-      </div>
-      <div class="inp-grp">
-        <label class="inp-lbl">Category</label>
-        <select class="inp" id="book-category">
-          <option value="Trading & Finance">📈 Trading & Finance</option>
-          <option value="Self Development">🧠 Self Development & Mindset</option>
-          <option value="Spiritual & Faith">🙏 Spiritual & Faith</option>
-          <option value="Business">💼 Business & Entrepreneurship</option>
-          <option value="Other">📖 Other</option>
-        </select>
-      </div>
-      <div class="inp-grp">
-        <label class="inp-lbl">Status</label>
-        <select class="inp" id="book-status">
-          <option value="reading">📖 Currently Reading</option>
-          <option value="finished">✅ Finished</option>
-          <option value="wishlist">🔖 Want to Read</option>
-        </select>
-      </div>
-      <div class="inp-grp">
-        <label class="inp-lbl">Date Started</label>
-        <input class="inp" type="date" id="book-start">
-      </div>
-      <div class="inp-grp">
-        <label class="inp-lbl">Date Finished</label>
-        <input class="inp" type="date" id="book-end">
-      </div>
-      <div class="inp-grp" style="grid-column:1/-1;">
-        <label class="inp-lbl">Star Rating</label>
-        <div style="display:flex;gap:8px;align-items:center;">
-          <div id="book-star-btns" style="display:flex;gap:4px;">
-            <button class="star-btn" data-v="1" onclick="setBookRating(1)">⭐</button>
-            <button class="star-btn" data-v="2" onclick="setBookRating(2)">⭐</button>
-            <button class="star-btn" data-v="3" onclick="setBookRating(3)">⭐</button>
-            <button class="star-btn" data-v="4" onclick="setBookRating(4)">⭐</button>
-            <button class="star-btn" data-v="5" onclick="setBookRating(5)">⭐</button>
-          </div>
-          <span id="book-rating-lbl" style="font-size:.78rem;color:var(--text3);">Not rated</span>
-        </div>
-        <input type="hidden" id="book-rating" value="0">
-      </div>
-      <div class="inp-grp" style="grid-column:1/-1;">
-        <label class="inp-lbl">Would you recommend it?</label>
-        <div style="display:flex;gap:8px;">
-          <button class="recommend-btn" id="rec-yes" onclick="setRecommend('yes')">👍 Yes, recommend</button>
-          <button class="recommend-btn" id="rec-no" onclick="setRecommend('no')">👎 No</button>
-          <button class="recommend-btn" id="rec-maybe" onclick="setRecommend('maybe')">🤔 Maybe</button>
-        </div>
-        <input type="hidden" id="book-recommend" value="">
-      </div>
-      <div class="inp-grp" style="grid-column:1/-1;">
-        <label class="inp-lbl">What I Learned — Key Lessons</label>
-        <textarea class="inp" id="book-lessons" rows="3" placeholder="Write the most important lessons, insights, and takeaways from this book..."></textarea>
-      </div>
-      <div class="inp-grp" style="grid-column:1/-1;">
-        <label class="inp-lbl">Key Quotes from the Book</label>
-        <textarea class="inp" id="book-quotes" rows="3" placeholder='e.g. "The market is not your enemy — your mind is." — Mark Douglas'></textarea>
-      </div>
-      <div class="inp-grp" style="grid-column:1/-1;">
-        <label class="inp-lbl">Personal Notes (optional)</label>
-        <textarea class="inp" id="book-notes" rows="2" placeholder="Any extra thoughts, how this book changed you..."></textarea>
-      </div>
-    </div>
-    <div style="display:flex;gap:8px;margin-top:4px;">
-      <button class="btn btn-primary" style="flex:1;" onclick="saveBook()">💾 Save Book</button>
-      <button class="btn btn-ghost" onclick="closeBookModal()">Cancel</button>
-    </div>
-  </div>
-</div>
-
-<!-- BOOK DETAIL MODAL -->
-<div class="modal-overlay" id="book-detail-modal">
-  <div class="modal" style="max-width:560px;">
-    <div class="modal-title">
-      <span id="bd-title">Book Details</span>
-      <button class="modal-close" onclick="document.getElementById('book-detail-modal').classList.remove('open')">×</button>
-    </div>
-    <div id="book-detail-content"></div>
-    <div style="display:flex;gap:8px;margin-top:14px;">
-      <button class="btn btn-ghost btn-sm" id="bd-edit-btn">✎ Edit</button>
-      <button class="btn btn-danger btn-sm" id="bd-delete-btn">🗑 Delete</button>
-    </div>
   </div>
 </div>
 
@@ -924,6 +736,21 @@ textarea.inp{resize:none;}
       <input class="inp" type="password" id="set-newpw" placeholder="New password" style="margin-bottom:8px;">
       <button class="btn btn-gold btn-full" onclick="changePassword()">Update Password</button>
     </div>
+    <div class="inp-grp"><label class="inp-lbl">Backup & Restore</label>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:8px;">Download a full backup of everything in this app. Keep it somewhere safe — if your phone is lost or your browser data is cleared before it syncs, this is how you get everything back.</div>
+      <button class="btn btn-primary btn-full" style="margin-bottom:8px;" onclick="exportBackup()">⬇️ Download Backup (.json)</button>
+      <input type="file" id="restore-file-input" accept="application/json" style="display:none" onchange="handleRestoreFile(event)">
+      <button class="btn btn-ghost btn-full" onclick="document.getElementById('restore-file-input').click()">⬆️ Restore from Backup</button>
+      <div id="restore-msg" style="font-size:.72rem;margin-top:6px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FX SESSION DASHBOARD MODAL -->
+<div class="modal-overlay" id="fx-modal" style="align-items:stretch;justify-content:stretch;padding:0;">
+  <div style="position:relative;width:100%;height:100%;background:#0B0E14;">
+    <button class="modal-close" onclick="closeFxDashboard()" style="position:absolute;top:12px;right:16px;z-index:5;background:#131722;border:1px solid #242A3A;border-radius:8px;width:34px;height:34px;color:#E7EAF2;">×</button>
+    <iframe id="fx-iframe" style="width:100%;height:100%;border:none;display:block;"></iframe>
   </div>
 </div>
 
@@ -970,7 +797,7 @@ textarea.inp{resize:none;}
       <div class="nav-item" onclick="sw('spiritual',this)"><span class="nav-icon nb-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="11" width="4" height="9" rx="1"/><path d="M12 3c-2 2.5-2 4.5 0 6.5 2-2 2-4 0-6.5z"/></svg></span> Spiritual</div>
       <div class="nav-item" onclick="sw('mindset',this)"><span class="nav-icon nb-purple"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11" fill="#fff" stroke="none"/></svg></span> Mindset Hub</div>
       <div class="nav-item" onclick="sw('journal',this)"><span class="nav-icon nb-green"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5c3-1.5 6-1.5 9 0v14c-3-1.5-6-1.5-9 0V5z"/><path d="M21 5c-3-1.5-6-1.5-9 0v14c3-1.5 6-1.5 9 0V5z"/></svg></span> Journal</div>
-      <div class="nav-item" onclick="sw('books',this)"><span class="nav-icon" style="background:linear-gradient(135deg,#e07b39,#c45e1a);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="10" y1="7" x2="16" y2="7"/><line x1="10" y1="11" x2="16" y2="11"/></svg></span> Book Library</div>
+      <div class="nav-item" onclick="sw('books',this)"><span class="nav-icon" style="background:#7c3aed;border-radius:6px;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> Books</div>
       <div class="sidebar-divider"></div>
       <div class="sidebar-streak">
         <div class="sb-streak-fire">🔥</div>
@@ -986,6 +813,7 @@ textarea.inp{resize:none;}
         <div class="page-header">
           <div><div class="page-title" id="greeting-text">Good morning, Binyam 🌅</div><div class="page-sub" id="ov-date-text"></div></div>
         </div>
+        <div id="today-glance"></div>
         <div class="identity-banner">
           <div class="ib-title">My Identity — Read Every Morning</div>
           <div class="ib-text">"I am not fighting to stop a habit. I am building the man God called me to be — a trader, a designer, a church leader, and a future husband."<br><small style="color:var(--text3);font-size:.68rem;">ለእግዚአብሔር ክብር — For the Glory of God</small></div>
@@ -1008,6 +836,10 @@ textarea.inp{resize:none;}
             <div class="card-header"><div class="card-title">📅 Recent Recovery Pattern</div></div>
             <div class="chart-wrap"><canvas id="overview-chart"></canvas></div>
           </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🗓️ This Week, All Together</div><div class="card-badge cb-blue">Last 7 Days</div></div>
+          <div id="weekly-summary-list"></div>
         </div>
       </div>
 
@@ -1127,6 +959,14 @@ textarea.inp{resize:none;}
         <div id="cb-banner"></div>
         <div id="euphoria-banner"></div>
 
+        <div class="card" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;" onclick="openFxDashboard()">
+          <div>
+            <div class="card-title" style="margin-bottom:4px;">🕐 FX Session Command Center</div>
+            <div style="font-size:.75rem;color:var(--text3);">Asia / London / New York session clock, kill zones, overlaps &amp; rules — UTC-4 / UTC-5</div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();openFxDashboard()">Open →</button>
+        </div>
+
         <div class="g2">
           <div class="card">
             <div class="card-header"><div class="card-title">💵 Capital Analytics</div><div class="card-badge cb-blue">USD</div></div>
@@ -1203,194 +1043,6 @@ textarea.inp{resize:none;}
               <div style="flex:1"><div class="stat-lbl">Loss Days</div><div class="stat-val v-red" id="ts-losses" style="font-size:1.3rem;">0</div></div>
               <div style="flex:1"><div class="stat-lbl">Success Rate</div><div class="stat-val v-blue" id="ts-winrate" style="font-size:1.3rem;">0%</div></div>
             </div>
-          </div>
-        </div>
-
-        <!-- ===== FX SESSION COMMAND CENTER ===== -->
-        <div class="card" style="margin-bottom:14px;">
-          <div class="card-header">
-            <div class="card-title">🌐 FX Session Command Center</div>
-            <div class="card-badge cb-blue" id="fx-live-session-badge">Loading...</div>
-          </div>
-
-          <!-- HERO: CLOCK + LEGEND -->
-          <div class="fx-hero">
-            <div class="fx-clock-wrap">
-              <svg id="fx-clock-svg" viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                </defs>
-                <!-- Background -->
-                <circle cx="230" cy="230" r="220" fill="var(--bg3)" stroke="var(--border)" stroke-width="1.5"/>
-                <!-- Session arcs (24h clock, 0h = top) -->
-                <!-- Asia: 20:00–05:00 = 300°–75° (going through 0) -->
-                <path id="fx-arc-asia" fill="none" stroke="rgba(45,212,191,0.35)" stroke-width="28" stroke-linecap="butt"/>
-                <!-- London: 04:00–13:00 = 60°–195° -->
-                <path id="fx-arc-london" fill="none" stroke="rgba(249,115,22,0.35)" stroke-width="28" stroke-linecap="butt"/>
-                <!-- New York: 09:00–18:00 = 135°–270° -->
-                <path id="fx-arc-ny" fill="none" stroke="rgba(139,92,246,0.35)" stroke-width="28" stroke-linecap="butt"/>
-                <!-- Overlap London+NY: 09:00–13:00 = 135°–195° (prime) -->
-                <path id="fx-arc-overlap" fill="none" stroke="rgba(245,158,11,0.6)" stroke-width="28" stroke-linecap="butt"/>
-                <!-- Hour ticks -->
-                <g id="fx-ticks"></g>
-                <!-- Hour labels -->
-                <g id="fx-labels" font-family="'JetBrains Mono',monospace" font-size="11" fill="var(--text3)" text-anchor="middle" dominant-baseline="middle"></g>
-                <!-- Clock hand -->
-                <line id="fx-hand" x1="230" y1="230" x2="230" y2="80" stroke="var(--gold2)" stroke-width="2.5" stroke-linecap="round" filter="url(#glow)"/>
-                <circle id="fx-hand-tip" cx="230" cy="80" r="5" fill="var(--gold2)" filter="url(#glow)"/>
-                <circle cx="230" cy="230" r="6" fill="var(--gold2)"/>
-                <circle cx="230" cy="230" r="3" fill="var(--card)"/>
-              </svg>
-              <div id="fx-readout" style="text-align:center;margin-top:6px;font-size:.75rem;color:var(--text2);line-height:1.7;">
-                <div id="fx-time" style="font-size:.9rem;font-weight:600;color:var(--text);font-family:'JetBrains Mono',monospace;">--:-- EAT</div>
-                <div id="fx-session-label" style="color:var(--gold2);font-weight:600;">Detecting session...</div>
-              </div>
-            </div>
-            <div class="fx-legend">
-              <div class="fx-legend-title">Active Sessions</div>
-              <div class="fx-legend-row"><span class="fx-swatch" style="background:rgba(45,212,191,.7)"></span><span class="fx-leg-name">Asia</span><span class="fx-leg-time">21:00 – 06:00 EAT</span></div>
-              <div class="fx-legend-row"><span class="fx-swatch" style="background:rgba(249,115,22,.7)"></span><span class="fx-leg-name">London</span><span class="fx-leg-time">11:00 – 20:00 EAT</span></div>
-              <div class="fx-legend-row"><span class="fx-swatch" style="background:rgba(139,92,246,.7)"></span><span class="fx-leg-name">New York</span><span class="fx-leg-time">16:00 – 01:00 EAT</span></div>
-              <div class="fx-legend-row"><span class="fx-swatch" style="background:rgba(245,158,11,.9)"></span><span class="fx-leg-name">Overlap ⭐</span><span class="fx-leg-time">16:00 – 20:00 EAT</span></div>
-              <div class="fx-legend-row"><span class="fx-swatch" style="background:var(--border2)"></span><span class="fx-leg-name">Dead Zone</span><span class="fx-leg-time">01:00 – 03:00 EAT</span></div>
-              <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
-                <div class="stat-lbl">Kill Zones (Best Entry Windows)</div>
-                <div style="margin-top:6px;display:flex;flex-direction:column;gap:5px;">
-                  <div class="fx-kz-row"><span class="fx-kz-dot" style="background:rgba(249,115,22,.8)"></span><span class="fx-kz-txt">London KZ: <strong>11:00–14:00 EAT</strong></span></div>
-                  <div class="fx-kz-row"><span class="fx-kz-dot" style="background:rgba(139,92,246,.8)"></span><span class="fx-kz-txt">NY KZ: <strong>16:00–19:00 EAT</strong></span></div>
-                  <div class="fx-kz-row"><span class="fx-kz-dot" style="background:rgba(245,158,11,.9)"></span><span class="fx-kz-txt">Prime Window: <strong>16:00–20:00 EAT</strong></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SESSION CARDS: Asia / London / New York -->
-        <div class="g3" style="margin-bottom:14px;">
-          <div class="card fx-session-card" style="border-top:3px solid rgba(45,212,191,.7);">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-              <div><div style="font-size:.95rem;font-weight:700;color:var(--text);">🌏 Asia</div><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:rgba(45,212,191,.9);margin-top:2px;">21:00 – 06:00 EAT</div></div>
-              <span class="fx-pill" style="background:rgba(45,212,191,.12);color:rgba(45,212,191,.9);">Range</span>
-            </div>
-            <div class="fx-kv"><span>Kill Zone</span><span>22:00 – 02:00 EAT</span></div>
-            <div class="fx-kv"><span>Best pairs</span><span>AUD, NZD, JPY crosses</span></div>
-            <div class="fx-kv"><span>Liquidity</span><span>Low – medium</span></div>
-            <div class="fx-vol-bar"><div style="width:35%;background:rgba(45,212,191,.7)"></div></div>
-            <div class="fx-note">Builds the day's opening range — the high/low London and NY later break out of or reject from. Good for marking levels, not chasing moves.</div>
-          </div>
-          <div class="card fx-session-card" style="border-top:3px solid rgba(249,115,22,.7);">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-              <div><div style="font-size:.95rem;font-weight:700;color:var(--text);">🇬🇧 London</div><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:rgba(249,115,22,.9);margin-top:2px;">11:00 – 20:00 EAT</div></div>
-              <span class="fx-pill" style="background:rgba(249,115,22,.12);color:rgba(249,115,22,.9);">Breakout</span>
-            </div>
-            <div class="fx-kv"><span>Kill Zone</span><span>11:00 – 14:00 EAT</span></div>
-            <div class="fx-kv"><span>Best pairs</span><span>EUR, GBP, XAU/USD</span></div>
-            <div class="fx-kv"><span>Liquidity</span><span>High</span></div>
-            <div class="fx-vol-bar"><div style="width:80%;background:rgba(249,115,22,.7)"></div></div>
-            <div class="fx-note">Often opens with a liquidity sweep of the Asia range, then sets the true direction of the day. Highest-probability session for your XAU/USD setups.</div>
-          </div>
-          <div class="card fx-session-card" style="border-top:3px solid rgba(139,92,246,.7);">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-              <div><div style="font-size:.95rem;font-weight:700;color:var(--text);">🇺🇸 New York</div><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:rgba(139,92,246,.9);margin-top:2px;">16:00 – 01:00 EAT</div></div>
-              <span class="fx-pill" style="background:rgba(139,92,246,.12);color:rgba(139,92,246,.9);">Volatility</span>
-            </div>
-            <div class="fx-kv"><span>Kill Zone</span><span>16:00 – 19:00 EAT</span></div>
-            <div class="fx-kv"><span>Best pairs</span><span>USD pairs, XAU/USD</span></div>
-            <div class="fx-kv"><span>Liquidity</span><span>Highest</span></div>
-            <div class="fx-vol-bar"><div style="width:100%;background:rgba(139,92,246,.7)"></div></div>
-            <div class="fx-note">Carries major US data (CPI, NFP, FOMC). First half often extends or reverses the London move. Prime overlap with London (16:00–20:00 EAT) is your best window.</div>
-          </div>
-        </div>
-
-        <!-- OVERLAPS + AM/PM + CONCEPTS -->
-        <div class="g2" style="margin-bottom:14px;">
-          <!-- Overlaps -->
-          <div class="card">
-            <div class="card-header"><div class="card-title">⚡ Overlaps & Dead Zones</div><div class="card-badge cb-gold">Timing Edge</div></div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div class="fx-overlap-card">
-                <div style="font-size:.65rem;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Asia → London</div>
-                <div style="font-size:1.1rem;font-weight:700;color:var(--text);font-family:'JetBrains Mono',monospace;">11:00–12:00 EAT</div>
-                <div style="font-size:.72rem;color:var(--text3);margin-top:2px;">1h overlap · light volume, early positioning only</div>
-              </div>
-              <div class="fx-overlap-card fx-overlap-prime">
-                <div style="font-size:.65rem;font-weight:700;color:var(--gold2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">⭐ Prime Window</div>
-                <div style="font-size:1.1rem;font-weight:700;color:var(--gold2);font-family:'JetBrains Mono',monospace;">16:00–20:00 EAT</div>
-                <div style="font-size:.72rem;color:var(--text2);margin-top:2px;">London + NY overlap · 4h of peak liquidity — your best XAU/USD execution window</div>
-              </div>
-              <div class="fx-overlap-card">
-                <div style="font-size:.65rem;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">💤 Dead Zone</div>
-                <div style="font-size:1.1rem;font-weight:700;color:var(--text);font-family:'JetBrains Mono',monospace;">01:00–03:00 EAT</div>
-                <div style="font-size:.72rem;color:var(--text3);margin-top:2px;">No session active · widest spreads · avoid new entries</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- AM/PM Split -->
-          <div class="card">
-            <div class="card-header"><div class="card-title">🌓 AM / PM Split</div><div class="card-badge cb-blue">One Session, Two Phases</div></div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:.78rem;font-weight:700;color:rgba(249,115,22,.9);margin-bottom:6px;">🇬🇧 London</div>
-              <div class="fx-ampm-row"><span class="fx-ampm-badge">AM</span><div><div style="font-size:.8rem;font-weight:600;color:var(--text);">11:00–14:00 EAT</div><div style="font-size:.72rem;color:var(--text2);margin-top:1px;">Most directional moves happen here — liquidity sweeps and kill zone entries.</div></div></div>
-              <div class="fx-ampm-row"><span class="fx-ampm-badge">PM</span><div><div style="font-size:.8rem;font-weight:600;color:var(--text);">14:00–20:00 EAT</div><div style="font-size:.72rem;color:var(--text2);margin-top:1px;">Continuation or consolidation of the AM move. Avoid reversals with no catalyst.</div></div></div>
-            </div>
-            <div style="padding-top:10px;border-top:1px solid var(--border);">
-              <div style="font-size:.78rem;font-weight:700;color:rgba(139,92,246,.9);margin-bottom:6px;">🇺🇸 New York</div>
-              <div class="fx-ampm-row"><span class="fx-ampm-badge">AM</span><div><div style="font-size:.8rem;font-weight:600;color:var(--text);">16:00–19:00 EAT</div><div style="font-size:.72rem;color:var(--text2);margin-top:1px;">US data lands here (CPI, NFP, FOMC) — strongest directional push of the day.</div></div></div>
-              <div class="fx-ampm-row"><span class="fx-ampm-badge">PM</span><div><div style="font-size:.8rem;font-weight:600;color:var(--text);">19:00–01:00 EAT</div><div style="font-size:.72rem;color:var(--text2);margin-top:1px;">Least reliable window — many professional traders stop new entries here.</div></div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SESSION COMPARISON TABLE -->
-        <div class="card" style="margin-bottom:14px;">
-          <div class="card-header"><div class="card-title">📊 Session Comparison</div><div class="card-badge cb-blue">At a Glance</div></div>
-          <div style="overflow-x:auto;">
-            <table class="fx-table">
-              <thead><tr><th>Session</th><th>Volatility</th><th>Best For</th><th>Watch Out For</th></tr></thead>
-              <tbody>
-                <tr><td class="fx-td-session" style="color:rgba(45,212,191,.9);">Asia</td>
-                  <td><div class="fx-dots"><span class="fx-dot on"></span><span class="fx-dot on"></span><span class="fx-dot"></span><span class="fx-dot"></span></div></td>
-                  <td>Marking range, AUD/NZD/JPY plays</td><td>Low-liquidity fake breakouts</td></tr>
-                <tr><td class="fx-td-session" style="color:rgba(249,115,22,.9);">London</td>
-                  <td><div class="fx-dots"><span class="fx-dot on"></span><span class="fx-dot on"></span><span class="fx-dot on"></span><span class="fx-dot"></span></div></td>
-                  <td>XAU/USD, GBP/EUR breakouts, trend initiation</td><td>Opening-hour liquidity sweep traps</td></tr>
-                <tr><td class="fx-td-session" style="color:var(--gold2);">London + NY Overlap ⭐</td>
-                  <td><div class="fx-dots"><span class="fx-dot on"></span><span class="fx-dot on"></span><span class="fx-dot on"></span><span class="fx-dot on"></span></div></td>
-                  <td>Best fills, highest-conviction entries</td><td>Fastest moves — tighten risk sizing</td></tr>
-                <tr><td class="fx-td-session" style="color:rgba(139,92,246,.9);">New York</td>
-                  <td><div class="fx-dots"><span class="fx-dot on"></span><span class="fx-dot on"></span><span class="fx-dot on"></span><span class="fx-dot"></span></div></td>
-                  <td>USD pairs, data-driven momentum</td><td>PM chop after AM move exhausts</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- ADVANCED CONCEPTS -->
-        <div class="card" style="margin-bottom:14px;">
-          <div class="card-header"><div class="card-title">🧠 Level-Up Concepts</div><div class="card-badge cb-purple">Beyond the Basics</div></div>
-          <div class="g2" style="margin-bottom:0;">
-            <div class="fx-concept"><div class="fx-concept-num">01</div><div class="fx-concept-title">Liquidity Sweeps</div><div class="fx-concept-body">Price often runs above the Asia high or below the Asia low right at London open — not a breakout, but a hunt for stops. The real move frequently comes <em>after</em> the sweep, in the opposite direction.</div></div>
-            <div class="fx-concept"><div class="fx-concept-num">02</div><div class="fx-concept-title">Kill Zones vs Full Sessions</div><div class="fx-concept-body">The full session is when market is "open." The kill zone is the narrow window inside it (first 2–3h) where most of the directional move happens — the rest is often drift or consolidation.</div></div>
-            <div class="fx-concept"><div class="fx-concept-num">03</div><div class="fx-concept-title">News Overrides Session Logic</div><div class="fx-concept-body">CPI, NFP, FOMC can flip expected session behavior instantly. Always check the economic calendar before trusting the session pattern alone.</div></div>
-            <div class="fx-concept"><div class="fx-concept-num">04</div><div class="fx-concept-title">Spread Widens at Rollover</div><div class="fx-concept-body">Around 00:00–01:00 EAT (NY close / broker rollover) spreads widen and price can spike on thin liquidity — a common source of stop-outs that have nothing to do with your analysis.</div></div>
-          </div>
-        </div>
-
-        <!-- SESSION RULES TERMINAL -->
-        <div class="card" style="margin-bottom:14px;">
-          <div class="card-header"><div class="card-title">⚡ Session Rules</div><div class="card-badge cb-green">Quick Reference</div></div>
-          <div class="fx-terminal">
-            <div class="fx-rule-ok">Build your bias during Asia, execute in the London/NY prime overlap (16:00–20:00 EAT).</div>
-            <div class="fx-rule-ok">Treat the London AM sweep of the Asia range as a signal — it's a liquidity grab, not a breakout.</div>
-            <div class="fx-rule-ok">Check the economic calendar <strong>before</strong> trusting any session pattern today.</div>
-            <div class="fx-rule-ok">Size down or step aside during the 01:00–03:00 EAT dead zone.</div>
-            <div class="fx-rule-no">Avoid chasing the first London move without confirming the Asia range was actually swept.</div>
-            <div class="fx-rule-no">Avoid new entries in NY PM after the AM trend has already exhausted.</div>
-            <div class="fx-rule-no">Never trade full size through scheduled high-impact news — session or no session.</div>
-          </div>
-          <div style="margin-top:10px;padding:12px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);font-size:.72rem;color:var(--text2);line-height:1.7;">
-            <strong style="color:var(--red2);">NOTE:</strong> Session behavior is a baseline, not a guarantee. A geopolitical shock or central-bank surprise can override normal session patterns at any hour — always check headlines and the calendar alongside this map, not instead of it.
           </div>
         </div>
 
@@ -1479,6 +1131,8 @@ textarea.inp{resize:none;}
             <div style="text-align:center;"><div class="stat-lbl">Total Deposits</div><div class="stat-val v-green" id="wk-deposits" style="font-size:1.3rem;">0 ETB</div></div>
             <div style="text-align:center;"><div class="stat-lbl">Total Withdrawals</div><div class="stat-val v-red" id="wk-withdrawals" style="font-size:1.3rem;">0 ETB</div></div>
           </div>
+          <div style="display:flex;gap:14px;margin-top:12px;font-size:.68rem;"><span style="color:var(--green2);">■ Deposits</span><span style="color:var(--red2);">■ Withdrawals</span></div>
+          <div class="chart-wrap" style="margin-top:8px;"><canvas id="weekly-txn-chart"></canvas></div>
         </div>
       </div>
 
@@ -1594,131 +1248,57 @@ textarea.inp{resize:none;}
           </div>
           <div class="card">
             <div class="card-header"><div class="card-title">📚 Past Entries</div></div>
+            <input class="inp" id="journal-search" placeholder="🔍 Search your entries..." style="margin-bottom:12px;" oninput="renderJournal()">
             <div id="journal-log" style="max-height:480px;overflow-y:auto;"></div>
           </div>
         </div>
       </div><!-- end tab-journal -->
 
-      <!-- BOOK LIBRARY -->
+      <!-- ===== BOOKS TAB ===== -->
       <div id="tab-books" class="tab-content">
-        <div class="page-header">
-          <div>
-            <div class="page-title">Book Library 📚</div>
-            <div class="page-sub">Every book you read. Every lesson you keep.</div>
-          </div>
-          <button class="btn btn-primary btn-sm" onclick="openBookModal()">➕ Add Book</button>
+        <div class="page-header"><div><div class="page-title">📚 Book Library</div><div class="page-sub">Track every book you read — what you learned, key quotes, and your rating.</div></div><button class="btn btn-primary btn-sm" style="margin-top:8px;" onclick="openBookModal()">+ Add Book</button></div>
+        <!-- Stats row -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;">
+          <div class="card" style="text-align:center;padding:14px;"><div class="stat-lbl">Books Read</div><div class="stat-val v-blue" id="bk-count">0</div></div>
+          <div class="card" style="text-align:center;padding:14px;"><div class="stat-lbl">Reading Now</div><div class="stat-val v-gold" id="bk-reading">0</div></div>
+          <div class="card" style="text-align:center;padding:14px;"><div class="stat-lbl">Avg Rating</div><div class="stat-val v-green" id="bk-avg">—</div></div>
+          <div class="card" style="text-align:center;padding:14px;"><div class="stat-lbl">Lessons Saved</div><div class="stat-val v-purple" id="bk-lessons">0</div></div>
         </div>
-
-        <!-- STATS ROW -->
-        <div class="stats-row" style="grid-template-columns:repeat(4,1fr);">
-          <div class="stat-card c-gold">
-            <div class="stat-icon">📚</div>
-            <div class="stat-lbl">Books Read</div>
-            <div class="stat-val v-gold" id="book-total">0</div>
-            <div class="stat-sub">total finished</div>
-          </div>
-          <div class="stat-card c-blue">
-            <div class="stat-icon">📖</div>
-            <div class="stat-lbl">Reading Now</div>
-            <div class="stat-val v-blue" id="book-reading">0</div>
-            <div class="stat-sub">in progress</div>
-          </div>
-          <div class="stat-card c-green">
-            <div class="stat-icon">⭐</div>
-            <div class="stat-lbl">Avg Rating</div>
-            <div class="stat-val v-green" id="book-avg-rating">--</div>
-            <div class="stat-sub">out of 5</div>
-          </div>
-          <div class="stat-card c-purple">
-            <div class="stat-icon">💡</div>
-            <div class="stat-lbl">Lessons Saved</div>
-            <div class="stat-val v-purple" id="book-lessons">0</div>
-            <div class="stat-sub">key insights</div>
-          </div>
+        <!-- Category filter -->
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;" id="bk-filters">
+          <button class="btn btn-primary btn-sm bk-filter-btn" data-cat="All" onclick="filterBooks('All',this)">All</button>
+          <button class="btn btn-ghost btn-sm bk-filter-btn" data-cat="Trading & Finance" onclick="filterBooks('Trading & Finance',this)">📈 Trading</button>
+          <button class="btn btn-ghost btn-sm bk-filter-btn" data-cat="Self Development" onclick="filterBooks('Self Development',this)">🧠 Self Dev</button>
+          <button class="btn btn-ghost btn-sm bk-filter-btn" data-cat="Spiritual & Faith" onclick="filterBooks('Spiritual & Faith',this)">🙏 Spiritual</button>
+          <button class="btn btn-ghost btn-sm bk-filter-btn" data-cat="Business" onclick="filterBooks('Business',this)">💼 Business</button>
+          <button class="btn btn-ghost btn-sm bk-filter-btn" data-cat="Other" onclick="filterBooks('Other',this)">📖 Other</button>
         </div>
+        <!-- Book list -->
+        <div id="bk-list"></div>
+      </div><!-- end tab-books -->
 
-        <!-- FILTER TABS -->
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;" id="book-cat-filter"></div>
-
-        <!-- BOOK LIST -->
-        <div id="book-list"></div>
-
-        <!-- EMPTY STATE -->
-        <div id="book-empty" style="display:none;text-align:center;padding:48px 20px;">
-          <div style="font-size:48px;margin-bottom:12px;">📚</div>
-          <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:6px;">Your Library is Empty</div>
-          <div style="font-size:.82rem;color:var(--text3);margin-bottom:16px;">Every book you read shapes who you become. Add your first one.</div>
-          <button class="btn btn-primary" onclick="openBookModal()">➕ Add Your First Book</button>
-        </div>
-      </div>
-  <div class="bottom-nav" id="bottom-nav">
+    </div>
     <div class="bnav-items">
-      <div class="bnav-item active" id="bnav-overview" onclick="swMobile('overview',this)">
-        <div class="bnav-icon nb-black"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
-        <div class="bnav-lbl">Overview</div>
-      </div>
-      <div class="bnav-item" id="bnav-recovery" onclick="swMobile('recovery',this)">
-        <div class="bnav-icon nb-green"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <div class="bnav-lbl">Recovery</div>
-      </div>
-      <div class="bnav-item" id="bnav-checklist" onclick="swMobile('checklist',this)">
-        <div class="bnav-icon nb-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
-        <div class="bnav-lbl">Tasks</div>
-      </div>
-      <div class="bnav-item" id="bnav-trading" onclick="swMobile('trading',this)">
-        <div class="bnav-icon nb-purple"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,17 9,11 13,14 21,5"/><polyline points="15,5 21,5 21,11"/></svg></div>
-        <div class="bnav-lbl">Trading</div>
-      </div>
-      <div class="bnav-item" id="bnav-more" onclick="toggleMoreDrawer()">
-        <div class="bnav-icon" style="background:var(--border2);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-        </div>
-        <div class="bnav-lbl">More</div>
-      </div>
+      <div class="bnav-item active" id="bn-overview" onclick="sw('overview',this,true)"><div class="bnav-icon nb-black"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><div class="bnav-lbl">Overview</div></div>
+      <div class="bnav-item" id="bn-recovery" onclick="sw('recovery',this,true)"><div class="bnav-icon nb-green"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="bnav-lbl">Recovery</div></div>
+      <div class="bnav-item" id="bn-checklist" onclick="sw('checklist',this,true)"><div class="bnav-icon nb-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><div class="bnav-lbl">Tasks</div></div>
+      <div class="bnav-item" id="bn-trading" onclick="sw('trading',this,true)"><div class="bnav-icon nb-purple"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,17 9,11 13,14 21,5"/><polyline points="15,5 21,5 21,11"/></svg></div><div class="bnav-lbl">Trading</div></div>
+      <div class="bnav-item" id="bn-more" onclick="toggleMoreDrawer()"><div class="bnav-icon" style="background:var(--border2);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></div><div class="bnav-lbl">More</div></div>
     </div>
   </div>
-
-  <!-- MORE DRAWER — slides up from bottom on mobile -->
-  <div id="more-drawer-overlay" onclick="closeMoreDrawer()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:198;"></div>
-  <div id="more-drawer" style="display:none;position:fixed;bottom:60px;left:0;right:0;background:var(--card);border-top:1px solid var(--border);border-radius:18px 18px 0 0;z-index:199;padding:16px 12px 8px;box-shadow:0 -8px 24px rgba(0,0,0,.15);">
-    <div style="width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 16px;"></div>
+  <!-- MORE DRAWER -->
+  <div id="more-overlay" onclick="closeMoreDrawer()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:198;"></div>
+  <div id="more-drawer" style="display:none;position:fixed;bottom:60px;left:0;right:0;background:var(--card);border-top:1px solid var(--border);border-radius:18px 18px 0 0;z-index:199;padding:14px 12px 6px;box-shadow:0 -8px 24px rgba(0,0,0,.15);">
+    <div style="width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 14px;"></div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
-      <div class="more-drawer-item" onclick="swMobile('finance',null);closeMoreDrawer()">
-        <div class="more-drawer-icon nb-teal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="16" cy="14.5" r="1.2" fill="#fff" stroke="none"/></svg></div>
-        <div class="more-drawer-lbl">Finance</div>
-      </div>
-      <div class="more-drawer-item" onclick="swMobile('goals',null);closeMoreDrawer()">
-        <div class="more-drawer-icon nb-black"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h11l-3 4 3 4H5"/></svg></div>
-        <div class="more-drawer-lbl">Goals</div>
-      </div>
-      <div class="more-drawer-item" onclick="swMobile('spiritual',null);closeMoreDrawer()">
-        <div class="more-drawer-icon nb-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="11" width="4" height="9" rx="1"/><path d="M12 3c-2 2.5-2 4.5 0 6.5 2-2 2-4 0-6.5z"/></svg></div>
-        <div class="more-drawer-lbl">Spirit</div>
-      </div>
-      <div class="more-drawer-item" onclick="swMobile('mindset',null);closeMoreDrawer()">
-        <div class="more-drawer-icon nb-purple"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11" fill="#fff" stroke="none"/></svg></div>
-        <div class="more-drawer-lbl">Mindset</div>
-      </div>
-      <div class="more-drawer-item" onclick="swMobile('journal',null);closeMoreDrawer()">
-        <div class="more-drawer-icon nb-green"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5c3-1.5 6-1.5 9 0v14c-3-1.5-6-1.5-9 0V5z"/><path d="M21 5c-3-1.5-6-1.5-9 0v14c3-1.5 6-1.5 9 0V5z"/></svg></div>
-        <div class="more-drawer-lbl">Journal</div>
-      </div>
-      <div class="more-drawer-item" onclick="swMobile('books',null);closeMoreDrawer();initBooks()">
-        <div class="more-drawer-icon" style="background:linear-gradient(135deg,#e07b39,#c45e1a);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="10" y1="7" x2="16" y2="7"/><line x1="10" y1="11" x2="16" y2="11"/></svg></div>
-        <div class="more-drawer-lbl">Books</div>
-      </div>
-      <div class="more-drawer-item" onclick="swMobile('spiritual',null);closeMoreDrawer()">
-        <div class="more-drawer-icon nb-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="11" width="4" height="9" rx="1"/><path d="M12 3c-2 2.5-2 4.5 0 6.5 2-2 2-4 0-6.5z"/></svg></div>
-        <div class="more-drawer-lbl">Spirit</div>
-      </div>
-      <div class="more-drawer-item" onclick="swMobile('goals',null);closeMoreDrawer()">
-        <div class="more-drawer-icon nb-black"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h11l-3 4 3 4H5"/></svg></div>
-        <div class="more-drawer-lbl">Goals</div>
-      </div>
-      <div class="more-drawer-item" onclick="openSettings();closeMoreDrawer()">
-        <div class="more-drawer-icon" style="background:var(--border2);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
-        <div class="more-drawer-lbl">Settings</div>
-      </div>
+      <div class="more-item" onclick="sw('finance',null,true);closeMoreDrawer()"><div class="bnav-icon nb-teal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="16" cy="14.5" r="1.2" fill="#fff" stroke="none"/></svg></div><div class="more-lbl">Finance</div></div>
+      <div class="more-item" onclick="sw('goals',null,true);closeMoreDrawer()"><div class="bnav-icon nb-black"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h11l-3 4 3 4H5"/></svg></div><div class="more-lbl">Goals</div></div>
+      <div class="more-item" onclick="sw('spiritual',null,true);closeMoreDrawer()"><div class="bnav-icon nb-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="11" width="4" height="9" rx="1"/><path d="M12 3c-2 2.5-2 4.5 0 6.5 2-2 2-4 0-6.5z"/></svg></div><div class="more-lbl">Spirit</div></div>
+      <div class="more-item" onclick="sw('mindset',null,true);closeMoreDrawer()"><div class="bnav-icon nb-purple"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11" fill="#fff" stroke="none"/></svg></div><div class="more-lbl">Mindset</div></div>
+      <div class="more-item" onclick="sw('journal',null,true);closeMoreDrawer()"><div class="bnav-icon nb-green"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5c3-1.5 6-1.5 9 0v14c-3-1.5-6-1.5-9 0V5z"/><path d="M21 5c-3-1.5-6-1.5-9 0v14c3-1.5 6-1.5 9 0V5z"/></svg></div><div class="more-lbl">Journal</div></div>
+      <div class="more-item" onclick="sw('books',null,true);closeMoreDrawer()"><div class="bnav-icon" style="background:#7c3aed;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="more-lbl">Books</div></div>
+      <div class="more-item" onclick="sw('swot',null,true);closeMoreDrawer()"><div class="bnav-icon" style="background:#0891b2;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></div><div class="more-lbl">SWOT</div></div>
+      <div class="more-item" onclick="openSettings();closeMoreDrawer()"><div class="bnav-icon" style="background:var(--border2);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><div class="more-lbl">Settings</div></div>
     </div>
   </div>
 </div>
@@ -1726,71 +1306,6 @@ textarea.inp{resize:none;}
 <script>
 /* ================= STATE ================= */
 const STORE_KEY='binyam_lcc_v2';
-
-/* ===== BACKUP DATA PRELOAD ===== */
-(function preloadBackup(){
-  try {
-    const existing = localStorage.getItem(STORE_KEY);
-    const backup = {"days":{"Wed Jul 22 2026":"win","Sat Jul 18 2026":"win","Tue Jul 14 2026":"win","Mon Jul 20 2026":"win","Thu Jul 16 2026":"win","Tue Jul 21 2026":"fail","Sun Jul 12 2026":"fail","Sun Jul 26 2026":"win","Thu Jul 23 2026":"win","Sun Jul 19 2026":"win","Mon Jul 13 2026":"win","Fri Jul 24 2026":"win","Wed Jul 15 2026":"win","Fri Jul 17 2026":"fail","Sat Jul 25 2026":"fail","Mon Jul 27 2026":"win"},"checks":{"Sun Jul 26 2026":{"0":true,"1":true,"2":true,"4":true,"5":true,"6":true,"8":true,"9":true,"12":true,"13":true,"14":true,"16":true,"18":true,"33":true,"34":true},"Sun Jul 19 2026":{"0":true,"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"8":true,"9":true,"12":true,"13":true,"14":true,"16":true,"18":true},"Thu Jul 23 2026":{"0":true,"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"8":true,"9":true,"12":true,"13":true,"14":true,"16":true,"18":true,"31":false,"33":true},"Sat Jul 18 2026":{"0":true,"1":true},"Wed Jul 22 2026":{"0":true,"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"8":true,"9":true,"12":true,"13":true,"14":true,"16":true,"18":true,"24":false,"28":true},"Mon Jul 20 2026":{"0":true,"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"8":true,"9":true,"12":true,"13":true,"14":true,"16":true,"18":true},"Fri Jul 24 2026":{"0":true,"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"8":true,"9":true,"12":true,"13":true,"14":true,"16":true,"18":true,"33":true},"Tue Jul 21 2026":{"0":true,"1":true,"2":true,"3":true,"4":true,"8":true,"12":true,"14":true},"Sat Jul 25 2026":{"0":true,"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true,"8":true,"9":true,"12":true,"13":true,"14":true,"16":true,"18":true,"33":true}},"journal":[{"sp":"gyhhv","tm":"","ur":"","date":"7/25/2026","gr":""}],"wallets":{"trd":800,"emg":1000,"per":35,"inv":1000},"walletNames":{"emg":"🛡️ Emergency Savings Bunna","trd":"♾️ forever fund","inv":"📈 Investment Account BOA","per":"👤 Personal Account"},"triggers":{},"goals":[{"category":"Spiritual","done":false,"title":"= Fasting in week one day \n= Eveready and know bible perfectly \n= Received መንፈስ ቅዱስ\n= know doctrine \n= Preaching doctrine for other people","id":1784389691936},{"id":1784390048752,"title":"= Saving emergency birr 1M\n= Investing in share \n= Opening lamp shop \n=Opening interior company \n= Opening hotel in hawasa\n= being financially free","done":false,"category":"Financial"},{"done":false,"category":"Material","id":1784390140583,"title":"Buying apartemnt home \nBuying car \nBuying land in butajira \nBuild dream setup"},{"done":false,"category":"Behavioral","id":1784390759036,"title":"= Patient\n= Empathetic / Understanding\n= Reserved / Quiet\n= Humble / Gentle\n= Discreet / Trustworthy\n= Resilient / Unwavering in hope\n= Disciplined\n= Consistent\n= Faithful / Loyal\n= Diligent / Hardworking\n= Calm / Composed\n= Playful / Cheerful / Easygoing\n= Grateful to God\n= Respectful in speech\n= Avoids gossip / Dislikes backbiting\n= Truthful / Honest\n= Respectful of others\n= Integrity-driven\n= Forgiving\n= Self-aware\n= Optimistic\n= Generous\n= Accountable"},{"done":false,"category":"Relationship","id":1784390893187,"title":"= Married \n= understanding"}],"goalCategories":["Spiritual","Financial","Relationship","Behavioral","Material"],"mindsetLog":{"Sat Jul 18 2026":{"reflection":"","gratitude":"=Mehertun selabezalgn \n=Egzabher be selam selasadergn ena tena selsetgne betam edelgna negn amlaken amsegnalhu \n=kebun selsetgna \nnegrochn endasetwel saldergehn eyesuse yemzegn","savedAt":1784391525713},"Thu Jul 23 2026":{"reflection":"","gratitude":"Egzabhern yemsegn amlake mehertun selabezalgn selmibarkegn selmilwetegn keyro selmitkmbegn be ene lay ena be kebu hiwot lay alam ena eked selalhu lezare ken endenaye selabekan","savedAt":1784819179066},"Sun Jul 19 2026":{"gratitude":"","savedAt":1784468961248,"reflection":"Geta eyesuse beselam selwalaegn selam ena bertat selsetgna ejeg aderge amsegnalhu sele hulum neger"},"Mon Jul 20 2026":{"reflection":"","gratitude":"Egzabher hoy amlake addis ken endsye selrdahegn selagezekgn ejeg aderge amsegnhalhu kenun hulu ante kefte kedem selsetekgn tena kebuyen selsetkegn selam tena selsetkgn selmtebarkegn ahun selalwe berket wedfitm selmimtaw berket ejeg aderge amsegnalhu keber hulu lante yehun sele erdatak chernetk betam amsegnalhu geta eyesuse selalugn negrochu hulu genam selmichemrut selwedift ebete  tedare mekinaye lejoche hulum neger kebr lante yehun temsegn ..","savedAt":1784531378467}},"swot":{"strengths":[{"id":1784390963567,"text":"be egzabher betam etamnalhu"},{"id":1784390971212,"text":"tesfa alkoretm"},{"text":"endemlwet bedneb akalhu","id":1784390981276},{"text":"be eked nw memeraw","id":1784391038465},{"text":"yalkuten adergalhu","id":1784391046393}],"weaknesses":[{"text":"enkelf","id":1784390986701},{"id":1784390997484,"text":"semetawi mehon"},{"text":"be semet yemta bezuneger metwe","id":1784391010521},{"text":"almetgat","id":1784391017516},{"id":1784391026397,"text":"hulegeze almtselye"}]},"principles":[{"id":1784391301801,"title":"Forex / profitable trader","rules":["=Practice everyday","=Backtesting","=Chart time","=Consistency","=Discplen","=Risk management","=Psychology","=Serving","=Reading book","=patent","=following rule"]}],"trading":{"lockDate":null,"initial":100,"trades":[],"pretradeDate":"Fri Jul 17 2026","pretradeToday":{},"lockCount":0,"withdrawals":[],"closings":[],"topups":5},"tradingRules":["Never risk more than 1-2% of account per trade","No trade without a pre-set stop-loss","No revenge trading after a loss","Only trade during active London/NY sessions","Journal every trade, win or loss"],"ruleChecks":{},"ruleDocs":[],"freedomCycle":{"cycleNumber":1,"end":"2026-08-10","start":"2026-07-12"},"freedomHistory":[],"dayNotes":{"Tue Jul 21 2026":"depression tensh mekfat","Sat Jul 25 2026":"emotion leg picture","Fri Jul 17 2026":"using phone in bed","Sun Jul 12 2026":"using phone in bed"},"settings":{"fontsize":"md","password":"192297boos","dateformat":"eu","theme":"dark"},"customAccounts":[{"currency":"$","name":"Trading capital","balance":5,"history":[],"id":1784383760493},{"id":1784389448151,"history":[],"balance":0,"currency":"ETB","name":"For university equipment"}],"_fmForcedStart12":true,"profile":{"photo":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAEsAMgDASIAAhEBAxEB/8QAGwABAQEAAwEBAAAAAAAAAAAAAAECAwQGBQf/xAA6EAACAgECBAQEAwUHBQAAAAAAAQIRAwQhBRIxQQYiUWETcYGhIzKRBxSx0fAVFzNCUnLBNENissL/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAgMEAQX/xAAiEQEBAQADAAEEAwEAAAAAAAAAAQIDERIhBBMiMSNRcWH/2gAMAwEAAhEDEQA/APyeCqLZKV9DfYVb2LEWUqZdhyu+u5arqBKvoSmcqkoRJ+Ze4HGQ24t9DDAzJ7UcdWcrVmeVgROui3HV79S9t1uRLqwIWkH02ImBUqdnJ1RiKN0BGmY3ZyVsYaYGGqsUaZAIZNszW4EZDVD6AZBQB3sWPmjKV0omWmnuzm098sl22OJyg8klO6rsBHzbINutzScUlvuJyUqpAMctnF7t9EFFKVN9O4hFt2uxyOHPSe3uBlJLzRdr3Jlw+RTrZ9TkxxTjy3vZicqTi7tP7AdeqtDl5VfY043bS26/IsHT3pgcaVkd2+h2Z6fZyg7Se5wyjUumwGGtiOPk6b2alHlq2ul7GfqAXY32Cjz7FqlXoBLGzXYpOgGGiG36/cgGO+4pFfXYlewBmXaLQYGfYBgDv6dyWVxrytDLFRnaf3OMAV0/f3IkAtgOTG0pb7e5zqScKpO+51bKpNdGwOVWpWuqOKbk7cg5t72R7r3AkZuLe1pqjnhg+NbVR6K/c4o1e6s5FkcPy9PQDKlLDPkmlSbtPoYlT3Tt2ayZPiy5sjdLY4o6jFjf5k0wC90aS9iT1On2qW/ekahmhytxakmBNov0I93Ypssd16AZRexeXcNARVRmS5WWqYYGHuZNNV0IBO5lo1RAMsGnQA7C6ECDfoBUDKfmo0BaK3SJ2I3bAWXsZRewGl6mZT5VbexOb06HU1WRt8l7IDGfO8kvK6j6HCAACbTtOmgOoHPi1eTGqfmj6M5cepU9mqZ0ip00+4H1lvuSXWjgwamMmotU33Oeu4GVsR7le5noBdu5lpGvqZpe4EMmm7Zn1AjAYA5VafuauydxQE6zb7G003RlKxSTXqBybPZGXdbFtfUlgRNvqjXZkClsBKt7I6Wp3ztJ3R9CKPnZvNnnS7gcTVdeo7GnFpJ9SVtsBKvoQ+nwSGDJxGOPOlyvpaP0DPwDhWvg1LTwjKS2lj229irfNMXqxfx8F5J3K/LAe2z+CsOHHOs0nK/K26r6UeV1vDdTocnLlg63qS3TJZ5c6vUR3w7x82OrF8sk99n2Ppp2vmdDDhlknXSutn0EqVImqZ6GX1NyRhoCWHX1FCkBmgV/MjAyCsActFFkb9AHQj9Qr+pWqiAju7L3MdDSdrcBzb0ailsZTRpp0pJ9AOaKS2PlStZJV1t9D6d80duvqes8E8Ew6lZNdknS+K4ybjdRik3vVbuUVXomQ3uYndWcfHeTXmPCrHUN4PyyvmuvoXHgkkri7fQ91xnwzp9Xw3NxXhjcU482TTYncOdNp8v3/rYeDOG48mPPlzYoPJFrltXV3dfb7Efuy59RP7Nm/FfK8O8Ay5dUtTlwuOGHRyX5n7ex72EIKKe1Xu/Q7ObDHBpZ5OVz5I3UU7fseYz+LtHpMELwTeVt/Ehzfkr123b6/wAaMl98mu23Pjhz1a+9rMeLJg6q0ee1WjhLFKM47NHe0viPg3EnyY8/w5vZRybc3yHEngx6aUnlhCPZydFevU11VkudZ7lfn+sxLDrcqVdjgujeXLHNnyzjLmi5bM42eln9Tt5Ovm1WzLDZCSIwVdCNb9gItwxexPmBGCMAc3TqFTNNO/YssckuZRai3swIklISSZxtejNKTa+QAjaXU0ZkraoAuipM3FN4q6EcaiqMvZAbi+V0me6/Z5xJY8+p4bknGpr42NS6Wtpb+/l/Q8Eulo+74Um48bWTolilHt3r+RXyzvFW8OvO5XucOo/s7w3rMeo0ssOTFLLHLGdefnm2mt91UkrODwvqcGq0tQUVLp5f83pZ57xBrJqDi5888k94wikuVey+Znwlqnpss8cmo1u2/WzPM/xtN3/K/QNRpdRkxzeCbUq6Kr+5+dcYz8R0yWLU49Jmzyny3PDK1H1/N632+Tfb9L4dq1OVSkt16nY1Wl0v+NkjBtbptWU4vn5aN499Tvp+ZcN8HQ1rh+8cmKUncXjVNLtfufK8UY3gzx0+aebK9+SEZeWCT5d/d1dejXqfq2kjDNlWXEk8XRSS/Nufn/jzQ4NPxh5+VrJmpxvpSVP/AILOHkut/kq5+KY4+8vIwxrHiSSfq7Kyp+pHtubnnMkZWZQFi1TLsZSo1Fb7gKpWSurLke9LoZlKlSAywRgDnUmzmjP4ijCb2XQ4bj8NKvMnu/YvVWuoCcGrRhKtjam293ZmSXMAvYsfU1ghDJkayZOSKjKV11aVpfV7GUnT3Armn36GLTsy00+tsy8kcabk7foBy0el8M6B1PUvrKNR+R8Tg3DM3GNRcly6aD83v7Hv8GCGkxckVyxUdkuhTy7knUX8PHbZa8pxnKsWrisjXKpJ24838jseGYaWfHccOJ41mw58M4Y1/wCezTu9tk9+x0+PSlDKs0GnKElLdWtjlWti9Pi4tpklB5U82Jf9qSd2vZ7r+toS/jFnXW+3po5p8L4nqNBPI3DTSTjJveUHvF/evoztR45h4lxLQ6fFkU18VScJSrmSjKX/AM9Dk47oMet8LafiWC5ZdLjjzuOzyYv8y29Ot+z9TznBMWg1fiTBiUElixTyR3q09km+68z27lUxLe6v96z+MfW8ScX1PA+L5MWknlw4JQWZRik8alVyi9rV/PqzxPHvE2fjmtxz1EYxhjglCu1pN2ez8VQ0+p8R4tN+85FmyuEfg81Jx23+z/Q/OeN6bHo+Oa7T4lWPHnnGCu6V7L9C3hmbr/qn6i6k67+HJtRLOHTT5oOL/wApymljRgvYywAuiXuGAe5AAIwGAOVWyKbjKvXsItr8xXHe0ASaVtEtylbNXa6mp40op9QOOvMVypFpHWz5abjH6gMuanUevqde97e4IB+geFtVp3p/wqUV1j3iz6fEtWlGoM/MtNqs2jzLLgyOEl6d/mfcx8dx6iMVm/DydH/pf8jJycN77n6bOPmnnzWuKZviQl32Or4e4hDTajJpNTKtJqVyzTeyfZnFr8jW6acZdGmfLLsZ/HpTvXWu4/VfBXFMkc8uDauUZRxw5KaVSj2d1vt6nT1XCtR4c8bZJ4L/AHXVYJLBJx5qVpuP0r9K9zz/AALNl4g8c8WStfpEqffJC1t718v1P0PV6yHEuDYZTXPlxzUVk2tdLM+/xtn9tWPzzL/Tzeukv7x9FlySjb00ZJyXe3t8+x5DxbFx8VcRtVeTmXyaTX8T9E4rosWunw7UYv8AqcFQkr67q39n9/Q81+0XguTT6nTcUUfw88FjybdJpbfqv4HeDc9T/HPqOO+b/vbxulf4jXZo7LZ1dN/iv5HaezNjAhHZWRgS3ZTNlAEF0TsAbBH13AHKt3RuE3CfpRxpp7d+xt7qwOTU5HPKp1HddYqrNYtVKGDJgai4y3VrucMXzx5X9DHqBMuRwT237HTZyZp88/ZHGASb6KyAAAABSAAdrh+uzcN1uPVYJVkh/wAqj0+i45my6aUVN8k7uK236s8cc+m1MsE7T8re6IbxNLMcly97g4rmpN5ZOPXlbT/rc9Fixw8R8F1XCtXPzyj+G27cZKmmeH0WfHPHCUJJr/T1/U9f4eyqOshkUdlspfP1MW54vbfx69zqvyuenyaLXz0+ZcuTFNwkvdbHOz0P7QdAtL4kx6qMUoaqCnfrJOn9uU8/KjdjXrMrz9586uWSMMEkGQw2AIQrIA73YHRACpmlIze5HswNJtSLO0m+3qSNNO/oZm3yNewHW9SAqV9Wl8wIAAAAAAAAAAKm10dH0uH8f4jw2S+Dncsaafw8i5ouv4fQ+YDlkvxXZqy9x93xD4lyeIZaSWXBHC8EWqi7Tut/sfP5rOkdqLuKYzmZnUd1q6vdasXQslrudRLsfQnNfRF329ADBLZLAvYGb2ADm6MrdmLFgbToknvZl7oWBxyVMybnTVmAAAAAAAAAAAAAAAdjH+RHXOxBrlVAbbIAAdDqqH1JYAhdiNfIAwQAZAIBUCIoEatHGctGJKn8wMgAAAAAAAAAAAAByYurOM3jdTQHKy9g+osCAdSAV7PclrewQBYDAGbBCgAAAMyNGZdAMgAAAAAAAAAAAABV1IAOyT2MqXMhYGr2IS9hYCxZAAsEAEBABQQAUgAGQUgAAAAAAAAAAAAABqMq2fQ2ziOXsAIAAAIBQQAQEAFBABQQAQAAAAAAAAAAAAAAAA2nsYKnTA3ZL2L2IAAIAAAEAAAAAAAAIUgAAAAUgAAAAAAAAAAAVMpkoFAIBQQAAAABABQQAAAAB3MXC9Xlhz/C5I9nPazr5cGXC/xMco+7Wxyal+JXeq4wAdcAAAAAAHLHT5pxUo45ST6NI45RcXUk012Y7EAAApABQAAAAAEAAAAUgAH3OEeFeJcXxrNjgsOnfTLl2Uvkur/gep0nhTS8Nhz0s2ojv8Sb2XyXb+tz2OixqPDtJy7N6fG21/tR8/jGSWngpQdtum2eVv6ne9dfqN2eHOZ281kxLLGSbxuL60+dHTlo4wjOEY4qaflWLlT+5wcX4rqNPqPLHG/9yf8AM+Rk43rJ9JRin1SX8y7GNX9KdWPlTjKE5QkuWSdNehk5M2WebNLJN3JvdnGb4zgAAHc0PDdTr51hg+W6cqs6Z+ifsvdriSe6h8Nx9m+a/wCCK+bdxi6izixN7maxo+GaqGFR/s3WyUI1zQuK/wDVnPHw/qtQlOXC8+aEvTDJ39aP0bTyly+aTk2lbfyO1J1ik6WyPNnLa23h6fi/iHwx+6aPLqoaWelni5XLHKS3T9u3R9F2Z48/c/FWRy8O6/DkrJGWLK7kt1WNyVV7n4Ybvpt3Wb2yc+Jm/AADQpUEKAAAH//Z","bio":"Binyam"}};
-
-    if(!existing || existing === '{}'){
-      // No existing data — load backup fresh
-      localStorage.setItem(STORE_KEY, JSON.stringify(backup));
-    } else {
-      // Existing data — MERGE backup into it (backup fills missing keys, existing data wins for same keys)
-      const current = JSON.parse(existing);
-      // Merge days
-      if(backup.days) current.days = Object.assign({}, backup.days, current.days || {});
-      // Merge checks
-      if(backup.checks) current.checks = Object.assign({}, backup.checks, current.checks || {});
-      // Merge journal (combine arrays, deduplicate by date)
-      if(backup.journal && backup.journal.length){
-        const existingDates = new Set((current.journal||[]).map(j=>j.date));
-        const newEntries = backup.journal.filter(j=>!existingDates.has(j.date));
-        current.journal = [...(current.journal||[]), ...newEntries];
-      }
-      // Merge wallets (use backup if current is 0)
-      if(backup.wallets) Object.keys(backup.wallets).forEach(k=>{ if(!current.wallets) current.wallets={}; if(!current.wallets[k]) current.wallets[k]=backup.wallets[k]; });
-      // Merge wallet names
-      if(backup.walletNames) current.walletNames = Object.assign({}, backup.walletNames, current.walletNames || {});
-      // Merge txns (combine, deduplicate by id)
-      if(backup.txns && backup.txns.length){
-        const existingIds = new Set((current.txns||[]).map(t=>t.id));
-        const newTxns = backup.txns.filter(t=>!existingIds.has(t.id));
-        current.txns = [...(current.txns||[]), ...newTxns];
-      }
-      // Merge goals
-      if(backup.goals && backup.goals.length && !(current.goals && current.goals.length)) current.goals = backup.goals;
-      if(backup.goalCategories && !current.goalCategories) current.goalCategories = backup.goalCategories;
-      // Merge mindset log
-      if(backup.mindsetLog) current.mindsetLog = Object.assign({}, backup.mindsetLog, current.mindsetLog || {});
-      // Merge swot
-      if(backup.swot && !current.swot) current.swot = backup.swot;
-      // Merge principles
-      if(backup.principles && backup.principles.length && !(current.principles && current.principles.length)) current.principles = backup.principles;
-      // Merge trading
-      if(backup.trading && !current.trading) current.trading = backup.trading;
-      if(backup.tradingRules && !(current.tradingRules && current.tradingRules.length)) current.tradingRules = backup.tradingRules;
-      // Merge freedom cycle
-      if(backup.freedomCycle && !current.freedomCycle) current.freedomCycle = backup.freedomCycle;
-      if(backup.dayNotes) current.dayNotes = Object.assign({}, backup.dayNotes, current.dayNotes || {});
-      // Merge settings (backup pw takes priority only if no current pw)
-      if(backup.settings){
-        if(!current.settings) current.settings = {};
-        if(!current.settings.password) current.settings.password = backup.settings.password;
-        if(!current.settings.theme) current.settings.theme = backup.settings.theme;
-        if(!current.settings.fontsize) current.settings.fontsize = backup.settings.fontsize;
-      }
-      // Merge custom accounts
-      if(backup.customAccounts && backup.customAccounts.length && !(current.customAccounts && current.customAccounts.length)) current.customAccounts = backup.customAccounts;
-      // Merge profile (photo + bio)
-      if(backup.profile && !current.profile) current.profile = backup.profile;
-      localStorage.setItem(STORE_KEY, JSON.stringify(current));
-    }
-  } catch(e){ console.warn('Backup preload error:', e); }
-})();
-/* ===== END BACKUP PRELOAD ===== */
-
 let S = JSON.parse(localStorage.getItem(STORE_KEY)||'{}');
 const defaultTasks=[
   {id:0,section:'m',tag:'spirit',label:'<strong>Prayer out loud</strong> — "I am a man of God. I am free. I am disciplined."'},
@@ -1841,8 +1356,7 @@ const def = {
   ],
   ruleChecks:{}, ruleDocs:[],
   freedomCycle:{start:null,end:null,cycleNumber:1},
-  freedomHistory:[], dayNotes:{},
-  books:[], bookCategories:['Trading & Finance','Self Development','Spiritual & Faith','Business','Other']
+  freedomHistory:[], dayNotes:{}
 };
 Object.keys(def).forEach(k=>{ if(S[k]===undefined) S[k]=JSON.parse(JSON.stringify(def[k])); });
 if(!S.trading) S.trading={initial:0,topups:0,closings:[],trades:[],withdrawals:[],lockDate:null,lockCount:0};
@@ -1883,6 +1397,7 @@ function refreshEverything(){
   renderTaskListCard(); updateCheckUI(); restoreDevs(); renderGrid(); renderFinance();
   renderTriggers(); renderJournal(); renderGoals(); renderAvatar(); renderTomorrowPlan();
   initMindsetHub(); renderTradeHistory(); renderTradeStats(); renderRulesChecklist(); renderRulesHistory(); renderLockState();
+  renderTodayGlance(); renderWeeklySummary();
   const activeTab=document.querySelector('.tab-content.active');
   if(activeTab) renderCharts(activeTab.id.replace('tab-',''));
 }
@@ -2097,6 +1612,22 @@ function refreshSettingsUI(){
   ['sm','md','lg'].forEach(f=>document.getElementById('seg-'+f).classList.toggle('on',S.settings.fontsize===f));
   ['us','eu','long','et'].forEach(f=>document.getElementById('seg-df-'+f).classList.toggle('on',(S.settings.dateformat||'long')===f));
 }
+/* ================= FX SESSION DASHBOARD (embedded standalone tool) ================= */
+const FX_DASHBOARD_B64 = "PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPHRpdGxlPkZYIHNlc3Npb24gY29tbWFuZCBjZW50ZXI8L3RpdGxlPgo8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEiPgo8bGluayByZWw9InByZWNvbm5lY3QiIGhyZWY9Imh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20iPgo8bGluayBocmVmPSJodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PVNwYWNlK0dyb3Rlc2s6d2dodEA1MDA7NjAwJmZhbWlseT1JbnRlcjp3Z2h0QDQwMDs1MDA7NjAwJmZhbWlseT1KZXRCcmFpbnMrTW9ubzp3Z2h0QDQwMDs1MDA7NjAwJmRpc3BsYXk9c3dhcCIgcmVsPSJzdHlsZXNoZWV0Ij4KPHN0eWxlPgogIDpyb290ewogICAgLS1iZzojMEIwRTE0OyAtLXN1cmZhY2U6IzEzMTcyMjsgLS1zdXJmYWNlMjojMUExRjJFOyAtLWJvcmRlcjojMjQyQTNBOyAtLWJvcmRlci1zb2Z0OiMxRDIyMzA7CiAgICAtLXRleHQ6I0U3RUFGMjsgLS10ZXh0MjojOTQ5Q0IzOyAtLXRleHQzOiM1RDY0Nzg7CiAgICAtLXRlYWw6IzJERDRCRjsgLS10ZWFsLWRpbTojMEYzQTM2OwogICAgLS1jb3JhbDojRjk3MzUwOyAtLWNvcmFsLWRpbTojM0UyNDFDOwogICAgLS12aW9sZXQ6I0E3OEJGQTsgLS12aW9sZXQtZGltOiMyQzI1NDc7CiAgICAtLWFtYmVyOiNGQkJGMjQ7IC0tYW1iZXItZGltOiMzQTJFMTA7CiAgICAtLWdyYXk6IzVCNjI3NDsKICAgIC0tZ29vZDojMzREMzk5OyAtLWJhZDojRjg3MTcxOwogIH0KICAqe2JveC1zaXppbmc6Ym9yZGVyLWJveDsgbWFyZ2luOjA7IHBhZGRpbmc6MDt9CiAgYm9keXsKICAgIGJhY2tncm91bmQ6cmFkaWFsLWdyYWRpZW50KGNpcmNsZSBhdCA1MCUgLTEwJSwgIzE2MUMyOSAwJSwgIzBCMEUxNCA1NSUpOwogICAgY29sb3I6dmFyKC0tdGV4dCk7IGZvbnQtZmFtaWx5OidJbnRlcicsc2Fucy1zZXJpZjsgcGFkZGluZzo0MHB4IDIwcHggODBweDsKICAgIC13ZWJraXQtZm9udC1zbW9vdGhpbmc6YW50aWFsaWFzZWQ7CiAgfQogIC53cmFwe21heC13aWR0aDoxMDQwcHg7IG1hcmdpbjowIGF1dG87fQogIC5leWVicm93LXJvd3tkaXNwbGF5OmZsZXg7IGFsaWduLWl0ZW1zOmNlbnRlcjsganVzdGlmeS1jb250ZW50OnNwYWNlLWJldHdlZW47IGdhcDoxMnB4OyBmbGV4LXdyYXA6d3JhcDsgbWFyZ2luLWJvdHRvbToyMnB4O30KICAuZXllYnJvd3sKICAgIGZvbnQtZmFtaWx5OidKZXRCcmFpbnMgTW9ubycsbW9ub3NwYWNlOyBmb250LXNpemU6MTJweDsgbGV0dGVyLXNwYWNpbmc6MC4xNGVtOyB0ZXh0LXRyYW5zZm9ybTp1cHBlcmNhc2U7CiAgICBjb2xvcjp2YXIoLS10ZWFsKTsgZGlzcGxheTpmbGV4OyBhbGlnbi1pdGVtczpjZW50ZXI7IGdhcDo4cHg7IG1hcmdpbi1ib3R0b206MDsKICB9CiAgLmV5ZWJyb3cgLmRvdHt3aWR0aDo2cHg7aGVpZ2h0OjZweDtib3JkZXItcmFkaXVzOjUwJTtiYWNrZ3JvdW5kOnZhcigtLXRlYWwpOyBib3gtc2hhZG93OjAgMCA4cHggdmFyKC0tdGVhbCk7fQogIC50ei10b2dnbGV7ZGlzcGxheTpmbGV4OyBiYWNrZ3JvdW5kOnZhcigtLXN1cmZhY2UpOyBib3JkZXI6MXB4IHNvbGlkIHZhcigtLWJvcmRlcik7IGJvcmRlci1yYWRpdXM6MTBweDsgcGFkZGluZzozcHg7IGdhcDoycHg7fQogIC50ei1idG57CiAgICBmb250LWZhbWlseTonSmV0QnJhaW5zIE1vbm8nLG1vbm9zcGFjZTsgZm9udC1zaXplOjExLjVweDsgZm9udC13ZWlnaHQ6NjAwOyBsZXR0ZXItc3BhY2luZzowLjA0ZW07CiAgICBjb2xvcjp2YXIoLS10ZXh0Myk7IGJhY2tncm91bmQ6dHJhbnNwYXJlbnQ7IGJvcmRlcjpub25lOyBib3JkZXItcmFkaXVzOjdweDsgcGFkZGluZzo3cHggMTNweDsgY3Vyc29yOnBvaW50ZXI7CiAgICB0cmFuc2l0aW9uOmJhY2tncm91bmQgLjE1cywgY29sb3IgLjE1czsKICB9CiAgLnR6LWJ0bjpob3Zlcntjb2xvcjp2YXIoLS10ZXh0Mik7fQogIC50ei1idG4uYWN0aXZle2JhY2tncm91bmQ6dmFyKC0tdGVhbC1kaW0pOyBjb2xvcjp2YXIoLS10ZWFsKTt9CiAgaDF7Zm9udC1mYW1pbHk6J1NwYWNlIEdyb3Rlc2snLHNhbnMtc2VyaWY7IGZvbnQtd2VpZ2h0OjYwMDsgZm9udC1zaXplOjM0cHg7IGxldHRlci1zcGFjaW5nOi0wLjAxZW07IG1hcmdpbi1ib3R0b206OHB4O30KICAuc3Vie2NvbG9yOnZhcigtLXRleHQyKTsgZm9udC1zaXplOjE1cHg7IG1heC13aWR0aDo1NjBweDsgbGluZS1oZWlnaHQ6MS42OyBtYXJnaW4tYm90dG9tOjM2cHg7fQogIC5zdWIgYntjb2xvcjp2YXIoLS10ZXh0KTsgZm9udC13ZWlnaHQ6NTAwO30KCiAgc2VjdGlvbnttYXJnaW4tYm90dG9tOjQ2cHg7fQogIC5zZWN0aW9uLWhlYWR7ZGlzcGxheTpmbGV4OyBhbGlnbi1pdGVtczpiYXNlbGluZTsganVzdGlmeS1jb250ZW50OnNwYWNlLWJldHdlZW47IG1hcmdpbi1ib3R0b206MTZweDsgZ2FwOjEycHg7IGZsZXgtd3JhcDp3cmFwO30KICAuc2VjdGlvbi1oZWFkIGgye2ZvbnQtZmFtaWx5OidTcGFjZSBHcm90ZXNrJyxzYW5zLXNlcmlmOyBmb250LXdlaWdodDo2MDA7IGZvbnQtc2l6ZToxOHB4O30KICAuc2VjdGlvbi1oZWFkIC50YWd7Zm9udC1mYW1pbHk6J0pldEJyYWlucyBNb25vJyxtb25vc3BhY2U7IGZvbnQtc2l6ZToxMXB4OyBjb2xvcjp2YXIoLS10ZXh0Myk7IHRleHQtdHJhbnNmb3JtOnVwcGVyY2FzZTsgbGV0dGVyLXNwYWNpbmc6MC4wOGVtO30KCiAgLyogSEVSTyBDTE9DSyAqLwogIC5oZXJvewogICAgYmFja2dyb3VuZDp2YXIoLS1zdXJmYWNlKTsgYm9yZGVyOjFweCBzb2xpZCB2YXIoLS1ib3JkZXIpOyBib3JkZXItcmFkaXVzOjIwcHg7CiAgICBwYWRkaW5nOjMycHg7IGRpc3BsYXk6Z3JpZDsgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOjQ2MHB4IDFmcjsgZ2FwOjhweDsgYWxpZ24taXRlbXM6Y2VudGVyOwogIH0KICAuY2xvY2std3JhcHtkaXNwbGF5OmZsZXg7IGZsZXgtZGlyZWN0aW9uOmNvbHVtbjsgYWxpZ24taXRlbXM6Y2VudGVyO30KICAjbm93LXJlYWRvdXR7CiAgICBtYXJnaW4tdG9wOjZweDsgZm9udC1mYW1pbHk6J0pldEJyYWlucyBNb25vJyxtb25vc3BhY2U7IGZvbnQtc2l6ZToxM3B4OyBjb2xvcjp2YXIoLS10ZXh0Mik7IHRleHQtYWxpZ246Y2VudGVyOwogIH0KICAjbm93LXJlYWRvdXQgLmxpdmUtdGltZXtjb2xvcjp2YXIoLS10ZXh0KTsgZm9udC13ZWlnaHQ6NTAwOyBmb250LXNpemU6MTVweDt9CiAgI25vdy1yZWFkb3V0IC5saXZlLXNlc3Npb257Y29sb3I6dmFyKC0tYW1iZXIpOyBmb250LXdlaWdodDo2MDA7fQoKICAuaGVyby1zaWRle3BhZGRpbmc6OHB4IDhweCA4cHggMjBweDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlkIHZhcigtLWJvcmRlci1zb2Z0KTt9CiAgLmhlcm8tc2lkZSBoM3tmb250LWZhbWlseTonU3BhY2UgR3JvdGVzaycsc2Fucy1zZXJpZjsgZm9udC1zaXplOjE2cHg7IGZvbnQtd2VpZ2h0OjYwMDsgbWFyZ2luLWJvdHRvbToxMHB4O30KICAubGVnZW5kLXJvd3tkaXNwbGF5OmZsZXg7IGFsaWduLWl0ZW1zOmNlbnRlcjsgZ2FwOjEwcHg7IHBhZGRpbmc6OXB4IDA7IGJvcmRlci1ib3R0b206MXB4IHNvbGlkIHZhcigtLWJvcmRlci1zb2Z0KTsgZm9udC1zaXplOjEzLjVweDt9CiAgLmxlZ2VuZC1yb3c6bGFzdC1jaGlsZHtib3JkZXItYm90dG9tOm5vbmU7fQogIC5zd2F0Y2h7d2lkdGg6MTFweDsgaGVpZ2h0OjExcHg7IGJvcmRlci1yYWRpdXM6M3B4OyBmbGV4LXNocmluazowO30KICAubGVnZW5kLXJvdyAubmFtZXtjb2xvcjp2YXIoLS10ZXh0KTsgZm9udC13ZWlnaHQ6NTAwOyBtaW4td2lkdGg6NzhweDt9CiAgLmxlZ2VuZC1yb3cgLnRpbWV7Zm9udC1mYW1pbHk6J0pldEJyYWlucyBNb25vJyxtb25vc3BhY2U7IGNvbG9yOnZhcigtLXRleHQyKTsgZm9udC1zaXplOjEyLjVweDt9CgogIC8qIFNFU1NJT04gQ0FSRFMgKi8KICAuY2FyZHN7ZGlzcGxheTpncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KDMsMWZyKTsgZ2FwOjE2cHg7fQogIC5jYXJkewogICAgYmFja2dyb3VuZDp2YXIoLS1zdXJmYWNlKTsgYm9yZGVyOjFweCBzb2xpZCB2YXIoLS1ib3JkZXIpOyBib3JkZXItcmFkaXVzOjE2cHg7IHBhZGRpbmc6MjJweDsKICAgIGJvcmRlci10b3A6M3B4IHNvbGlkIHZhcigtLWFjY2VudCk7CiAgfQogIC5jYXJkIC5oZWFke2Rpc3BsYXk6ZmxleDsganVzdGlmeS1jb250ZW50OnNwYWNlLWJldHdlZW47IGFsaWduLWl0ZW1zOmZsZXgtc3RhcnQ7IG1hcmdpbi1ib3R0b206MTRweDt9CiAgLmNhcmQgLmhlYWQgaDN7Zm9udC1mYW1pbHk6J1NwYWNlIEdyb3Rlc2snLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxN3B4OyBmb250LXdlaWdodDo2MDA7fQogIC5jYXJkIC5oZWFkIC50aW1le2ZvbnQtZmFtaWx5OidKZXRCcmFpbnMgTW9ubycsbW9ub3NwYWNlOyBmb250LXNpemU6MTIuNXB4OyBjb2xvcjp2YXIoLS1hY2NlbnQpOyBtYXJnaW4tdG9wOjRweDt9CiAgLmNhcmQgLnBpbGx7CiAgICBmb250LWZhbWlseTonSmV0QnJhaW5zIE1vbm8nLG1vbm9zcGFjZTsgZm9udC1zaXplOjEwLjVweDsgdGV4dC10cmFuc2Zvcm06dXBwZXJjYXNlOyBsZXR0ZXItc3BhY2luZzowLjA2ZW07CiAgICBiYWNrZ3JvdW5kOnZhcigtLWFjY2VudC1kaW0pOyBjb2xvcjp2YXIoLS1hY2NlbnQpOyBwYWRkaW5nOjRweCA5cHg7IGJvcmRlci1yYWRpdXM6MjBweDsgd2hpdGUtc3BhY2U6bm93cmFwOwogIH0KICAua3Z7ZGlzcGxheTpmbGV4OyBqdXN0aWZ5LWNvbnRlbnQ6c3BhY2UtYmV0d2VlbjsgZm9udC1zaXplOjEzcHg7IHBhZGRpbmc6N3B4IDA7IGJvcmRlci1ib3R0b206MXB4IHNvbGlkIHZhcigtLWJvcmRlci1zb2Z0KTt9CiAgLmt2Omxhc3Qtb2YtdHlwZXtib3JkZXItYm90dG9tOm5vbmU7fQogIC5rdiAua3tjb2xvcjp2YXIoLS10ZXh0Myk7fQogIC5rdiAudntjb2xvcjp2YXIoLS10ZXh0KTsgZm9udC13ZWlnaHQ6NTAwOyB0ZXh0LWFsaWduOnJpZ2h0O30KICAudm9sLWJhcntoZWlnaHQ6NXB4OyBib3JkZXItcmFkaXVzOjNweDsgYmFja2dyb3VuZDp2YXIoLS1ib3JkZXItc29mdCk7IG1hcmdpbi10b3A6MTBweDsgb3ZlcmZsb3c6aGlkZGVuO30KICAudm9sLWJhciBpe2Rpc3BsYXk6YmxvY2s7IGhlaWdodDoxMDAlOyBiYWNrZ3JvdW5kOnZhcigtLWFjY2VudCk7fQogIC5ub3Rle2ZvbnQtc2l6ZToxMi41cHg7IGNvbG9yOnZhcigtLXRleHQyKTsgbGluZS1oZWlnaHQ6MS41NTsgbWFyZ2luLXRvcDoxMnB4OyBwYWRkaW5nLXRvcDoxMnB4OyBib3JkZXItdG9wOjFweCBkYXNoZWQgdmFyKC0tYm9yZGVyKTt9CgogIC8qIE9WRVJMQVAgU1RSSVAgKi8KICAuc3RyaXB7ZGlzcGxheTpncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyIDEuNmZyIDFmcjsgZ2FwOjE0cHg7fQogIC5vdi1jYXJke2JhY2tncm91bmQ6dmFyKC0tc3VyZmFjZSk7IGJvcmRlcjoxcHggc29saWQgdmFyKC0tYm9yZGVyKTsgYm9yZGVyLXJhZGl1czoxNHB4OyBwYWRkaW5nOjE4cHggMjBweDt9CiAgLm92LWNhcmQucHJpbWV7YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTgwZGVnLCB2YXIoLS1hbWJlci1kaW0pLCB2YXIoLS1zdXJmYWNlKSk7IGJvcmRlci1jb2xvcjojNEEzQjE0O30KICAub3YtY2FyZCAuYmlne2ZvbnQtZmFtaWx5OidTcGFjZSBHcm90ZXNrJyxzYW5zLXNlcmlmOyBmb250LXNpemU6MjJweDsgZm9udC13ZWlnaHQ6NjAwO30KICAub3YtY2FyZCAubGJse2ZvbnQtc2l6ZToxMi41cHg7IGNvbG9yOnZhcigtLXRleHQyKTsgbWFyZ2luLXRvcDoycHg7fQogIC5vdi1jYXJkIC50YWcyewogICAgZm9udC1mYW1pbHk6J0pldEJyYWlucyBNb25vJyxtb25vc3BhY2U7IGZvbnQtc2l6ZToxMC41cHg7IHRleHQtdHJhbnNmb3JtOnVwcGVyY2FzZTsgbGV0dGVyLXNwYWNpbmc6MC4wNmVtOwogICAgY29sb3I6dmFyKC0tdGV4dDMpOyBtYXJnaW4tYm90dG9tOjZweDsgZGlzcGxheTpibG9jazsKICB9CiAgLm92LWNhcmQucHJpbWUgLnRhZzJ7Y29sb3I6dmFyKC0tYW1iZXIpO30KICAub3YtY2FyZC5wcmltZSAuYmlne2NvbG9yOnZhcigtLWFtYmVyKTt9CgogIC8qIEFNL1BNICovCiAgLmFtcG0tZ3JpZHtkaXNwbGF5OmdyaWQ7IGdyaWQtdGVtcGxhdGUtY29sdW1uczoxZnIgMWZyOyBnYXA6MTZweDt9CiAgLmFtcG0tY2FyZHtiYWNrZ3JvdW5kOnZhcigtLXN1cmZhY2UpOyBib3JkZXI6MXB4IHNvbGlkIHZhcigtLWJvcmRlcik7IGJvcmRlci1yYWRpdXM6MTZweDsgcGFkZGluZzoyMHB4O30KICAuYW1wbS1jYXJkIGg0e2ZvbnQtZmFtaWx5OidTcGFjZSBHcm90ZXNrJyxzYW5zLXNlcmlmOyBmb250LXNpemU6MTVweDsgbWFyZ2luLWJvdHRvbToxMnB4O30KICAuaGFsZntkaXNwbGF5OmZsZXg7IGdhcDoxMnB4OyBhbGlnbi1pdGVtczpmbGV4LXN0YXJ0OyBwYWRkaW5nOjEycHggMDsgYm9yZGVyLWJvdHRvbToxcHggc29saWQgdmFyKC0tYm9yZGVyLXNvZnQpO30KICAuaGFsZjpsYXN0LWNoaWxke2JvcmRlci1ib3R0b206bm9uZTt9CiAgLmhhbGYgLmJhZGdlewogICAgZm9udC1mYW1pbHk6J0pldEJyYWlucyBNb25vJyxtb25vc3BhY2U7IGZvbnQtc2l6ZToxMXB4OyBmb250LXdlaWdodDo2MDA7IHBhZGRpbmc6M3B4IDhweDsgYm9yZGVyLXJhZGl1czo2cHg7CiAgICBiYWNrZ3JvdW5kOnZhcigtLXN1cmZhY2UyKTsgY29sb3I6dmFyKC0tdGV4dDIpOyBmbGV4LXNocmluazowOyBtYXJnaW4tdG9wOjJweDsKICB9CiAgLmhhbGYgLnR4dCAuaDV7Zm9udC1zaXplOjEzLjVweDsgZm9udC13ZWlnaHQ6NTAwOyBjb2xvcjp2YXIoLS10ZXh0KTt9CiAgLmhhbGYgLnR4dCAucHtmb250LXNpemU6MTIuNXB4OyBjb2xvcjp2YXIoLS10ZXh0Mik7IG1hcmdpbi10b3A6MnB4OyBsaW5lLWhlaWdodDoxLjU7fQoKICAvKiBUQUJMRSAqLwogIHRhYmxle3dpZHRoOjEwMCU7IGJvcmRlci1jb2xsYXBzZTpjb2xsYXBzZTsgYmFja2dyb3VuZDp2YXIoLS1zdXJmYWNlKTsgYm9yZGVyOjFweCBzb2xpZCB2YXIoLS1ib3JkZXIpOyBib3JkZXItcmFkaXVzOjE0cHg7IG92ZXJmbG93OmhpZGRlbjsgZm9udC1zaXplOjEzcHg7fQogIHRoZWFkIHRoewogICAgdGV4dC1hbGlnbjpsZWZ0OyBmb250LWZhbWlseTonSmV0QnJhaW5zIE1vbm8nLG1vbm9zcGFjZTsgZm9udC1zaXplOjExcHg7IHRleHQtdHJhbnNmb3JtOnVwcGVyY2FzZTsgbGV0dGVyLXNwYWNpbmc6MC4wNmVtOwogICAgY29sb3I6dmFyKC0tdGV4dDMpOyBiYWNrZ3JvdW5kOnZhcigtLXN1cmZhY2UyKTsgcGFkZGluZzoxMnB4IDE2cHg7IGZvbnQtd2VpZ2h0OjUwMDsKICB9CiAgdGJvZHkgdGR7cGFkZGluZzoxM3B4IDE2cHg7IGJvcmRlci10b3A6MXB4IHNvbGlkIHZhcigtLWJvcmRlci1zb2Z0KTsgY29sb3I6dmFyKC0tdGV4dDIpOyB2ZXJ0aWNhbC1hbGlnbjp0b3A7fQogIHRib2R5IHRkLnNlc3Npb257Y29sb3I6dmFyKC0tdGV4dCk7IGZvbnQtd2VpZ2h0OjUwMDt9CiAgdGJvZHkgdHI6aG92ZXJ7YmFja2dyb3VuZDp2YXIoLS1zdXJmYWNlMik7fQogIC5kb3QtbHZse2Rpc3BsYXk6aW5saW5lLWZsZXg7IGdhcDozcHg7IHZlcnRpY2FsLWFsaWduOm1pZGRsZTt9CiAgLmRvdC1sdmwgc3Bhbnt3aWR0aDo2cHg7aGVpZ2h0OjZweDtib3JkZXItcmFkaXVzOjUwJTsgYmFja2dyb3VuZDp2YXIoLS1ib3JkZXIpO30KICAuZG90LWx2bCBzcGFuLm9ue2JhY2tncm91bmQ6dmFyKC0tYW1iZXIpO30KCiAgLyogQURWQU5DRUQgQ09OQ0VQVFMgKi8KICAuY29uY2VwdHN7ZGlzcGxheTpncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KDIsMWZyKTsgZ2FwOjE2cHg7fQogIC5jb25jZXB0e2JhY2tncm91bmQ6dmFyKC0tc3VyZmFjZSk7IGJvcmRlcjoxcHggc29saWQgdmFyKC0tYm9yZGVyKTsgYm9yZGVyLXJhZGl1czoxNnB4OyBwYWRkaW5nOjIwcHg7fQogIC5jb25jZXB0IC5udW17Zm9udC1mYW1pbHk6J0pldEJyYWlucyBNb25vJyxtb25vc3BhY2U7IGZvbnQtc2l6ZToxMXB4OyBjb2xvcjp2YXIoLS10ZWFsKTsgbWFyZ2luLWJvdHRvbTo4cHg7fQogIC5jb25jZXB0IGg0e2ZvbnQtZmFtaWx5OidTcGFjZSBHcm90ZXNrJyxzYW5zLXNlcmlmOyBmb250LXNpemU6MTVweDsgbWFyZ2luLWJvdHRvbTo4cHg7IGZvbnQtd2VpZ2h0OjYwMDt9CiAgLmNvbmNlcHQgcHtmb250LXNpemU6MTNweDsgY29sb3I6dmFyKC0tdGV4dDIpOyBsaW5lLWhlaWdodDoxLjY7fQoKICAvKiBDSEVDS0xJU1QgVEVSTUlOQUwgKi8KICAudGVybWluYWx7CiAgICBiYWNrZ3JvdW5kOiMwQTBEMTI7IGJvcmRlcjoxcHggc29saWQgdmFyKC0tYm9yZGVyKTsgYm9yZGVyLXJhZGl1czoxNHB4OyBwYWRkaW5nOjIycHggMjRweDsKICAgIGZvbnQtZmFtaWx5OidKZXRCcmFpbnMgTW9ubycsbW9ub3NwYWNlOyBmb250LXNpemU6MTNweDsgbGluZS1oZWlnaHQ6Mi4xOwogIH0KICAudGVybWluYWwgLm9rOjpiZWZvcmV7Y29udGVudDoi4pyTICI7IGNvbG9yOnZhcigtLWdvb2QpO30KICAudGVybWluYWwgLm5vOjpiZWZvcmV7Y29udGVudDoi4pyVICI7IGNvbG9yOnZhcigtLWJhZCk7fQogIC50ZXJtaW5hbCAub2t7Y29sb3I6dmFyKC0tdGV4dDIpO30KICAudGVybWluYWwgLm5ve2NvbG9yOnZhcigtLXRleHQyKTt9CiAgLnRlcm1pbmFsIC5vayBiLCAudGVybWluYWwgLm5vIGJ7Y29sb3I6dmFyKC0tdGV4dCk7IGZvbnQtd2VpZ2h0OjUwMDt9CgogIC5mb290ewogICAgbWFyZ2luLXRvcDoxMHB4OyBwYWRkaW5nOjE4cHggMjJweDsgYmFja2dyb3VuZDp2YXIoLS1zdXJmYWNlKTsgYm9yZGVyOjFweCBzb2xpZCB2YXIoLS1ib3JkZXIpOyBib3JkZXItcmFkaXVzOjE0cHg7CiAgICBmb250LXNpemU6MTNweDsgY29sb3I6dmFyKC0tdGV4dDIpOyBsaW5lLWhlaWdodDoxLjY7IGRpc3BsYXk6ZmxleDsgZ2FwOjEycHg7IGFsaWduLWl0ZW1zOmZsZXgtc3RhcnQ7CiAgfQogIC5mb290IC5mbGFne2NvbG9yOnZhcigtLWNvcmFsKTsgZm9udC13ZWlnaHQ6NjAwOyBmbGV4LXNocmluazowOyBmb250LWZhbWlseTonSmV0QnJhaW5zIE1vbm8nLG1vbm9zcGFjZTsgZm9udC1zaXplOjExcHg7CiAgICBiYWNrZ3JvdW5kOnZhcigtLWNvcmFsLWRpbSk7IHBhZGRpbmc6NHB4IDhweDsgYm9yZGVyLXJhZGl1czo2cHg7IG1hcmdpbi10b3A6MXB4O30KCiAgQG1lZGlhIChtYXgtd2lkdGg6ODIwcHgpewogICAgLmhlcm97Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOjFmcjt9CiAgICAuaGVyby1zaWRle2JvcmRlci1sZWZ0Om5vbmU7IGJvcmRlci10b3A6MXB4IHNvbGlkIHZhcigtLWJvcmRlci1zb2Z0KTsgcGFkZGluZzoyMHB4IDAgMDt9CiAgICAuY2FyZHMsIC5zdHJpcCwgLmFtcG0tZ3JpZCwgLmNvbmNlcHRze2dyaWQtdGVtcGxhdGUtY29sdW1uczoxZnI7fQogIH0KPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KPGRpdiBjbGFzcz0id3JhcCI+CgogIDxkaXYgY2xhc3M9ImV5ZWJyb3ctcm93Ij4KICAgIDxkaXYgY2xhc3M9ImV5ZWJyb3ciPjxzcGFuIGNsYXNzPSJkb3QiPjwvc3Bhbj5QZXJzb25hbCByZWZlcmVuY2UgwrcgYWxsIHRpbWVzIDxzcGFuIGlkPSJ0ei1sYWJlbCI+VVRDLTQ8L3NwYW4+PC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJ0ei10b2dnbGUiIHJvbGU9Imdyb3VwIiBhcmlhLWxhYmVsPSJUaW1lem9uZSI+CiAgICAgIDxidXR0b24gY2xhc3M9InR6LWJ0biBhY3RpdmUiIGlkPSJ0ei1idG4tNCIgb25jbGljaz0ic2V0VHooLTQpIj5VVEMtNDwvYnV0dG9uPgogICAgICA8YnV0dG9uIGNsYXNzPSJ0ei1idG4iIGlkPSJ0ei1idG4tNSIgb25jbGljaz0ic2V0VHooLTUpIj5VVEMtNTwvYnV0dG9uPgogICAgPC9kaXY+CiAgPC9kaXY+CiAgPGgxPkZYIHNlc3Npb24gY29tbWFuZCBjZW50ZXI8L2gxPgoKICA8IS0tIEhFUk8gLS0+CiAgPHNlY3Rpb24+CiAgICA8ZGl2IGNsYXNzPSJoZXJvIj4KICAgICAgPGRpdiBjbGFzcz0iY2xvY2std3JhcCI+CiAgICAgICAgPHN2ZyB3aWR0aD0iNDYwIiBoZWlnaHQ9IjQ2MCIgdmlld0JveD0iMCAwIDUyMCA0ODAiPgogICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAsMjApIj4KICAgICAgICAgICAgPGNpcmNsZSBjeD0iMjMwIiBjeT0iMjMwIiByPSIxNzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFEMjIzMCIgc3Ryb2tlLXdpZHRoPSIyNiIvPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIyMzAiIGN5PSIyMzAiIHI9IjE0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTcxQjI3IiBzdHJva2Utd2lkdGg9IjE0Ii8+CgogICAgICAgICAgICA8cGF0aCBkPSJNODIuOCAxNDUuMCBBMTcwIDE3MCAwIDAgMSAzOTQuMiAxODYuMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMkRENEJGIiBzdHJva2Utd2lkdGg9IjI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTM3Ny4yIDE0NS4wIEExNzAgMTcwIDAgMCAxIDE4Ni4wIDM5NC4yIiBmaWxsPSJub25lIiBzdHJva2U9IiNGOTczNTAiIHN0cm9rZS13aWR0aD0iMjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMzUwLjIgMzUwLjIgQTE3MCAxNzAgMCAwIDEgNjAuMCAyMzAuMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQTc4QkZBIiBzdHJva2Utd2lkdGg9IjI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KCiAgICAgICAgICAgIDxwYXRoIGQ9Ik05MC4wIDIzMC4wIEExNDAgMTQwIDAgMCAxIDEwOC44IDE2MC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiM1QjYyNzQiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMzUxLjIgMTYwLjAgQTE0MCAxNDAgMCAwIDEgMzY1LjIgMTkzLjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZCQkYyNCIgc3Ryb2tlLXdpZHRoPSIxMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0zMjkuMCAzMjkuMCBBMTQwIDE0MCAwIDAgMSAxOTMuOCAzNjUuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkJCRjI0IiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KCiAgICAgICAgICAgIDxnIGZvbnQtZmFtaWx5PSJKZXRCcmFpbnMgTW9ubywgbW9ub3NwYWNlIiBmb250LXNpemU9IjExIiBmaWxsPSIjNUQ2NDc4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4KICAgICAgICAgICAgICA8dGV4dCBpZD0idGljay0xOCIgeD0iMzIiIHk9IjIzNCI+MTg6MDA8L3RleHQ+CiAgICAgICAgICAgICAgPHRleHQgaWQ9InRpY2stMjIiIHg9IjEzMSIgeT0iNjIiPjIyOjAwPC90ZXh0PgogICAgICAgICAgICAgIDx0ZXh0IGlkPSJ0aWNrLTAyIiB4PSIzMjkiIHk9IjYyIj4wMjowMDwvdGV4dD4KICAgICAgICAgICAgICA8dGV4dCBpZD0idGljay0wNiIgeD0iNDQ4IiB5PSIyMzQiPjA2OjAwPC90ZXh0PgogICAgICAgICAgICAgIDx0ZXh0IGlkPSJ0aWNrLTEwIiB4PSIzMjkiIHk9IjQwNSI+MTA6MDA8L3RleHQ+CiAgICAgICAgICAgICAgPHRleHQgaWQ9InRpY2stMTQiIHg9IjEzMSIgeT0iNDA1Ij4xNDowMDwvdGV4dD4KICAgICAgICAgICAgPC9nPgoKICAgICAgICAgICAgPGcgZm9udC1mYW1pbHk9IlNwYWNlIEdyb3Rlc2ssIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI2MDAiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPgogICAgICAgICAgICAgIDx0ZXh0IHg9IjI1MiIgeT0iNjYiIGZpbGw9IiMyREQ0QkYiPkFzaWE8L3RleHQ+CiAgICAgICAgICAgICAgPHRleHQgeD0iMzY1IiB5PSIzMzgiIGZpbGw9IiNGOTczNTAiPkxvbmRvbjwvdGV4dD4KICAgICAgICAgICAgICA8dGV4dCB4PSIxNjUiIHk9IjM5MiIgZmlsbD0iI0E3OEJGQSI+TmV3IFlvcms8L3RleHQ+CiAgICAgICAgICAgIDwvZz4KCiAgICAgICAgICAgIDxjaXJjbGUgY3g9IjIzMCIgY3k9IjIzMCIgcj0iMyIgZmlsbD0iIzVENjQ3OCIvPgogICAgICAgICAgICA8bGluZSBpZD0iaGFuZCIgeDE9IjIzMCIgeTE9IjIzMCIgeDI9IjIzMCIgeTI9IjYwIiBzdHJva2U9IiNGQkJGMjQiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgICAgPGNpcmNsZSBpZD0iaGFuZC10aXAiIGN4PSIyMzAiIGN5PSI2MCIgcj0iNSIgZmlsbD0iI0ZCQkYyNCIvPgogICAgICAgICAgPC9nPgogICAgICAgIDwvc3ZnPgogICAgICAgIDxkaXYgaWQ9Im5vdy1yZWFkb3V0Ij5Mb2FkaW5nIGN1cnJlbnQgdGltZeKApjwvZGl2PgogICAgICA8L2Rpdj4KCiAgICAgIDxkaXYgY2xhc3M9Imhlcm8tc2lkZSI+CiAgICAgICAgPGgzPlJpbmcgbGVnZW5kPC9oMz4KICAgICAgICA8ZGl2IGNsYXNzPSJsZWdlbmQtcm93Ij48c3BhbiBjbGFzcz0ic3dhdGNoIiBzdHlsZT0iYmFja2dyb3VuZDojMkRENEJGIj48L3NwYW4+PHNwYW4gY2xhc3M9Im5hbWUiPkFzaWE8L3NwYW4+PHNwYW4gY2xhc3M9InRpbWUiIGlkPSJsZy1hc2lhIj4yMDowMCDigJMgMDU6MDA8L3NwYW4+PC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ibGVnZW5kLXJvdyI+PHNwYW4gY2xhc3M9InN3YXRjaCIgc3R5bGU9ImJhY2tncm91bmQ6I0Y5NzM1MCI+PC9zcGFuPjxzcGFuIGNsYXNzPSJuYW1lIj5Mb25kb248L3NwYW4+PHNwYW4gY2xhc3M9InRpbWUiIGlkPSJsZy1sb25kb24iPjA0OjAwIOKAkyAxMzowMDwvc3Bhbj48L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJsZWdlbmQtcm93Ij48c3BhbiBjbGFzcz0ic3dhdGNoIiBzdHlsZT0iYmFja2dyb3VuZDojQTc4QkZBIj48L3NwYW4+PHNwYW4gY2xhc3M9Im5hbWUiPk5ldyBZb3JrPC9zcGFuPjxzcGFuIGNsYXNzPSJ0aW1lIiBpZD0ibGctbnkiPjA5OjAwIOKAkyAxODowMDwvc3Bhbj48L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJsZWdlbmQtcm93Ij48c3BhbiBjbGFzcz0ic3dhdGNoIiBzdHlsZT0iYmFja2dyb3VuZDojRkJCRjI0Ij48L3NwYW4+PHNwYW4gY2xhc3M9Im5hbWUiPk92ZXJsYXBzPC9zcGFuPjxzcGFuIGNsYXNzPSJ0aW1lIiBpZD0ibGctb3ZlcmxhcCI+MDTigJMwNSAmYW1wOyAwOeKAkzEzPC9zcGFuPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9ImxlZ2VuZC1yb3ciPjxzcGFuIGNsYXNzPSJzd2F0Y2giIHN0eWxlPSJiYWNrZ3JvdW5kOiM1QjYyNzQiPjwvc3Bhbj48c3BhbiBjbGFzcz0ibmFtZSI+RGVhZCB6b25lPC9zcGFuPjxzcGFuIGNsYXNzPSJ0aW1lIiBpZD0ibGctZGVhZCI+MTg6MDAg4oCTIDIwOjAwPC9zcGFuPjwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogIDwvc2VjdGlvbj4KCiAgPCEtLSBTRVNTSU9OIENBUkRTIC0tPgogIDxzZWN0aW9uPgogICAgPGRpdiBjbGFzcz0ic2VjdGlvbi1oZWFkIj48aDI+VGhlIHRocmVlIHNlc3Npb25zPC9oMj48c3BhbiBjbGFzcz0idGFnIj4wMSDCtyBmdW5kYW1lbnRhbHM8L3NwYW4+PC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJjYXJkcyI+CiAgICAgIDxkaXYgY2xhc3M9ImNhcmQiIHN0eWxlPSItLWFjY2VudDojMkRENEJGOyAtLWFjY2VudC1kaW06IzBGM0EzNjsiPgogICAgICAgIDxkaXYgY2xhc3M9ImhlYWQiPgogICAgICAgICAgPGRpdj48aDM+QXNpYTwvaDM+PGRpdiBjbGFzcz0idGltZSIgaWQ9ImNhcmQtYXNpYS10aW1lIj4yMDowMCDigJMgMDU6MDA8L2Rpdj48L2Rpdj4KICAgICAgICAgIDxzcGFuIGNsYXNzPSJwaWxsIj5SYW5nZTwvc3Bhbj4KICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJrdiI+PHNwYW4gY2xhc3M9ImsiPktpbGwgem9uZTwvc3Bhbj48c3BhbiBjbGFzcz0idiIgaWQ9ImNhcmQtYXNpYS1reiI+MjE6MDAg4oCTIDAxOjAwPC9zcGFuPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Imt2Ij48c3BhbiBjbGFzcz0iayI+QmVzdCBwYWlyczwvc3Bhbj48c3BhbiBjbGFzcz0idiI+QVVELCBOWkQsIEpQWSBjcm9zc2VzPC9zcGFuPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Imt2Ij48c3BhbiBjbGFzcz0iayI+TGlxdWlkaXR5PC9zcGFuPjxzcGFuIGNsYXNzPSJ2Ij5Mb3cg4oCTIG1lZGl1bTwvc3Bhbj48L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJ2b2wtYmFyIj48aSBzdHlsZT0id2lkdGg6MzUlIj48L2k+PC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ibm90ZSI+VGVuZHMgdG8gYnVpbGQgdGhlIGRheSdzIG9wZW5pbmcgPGIgc3R5bGU9ImNvbG9yOnZhcigtLXRleHQpIj5yYW5nZTwvYj4g4oCUIHRoZSBoaWdoL2xvdyBMb25kb24gYW5kIE5ZIGxhdGVyIGJyZWFrIG91dCBvZiBvciByZWplY3QgZnJvbS4gR29vZCBmb3IgbWFya2luZyBsZXZlbHMsIG5vdCBjaGFzaW5nIG1vdmVzLjwvZGl2PgogICAgICA8L2Rpdj4KCiAgICAgIDxkaXYgY2xhc3M9ImNhcmQiIHN0eWxlPSItLWFjY2VudDojRjk3MzUwOyAtLWFjY2VudC1kaW06IzNFMjQxQzsiPgogICAgICAgIDxkaXYgY2xhc3M9ImhlYWQiPgogICAgICAgICAgPGRpdj48aDM+TG9uZG9uPC9oMz48ZGl2IGNsYXNzPSJ0aW1lIiBpZD0iY2FyZC1sb25kb24tdGltZSI+MDQ6MDAg4oCTIDEzOjAwPC9kaXY+PC9kaXY+CiAgICAgICAgICA8c3BhbiBjbGFzcz0icGlsbCI+QnJlYWtvdXQ8L3NwYW4+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ia3YiPjxzcGFuIGNsYXNzPSJrIj5LaWxsIHpvbmU8L3NwYW4+PHNwYW4gY2xhc3M9InYiIGlkPSJjYXJkLWxvbmRvbi1reiI+MDM6MDAg4oCTIDA2OjAwPC9zcGFuPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Imt2Ij48c3BhbiBjbGFzcz0iayI+QmVzdCBwYWlyczwvc3Bhbj48c3BhbiBjbGFzcz0idiI+RVVSLCBHQlAgcGFpcnM8L3NwYW4+PC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ia3YiPjxzcGFuIGNsYXNzPSJrIj5MaXF1aWRpdHk8L3NwYW4+PHNwYW4gY2xhc3M9InYiPkhpZ2g8L3NwYW4+PC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0idm9sLWJhciI+PGkgc3R5bGU9IndpZHRoOjgwJSI+PC9pPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Im5vdGUiPk9mdGVuIG9wZW5zIHdpdGggYSBsaXF1aWRpdHkgc3dlZXAgb2YgdGhlIEFzaWEgcmFuZ2UsIHRoZW4gc2V0cyB0aGUgPGIgc3R5bGU9ImNvbG9yOnZhcigtLXRleHQpIj50cnVlIGRpcmVjdGlvbjwvYj4gb2YgdGhlIGRheS4gSGlnaGVzdC1wcm9iYWJpbGl0eSBzZXNzaW9uIGZvciBHQlAvRVVSIGJyZWFrb3V0IHNldHVwcy48L2Rpdj4KICAgICAgPC9kaXY+CgogICAgICA8ZGl2IGNsYXNzPSJjYXJkIiBzdHlsZT0iLS1hY2NlbnQ6I0E3OEJGQTsgLS1hY2NlbnQtZGltOiMyQzI1NDc7Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJoZWFkIj4KICAgICAgICAgIDxkaXY+PGgzPk5ldyBZb3JrPC9oMz48ZGl2IGNsYXNzPSJ0aW1lIiBpZD0iY2FyZC1ueS10aW1lIj4wOTowMCDigJMgMTg6MDA8L2Rpdj48L2Rpdj4KICAgICAgICAgIDxzcGFuIGNsYXNzPSJwaWxsIj5Wb2xhdGlsaXR5PC9zcGFuPgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Imt2Ij48c3BhbiBjbGFzcz0iayI+S2lsbCB6b25lPC9zcGFuPjxzcGFuIGNsYXNzPSJ2IiBpZD0iY2FyZC1ueS1reiI+MDg6MDAg4oCTIDExOjAwPC9zcGFuPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Imt2Ij48c3BhbiBjbGFzcz0iayI+QmVzdCBwYWlyczwvc3Bhbj48c3BhbiBjbGFzcz0idiI+VVNEIHBhaXJzPC9zcGFuPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Imt2Ij48c3BhbiBjbGFzcz0iayI+TGlxdWlkaXR5PC9zcGFuPjxzcGFuIGNsYXNzPSJ2Ij5IaWdoZXN0PC9zcGFuPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9InZvbC1iYXIiPjxpIHN0eWxlPSJ3aWR0aDoxMDAlIj48L2k+PC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ibm90ZSI+Q2FycmllcyBhbG1vc3QgYWxsIG1ham9yIFVTIGRhdGEgKENQSSwgTkZQLCBGT01DKS4gRmlyc3QgaGFsZiBvZnRlbiA8YiBzdHlsZT0iY29sb3I6dmFyKC0tdGV4dCkiPmV4dGVuZHMgb3IgcmV2ZXJzZXM8L2I+IHRoZSBMb25kb24gbW92ZTsgc2Vjb25kIGhhbGYgdGVuZHMgdG8gZmFkZS48L2Rpdj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L3NlY3Rpb24+CgogIDwhLS0gT1ZFUkxBUCBTVFJJUCAtLT4KICA8c2VjdGlvbj4KICAgIDxkaXYgY2xhc3M9InNlY3Rpb24taGVhZCI+PGgyPk92ZXJsYXBzICZhbXA7IGRlYWQgem9uZXM8L2gyPjxzcGFuIGNsYXNzPSJ0YWciPjAyIMK3IHRpbWluZyBlZGdlPC9zcGFuPjwvZGl2PgogICAgPGRpdiBjbGFzcz0ic3RyaXAiPgogICAgICA8ZGl2IGNsYXNzPSJvdi1jYXJkIj4KICAgICAgICA8c3BhbiBjbGFzcz0idGFnMiI+QXNpYSDihpIgTG9uZG9uPC9zcGFuPgogICAgICAgIDxkaXYgY2xhc3M9ImJpZyIgaWQ9Im92LWFzaWEtbG9uZG9uIj4wNDowMOKAkzA1OjAwPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ibGJsIj4xaCBvdmVybGFwIMK3IGxpZ2h0IHZvbHVtZSwgZWFybHkgcG9zaXRpb25pbmcgb25seTwvZGl2PgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0ib3YtY2FyZCBwcmltZSI+CiAgICAgICAgPHNwYW4gY2xhc3M9InRhZzIiPlByaW1lIHdpbmRvdzwvc3Bhbj4KICAgICAgICA8ZGl2IGNsYXNzPSJiaWciIGlkPSJvdi1wcmltZSI+MDk6MDDigJMxMzowMDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9ImxibCI+TG9uZG9uICsgTlkgb3ZlcmxhcCDCtyA0aCBvZiBwZWFrIGxpcXVpZGl0eSDigJQgdGhlIGJlc3Qgd2luZG93IGZvciBHQlAvVVNEIGV4ZWN1dGlvbjwvZGl2PgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0ib3YtY2FyZCI+CiAgICAgICAgPHNwYW4gY2xhc3M9InRhZzIiPkRlYWQgem9uZTwvc3Bhbj4KICAgICAgICA8ZGl2IGNsYXNzPSJiaWciIGlkPSJvdi1kZWFkIj4xODowMOKAkzIwOjAwPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ibGJsIj5ObyBzZXNzaW9uIGFjdGl2ZSDCtyB3aWRlc3Qgc3ByZWFkcywgYXZvaWQgbmV3IGVudHJpZXM8L2Rpdj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L3NlY3Rpb24+CgogIDwhLS0gQU0vUE0gLS0+CiAgPHNlY3Rpb24+CiAgICA8ZGl2IGNsYXNzPSJzZWN0aW9uLWhlYWQiPjxoMj5BTSAvIFBNIHNwbGl0PC9oMj48c3BhbiBjbGFzcz0idGFnIj4wMyDCtyBvbmUgc2Vzc2lvbiwgdHdvIHBoYXNlczwvc3Bhbj48L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImFtcG0tZ3JpZCI+CiAgICAgIDxkaXYgY2xhc3M9ImFtcG0tY2FyZCI+CiAgICAgICAgPGg0IHN0eWxlPSJjb2xvcjojRjk3MzUwIj5Mb25kb248L2g0PgogICAgICAgIDxkaXYgY2xhc3M9ImhhbGYiPgogICAgICAgICAgPHNwYW4gY2xhc3M9ImJhZGdlIj5BTTwvc3Bhbj4KICAgICAgICAgIDxkaXYgY2xhc3M9InR4dCI+PGRpdiBjbGFzcz0iaDUiIGlkPSJhbXBtLWxvbmRvbi1hbSI+MDQ6MDAg4oCTIDA4OjAwPC9kaXY+PGRpdiBjbGFzcz0icCI+U3dlZXBzIHRoZSBBc2lhIHJhbmdlIGFuZCBzZXRzIHRoZSBzZXNzaW9uJ3MgaW5pdGlhbCBkaXJlY3Rpb24uIFdoZXJlIHRoZSBkYXkncyByZWFsIGJpYXMgdXN1YWxseSBmb3Jtcy48L2Rpdj48L2Rpdj4KICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJoYWxmIj4KICAgICAgICAgIDxzcGFuIGNsYXNzPSJiYWRnZSI+UE08L3NwYW4+CiAgICAgICAgICA8ZGl2IGNsYXNzPSJ0eHQiPjxkaXYgY2xhc3M9Img1IiBpZD0iYW1wbS1sb25kb24tcG0iPjA5OjAwIOKAkyAxMzowMDwvZGl2PjxkaXYgY2xhc3M9InAiPlJ1bnMgaW50byB0aGUgTlkgb3ZlcmxhcC4gRWl0aGVyIGV4dGVuZHMgdGhlIEFNIG1vdmUgb24gYSBzdHJvbmcgY2F0YWx5c3QsIG9yIGNob3BzIGFzIE5ZIHJlcG9zaXRpb25zLjwvZGl2PjwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iYW1wbS1jYXJkIj4KICAgICAgICA8aDQgc3R5bGU9ImNvbG9yOiNBNzhCRkEiPk5ldyBZb3JrPC9oND4KICAgICAgICA8ZGl2IGNsYXNzPSJoYWxmIj4KICAgICAgICAgIDxzcGFuIGNsYXNzPSJiYWRnZSI+QU08L3NwYW4+CiAgICAgICAgICA8ZGl2IGNsYXNzPSJ0eHQiPjxkaXYgY2xhc3M9Img1IiBpZD0iYW1wbS1ueS1hbSI+MDk6MDAg4oCTIDEyOjAwPC9kaXY+PGRpdiBjbGFzcz0icCI+Q2FycmllcyB0aGUgaGVhdmllc3QgVVMgZGF0YSAoQ1BJLCBORlAsIEZPTUMgbGFuZCBoZXJlKS4gVXN1YWxseSB0aGUgZGF5J3Mgc3Ryb25nZXN0IGRpcmVjdGlvbmFsIHB1c2guPC9kaXY+PC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0iaGFsZiI+CiAgICAgICAgICA8c3BhbiBjbGFzcz0iYmFkZ2UiPlBNPC9zcGFuPgogICAgICAgICAgPGRpdiBjbGFzcz0idHh0Ij48ZGl2IGNsYXNzPSJoNSIgaWQ9ImFtcG0tbnktcG0iPjEzOjAwIOKAkyAxNjowMDwvZGl2PjxkaXYgY2xhc3M9InAiPlN0YXRpc3RpY2FsbHkgdGhlIGxlYXN0IHJlbGlhYmxlIHdpbmRvdyDigJQgbWFueSBkaXNjcmV0aW9uYXJ5IHRyYWRlcnMgc3RvcCBuZXcgZW50cmllcyBhZnRlciB0aGlzIHBvaW50LjwvZGl2PjwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogIDwvc2VjdGlvbj4KCiAgPCEtLSBUQUJMRSAtLT4KICA8c2VjdGlvbj4KICAgIDxkaXYgY2xhc3M9InNlY3Rpb24taGVhZCI+PGgyPlNlc3Npb24gY29tcGFyaXNvbjwvaDI+PHNwYW4gY2xhc3M9InRhZyI+MDQgwrcgYXQgYSBnbGFuY2U8L3NwYW4+PC9kaXY+CiAgICA8dGFibGU+CiAgICAgIDx0aGVhZD48dHI+PHRoPlNlc3Npb248L3RoPjx0aD5Wb2xhdGlsaXR5PC90aD48dGg+QmVzdCBmb3I8L3RoPjx0aD5XYXRjaCBvdXQgZm9yPC90aD48L3RyPjwvdGhlYWQ+CiAgICAgIDx0Ym9keT4KICAgICAgICA8dHI+CiAgICAgICAgICA8dGQgY2xhc3M9InNlc3Npb24iPkFzaWE8L3RkPgogICAgICAgICAgPHRkPjxzcGFuIGNsYXNzPSJkb3QtbHZsIj48c3BhbiBjbGFzcz0ib24iPjwvc3Bhbj48c3BhbiBjbGFzcz0ib24iPjwvc3Bhbj48c3Bhbj48L3NwYW4+PHNwYW4+PC9zcGFuPjwvc3Bhbj48L3RkPgogICAgICAgICAgPHRkPk1hcmtpbmcgcmFuZ2UsIEFVRC9OWkQvSlBZIHBsYXlzPC90ZD4KICAgICAgICAgIDx0ZD5Mb3ctbGlxdWlkaXR5IGZha2UgYnJlYWtvdXRzPC90ZD4KICAgICAgICA8L3RyPgogICAgICAgIDx0cj4KICAgICAgICAgIDx0ZCBjbGFzcz0ic2Vzc2lvbiI+TG9uZG9uPC90ZD4KICAgICAgICAgIDx0ZD48c3BhbiBjbGFzcz0iZG90LWx2bCI+PHNwYW4gY2xhc3M9Im9uIj48L3NwYW4+PHNwYW4gY2xhc3M9Im9uIj48L3NwYW4+PHNwYW4gY2xhc3M9Im9uIj48L3NwYW4+PHNwYW4+PC9zcGFuPjwvc3Bhbj48L3RkPgogICAgICAgICAgPHRkPkdCUC9FVVIgYnJlYWtvdXRzLCB0cmVuZCBpbml0aWF0aW9uPC90ZD4KICAgICAgICAgIDx0ZD5PcGVuaW5nLWhvdXIgbGlxdWlkaXR5IHN3ZWVwIHRyYXBzPC90ZD4KICAgICAgICA8L3RyPgogICAgICAgIDx0cj4KICAgICAgICAgIDx0ZCBjbGFzcz0ic2Vzc2lvbiI+TG9uZG9uICsgTlkgb3ZlcmxhcDwvdGQ+CiAgICAgICAgICA8dGQ+PHNwYW4gY2xhc3M9ImRvdC1sdmwiPjxzcGFuIGNsYXNzPSJvbiI+PC9zcGFuPjxzcGFuIGNsYXNzPSJvbiI+PC9zcGFuPjxzcGFuIGNsYXNzPSJvbiI+PC9zcGFuPjxzcGFuIGNsYXNzPSJvbiI+PC9zcGFuPjwvc3Bhbj48L3RkPgogICAgICAgICAgPHRkPkJlc3QgZmlsbHMsIGhpZ2hlc3QtY29udmljdGlvbiBlbnRyaWVzPC90ZD4KICAgICAgICAgIDx0ZD5GYXN0ZXN0IG1vdmVzIOKAlCB0aWdodGVuIHJpc2sgc2l6aW5nPC90ZD4KICAgICAgICA8L3RyPgogICAgICAgIDx0cj4KICAgICAgICAgIDx0ZCBjbGFzcz0ic2Vzc2lvbiI+TmV3IFlvcms8L3RkPgogICAgICAgICAgPHRkPjxzcGFuIGNsYXNzPSJkb3QtbHZsIj48c3BhbiBjbGFzcz0ib24iPjwvc3Bhbj48c3BhbiBjbGFzcz0ib24iPjwvc3Bhbj48c3BhbiBjbGFzcz0ib24iPjwvc3Bhbj48c3Bhbj48L3NwYW4+PC9zcGFuPjwvdGQ+CiAgICAgICAgICA8dGQ+VVNEIHBhaXJzLCBkYXRhLWRyaXZlbiBtb21lbnR1bTwvdGQ+CiAgICAgICAgICA8dGQ+UE0gY2hvcCBhZnRlciB0aGUgQU0gbW92ZSBleGhhdXN0czwvdGQ+CiAgICAgICAgPC90cj4KICAgICAgPC90Ym9keT4KICAgIDwvdGFibGU+CiAgPC9zZWN0aW9uPgoKICA8IS0tIEFEVkFOQ0VEIENPTkNFUFRTIC0tPgogIDxzZWN0aW9uPgogICAgPGRpdiBjbGFzcz0ic2VjdGlvbi1oZWFkIj48aDI+TGV2ZWwtdXAgY29uY2VwdHM8L2gyPjxzcGFuIGNsYXNzPSJ0YWciPjA1IMK3IGJleW9uZCB0aGUgYmFzaWNzPC9zcGFuPjwvZGl2PgogICAgPGRpdiBjbGFzcz0iY29uY2VwdHMiPgogICAgICA8ZGl2IGNsYXNzPSJjb25jZXB0Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJudW0iPjAxPC9kaXY+CiAgICAgICAgPGg0PkxpcXVpZGl0eSBzd2VlcHM8L2g0PgogICAgICAgIDxwPlByaWNlIG9mdGVuIHJ1bnMgYWJvdmUgdGhlIEFzaWEgaGlnaCBvciBiZWxvdyB0aGUgQXNpYSBsb3cgcmlnaHQgYXQgTG9uZG9uIG9wZW4g4oCUIG5vdCBhIGJyZWFrb3V0LCBidXQgYSBodW50IGZvciBzdG9wcyBzaXR0aW5nIHRoZXJlLiBUaGUgcmVhbCBtb3ZlIGZyZXF1ZW50bHkgY29tZXMgPGk+YWZ0ZXI8L2k+IHRoZSBzd2VlcCwgaW4gdGhlIG9wcG9zaXRlIGRpcmVjdGlvbi48L3A+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJjb25jZXB0Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJudW0iPjAyPC9kaXY+CiAgICAgICAgPGg0PktpbGwgem9uZXMgdnMgZnVsbCBzZXNzaW9uczwvaDQ+CiAgICAgICAgPHA+VGhlIDktaG91ciBzZXNzaW9uIGlzIHdoZW4gYSBtYXJrZXQgaXMgIm9wZW4uIiBUaGUga2lsbCB6b25lIGlzIHRoZSBuYXJyb3cgd2luZG93IGluc2lkZSBpdCAoZmlyc3QgMy00aCkgd2hlcmUgbW9zdCBvZiB0aGF0IHNlc3Npb24ncyBkaXJlY3Rpb25hbCBtb3ZlIGFjdHVhbGx5IGhhcHBlbnMg4oCUIHRoZSByZXN0IGlzIG9mdGVuIGRyaWZ0IG9yIGNvbnNvbGlkYXRpb24uPC9wPgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iY29uY2VwdCI+CiAgICAgICAgPGRpdiBjbGFzcz0ibnVtIj4wMzwvZGl2PgogICAgICAgIDxoND5OZXdzIG92ZXJyaWRlcyBzZXNzaW9uIGxvZ2ljPC9oND4KICAgICAgICA8cD5BIHNjaGVkdWxlZCBoaWdoLWltcGFjdCByZWxlYXNlIChCb0UsIEZPTUMsIE5GUCwgQ1BJKSBjYW4gZmxpcCB0aGUgZXhwZWN0ZWQgc2Vzc2lvbiBiZWhhdmlvciBpbnN0YW50bHksIHJlZ2FyZGxlc3Mgb2YgQU0vUE0gb3Iga2lsbCB6b25lIHRpbWluZy4gQWx3YXlzIGNoZWNrIHRoZSBjYWxlbmRhciBiZWZvcmUgdHJ1c3RpbmcgdGhlIHNlc3Npb24gcGF0dGVybiBhbG9uZS48L3A+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJjb25jZXB0Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJudW0iPjA0PC9kaXY+CiAgICAgICAgPGg0PlNwcmVhZCB3aWRlbnMgYXQgcm9sbG92ZXI8L2g0PgogICAgICAgIDxwPkFyb3VuZCAxNzowMOKAkzE4OjAwIChOWSBjbG9zZSAvIGJyb2tlciByb2xsb3Zlcikgc3ByZWFkcyB3aWRlbiBhbmQgcHJpY2UgY2FuIHNwaWtlIG9uIHRoaW4gbGlxdWlkaXR5IOKAlCBhIGNvbW1vbiBzb3VyY2Ugb2Ygc3RvcC1vdXRzIHRoYXQgaGF2ZSBub3RoaW5nIHRvIGRvIHdpdGggeW91ciBhY3R1YWwgYW5hbHlzaXMuPC9wPgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogIDwvc2VjdGlvbj4KCiAgPCEtLSBDSEVDS0xJU1QgLS0+CiAgPHNlY3Rpb24+CiAgICA8ZGl2IGNsYXNzPSJzZWN0aW9uLWhlYWQiPjxoMj5TZXNzaW9uIHJ1bGVzPC9oMj48c3BhbiBjbGFzcz0idGFnIj4wNiDCtyBxdWljayByZWZlcmVuY2U8L3NwYW4+PC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJ0ZXJtaW5hbCI+CiAgICAgIDxkaXYgY2xhc3M9Im9rIj48Yj5EbzwvYj4g4oCUIGJ1aWxkIHlvdXIgYmlhcyBpbiBBc2lhLCBleGVjdXRlIGluIExvbmRvbi9OWSBvdmVybGFwLjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJvayI+PGI+RG88L2I+IOKAlCB0cmVhdCB0aGUgTG9uZG9uIEFNIHN3ZWVwIG9mIHRoZSBBc2lhIHJhbmdlIGFzIGEgc2lnbmFsLCBub3QgYSB0cmFwIHRvIGF2b2lkLjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJvayI+PGI+RG88L2I+IOKAlCBjaGVjayB0aGUgZWNvbm9taWMgY2FsZW5kYXIgYmVmb3JlIHRydXN0aW5nIGFueSBzZXNzaW9uIHBhdHRlcm4uPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9Im9rIj48Yj5EbzwvYj4g4oCUIHNpemUgZG93biBvciBzdGVwIGFzaWRlIGdvaW5nIGludG8gdGhlIDE4OjAw4oCTMjA6MDAgZGVhZCB6b25lLjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJubyI+PGI+QXZvaWQ8L2I+IOKAlCBjaGFzaW5nIHRoZSBmaXJzdCBtb3ZlIG9mIExvbmRvbiBBTSB3aXRob3V0IGNvbmZpcm1pbmcgdGhlIEFzaWEgcmFuZ2Ugd2FzIGFjdHVhbGx5IHN3ZXB0LjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJubyI+PGI+QXZvaWQ8L2I+IOKAlCBuZXcgZW50cmllcyBpbiBOWSBQTSBvZmYgdGhlIGJhY2sgb2YgYSB0aXJlZCBBTSB0cmVuZC48L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0ibm8iPjxiPkF2b2lkPC9iPiDigJQgdHJhZGluZyBzaXplIHRocm91Z2ggc2NoZWR1bGVkIGhpZ2gtaW1wYWN0IG5ld3MsIHNlc3Npb24gb3Igbm8gc2Vzc2lvbi48L2Rpdj4KICAgIDwvZGl2PgogIDwvc2VjdGlvbj4KCiAgPGRpdiBjbGFzcz0iZm9vdCI+CiAgICA8c3BhbiBjbGFzcz0iZmxhZyI+bm90ZTwvc3Bhbj4KICAgIDxkaXY+U2Vzc2lvbiBiZWhhdmlvciBpcyBhIDxiIHN0eWxlPSJjb2xvcjp2YXIoLS10ZXh0KSI+YmFzZWxpbmU8L2I+LCBub3QgYSBndWFyYW50ZWUuIEFuIGFjdGl2ZSBnZW9wb2xpdGljYWwgc2hvY2sgb3IgYSBjZW50cmFsLWJhbmsgc3VycHJpc2UgKGxpa2UgdGhlIGN1cnJlbnQgSXJhbi13YXIgb2lsIHNwaWtlIGZlZWRpbmcgaW50byBCb0UgcHJpY2luZykgY2FuIG92ZXJyaWRlIG5vcm1hbCBzZXNzaW9uIHBhdHRlcm5zIGF0IGFueSBob3VyIOKAlCBhbHdheXMgY2hlY2sgaGVhZGxpbmVzIGFuZCB0aGUgY2FsZW5kYXIgYWxvbmdzaWRlIHRoaXMgbWFwLCBub3QgaW5zdGVhZCBvZiBpdC48L2Rpdj4KICA8L2Rpdj4KCjwvZGl2PgoKPHNjcmlwdD4KZnVuY3Rpb24gcGFkKG4pe3JldHVybiBuLnRvU3RyaW5nKCkucGFkU3RhcnQoMiwnMCcpO30KCi8qIC0tLS0gVGltZXpvbmUgdG9nZ2xlIChVVEMtNCAvIFVUQy01KSAtLS0tICovCmNvbnN0IFRaX0lEUyA9IFsndGljay0xOCcsJ3RpY2stMjInLCd0aWNrLTAyJywndGljay0wNicsJ3RpY2stMTAnLCd0aWNrLTE0JywKICAnbGctYXNpYScsJ2xnLWxvbmRvbicsJ2xnLW55JywnbGctb3ZlcmxhcCcsJ2xnLWRlYWQnLAogICdjYXJkLWFzaWEtdGltZScsJ2NhcmQtYXNpYS1reicsJ2NhcmQtbG9uZG9uLXRpbWUnLCdjYXJkLWxvbmRvbi1reicsJ2NhcmQtbnktdGltZScsJ2NhcmQtbnkta3onLAogICdvdi1hc2lhLWxvbmRvbicsJ292LXByaW1lJywnb3YtZGVhZCcsCiAgJ2FtcG0tbG9uZG9uLWFtJywnYW1wbS1sb25kb24tcG0nLCdhbXBtLW55LWFtJywnYW1wbS1ueS1wbSddOwpjb25zdCBUWl9CQVNFID0ge307IC8vIHNuYXBzaG90IG9mIGFsbCB0aW1lIHRleHQsIGNhcHR1cmVkIGF0IFVUQy00ICh0aGUgYmFzZSB0aGUgcGFnZSB3YXMgYnVpbHQgZm9yKQpsZXQgY3VycmVudE9mZnNldCA9IC00OwpmdW5jdGlvbiBpbml0VHpCYXNlKCl7CiAgVFpfSURTLmZvckVhY2goaWQ9PnsgY29uc3QgZWw9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoaWQpOyBpZihlbCkgVFpfQkFTRVtpZF09ZWwudGV4dENvbnRlbnQ7IH0pOwp9CmZ1bmN0aW9uIHNoaWZ0U3RyKHN0ciwgZGVsdGEpewogIGlmKCFkZWx0YSkgcmV0dXJuIHN0cjsKICByZXR1cm4gc3RyLnJlcGxhY2UoLyhcZHsyfSkoOlxkezJ9KT8vZywgKG0saGgsbW0pPT57CiAgICBjb25zdCBoPShwYXJzZUludChoaCwxMCkrZGVsdGErMjQpJTI0OwogICAgcmV0dXJuIFN0cmluZyhoKS5wYWRTdGFydCgyLCcwJykrKG1tfHwnJyk7CiAgfSk7Cn0KZnVuY3Rpb24gc2V0VHoob2Zmc2V0KXsKICBjdXJyZW50T2Zmc2V0ID0gb2Zmc2V0OwogIGNvbnN0IGRlbHRhID0gb2Zmc2V0IC0gKC00KTsKICBUWl9JRFMuZm9yRWFjaChpZD0+ewogICAgY29uc3QgZWw9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoaWQpOwogICAgaWYoZWwgJiYgVFpfQkFTRVtpZF0hPT11bmRlZmluZWQpIGVsLnRleHRDb250ZW50ID0gc2hpZnRTdHIoVFpfQkFTRVtpZF0sIGRlbHRhKTsKICB9KTsKICBjb25zdCBsYmw9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3R6LWxhYmVsJyk7IGlmKGxibCkgbGJsLnRleHRDb250ZW50PSdVVEMnK29mZnNldDsKICBjb25zdCBiND1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndHotYnRuLTQnKSwgYjU9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3R6LWJ0bi01Jyk7CiAgaWYoYjQpIGI0LmNsYXNzTGlzdC50b2dnbGUoJ2FjdGl2ZScsIG9mZnNldD09PS00KTsKICBpZihiNSkgYjUuY2xhc3NMaXN0LnRvZ2dsZSgnYWN0aXZlJywgb2Zmc2V0PT09LTUpOwogIHVwZGF0ZUNsb2NrKCk7Cn0KCmZ1bmN0aW9uIHVwZGF0ZUNsb2NrKCl7CiAgY29uc3Qgbm93ID0gbmV3IERhdGUoKTsKICBjb25zdCB1dGNNcyA9IG5vdy5nZXRUaW1lKCkgKyBub3cuZ2V0VGltZXpvbmVPZmZzZXQoKSo2MDAwMDsKICBjb25zdCB1dGM0ID0gbmV3IERhdGUodXRjTXMgKyBjdXJyZW50T2Zmc2V0KjM2MDAwMDApOwogIGNvbnN0IGggPSB1dGM0LmdldEhvdXJzKCk7CiAgY29uc3QgbSA9IHV0YzQuZ2V0TWludXRlcygpOwogIGNvbnN0IGRlY0hvdXIgPSBoICsgbS82MDsKCiAgY29uc3QgY3g9MjMwLCBjeT0yMzAsIFI9MTUwOwogIGNvbnN0IGFuZ2xlID0gKGRlY0hvdXIvMjQpKjM2MCAtIDkwOwogIGNvbnN0IHJhZCA9IGFuZ2xlKk1hdGguUEkvMTgwOwogIGNvbnN0IHggPSBjeCArIFIqTWF0aC5jb3MocmFkKTsKICBjb25zdCB5ID0gY3kgKyBSKk1hdGguc2luKHJhZCk7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2hhbmQnKS5zZXRBdHRyaWJ1dGUoJ3gyJywgeC50b0ZpeGVkKDEpKTsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnaGFuZCcpLnNldEF0dHJpYnV0ZSgneTInLCB5LnRvRml4ZWQoMSkpOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdoYW5kLXRpcCcpLnNldEF0dHJpYnV0ZSgnY3gnLCB4LnRvRml4ZWQoMSkpOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdoYW5kLXRpcCcpLnNldEF0dHJpYnV0ZSgnY3knLCB5LnRvRml4ZWQoMSkpOwoKICBsZXQgc2Vzc2lvbiwgcGhhc2U7CiAgaWYoZGVjSG91cj49MjAgfHwgZGVjSG91cjw1KXsgc2Vzc2lvbj0nQXNpYSc7IHBoYXNlID0gZGVjSG91cj49MjAgPyAoZGVjSG91cjwyNC41PydlYXJseSc6J2xhdGUnKSA6ICdsYXRlJzsgfQogIGVsc2UgaWYoZGVjSG91cj49NCAmJiBkZWNIb3VyPDEzKXsKICAgIHNlc3Npb249J0xvbmRvbic7CiAgICBwaGFzZSA9IGRlY0hvdXI8OCA/ICdBTScgOiAnUE0nOwogIH0KICBlbHNlIGlmKGRlY0hvdXI+PTkgJiYgZGVjSG91cjwxOCl7CiAgICBzZXNzaW9uPSdOZXcgWW9yayc7CiAgICBwaGFzZSA9IGRlY0hvdXI8MTIgPyAnQU0nIDogJ1BNJzsKICB9CiAgZWxzZSB7IHNlc3Npb249bnVsbDsgfQoKICBsZXQgb3ZlcmxhcCA9ICcnOwogIGlmKGRlY0hvdXI+PTQgJiYgZGVjSG91cjw1KSBvdmVybGFwID0gJyDCtyBBc2lhL0xvbmRvbiBvdmVybGFwJzsKICBpZihkZWNIb3VyPj05ICYmIGRlY0hvdXI8MTMpIG92ZXJsYXAgPSAnIMK3IExvbmRvbi9OWSBwcmltZSBvdmVybGFwJzsKICBpZihkZWNIb3VyPj0xOCAmJiBkZWNIb3VyPDIwKSB7IHNlc3Npb249J25vbmUnOyB9CgogIGNvbnN0IHJlYWRvdXQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbm93LXJlYWRvdXQnKTsKICBjb25zdCB0aW1lU3RyID0gcGFkKGgpKyc6JytwYWQobSkrJyBVVEMnK2N1cnJlbnRPZmZzZXQ7CiAgbGV0IHNlc3Npb25TdHI7CiAgaWYoc2Vzc2lvbj09PSdub25lJyl7CiAgICBzZXNzaW9uU3RyID0gJ0RlYWQgem9uZSDigJQgbm8gc2Vzc2lvbiBhY3RpdmUnOwogIH0gZWxzZSBpZihzZXNzaW9uPT09J0xvbmRvbicgfHwgc2Vzc2lvbj09PSdOZXcgWW9yaycpewogICAgc2Vzc2lvblN0ciA9IHNlc3Npb24rJyBzZXNzaW9uICgnK3BoYXNlKycgaGFsZiknK292ZXJsYXA7CiAgfSBlbHNlIHsKICAgIHNlc3Npb25TdHIgPSBzZXNzaW9uKycgc2Vzc2lvbicrb3ZlcmxhcDsKICB9CiAgcmVhZG91dC5pbm5lckhUTUwgPSAnPHNwYW4gY2xhc3M9ImxpdmUtdGltZSI+Jyt0aW1lU3RyKyc8L3NwYW4+PGJyPjxzcGFuIGNsYXNzPSJsaXZlLXNlc3Npb24iPicrc2Vzc2lvblN0cisnPC9zcGFuPic7Cn0KaW5pdFR6QmFzZSgpOwp1cGRhdGVDbG9jaygpOwpzZXRJbnRlcnZhbCh1cGRhdGVDbG9jaywgMzAwMDApOwo8L3NjcmlwdD4KPC9ib2R5Pgo8L2h0bWw+Cg==";
+function b64DecodeUnicode(str) {
+  return decodeURIComponent(atob(str).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+}
+function openFxDashboard(){
+  const modal=document.getElementById('fx-modal');
+  const frame=document.getElementById('fx-iframe');
+  if(!frame.srcdoc){ frame.srcdoc = b64DecodeUnicode(FX_DASHBOARD_B64); }
+  modal.classList.add('open');
+}
+function closeFxDashboard(){
+  document.getElementById('fx-modal').classList.remove('open');
+}
 function openSettings(){ document.getElementById('settings-modal').classList.add('open'); refreshSettingsUI(); }
 function closeSettings(){ document.getElementById('settings-modal').classList.remove('open'); }
 function changePassword(){
@@ -2105,6 +1636,38 @@ function changePassword(){
   S.settings.password=v; save();
   document.getElementById('set-newpw').value='';
   alert('Password updated.');
+}
+function exportBackup(){
+  const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const d=new Date();
+  a.href=url;
+  a.download='life-control-backup-'+d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+'.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function handleRestoreFile(ev){
+  const file=ev.target.files[0]; if(!file)return;
+  const msg=document.getElementById('restore-msg');
+  const reader=new FileReader();
+  reader.onload=function(e){
+    let data;
+    try{ data=JSON.parse(e.target.result); }
+    catch(err){ msg.style.color='var(--red2)'; msg.textContent='That file isn\'t a valid backup.'; return; }
+    if(!confirm('This will replace everything currently in the app with this backup. Continue?')) return;
+    try{
+      localStorage.setItem(STORE_KEY,JSON.stringify(data));
+      S=data;
+      Object.keys(def).forEach(k=>{ if(S[k]===undefined) S[k]=JSON.parse(JSON.stringify(def[k])); });
+      msg.style.color='var(--green2)';
+      msg.textContent='Backup restored ✅ Reloading...';
+      setTimeout(()=>location.reload(),900);
+    }catch(err){
+      msg.style.color='var(--red2)'; msg.textContent='Could not restore that backup.';
+    }
+  };
+  reader.readAsText(file);
 }
 
 /* ================= TABS ================= */
@@ -2122,57 +1685,6 @@ function sw(tab, el, isMobile=false){
   setTimeout(()=>renderCharts(tab),50);
   updateAll();
   if(tab==='mindset') initMindsetHub();
-}
-
-/* ================= MOBILE NAV — More Drawer ================= */
-// Maps tab IDs to bottom nav item IDs (only main 4 have bnav items)
-const BNAV_MAP = {overview:'bnav-overview',recovery:'bnav-recovery',checklist:'bnav-checklist',trading:'bnav-trading'};
-
-function swMobile(tab, el){
-  // Switch tab content
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  const tabEl = document.getElementById('tab-'+tab);
-  if(tabEl) tabEl.classList.add('active');
-  // Update sidebar active
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  // Update bottom nav active
-  document.querySelectorAll('.bnav-item').forEach(n=>n.classList.remove('active'));
-  // If tab has a dedicated bnav item highlight it
-  if(BNAV_MAP[tab]){
-    const bnavEl = document.getElementById(BNAV_MAP[tab]);
-    if(bnavEl) bnavEl.classList.add('active');
-  }
-  // If came from more drawer item, highlight More button
-  if(!BNAV_MAP[tab]){
-    const moreBtn = document.getElementById('bnav-more');
-    if(moreBtn) moreBtn.classList.add('active');
-  }
-  setTimeout(()=>renderCharts(tab),50);
-  updateAll();
-  if(tab==='mindset') initMindsetHub();
-  // Scroll to top
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function toggleMoreDrawer(){
-  const drawer = document.getElementById('more-drawer');
-  const overlay = document.getElementById('more-drawer-overlay');
-  const isOpen = drawer.style.display !== 'none';
-  if(isOpen){ closeMoreDrawer(); }
-  else {
-    drawer.style.display = 'block';
-    overlay.style.display = 'block';
-    // Animate in
-    drawer.style.transform = 'translateY(100%)';
-    drawer.style.transition = 'transform .25s ease';
-    requestAnimationFrame(()=>{ drawer.style.transform = 'translateY(0)'; });
-  }
-}
-function closeMoreDrawer(){
-  const drawer = document.getElementById('more-drawer');
-  const overlay = document.getElementById('more-drawer-overlay');
-  drawer.style.transform = 'translateY(100%)';
-  setTimeout(()=>{ drawer.style.display='none'; overlay.style.display='none'; drawer.style.transform=''; },220);
 }
 
 /* ================= NIGHT CHECK ================= */
@@ -2208,6 +1720,10 @@ const WEEKDAY_NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday'
 const WEEKDAY_SHORT=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 function tasksForToday(){
   const dow=now.getDay();
+  return S.tasks.filter(t=> t.day===undefined || t.day===null || t.day==='' ? true : Number(t.day)===dow);
+}
+function tasksForDate(d){
+  const dow=d.getDay();
   return S.tasks.filter(t=> t.day===undefined || t.day===null || t.day==='' ? true : Number(t.day)===dow);
 }
 function renderTaskListCard(){
@@ -2582,6 +2098,17 @@ function undoTxn(id){
   t.reversed=true;
   save(); renderFinance(); renderCharts('finance');
 }
+function deleteTxn(id){
+  const t=S.txns.find(x=>x.id===id);
+  if(!t)return;
+  if(!confirm('Delete this transaction permanently? '+(t.reversed?'':'This will also reverse its effect on the account balance.')))return;
+  if(!t.reversed){
+    if(t.type==='dep') S.wallets[t.acct]=Math.max(0,S.wallets[t.acct]-t.amt);
+    else S.wallets[t.acct]+=t.amt;
+  }
+  S.txns=S.txns.filter(x=>x.id!==id);
+  save(); renderFinance(); renderCharts('finance');
+}
 function renameWallet(id){
   const current=S.walletNames[id];
   const n=prompt('Rename account:',current);
@@ -2625,6 +2152,7 @@ function renderFinance(){
           <div style="flex:1"><div style="font-size:.72rem;font-weight:500;color:var(--text);">${names[t.acct]||t.acct}</div>${t.note?`<div style="font-size:.62rem;color:var(--text3);">${t.note}</div>`:''}</div>
           <div style="font-size:.72rem;font-weight:700;color:${t.type==='dep'?'var(--green2)':'var(--red2)'};">${t.type==='dep'?'+':'-'}${t.amt.toLocaleString()} ETB</div>
           ${t.reversed?'<span style="font-size:.6rem;color:var(--text3)">undone</span>':`<span class="chk-del" onclick="undoTxn(${t.id})" title="Undo">↺</span>`}
+          <span class="chk-del" onclick="deleteTxn(${t.id})" title="Delete permanently">🗑</span>
         </div>`).join('');
     }
   }
@@ -2644,6 +2172,32 @@ function renderWeeklyTxnAnalytics(){
   });
   depEl.textContent=dep.toLocaleString()+' ETB';
   wdEl.textContent=wd.toLocaleString()+' ETB';
+  renderWeeklyTxnChart();
+}
+function renderWeeklyTxnChart(){
+  const ctx=document.getElementById('weekly-txn-chart'); if(!ctx)return;
+  const cc=chartColors();
+  if(charts['wktxn']){ charts['wktxn'].destroy(); delete charts['wktxn']; }
+  const WEEKS=6;
+  const weekMs=7*86400000;
+  const nowTs=Date.now();
+  const startOfThisWeek=nowTs-(nowTs%weekMs);
+  const buckets=[];
+  for(let i=WEEKS-1;i>=0;i--){
+    const start=startOfThisWeek-i*weekMs;
+    buckets.push({start,end:start+weekMs,dep:0,wd:0});
+  }
+  S.txns.forEach(t=>{
+    if(t.reversed)return;
+    const ts=t.ts||Date.parse(t.date)||0;
+    const b=buckets.find(bk=>ts>=bk.start&&ts<bk.end);
+    if(b){ if(t.type==='dep') b.dep+=t.amt; else b.wd+=t.amt; }
+  });
+  const labels=buckets.map((b,i)=> i===buckets.length-1 ? 'This wk' : new Date(b.start).toLocaleDateString(undefined,{month:'short',day:'numeric'}));
+  charts['wktxn']=new Chart(ctx,{type:'bar',data:{labels,datasets:[
+    {label:'Deposits',data:buckets.map(b=>b.dep),backgroundColor:'rgba(47,189,131,.8)',borderRadius:4},
+    {label:'Withdrawals',data:buckets.map(b=>b.wd),backgroundColor:'rgba(239,91,82,.8)',borderRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false}},scales:{y:{ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
 }
 function openSavingsModal(){ document.getElementById('savings-modal').classList.add('open'); }
 function closeSavingsModal(){ document.getElementById('savings-modal').classList.remove('open'); }
@@ -2845,8 +2399,15 @@ function saveJournal(){
 function renderJournal(){
   const log=document.getElementById('journal-log');
   if(!log)return;
+  const searchEl=document.getElementById('journal-search');
+  const q=searchEl?searchEl.value.trim().toLowerCase():'';
+  let entries=S.journal;
+  if(q){
+    entries=entries.filter(e=> [e.date,e.sp,e.ur,e.gr,e.tm].filter(Boolean).join(' ').toLowerCase().includes(q));
+  }
   if(!S.journal.length){ log.innerHTML='<div style="font-size:.72rem;color:var(--text3);text-align:center;padding:20px;">No entries yet. Write your first one.</div>'; return; }
-  log.innerHTML=S.journal.map(e=>`
+  if(!entries.length){ log.innerHTML='<div style="font-size:.72rem;color:var(--text3);text-align:center;padding:20px;">No entries match "'+q+'".</div>'; return; }
+  log.innerHTML=entries.map(e=>`
     <div class="journal-entry">
       <div class="journal-date">${e.date}</div>
       ${e.sp?`<div class="journal-section"><div class="journal-s-lbl" style="color:var(--gold2)">🙏 SPIRITUAL</div><div class="journal-text">${e.sp}</div></div>`:''}
@@ -3185,99 +2746,6 @@ function checkEuphoria(prev,curr){
 }
 
 /* Sessions */
-/* ===== FX SESSION CLOCK ===== */
-function fxArcPath(cx,cy,r,startDeg,endDeg){
-  const s=startDeg*Math.PI/180, e=endDeg*Math.PI/180;
-  const large=endDeg-startDeg>180?1:0;
-  return `M${(cx+r*Math.cos(s)).toFixed(2)},${(cy+r*Math.sin(s)).toFixed(2)} A${r},${r} 0 ${large} 1 ${(cx+r*Math.cos(e)).toFixed(2)},${(cy+r*Math.sin(e)).toFixed(2)}`;
-}
-function hrToDeg(h){ return (h/24)*360 - 90; } // 24h clock, 0h=top
-
-function renderFXClock(){
-  const cx=230,cy=230,rArc=165,rTick=190,rLabel=208;
-  const svg=document.getElementById('fx-clock-svg');
-  if(!svg)return;
-
-  // Draw arcs (EAT times)
-  // Asia EAT 21:00–06:00 → straddles midnight
-  const asiaPaths=[fxArcPath(cx,cy,rArc,hrToDeg(21),hrToDeg(24))+' '+fxArcPath(cx,cy,rArc,hrToDeg(0),hrToDeg(6))];
-  const asiaEl=document.getElementById('fx-arc-asia');
-  if(asiaEl){asiaEl.setAttribute('d',fxArcPath(cx,cy,rArc,hrToDeg(21),hrToDeg(24)));} // first segment
-  // Use two separate arcs for Asia (crosses midnight)
-  const asiaEl2=document.getElementById('fx-arc-asia2');
-  // London EAT 11:00–20:00
-  const londonEl=document.getElementById('fx-arc-london');
-  if(londonEl) londonEl.setAttribute('d',fxArcPath(cx,cy,rArc,hrToDeg(11),hrToDeg(20)));
-  // NY EAT 16:00–01:00
-  const nyEl=document.getElementById('fx-arc-ny');
-  if(nyEl) nyEl.setAttribute('d',fxArcPath(cx,cy,rArc,hrToDeg(16),hrToDeg(24)));
-  // Overlap 16:00–20:00
-  const ovEl=document.getElementById('fx-arc-overlap');
-  if(ovEl) ovEl.setAttribute('d',fxArcPath(cx,cy,rArc,hrToDeg(16),hrToDeg(20)));
-
-  // Draw hour ticks
-  const ticksEl=document.getElementById('fx-ticks');
-  const labelsEl=document.getElementById('fx-labels');
-  if(ticksEl && !ticksEl.dataset.drawn){
-    ticksEl.dataset.drawn='1';
-    let tHTML='',lHTML='';
-    for(let h=0;h<24;h++){
-      const deg=(h/24)*360-90;
-      const rad=deg*Math.PI/180;
-      const isMajor=h%6===0;
-      const r1=isMajor?rTick-8:rTick-4;
-      const x1=(cx+r1*Math.cos(rad)).toFixed(1);
-      const y1=(cy+r1*Math.sin(rad)).toFixed(1);
-      const x2=(cx+rTick*Math.cos(rad)).toFixed(1);
-      const y2=(cy+rTick*Math.sin(rad)).toFixed(1);
-      tHTML+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--border2)" stroke-width="${isMajor?1.5:0.8}"/>`;
-      if(isMajor){
-        const lx=(cx+rLabel*Math.cos(rad)).toFixed(1);
-        const ly=(cy+rLabel*Math.sin(rad)).toFixed(1);
-        lHTML+=`<text x="${lx}" y="${ly}">${String(h).padStart(2,'0')}</text>`;
-      }
-    }
-    ticksEl.innerHTML=tHTML;
-    if(labelsEl) labelsEl.innerHTML=lHTML;
-  }
-
-  // Move hand to current EAT time (UTC+3)
-  const now=new Date();
-  const eatMs=now.getTime()+now.getTimezoneOffset()*60000+3*3600000;
-  const eat=new Date(eatMs);
-  const hEAT=eat.getHours();
-  const mEAT=eat.getMinutes();
-  const decH=hEAT+mEAT/60;
-  const deg=(decH/24)*360-90;
-  const rad=deg*Math.PI/180;
-  const R=150;
-  const hx=(cx+R*Math.cos(rad)).toFixed(1);
-  const hy=(cy+R*Math.sin(rad)).toFixed(1);
-  const hand=document.getElementById('fx-hand');
-  const tip=document.getElementById('fx-hand-tip');
-  if(hand){hand.setAttribute('x2',hx);hand.setAttribute('y2',hy);}
-  if(tip){tip.setAttribute('cx',hx);tip.setAttribute('cy',hy);}
-
-  // Update readout
-  const timeEl=document.getElementById('fx-time');
-  const sessEl=document.getElementById('fx-session-label');
-  const badgeEl=document.getElementById('fx-live-session-badge');
-  const pad=n=>String(n).padStart(2,'0');
-  const timeStr=`${pad(hEAT)}:${pad(mEAT)} EAT`;
-  if(timeEl) timeEl.textContent=timeStr;
-
-  // Determine session
-  let sess='', phase='', overlap='';
-  if(decH>=21||decH<6){ sess='🌏 Asia Session'; }
-  else if(decH>=6&&decH<11){ sess='💤 Pre-London'; }
-  else if(decH>=11&&decH<20){ sess=decH<14?'🇬🇧 London KZ ⭐':'🇬🇧 London Session'; }
-  else if(decH>=20&&decH<21){ sess='🔄 Transition'; }
-  if(decH>=16&&decH<20){ sess='⭐ Prime Overlap (London+NY)'; }
-  if(decH>=1&&decH<3){ sess='💤 Dead Zone — No Session'; }
-  if(sessEl){ sessEl.textContent=sess; sessEl.style.color=decH>=16&&decH<20?'var(--gold2)':decH>=1&&decH<3?'var(--red2)':'var(--green2)'; }
-  if(badgeEl){ badgeEl.textContent=sess||timeStr; }
-}
-
 function renderSessions(){
   const utc=new Date(now.toUTCString().slice(0,-4));
   const h=utc.getUTCHours();
@@ -3456,7 +2924,7 @@ function initTrading(){
 }
 
 /* ================= UPDATE ALL ================= */
-function updateAll(){ renderGrid(); updateCheckUI(); renderFinance(); renderDevScore(); renderTriggers(); renderGoals(); renderTomorrowPlan(); initMindsetHub(); }
+function updateAll(){ renderGrid(); updateCheckUI(); renderFinance(); renderDevScore(); renderTriggers(); renderGoals(); renderTomorrowPlan(); initMindsetHub(); renderTodayGlance(); renderWeeklySummary(); }
 
 /* ================= FREEDOM MAP — 30-DAY CYCLE CALENDAR ================= */
 const FM_CYCLE=30;
@@ -3484,6 +2952,74 @@ function fmEnsureCycle(){
     S.freedomCycle={ start:fmYmd(start), end:fmYmd(fmAddDays(start,FM_CYCLE-1)), cycleNumber:(S.freedomCycle&&S.freedomCycle.cycleNumber)||1 };
     save();
   }
+}
+function renderTodayGlance(){
+  const el=document.getElementById('today-glance'); if(!el)return;
+  const c=S.checks[todayStr]||{};
+  const todays=tasksForToday();
+  const done=todays.filter(t=>c[t.id]===true).length;
+  const total=todays.length;
+  fmEnsureCycle();
+  const fc=S.freedomCycle;
+  const startD=fmParse(fc.start), endD=fmParse(fc.end), today=fmToday();
+  let dayIndex=Math.floor((Math.min(today,endD)-startD)/86400000)+1;
+  if(today<startD) dayIndex=0;
+  if(dayIndex>FM_CYCLE) dayIndex=FM_CYCLE;
+  const locked=isLocked();
+  const hrNow=new Date().getHours();
+  let mode='g-neutral', msg='';
+  if(total>0 && done===total){
+    mode='g-ok'; msg="🏆 Today's tasks are complete. Well done.";
+  } else if(done===0 && hrNow>=18){
+    mode='g-alert'; msg="⏰ You haven't checked in today. Don't let the day slip by — even one task counts.";
+  } else if(done===0){
+    mode='g-neutral'; msg="Let's get started — nothing logged yet today.";
+  } else {
+    mode='g-neutral'; msg=`${done}/${total} tasks done — keep going.`;
+  }
+  el.innerHTML=`<div class="glance-card ${mode}">
+    <div class="glance-msg">${msg}</div>
+    <div class="glance-pills">
+      <span class="glance-pill">📅 Day ${dayIndex}/${FM_CYCLE}</span>
+      <span class="glance-pill">✅ ${done}/${total} tasks</span>
+      <span class="glance-pill">${locked?'🔒 Trading locked':'📈 Trading open'}</span>
+    </div>
+  </div>`;
+}
+function renderWeeklySummary(){
+  const el=document.getElementById('weekly-summary-list'); if(!el)return;
+  let recWins=0, recFails=0;
+  let taskDone=0, taskTotal=0;
+  for(let i=0;i<7;i++){
+    const d=new Date(); d.setDate(d.getDate()-i);
+    const key=dateKey(d);
+    const status=S.days[key];
+    if(status==='win') recWins++; else if(status==='fail') recFails++;
+    const c=S.checks[key]||{};
+    const dayTasks=tasksForDate(d);
+    taskTotal+=dayTasks.length;
+    taskDone+=dayTasks.filter(t=>c[t.id]===true).length;
+  }
+  const recPct = (recWins+recFails)>0 ? Math.round((recWins/(recWins+recFails))*100) : null;
+  const taskPct = taskTotal>0 ? Math.round((taskDone/taskTotal)*100) : 0;
+  const cutoff=Date.now()-7*86400000;
+  const weekTrades=(S.trading.trades||[]).filter(t=>t.id>=cutoff);
+  const tWins=weekTrades.filter(t=>t.result==='win').length;
+  const tradePct = weekTrades.length ? Math.round((tWins/weekTrades.length)*100) : null;
+  let dep=0, wd=0;
+  S.txns.forEach(t=>{
+    if(t.reversed)return;
+    const ts=t.ts||Date.parse(t.date)||0;
+    if(ts>=cutoff){ if(t.type==='dep') dep+=t.amt; else wd+=t.amt; }
+  });
+  const netSavings=dep-wd;
+  const rows=[
+    {icon:'🛡️',label:'Recovery',val: recPct===null ? 'No days logged' : recPct+'% clean ('+recWins+'/'+(recWins+recFails)+')', pct: recPct===null?0:recPct, cls:'pf-blue'},
+    {icon:'✅',label:'Task Consistency',val: taskTotal===0 ? 'No tasks scheduled' : taskDone+'/'+taskTotal+' done ('+taskPct+'%)', pct:taskPct, cls:'pf-gold'},
+    {icon:'📈',label:'Trading Discipline',val: tradePct===null ? 'No entries logged' : tWins+'/'+weekTrades.length+' profitable ('+tradePct+'%)', pct: tradePct===null?0:tradePct, cls:'pf-purple'},
+    {icon:'💰',label:'Savings Growth',val: (netSavings>=0?'+':'')+netSavings.toLocaleString()+' ETB net', pct: Math.max(0,Math.min(100,50+netSavings/100)), cls: netSavings>=0?'pf-green':'pf-red'}
+  ];
+  el.innerHTML=rows.map(r=>`<div class="prog-item"><div class="prog-top"><span class="prog-lbl">${r.icon} ${r.label}</span><span class="prog-pct">${r.val}</span></div><div class="prog-bg"><div class="prog-fill ${r.cls}" style="width:${r.pct}%"></div></div></div>`).join('');
 }
 function fmEditStartDate(){
   const current=(S.freedomCycle&&S.freedomCycle.start) || fmYmd(fmDefaultStart());
@@ -3551,6 +3087,7 @@ function fmDayClick(d){
   fmCheckArchive();
   renderGrid();
   renderTriggers();
+  renderTodayGlance(); renderWeeklySummary();
   if(document.getElementById('tab-recovery') && document.getElementById('tab-recovery').classList.contains('active')) renderCharts('recovery');
 }
 
@@ -3678,261 +3215,6 @@ function fmRenderAll(){
 
 
 
-/* ================= BOOK LIBRARY ================= */
-let bookFilter = 'All';
-let bookRatingPending = 0;
-let bookRecommendPending = '';
-
-const BOOK_SPINE_CLASS = {
-  'Trading & Finance':'book-spine-trading',
-  'Self Development':'book-spine-self',
-  'Spiritual & Faith':'book-spine-spiritual',
-  'Business':'book-spine-business',
-  'Other':'book-spine-other'
-};
-const BOOK_SPINE_EMOJI = {
-  'Trading & Finance':'📈',
-  'Self Development':'🧠',
-  'Spiritual & Faith':'🙏',
-  'Business':'💼',
-  'Other':'📖'
-};
-
-function openBookModal(editId){
-  bookRatingPending = 0;
-  bookRecommendPending = '';
-  // Reset form
-  ['book-title','book-author','book-lessons','book-quotes','book-notes'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
-  document.getElementById('book-start').value = new Date().toISOString().split('T')[0];
-  document.getElementById('book-end').value = '';
-  document.getElementById('book-rating').value = '0';
-  document.getElementById('book-recommend').value = '';
-  document.getElementById('book-rating-lbl').textContent = 'Not rated';
-  document.getElementById('book-edit-id').value = '';
-  document.getElementById('book-modal-title').textContent = '📚 Add Book';
-  document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.recommend-btn').forEach(b=>b.classList.remove('active'));
-
-  if(editId){
-    const book = S.books.find(b=>b.id===editId);
-    if(!book) return;
-    document.getElementById('book-edit-id').value = editId;
-    document.getElementById('book-modal-title').textContent = '✎ Edit Book';
-    document.getElementById('book-title').value = book.title||'';
-    document.getElementById('book-author').value = book.author||'';
-    document.getElementById('book-category').value = book.category||'Other';
-    document.getElementById('book-status').value = book.status||'reading';
-    document.getElementById('book-start').value = book.startDate||'';
-    document.getElementById('book-end').value = book.endDate||'';
-    document.getElementById('book-lessons').value = book.lessons||'';
-    document.getElementById('book-quotes').value = book.quotes||'';
-    document.getElementById('book-notes').value = book.notes||'';
-    bookRatingPending = book.rating||0;
-    bookRecommendPending = book.recommend||'';
-    setBookRating(bookRatingPending, true);
-    if(bookRecommendPending) setRecommend(bookRecommendPending, true);
-  }
-  document.getElementById('book-detail-modal').classList.remove('open');
-  document.getElementById('book-modal').classList.add('open');
-}
-
-function closeBookModal(){
-  document.getElementById('book-modal').classList.remove('open');
-}
-
-function setBookRating(val, silent){
-  bookRatingPending = val;
-  document.getElementById('book-rating').value = val;
-  const labels = ['','⭐ Poor','⭐⭐ Fair','⭐⭐⭐ Good','⭐⭐⭐⭐ Great','⭐⭐⭐⭐⭐ Excellent'];
-  document.getElementById('book-rating-lbl').textContent = labels[val]||'Not rated';
-  document.querySelectorAll('.star-btn').forEach(b=>{
-    b.classList.toggle('active', parseInt(b.dataset.v)<=val);
-  });
-}
-
-function setRecommend(val, silent){
-  bookRecommendPending = val;
-  document.getElementById('book-recommend').value = val;
-  document.querySelectorAll('.recommend-btn').forEach(b=>b.classList.remove('active'));
-  const map = {yes:'rec-yes',no:'rec-no',maybe:'rec-maybe'};
-  const btn = document.getElementById(map[val]);
-  if(btn) btn.classList.add('active');
-}
-
-function saveBook(){
-  const title = document.getElementById('book-title').value.trim();
-  const author = document.getElementById('book-author').value.trim();
-  if(!title || !author){ alert('Please enter at least title and author name.'); return; }
-
-  const book = {
-    id: Date.now(),
-    title,
-    author,
-    category: document.getElementById('book-category').value,
-    status: document.getElementById('book-status').value,
-    startDate: document.getElementById('book-start').value,
-    endDate: document.getElementById('book-end').value,
-    rating: bookRatingPending,
-    recommend: bookRecommendPending,
-    lessons: document.getElementById('book-lessons').value.trim(),
-    quotes: document.getElementById('book-quotes').value.trim(),
-    notes: document.getElementById('book-notes').value.trim(),
-    addedAt: Date.now()
-  };
-
-  const editId = document.getElementById('book-edit-id').value;
-  if(editId){
-    const idx = S.books.findIndex(b=>b.id===Number(editId));
-    if(idx>-1){ book.id=Number(editId); book.addedAt=S.books[idx].addedAt; S.books[idx]=book; }
-  } else {
-    if(!S.books) S.books=[];
-    S.books.unshift(book);
-  }
-  save();
-  closeBookModal();
-  renderBooks();
-  renderBookStats();
-  showUndoToast('📚 Book saved: '+title);
-}
-
-function deleteBook(id){
-  if(!confirm('Delete this book from your library?')) return;
-  S.books = S.books.filter(b=>b.id!==id);
-  save();
-  document.getElementById('book-detail-modal').classList.remove('open');
-  renderBooks();
-  renderBookStats();
-}
-
-function openBookDetail(id){
-  const book = S.books.find(b=>b.id===id);
-  if(!book) return;
-  document.getElementById('bd-title').textContent = book.title;
-  const statusMap = {reading:'📖 Currently Reading',finished:'✅ Finished',wishlist:'🔖 Want to Read'};
-  const recMap = {yes:'👍 Yes, recommend',no:'👎 No',maybe:'🤔 Maybe'};
-  const stars = book.rating ? '⭐'.repeat(book.rating) : 'Not rated';
-  const startFmt = book.startDate ? new Date(book.startDate+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}) : '—';
-  const endFmt = book.endDate ? new Date(book.endDate+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}) : '—';
-
-  document.getElementById('book-detail-content').innerHTML = `
-    <div style="display:flex;gap:14px;align-items:center;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);">
-      <div class="book-spine ${BOOK_SPINE_CLASS[book.category]||'book-spine-other'}" style="width:50px;height:68px;font-size:1.5rem;">${BOOK_SPINE_EMOJI[book.category]||'📖'}</div>
-      <div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:3px;">${book.title}</div>
-        <div style="font-size:.75rem;color:var(--text3);margin-bottom:6px;">by ${book.author}</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="book-cat-badge">${book.category||'Other'}</span>
-          <span class="book-status-badge ${book.status==='finished'?'bs-finished':book.status==='reading'?'bs-reading':'bs-wishlist'}">${statusMap[book.status]||book.status}</span>
-        </div>
-      </div>
-    </div>
-    <div class="bd-section">
-      <div class="bd-section-lbl">📅 Reading Dates</div>
-      <div class="bd-section-text">Started: <strong>${startFmt}</strong> &nbsp;→&nbsp; Finished: <strong>${endFmt}</strong></div>
-    </div>
-    <div class="bd-section">
-      <div class="bd-section-lbl">⭐ Rating & Recommendation</div>
-      <div class="bd-section-text">${stars} &nbsp;·&nbsp; ${recMap[book.recommend]||'Not specified'}</div>
-    </div>
-    ${book.lessons ? `<div class="bd-section">
-      <div class="bd-section-lbl">💡 What I Learned</div>
-      <div class="bd-section-text">${book.lessons.replace(/\n/g,'<br>')}</div>
-    </div>` : ''}
-    ${book.quotes ? `<div class="bd-section">
-      <div class="bd-section-lbl">💬 Key Quotes</div>
-      ${book.quotes.split('\n').filter(q=>q.trim()).map(q=>`<div class="bd-quote-block">${q}</div>`).join('')}
-    </div>` : ''}
-    ${book.notes ? `<div class="bd-section">
-      <div class="bd-section-lbl">📝 Personal Notes</div>
-      <div class="bd-section-text">${book.notes.replace(/\n/g,'<br>')}</div>
-    </div>` : ''}
-  `;
-  document.getElementById('bd-edit-btn').onclick = ()=>openBookModal(id);
-  document.getElementById('bd-delete-btn').onclick = ()=>deleteBook(id);
-  document.getElementById('book-detail-modal').classList.add('open');
-}
-
-function renderBookCatFilter(){
-  const el = document.getElementById('book-cat-filter');
-  if(!el) return;
-  const cats = ['All','Trading & Finance','Self Development','Spiritual & Faith','Business','Other'];
-  el.innerHTML = cats.map(c=>`<button class="book-filter-btn${bookFilter===c?' active':''}" onclick="bookFilter='${c}';renderBooks();renderBookCatFilter()">${c}</button>`).join('');
-}
-
-function renderBooks(){
-  const list = document.getElementById('book-list');
-  const empty = document.getElementById('book-empty');
-  if(!list) return;
-  if(!S.books) S.books=[];
-
-  const filtered = bookFilter==='All' ? S.books : S.books.filter(b=>b.category===bookFilter);
-
-  if(!filtered.length){
-    list.innerHTML='';
-    if(empty) empty.style.display='block';
-    return;
-  }
-  if(empty) empty.style.display='none';
-
-  const statusMap = {reading:'📖 Reading',finished:'✅ Done',wishlist:'🔖 Wishlist'};
-  const statusClass = {reading:'bs-reading',finished:'bs-finished',wishlist:'bs-wishlist'};
-  const recIcon = {yes:'👍',no:'👎',maybe:'🤔'};
-
-  list.innerHTML = filtered.map(book=>{
-    const stars = book.rating ? '⭐'.repeat(book.rating) : '';
-    const startFmt = book.startDate ? new Date(book.startDate+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
-    const endFmt = book.endDate ? new Date(book.endDate+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
-    const lessonsPreview = book.lessons ? book.lessons.substring(0,140)+(book.lessons.length>140?'…':'') : '';
-    const firstQuote = book.quotes ? book.quotes.split('\n').find(q=>q.trim()) : '';
-
-    return `<div class="book-card" onclick="openBookDetail(${book.id})">
-      <div class="book-actions" onclick="event.stopPropagation()">
-        <button class="book-action-btn" onclick="openBookModal(${book.id})">✎ Edit</button>
-        <button class="book-action-btn" style="color:var(--red2);" onclick="deleteBook(${book.id})">🗑</button>
-      </div>
-      <div class="book-card-top">
-        <div class="book-spine ${BOOK_SPINE_CLASS[book.category]||'book-spine-other'}">${BOOK_SPINE_EMOJI[book.category]||'📖'}</div>
-        <div class="book-meta">
-          <div class="book-title-text">${book.title}</div>
-          <div class="book-author-text">by ${book.author}</div>
-          <div class="book-tags">
-            <span class="book-cat-badge">${book.category||'Other'}</span>
-            <span class="book-status-badge ${statusClass[book.status]||'bs-wishlist'}">${statusMap[book.status]||book.status}</span>
-            ${book.recommend ? `<span style="font-size:.72rem;">${recIcon[book.recommend]||''}</span>` : ''}
-          </div>
-          <div class="book-tags" style="margin-top:4px;">
-            ${stars ? `<span class="book-stars">${stars}</span>` : ''}
-          </div>
-          <div class="book-dates">📅 ${startFmt} → ${endFmt}</div>
-        </div>
-      </div>
-      ${lessonsPreview ? `<div class="book-lessons-preview"><strong>💡 Lessons:</strong><br>${lessonsPreview}</div>` : ''}
-      ${firstQuote ? `<div class="book-quote-preview">"${firstQuote.replace(/^["']|["']$/g,'')}"</div>` : ''}
-    </div>`;
-  }).join('');
-}
-
-function renderBookStats(){
-  const books = S.books||[];
-  const finished = books.filter(b=>b.status==='finished').length;
-  const reading = books.filter(b=>b.status==='reading').length;
-  const rated = books.filter(b=>b.rating>0);
-  const avgRating = rated.length ? (rated.reduce((s,b)=>s+b.rating,0)/rated.length).toFixed(1) : '--';
-  const lessons = books.filter(b=>b.lessons&&b.lessons.trim()).length;
-
-  const bt=document.getElementById('book-total'); if(bt)bt.textContent=finished;
-  const br=document.getElementById('book-reading'); if(br)br.textContent=reading;
-  const bar=document.getElementById('book-avg-rating'); if(bar)bar.textContent=avgRating;
-  const bl=document.getElementById('book-lessons'); if(bl)bl.textContent=lessons;
-}
-
-function initBooks(){
-  if(!S.books) S.books=[];
-  renderBookCatFilter();
-  renderBooks();
-  renderBookStats();
-}
-
 /* ================= INIT ================= */
 function init(){
   applyTheme();
@@ -3941,10 +3223,169 @@ function init(){
   if(gt)gt.textContent=greet+', Binyam '+greetIcon;
   renderTaskListCard();
   updateCheckUI(); restoreDevs(); renderGrid(); renderFinance(); renderTriggers(); renderJournal(); renderGoals(); renderAvatar();
-  initTrading(); initMindsetHub(); initBooks();
+  initTrading(); initMindsetHub();
   renderCharts('overview'); updateAll();
+  renderBooks();
   checkNight();
 }
+
+/* ============================================================
+   MORE DRAWER
+   ============================================================ */
+function toggleMoreDrawer(){
+  const d=document.getElementById('more-drawer');
+  const o=document.getElementById('more-overlay');
+  const open=d.style.display!=='none';
+  if(open){ closeMoreDrawer(); }
+  else {
+    d.style.display='block'; o.style.display='block';
+    d.style.transform='translateY(100%)';
+    d.style.transition='transform .25s ease';
+    requestAnimationFrame(()=>{ d.style.transform='translateY(0)'; });
+  }
+}
+function closeMoreDrawer(){
+  const d=document.getElementById('more-drawer');
+  const o=document.getElementById('more-overlay');
+  d.style.transform='translateY(100%)';
+  setTimeout(()=>{ d.style.display='none'; o.style.display='none'; d.style.transform=''; },220);
+}
+
+/* ============================================================
+   BOOKS
+   ============================================================ */
+if(!S.books) S.books=[];
+if(!S.bookCats) S.bookCats=['Trading & Finance','Self Development','Spiritual & Faith','Business','Other'];
+let bkEditId=null, bkFilterCat='All';
+
+function openBookModal(id){
+  bkEditId=id||null;
+  const book=id?S.books.find(b=>b.id===id):null;
+  // Build modal HTML dynamically
+  let existing=document.getElementById('book-modal');
+  if(existing) existing.remove();
+  const m=document.createElement('div');
+  m.id='book-modal';
+  m.className='modal-overlay open';
+  m.innerHTML=`<div class="modal" style="max-width:500px;">
+    <div class="modal-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <span style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;">${id?'Edit Book':'📚 Add Book'}</span>
+      <button onclick="document.getElementById('book-modal').remove()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text3);">×</button>
+    </div>
+    <div class="inp-grp"><label class="inp-lbl">Book Title *</label><input class="inp" id="bk-title" value="${book?escHtml(book.title):''}" placeholder="e.g. Trading in the Zone"></div>
+    <div class="inp-grp"><label class="inp-lbl">Author Name *</label><input class="inp" id="bk-author" value="${book?escHtml(book.author):''}" placeholder="e.g. Mark Douglas"></div>
+    <div class="g2" style="margin-bottom:0;">
+      <div class="inp-grp"><label class="inp-lbl">Category</label><select class="inp" id="bk-cat">${S.bookCats.map(c=>`<option value="${c}" ${book&&book.cat===c?'selected':''}>${c}</option>`).join('')}<option value="Other" ${book&&book.cat==='Other'?'selected':''}>Other</option></select></div>
+      <div class="inp-grp"><label class="inp-lbl">Status</label><select class="inp" id="bk-status"><option value="reading" ${book&&book.status==='reading'?'selected':''}>📖 Reading Now</option><option value="done" ${book&&book.status==='done'?'selected':''}>✅ Finished</option><option value="want" ${book&&book.status==='want'?'selected':''}>🔖 Want to Read</option></select></div>
+    </div>
+    <div class="g2" style="margin-bottom:0;">
+      <div class="inp-grp"><label class="inp-lbl">Date Started</label><input class="inp" type="date" id="bk-start" value="${book?book.start:''}"></div>
+      <div class="inp-grp"><label class="inp-lbl">Date Finished</label><input class="inp" type="date" id="bk-end" value="${book?book.end:''}"></div>
+    </div>
+    <div class="inp-grp"><label class="inp-lbl">Star Rating</label>
+      <div style="display:flex;gap:6px;" id="bk-stars">${[1,2,3,4,5].map(n=>`<span onclick="setBkStar(${n})" id="bkstar-${n}" style="font-size:1.4rem;cursor:pointer;opacity:${book&&book.rating>=n?1:.3}">⭐</span>`).join('')}</div>
+      <input type="hidden" id="bk-rating" value="${book?book.rating:0}">
+    </div>
+    <div class="inp-grp"><label class="inp-lbl">Would you recommend?</label>
+      <div style="display:flex;gap:8px;">
+        <button type="button" class="btn btn-sm bk-rec-btn ${book&&book.rec==='yes'?'btn-success':'btn-ghost'}" onclick="setBkRec('yes',this)" id="bkrec-yes">👍 Yes</button>
+        <button type="button" class="btn btn-sm bk-rec-btn ${book&&book.rec==='no'?'btn-danger':'btn-ghost'}" onclick="setBkRec('no',this)" id="bkrec-no">👎 No</button>
+        <button type="button" class="btn btn-sm bk-rec-btn ${book&&book.rec==='maybe'?'btn-gold':'btn-ghost'}" onclick="setBkRec('maybe',this)" id="bkrec-maybe">🤔 Maybe</button>
+      </div>
+      <input type="hidden" id="bk-rec" value="${book?book.rec:''}">
+    </div>
+    <div class="inp-grp"><label class="inp-lbl">📝 What I Learned</label><textarea class="inp" id="bk-learn" rows="3" placeholder="Key lessons, insights, and takeaways from this book...">${book?escHtml(book.learn):''}</textarea></div>
+    <div class="inp-grp"><label class="inp-lbl">💬 Key Quotes</label><textarea class="inp" id="bk-quotes" rows="3" placeholder='"Quote from the book here..." — Author'>${book?escHtml(book.quotes):''}</textarea></div>
+    <div class="inp-grp"><label class="inp-lbl">🗒️ Personal Notes</label><textarea class="inp" id="bk-notes" rows="2" placeholder="Any personal reflections...">${book?escHtml(book.notes):''}</textarea></div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn btn-primary" style="flex:1;" onclick="saveBook()">💾 Save Book</button>
+      ${id?`<button class="btn btn-danger btn-sm" onclick="deleteBook(${id})">🗑</button>`:''}
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('book-modal').remove()">Cancel</button>
+    </div>
+  </div>`;
+  document.body.appendChild(m);
+}
+function escHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function setBkStar(n){
+  document.getElementById('bk-rating').value=n;
+  [1,2,3,4,5].forEach(i=>{ document.getElementById('bkstar-'+i).style.opacity=i<=n?1:.3; });
+}
+function setBkRec(v,el){
+  document.getElementById('bk-rec').value=v;
+  document.querySelectorAll('.bk-rec-btn').forEach(b=>{ b.className='btn btn-sm bk-rec-btn btn-ghost'; });
+  el.className='btn btn-sm bk-rec-btn '+(v==='yes'?'btn-success':v==='no'?'btn-danger':'btn-gold');
+}
+function saveBook(){
+  const title=document.getElementById('bk-title').value.trim();
+  const author=document.getElementById('bk-author').value.trim();
+  if(!title||!author){ alert('Title and Author are required.'); return; }
+  const book={
+    id:bkEditId||Date.now(), title, author,
+    cat:document.getElementById('bk-cat').value,
+    status:document.getElementById('bk-status').value,
+    start:document.getElementById('bk-start').value,
+    end:document.getElementById('bk-end').value,
+    rating:parseInt(document.getElementById('bk-rating').value)||0,
+    rec:document.getElementById('bk-rec').value,
+    learn:document.getElementById('bk-learn').value.trim(),
+    quotes:document.getElementById('bk-quotes').value.trim(),
+    notes:document.getElementById('bk-notes').value.trim(),
+    addedAt:bkEditId?(S.books.find(b=>b.id===bkEditId)||{}).addedAt||Date.now():Date.now()
+  };
+  if(bkEditId){ const i=S.books.findIndex(b=>b.id===bkEditId); if(i>-1)S.books[i]=book; else S.books.push(book); }
+  else S.books.push(book);
+  save(); document.getElementById('book-modal').remove(); renderBooks();
+}
+function deleteBook(id){
+  if(!confirm('Delete this book?'))return;
+  S.books=S.books.filter(b=>b.id!==id);
+  save(); document.getElementById('book-modal').remove(); renderBooks();
+}
+function filterBooks(cat,btn){
+  bkFilterCat=cat;
+  document.querySelectorAll('.bk-filter-btn').forEach(b=>{ b.className='btn btn-ghost btn-sm bk-filter-btn'; });
+  if(btn){ btn.className='btn btn-primary btn-sm bk-filter-btn'; }
+  renderBooks();
+}
+function renderBooks(){
+  const list=document.getElementById('bk-list'); if(!list)return;
+  const books=bkFilterCat==='All'?S.books:S.books.filter(b=>b.cat===bkFilterCat);
+  // Update stats
+  const done=S.books.filter(b=>b.status==='done');
+  const reading=S.books.filter(b=>b.status==='reading');
+  const rated=done.filter(b=>b.rating>0);
+  const lessons=S.books.filter(b=>b.learn&&b.learn.trim().length>0);
+  const avg=rated.length?((rated.reduce((s,b)=>s+b.rating,0)/rated.length)).toFixed(1):'—';
+  const bc=document.getElementById('bk-count'); if(bc)bc.textContent=done.length;
+  const br=document.getElementById('bk-reading'); if(br)br.textContent=reading.length;
+  const ba=document.getElementById('bk-avg'); if(ba)ba.textContent=avg==='—'?'—':avg+'⭐';
+  const bl=document.getElementById('bk-lessons'); if(bl)bl.textContent=lessons.length;
+  if(!books.length){ list.innerHTML=`<div class="card" style="text-align:center;padding:32px;color:var(--text3);">No books yet. Click "+ Add Book" to start your library 📚</div>`; return; }
+  const statusLabel={done:'✅ Finished',reading:'📖 Reading',want:'🔖 Want to Read'};
+  const statusColor={done:'v-green',reading:'v-gold',want:'v-blue'};
+  const recLabel={yes:'👍 Yes',no:'👎 No',maybe:'🤔 Maybe'};
+  list.innerHTML=books.slice().reverse().map(b=>`
+    <div class="card" style="margin-bottom:12px;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+        <div style="flex:1;">
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:2px;">${escHtml(b.title)}</div>
+          <div style="font-size:.78rem;color:var(--text3);">by ${escHtml(b.author)} &nbsp;·&nbsp; <span class="${statusColor[b.status]||'v-blue'}">${statusLabel[b.status]||b.status}</span></div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="openBookModal(${b.id})">✏️ Edit</button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:${b.learn||b.quotes?'12px':'0'};">
+        ${b.cat?`<span class="card-badge cb-blue">${b.cat}</span>`:''}
+        ${b.rating?`<span class="card-badge cb-gold">${'⭐'.repeat(b.rating)} ${b.rating}/5</span>`:''}
+        ${b.rec?`<span class="card-badge cb-green">${recLabel[b.rec]||b.rec}</span>`:''}
+        ${b.start?`<span style="font-size:.7rem;color:var(--text3);">Started: ${b.start}</span>`:''}
+        ${b.end?`<span style="font-size:.7rem;color:var(--text3);">Finished: ${b.end}</span>`:''}
+      </div>
+      ${b.learn?`<div style="margin-bottom:8px;"><div style="font-size:.65rem;font-weight:700;color:var(--blue2);letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px;">📝 WHAT I LEARNED</div><div style="font-size:.8rem;color:var(--text2);line-height:1.6;white-space:pre-wrap;">${escHtml(b.learn)}</div></div>`:''}
+      ${b.quotes?`<div style="background:var(--bg3);border-left:3px solid var(--gold2);border-radius:0 6px 6px 0;padding:8px 12px;margin-bottom:8px;font-size:.8rem;color:var(--text2);font-style:italic;line-height:1.6;white-space:pre-wrap;">${escHtml(b.quotes)}</div>`:''}
+      ${b.notes?`<div style="font-size:.75rem;color:var(--text3);line-height:1.5;">${escHtml(b.notes)}</div>`:''}
+    </div>`).join('');
+}
+
 
 if('serviceWorker' in navigator){
   window.addEventListener('load', ()=>{
