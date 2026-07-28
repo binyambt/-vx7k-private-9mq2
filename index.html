@@ -7,7 +7,7 @@
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" href="./icon-192.png">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<meta name="theme-color" content="#4F46E5">
+<meta name="theme-color" content="#292B39">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Life Control">
@@ -189,7 +189,6 @@ body::after{width:600px;height:600px;bottom:-220px;right:-160px;background:var(-
 .topbar-left{display:flex;align-items:center;gap:12px;}
 .topbar-logo{width:34px;height:34px;background:linear-gradient(135deg,var(--black-panel),var(--black-panel2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#fff;}
 .topbar-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
-.grad-text{background:linear-gradient(120deg,var(--blue2),var(--purple2) 60%,var(--teal,var(--blue2)));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
 .topbar-sub{font-size:.62rem;color:var(--text3);letter-spacing:.5px;}
 .topbar-right{display:flex;align-items:center;gap:8px;}
 .topbar-date{font-size:.7rem;color:var(--text3);}
@@ -250,8 +249,7 @@ body::after{width:600px;height:600px;bottom:-220px;right:-160px;background:var(-
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;}
 
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px;box-shadow:var(--shadow-sm);}
 .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:8px;flex-wrap:wrap;}
 .card-title{font-size:.85rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px;}
 .card-badge{font-size:.62rem;padding:3px 8px;border-radius:20px;font-weight:600;}
@@ -279,7 +277,7 @@ body::after{width:600px;height:600px;bottom:-220px;right:-160px;background:var(-
 .glance-card.g-alert{background:var(--red-g);border:1px solid var(--red2);}
 .glance-msg{font-size:.82rem;font-weight:600;color:var(--text);flex:1;min-width:180px;}
 .glance-pills{display:flex;flex-wrap:wrap;gap:8px;}
-.glance-pill{font-size:.68rem;font-weight:600;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--text2);white-space:nowrap;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.glance-pill{font-size:.68rem;font-weight:600;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--text2);white-space:nowrap;}
 body[data-theme="dark"] .glance-pill,body[data-theme="ember"] .glance-pill{background:rgba(255,255,255,.08);}
 
 .check-section-lbl{font-size:.62rem;font-weight:700;color:var(--text3);letter-spacing:1.2px;text-transform:uppercase;margin:14px 0 7px;padding-bottom:5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
@@ -839,7 +837,7 @@ textarea.inp{resize:none;}
     <div class="topbar-left">
       <div class="topbar-logo">B</div>
       <div>
-        <div class="topbar-name">Life Control <span class="grad-text">Center</span></div>
+        <div class="topbar-name">Life Control Center</div>
         <div class="topbar-sub">TRADER · DESIGNER · CHURCH LEADER</div>
       </div>
     </div>
@@ -3594,7 +3592,7 @@ function init(){
   applyTheme();
   refreshDateDisplays();
   const gt=document.getElementById('greeting-text');
-  if(gt)gt.innerHTML=greet+', <span class="grad-text">Binyam</span> '+greetIcon;
+  if(gt)gt.textContent=greet+', Binyam '+greetIcon;
   renderTaskListCard();
   updateCheckUI(); restoreDevs(); renderGrid(); renderFinance(); renderTriggers(); renderJournal(); renderGoals(); renderAvatar();
   initTrading(); initMindsetHub();
