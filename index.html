@@ -160,8 +160,8 @@ body::after{width:600px;height:600px;bottom:-220px;right:-160px;background:var(-
 .sos-step{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-sm);padding:12px;}
 .sos-num{width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .sos-text{font-size:.78rem;color:#e6edf3;line-height:1.5;}
-.sos-prayer{background:var(--gold-g);border:1px solid var(--gold2);border-radius:var(--r);padding:16px;margin-bottom:16px;font-size:.78rem;color:var(--gold2);font-style:italic;line-height:1.8;}
-.sos-vision{background:var(--blue-g);border:1px solid var(--blue2);border-radius:var(--r);padding:16px;margin-bottom:20px;text-align:left;}
+.sos-prayer{background:var(--gold-g);border:1px solid rgba(227,179,65,.25);border-radius:var(--r);padding:16px;margin-bottom:16px;font-size:.78rem;color:var(--gold2);font-style:italic;line-height:1.8;}
+.sos-vision{background:var(--blue-g);border:1px solid rgba(56,139,253,.25);border-radius:var(--r);padding:16px;margin-bottom:20px;text-align:left;}
 .sos-vision-title{font-size:.65rem;font-weight:700;color:var(--blue2);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
 .sos-vision-item{font-size:.78rem;color:#c9d1d9;padding:4px 0;display:flex;gap:8px;}
 .breathe-widget{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:20px;margin-bottom:20px;}
@@ -181,7 +181,7 @@ body::after{width:600px;height:600px;bottom:-220px;right:-160px;background:var(-
 .screener-q{font-size:.82rem;color:#e6edf3;margin-bottom:10px;font-weight:600;}
 .screener-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
 .screener-opt{padding:10px 14px;background:#21262d;border:1px solid #30363d;border-radius:9px;color:#c9d1d9;font-size:.78rem;cursor:pointer;text-align:left;}
-.screener-opt.sel{border-color:var(--blue2);color:#fff;background:var(--blue-g);}
+.screener-opt.sel{border-color:#388bfd;color:#fff;background:rgba(56,139,253,.12);}
 
 /* ===== TOPBAR ===== */
 #app{display:none;}
@@ -203,7 +203,7 @@ body::after{width:600px;height:600px;bottom:-220px;right:-160px;background:var(-
 .sidebar{width:214px;background:var(--bg2);border-right:1px solid var(--border);padding:16px 10px;flex-shrink:0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
 .nav-item{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:var(--r-sm);cursor:pointer;color:var(--text2);font-size:.82rem;font-weight:500;margin-bottom:2px;transition:all .15s;}
 .nav-item:hover{background:var(--bg3);color:var(--text);}
-.nav-item.active{background:var(--blue-g);color:var(--blue2);font-weight:600;border:1px solid var(--blue2);}
+.nav-item.active{background:var(--blue-g);color:var(--blue2);font-weight:600;border:1px solid rgba(59,127,240,.25);}
 .nav-icon{width:24px;height:24px;flex-shrink:0;border-radius:7px;display:flex;align-items:center;justify-content:center;}
 .nav-icon svg{width:14px;height:14px;}
 .nb-black{background:linear-gradient(135deg,var(--black-panel),var(--black-panel2));}
@@ -253,11 +253,11 @@ body::after{width:600px;height:600px;bottom:-220px;right:-160px;background:var(-
 .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:8px;flex-wrap:wrap;}
 .card-title{font-size:.85rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:7px;}
 .card-badge{font-size:.62rem;padding:3px 8px;border-radius:20px;font-weight:600;}
-.cb-blue{background:var(--blue-g);color:var(--blue2);border:1px solid var(--blue2);}
-.cb-gold{background:var(--gold-g);color:var(--gold2);border:1px solid var(--gold2);}
+.cb-blue{background:var(--blue-g);color:var(--blue2);border:1px solid rgba(59,127,240,.2);}
+.cb-gold{background:var(--gold-g);color:var(--gold2);border:1px solid rgba(227,179,65,.2);}
 .cb-green{background:var(--green-g);color:var(--green2);border:1px solid rgba(63,185,80,.2);}
 .cb-red{background:var(--red-g);color:var(--red2);border:1px solid rgba(248,81,73,.2);}
-.cb-purple{background:var(--purple-g);color:var(--purple2);border:1px solid var(--purple2);}
+.cb-purple{background:var(--purple-g);color:var(--purple2);border:1px solid rgba(143,116,234,.2);}
 
 .prog-item{margin-bottom:13px;}
 .prog-item:last-child{margin-bottom:0;}
@@ -272,9 +272,9 @@ body::after{width:600px;height:600px;bottom:-220px;right:-160px;background:var(-
 .pf-red{background:var(--red2);}
 .pf-purple{background:linear-gradient(90deg,var(--purple),var(--purple2));}
 .glance-card{border-radius:var(--r);padding:14px 18px;margin-bottom:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;justify-content:space-between;}
-.glance-card.g-ok{background:var(--green-g);border:1px solid var(--green2);}
-.glance-card.g-neutral{background:var(--blue-g);border:1px solid var(--blue2);}
-.glance-card.g-alert{background:var(--red-g);border:1px solid var(--red2);}
+.glance-card.g-ok{background:var(--green-g);border:1px solid rgba(47,189,131,.25);}
+.glance-card.g-neutral{background:var(--blue-g);border:1px solid rgba(59,127,240,.2);}
+.glance-card.g-alert{background:var(--red-g);border:1px solid rgba(239,91,82,.3);}
 .glance-msg{font-size:.82rem;font-weight:600;color:var(--text);flex:1;min-width:180px;}
 .glance-pills{display:flex;flex-wrap:wrap;gap:8px;}
 .glance-pill{font-size:.68rem;font-weight:600;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.55);color:var(--text2);white-space:nowrap;}
@@ -316,8 +316,8 @@ body[data-theme="dark"] .glance-pill,body[data-theme="ember"] .glance-pill{backg
 .day-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-height:230px;overflow-y:auto;padding-right:2px;}
 .day-box{aspect-ratio:1;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;cursor:default;border:1px solid var(--border);}
 .db-empty{background:var(--bg3);color:var(--text3);}
-.db-win{background:var(--green-g);color:var(--green2);border-color:var(--green2);}
-.db-fail{background:var(--red-g);color:var(--red2);border-color:var(--red2);}
+.db-win{background:var(--green-g);color:var(--green2);border-color:rgba(47,189,131,.35);}
+.db-fail{background:var(--red-g);color:var(--red2);border-color:rgba(239,91,82,.35);}
 .db-today{background:var(--blue-g);color:var(--blue2);border-color:var(--blue2);}
 
 .trigger-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);}
@@ -401,7 +401,7 @@ textarea.inp{resize:none;}
 .btn-full{width:100%;}
 .btn:disabled{opacity:.4;cursor:not-allowed;}
 
-.identity-banner{background:linear-gradient(135deg,var(--blue-g),var(--purple-g));border:1px solid var(--blue2);border-radius:var(--r);padding:18px 22px;text-align:center;margin-bottom:20px;}
+.identity-banner{background:linear-gradient(135deg,var(--blue-g),var(--purple-g));border:1px solid rgba(59,127,240,.18);border-radius:var(--r);padding:18px 22px;text-align:center;margin-bottom:20px;}
 .ib-title{font-family:'Playfair Display',serif;font-size:.8rem;color:var(--blue2);font-weight:700;margin-bottom:6px;}
 .ib-text{font-size:.75rem;color:var(--text2);line-height:1.8;font-style:italic;}
 
@@ -416,7 +416,7 @@ textarea.inp{resize:none;}
 .journal-section:last-child{margin-bottom:0;}
 .journal-s-lbl{font-size:.62rem;font-weight:700;margin-bottom:3px;}
 .journal-text{font-size:.75rem;color:var(--text2);line-height:1.6;}
-.ai-feedback{background:var(--blue-g);border:1px solid var(--blue2);border-radius:var(--r-sm);padding:14px;margin-top:12px;font-size:.8rem;color:var(--blue2);line-height:1.7;}
+.ai-feedback{background:var(--blue-g);border:1px solid rgba(59,127,240,.2);border-radius:var(--r-sm);padding:14px;margin-top:12px;font-size:.8rem;color:var(--blue2);line-height:1.7;}
 .ai-feedback-lbl{font-size:.62rem;font-weight:700;color:var(--blue2);letter-spacing:1px;margin-bottom:8px;}
 .ai-feedback-block{margin-bottom:8px;}
 .ai-feedback-block b{color:var(--text);}
@@ -484,7 +484,7 @@ textarea.inp{resize:none;}
 .chart-wrap canvas{width:100% !important;height:100% !important;}
 
 /* QUOTE WIDGET (TRADING) */
-.wisdom-card{background:linear-gradient(135deg,var(--purple-g),var(--blue-g));border:1px solid var(--purple2);border-radius:var(--r);padding:22px;margin-bottom:16px;text-align:center;}
+.wisdom-card{background:linear-gradient(135deg,var(--purple-g),var(--blue-g));border:1px solid rgba(116,87,224,.2);border-radius:var(--r);padding:22px;margin-bottom:16px;text-align:center;}
 .wisdom-eyebrow{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--purple2);font-weight:700;margin-bottom:10px;}
 .wisdom-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:8px;}
 .wisdom-author{font-size:.7rem;color:var(--text3);}
@@ -499,8 +499,8 @@ textarea.inp{resize:none;}
 
 .disc-score-badge{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;font-size:.75rem;font-weight:700;color:#fff;}
 
-.euphoria-badge{background:var(--gold-g);border:1px solid var(--gold2);border-radius:var(--r-sm);padding:12px 14px;font-size:.75rem;color:var(--gold2);margin-bottom:14px;display:flex;gap:10px;align-items:center;}
-.locked-banner{background:var(--red-g);border:1px solid var(--red2);border-radius:var(--r-sm);padding:12px 14px;font-size:.75rem;color:var(--red2);margin-bottom:14px;display:flex;gap:10px;align-items:center;}
+.euphoria-badge{background:var(--gold-g);border:1px solid rgba(227,179,65,.3);border-radius:var(--r-sm);padding:12px 14px;font-size:.75rem;color:var(--gold2);margin-bottom:14px;display:flex;gap:10px;align-items:center;}
+.locked-banner{background:var(--red-g);border:1px solid rgba(239,91,82,.3);border-radius:var(--r-sm);padding:12px 14px;font-size:.75rem;color:var(--red2);margin-bottom:14px;display:flex;gap:10px;align-items:center;}
 
 /* GOALS */
 .goal-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px;}
@@ -861,7 +861,7 @@ textarea.inp{resize:none;}
       <div class="nav-item" onclick="sw('spiritual',this)"><span class="nav-icon nb-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="11" width="4" height="9" rx="1"/><path d="M12 3c-2 2.5-2 4.5 0 6.5 2-2 2-4 0-6.5z"/></svg></span> Spiritual</div>
       <div class="nav-item" onclick="sw('mindset',this)"><span class="nav-icon nb-purple"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11" fill="#fff" stroke="none"/></svg></span> Mindset Hub</div>
       <div class="nav-item" onclick="sw('journal',this)"><span class="nav-icon nb-green"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5c3-1.5 6-1.5 9 0v14c-3-1.5-6-1.5-9 0V5z"/><path d="M21 5c-3-1.5-6-1.5-9 0v14c3-1.5 6-1.5 9 0V5z"/></svg></span> Journal</div>
-      <div class="nav-item" onclick="sw('books',this)"><span class="nav-icon" style="background:var(--purple);border-radius:6px;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> Books</div>
+      <div class="nav-item" onclick="sw('books',this)"><span class="nav-icon" style="background:#7c3aed;border-radius:6px;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> Books</div>
       <div class="sidebar-divider"></div>
       <div class="sidebar-streak">
         <div class="sb-streak-fire">🔥</div>
@@ -930,7 +930,7 @@ textarea.inp{resize:none;}
               <span class="n90-hint">Click a day to log it · click again to undo</span>
             </div>
             <div id="fm-calendar"></div>
-            <div style="background:var(--blue-g);border:1px solid var(--blue2);border-radius:var(--r-sm);padding:12px 14px;margin-top:14px;font-size:.72rem;color:var(--blue2);">
+            <div style="background:var(--blue-g);border:1px solid rgba(59,127,240,.2);border-radius:var(--r-sm);padding:12px 14px;margin-top:14px;font-size:.72rem;color:var(--blue2);">
               Day <strong id="fm-day-of-cycle">1</strong> of 30 in this cycle. When day 30 ends, this cycle archives automatically and a fresh 30-day cycle begins.
             </div>
           </div>
@@ -1418,7 +1418,7 @@ textarea.inp{resize:none;}
       <div class="more-item" onclick="sw('spiritual',null,true);closeMoreDrawer()"><div class="bnav-icon nb-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="11" width="4" height="9" rx="1"/><path d="M12 3c-2 2.5-2 4.5 0 6.5 2-2 2-4 0-6.5z"/></svg></div><div class="more-lbl">Spirit</div></div>
       <div class="more-item" onclick="sw('mindset',null,true);closeMoreDrawer()"><div class="bnav-icon nb-purple"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11" fill="#fff" stroke="none"/></svg></div><div class="more-lbl">Mindset</div></div>
       <div class="more-item" onclick="sw('journal',null,true);closeMoreDrawer()"><div class="bnav-icon nb-green"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5c3-1.5 6-1.5 9 0v14c-3-1.5-6-1.5-9 0V5z"/><path d="M21 5c-3-1.5-6-1.5-9 0v14c3-1.5 6-1.5 9 0V5z"/></svg></div><div class="more-lbl">Journal</div></div>
-      <div class="more-item" onclick="sw('books',null,true);closeMoreDrawer()"><div class="bnav-icon" style="background:var(--purple);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="more-lbl">Books</div></div>
+      <div class="more-item" onclick="sw('books',null,true);closeMoreDrawer()"><div class="bnav-icon" style="background:#7c3aed;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="more-lbl">Books</div></div>
       <div class="more-item" onclick="openSettings();closeMoreDrawer()"><div class="bnav-icon" style="background:var(--border2);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><div class="more-lbl">Settings</div></div>
     </div>
   </div>
@@ -2152,26 +2152,9 @@ function renderTriggers(){
 }
 
 /* ================= CHARTS (fixed-height containers -> no bounce) ================= */
-function hexToRgba(hex,a){
-  hex=(hex||'').trim();
-  if(hex.startsWith('rgb')){ const m=hex.match(/[\d.]+/g); return m?`rgba(${m[0]},${m[1]},${m[2]},${a})`:hex; }
-  hex=hex.replace('#','');
-  if(hex.length===3) hex=hex.split('').map(c=>c+c).join('');
-  const r=parseInt(hex.substring(0,2),16)||0,g=parseInt(hex.substring(2,4),16)||0,b=parseInt(hex.substring(4,6),16)||0;
-  return `rgba(${r},${g},${b},${a})`;
-}
 function chartColors(){
-  const cs=getComputedStyle(document.body);
-  const v=n=>cs.getPropertyValue(n).trim();
   const dark=S.settings.theme==='dark'||S.settings.theme==='ember';
-  const blue=v('--blue2')||'#6366F1', green=v('--green2')||'#16C98A', gold=v('--gold2')||'#F0A93C',
-        red=v('--red2')||'#F0576A', purple=v('--purple2')||'#9F75F2', neutral=v('--text3')||'#9291AC';
-  return {
-    tick: dark?v('--text2'):v('--text3'), grid: v('--border'),
-    blue,green,gold,red,purple,neutral,
-    winA:hexToRgba(green,.75), failA:hexToRgba(red,.75), neutralA:hexToRgba(neutral,.35),
-    blueA:hexToRgba(blue,.75), goldA:hexToRgba(gold,.75), purpleA:hexToRgba(purple,.75)
-  };
+  return { grid: dark?'rgba(148,163,184,.18)':'rgba(99,102,241,.12)', tick: dark?'#8f93b8':'#8a8aa0' };
 }
 function renderCharts(tab){
   const cc=chartColors();
@@ -2179,7 +2162,7 @@ function renderCharts(tab){
     const days=[]; for(let i=29;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i); days.push(d); }
     const labels=days.map(d=>d.getDate());
     const vals=days.map(d=>{ const v=S.days[dateKey(d)]; return v==='win'?1:v==='fail'?-1:0; });
-    const colors=days.map(d=>{ const val=S.days[dateKey(d)]; return val==='win'?cc.winA:val==='fail'?cc.failA:cc.neutralA; });
+    const colors=days.map(d=>{ const v=S.days[dateKey(d)]; return v==='win'?'rgba(47,189,131,.7)':v==='fail'?'rgba(239,91,82,.7)':'rgba(180,190,210,.4)'; });
     if(tab==='overview'){
       if(charts['ov']){ charts['ov'].destroy(); delete charts['ov']; }
       const ctx=document.getElementById('overview-chart');
@@ -2197,9 +2180,9 @@ function renderCharts(tab){
     const w=S.wallets;
     const total=w.inv+w.emg+w.trd+w.per;
     if(ctx && total>0){
-      charts['pie']=new Chart(ctx,{type:'doughnut',data:{labels:[S.walletNames.inv,S.walletNames.emg,S.walletNames.trd,S.walletNames.per],datasets:[{data:[w.inv,w.emg,w.trd,w.per],backgroundColor:[cc.blueA,cc.winA,cc.goldA,cc.purpleA],borderColor:[cc.blue,cc.green,cc.gold,cc.purple],borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:cc.tick,font:{size:11},padding:10}}}}});
+      charts['pie']=new Chart(ctx,{type:'doughnut',data:{labels:[S.walletNames.inv,S.walletNames.emg,S.walletNames.trd,S.walletNames.per],datasets:[{data:[w.inv,w.emg,w.trd,w.per],backgroundColor:['rgba(59,127,240,.75)','rgba(47,189,131,.75)','rgba(224,172,43,.75)','rgba(143,116,234,.75)'],borderColor:['#3b7ff0','#2fbd83','#e0ac2b','#8f74ea'],borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:cc.tick,font:{size:11},padding:10}}}}});
     } else if(ctx){
-      charts['pie']=new Chart(ctx,{type:'doughnut',data:{labels:['No data'],datasets:[{data:[1],backgroundColor:[cc.neutralA],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'65%',plugins:{legend:{display:false}}}});
+      charts['pie']=new Chart(ctx,{type:'doughnut',data:{labels:['No data'],datasets:[{data:[1],backgroundColor:['rgba(180,190,210,.4)'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'65%',plugins:{legend:{display:false}}}});
     }
   }
   if(tab==='trading'){
@@ -2213,10 +2196,10 @@ function renderCapitalChart(cc){
   const trades=(S.trading.trades||[]).slice(-30);
   const labels=trades.map(t=>t.date);
   const data=trades.map(t=> t.result==='win' ? (t.amount||0) : -(t.amount||0));
-  const colors=trades.map(t=> t.result==='win' ? cc.winA : cc.failA);
+  const colors=trades.map(t=> t.result==='win' ? 'rgba(47,189,131,.85)' : 'rgba(239,91,82,.85)');
   if(ctx){
     if(!trades.length){
-      charts['cap']=new Chart(ctx,{type:'bar',data:{labels:['No entries yet'],datasets:[{data:[0],backgroundColor:[cc.neutralA]}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false}},scales:{y:{ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
+      charts['cap']=new Chart(ctx,{type:'bar',data:{labels:['No entries yet'],datasets:[{data:[0],backgroundColor:['rgba(180,190,210,.3)']}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false}},scales:{y:{ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
     } else {
       charts['cap']=new Chart(ctx,{type:'bar',data:{labels,datasets:[{data,backgroundColor:colors,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>(c.parsed.y>=0?'+$':'-$')+Math.abs(c.parsed.y).toFixed(2)}}},scales:{y:{ticks:{color:cc.tick,font:{size:9},callback:v=>'$'+v},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
     }
@@ -2352,8 +2335,8 @@ function renderWeeklyTxnChart(){
   });
   const labels=buckets.map((b,i)=> i===buckets.length-1 ? 'This wk' : new Date(b.start).toLocaleDateString(undefined,{month:'short',day:'numeric'}));
   charts['wktxn']=new Chart(ctx,{type:'bar',data:{labels,datasets:[
-    {label:'Deposits',data:buckets.map(b=>b.dep),backgroundColor:cc.winA,borderRadius:4},
-    {label:'Withdrawals',data:buckets.map(b=>b.wd),backgroundColor:cc.failA,borderRadius:4}
+    {label:'Deposits',data:buckets.map(b=>b.dep),backgroundColor:'rgba(47,189,131,.8)',borderRadius:4},
+    {label:'Withdrawals',data:buckets.map(b=>b.wd),backgroundColor:'rgba(239,91,82,.8)',borderRadius:4}
   ]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false}},scales:{y:{ticks:{color:cc.tick,font:{size:9}},grid:{color:cc.grid}},x:{ticks:{color:cc.tick,font:{size:9}},grid:{display:false}}}}});
 }
 
