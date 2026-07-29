@@ -1547,6 +1547,7 @@ function save(){
   }catch(e){}
   try{
     localStorage.setItem(STORE_KEY,JSON.stringify(S));
+    localStorage.setItem(STORE_KEY+'_updatedAt', String(Date.now()));
   }catch(e){
     console.error('Save failed (likely storage quota exceeded):',e);
     throw e;
@@ -1689,7 +1690,10 @@ async function fbLoadAndMerge(){
     const snap = await fbDocRef(user.uid).get();
     if(snap.exists){
       const remote = snap.data();
-      if(remote && remote.S){ Object.assign(S, remote.S); }
+      const localUpdatedAt = Number(localStorage.getItem(STORE_KEY+'_updatedAt')||0);
+      if(remote && remote.S && (remote.updatedAt||0) >= localUpdatedAt){
+        Object.assign(S, remote.S);
+      }
     } else {
       await fbDocRef(user.uid).set({S:S, updatedAt:Date.now()});
     }
@@ -1698,7 +1702,8 @@ async function fbLoadAndMerge(){
 
 function fbPush(){
   if(!fbReady || !fbAuth.currentUser) return;
-  fbDocRef(fbAuth.currentUser.uid).set({S:S, updatedAt:Date.now()}).catch(e=>console.warn('Firebase sync push failed:', e));
+  const ts = Number(localStorage.getItem(STORE_KEY+'_updatedAt')||Date.now());
+  fbDocRef(fbAuth.currentUser.uid).set({S:S, updatedAt:ts}).catch(e=>console.warn('Firebase sync push failed:', e));
 }
 
 async function login(){
@@ -1851,8 +1856,10 @@ function handleRestoreFile(ev){
     if(!confirm('This will replace everything currently in the app with this backup. Continue?')) return;
     try{
       localStorage.setItem(STORE_KEY,JSON.stringify(data));
+      localStorage.setItem(STORE_KEY+'_updatedAt', String(Date.now()));
       S=data;
       Object.keys(def).forEach(k=>{ if(S[k]===undefined) S[k]=JSON.parse(JSON.stringify(def[k])); });
+      fbPush();
       msg.style.color='var(--green2)';
       msg.textContent='Backup restored ✅ Reloading...';
       setTimeout(()=>location.reload(),900);
