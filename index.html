@@ -1536,6 +1536,11 @@ if(!Array.isArray(S.trading.withdrawals)) S.trading.withdrawals=[];
 if(!Array.isArray(S.trading.closings)) S.trading.closings=[];
 if(!Array.isArray(S.trading.trades)) S.trading.trades=[];
 if(!S.dayNotes) S.dayNotes={};
+if(Array.isArray(S.journal)){
+  const journalBefore=S.journal.length;
+  S.journal=S.journal.filter(e=> !(e && typeof e.sp==='string' && e.sp.trim().toLowerCase()==='gyhhv'));
+  if(S.journal.length!==journalBefore) save();
+}
 if(!S.walletNames) S.walletNames={inv:'📈 Investment Account',emg:'🛡️ Emergency Savings',trd:'💹 Trading Capital',per:'👤 Personal Account'};
 if(!S.settings) S.settings={theme:'light',fontsize:'md',password:'binyam2025',dateformat:'long'};
 if(!S.settings.dateformat) S.settings.dateformat='long';
@@ -1742,6 +1747,7 @@ function applyTheme(){
   const scaleMap={sm:0.92,md:1,lg:1.12};
   document.documentElement.style.setProperty('--fs-scale', scaleMap[S.settings.fontsize]||1);
 }
+applyTheme(); // apply saved theme immediately on page load, so the login/lock screen shows it too (not just after unlocking)
 function setTheme(t){ S.settings.theme=normalizeTheme(t); save(); applyTheme(); refreshSettingsUI(); }
 function setFontSize(f){ S.settings.fontsize=f; save(); applyTheme(); refreshSettingsUI(); }
 function setDateFormat(f){ S.settings.dateformat=f; save(); refreshSettingsUI(); refreshDateDisplays(); }
