@@ -582,6 +582,252 @@ textarea.inp{resize:none;}
   .stats-row{grid-template-columns:repeat(2,1fr);}
 }
 
+
+/* ============================================================
+   ROADMAP TAB STYLES (scoped under #tab-roadmap, inherits app theme)
+   ============================================================ */
+/* ===== ROADMAP TAB — remaps to this app's own theme tokens (auto-follows Glass Sky / Sunrise / Night Aurora / Ember) ===== */
+#tab-roadmap{
+  --bg-elevated:var(--bg2);
+  --bg-card:var(--card);
+  --bg-card-hover:var(--card2);
+  --border-strong:var(--border2);
+  --text-primary:var(--text);
+  --text-secondary:var(--text2);
+  --text-tertiary:var(--text3);
+  --gold-soft:var(--gold-g);
+  --gold-bright:var(--gold2);
+  --green-soft:var(--green-g);
+  --red-soft:var(--red-g);
+  --blue-soft:var(--blue-g);
+  --font-display:'Manrope',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  --radius:var(--r);
+  --radius-sm:var(--r-sm);
+  --shadow:var(--shadow-sm);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+}
+#tab-roadmap h1,#tab-roadmap h2,#tab-roadmap h3,#tab-roadmap h4{font-family:var(--font-display);}
+#tab-roadmap ::selection{background:var(--gold-soft); color:var(--gold-bright);}
+
+#tab-roadmap .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+@media (max-width:640px){#tab-roadmap .wrap{padding:0 16px;}}
+
+/* ---------- Top bar ---------- */
+
+/* ---------- Ticker ---------- */
+#tab-roadmap .ticker{
+  background:var(--bg-card); border-bottom:1px solid var(--border); overflow:hidden;
+  position:relative; white-space:nowrap;
+}
+#tab-roadmap .ticker::before,#tab-roadmap .ticker::after{content:"";position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none;}
+#tab-roadmap .ticker::before{left:0;background:linear-gradient(90deg,var(--bg-card),transparent);}
+#tab-roadmap .ticker::after{right:0;background:linear-gradient(270deg,var(--bg-card),transparent);}
+#tab-roadmap .ticker-track{display:inline-flex; animation:scroll-ticker 42s linear infinite; padding:11px 0;}
+#tab-roadmap .ticker:hover .ticker-track{animation-play-state:paused;}
+@keyframes scroll-ticker{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+#tab-roadmap .ticker-item{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:12.5px; color:var(--text-secondary); padding:0 22px; border-right:1px solid var(--border);}
+#tab-roadmap .ticker-item b{color:var(--text-primary); font-weight:600;}
+#tab-roadmap .ticker-item .tag{color:var(--gold);}
+
+/* ---------- Section nav ---------- */
+#tab-roadmap .subnav{position:relative; z-index:1; background:transparent; border-bottom:1px solid var(--border); margin-bottom:8px;}
+#tab-roadmap .subnav-scroll{display:flex; gap:6px; overflow-x:auto; padding:10px 24px; scrollbar-width:none;}
+#tab-roadmap .subnav-scroll::-webkit-scrollbar{display:none;}
+@media (max-width:640px){#tab-roadmap .subnav-scroll{padding:10px 16px;}}
+#tab-roadmap .subnav a{
+  flex-shrink:0; font-size:12.5px; font-weight:600; color:var(--text-secondary); background:var(--bg-card);
+  border:1px solid var(--border); padding:8px 13px; border-radius:999px; text-decoration:none; white-space:nowrap;
+  transition:all .2s ease; min-height:36px; display:flex; align-items:center;
+}
+#tab-roadmap .subnav a:hover{color:var(--text-primary); border-color:var(--border-strong);}
+#tab-roadmap .subnav a.active{background:var(--gold-soft); color:var(--gold-bright); border-color:var(--gold);}
+
+/* ---------- Hero ---------- */
+#tab-roadmap .hero{padding:56px 0 40px; position:relative;}
+#tab-roadmap .hero-eyebrow{
+  display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:12px;
+  color:var(--gold); background:var(--gold-soft); padding:6px 12px; border-radius:999px; margin-bottom:20px; font-weight:600; letter-spacing:.03em;
+}
+#tab-roadmap .hero h1{
+  font-family:var(--font-display); font-weight:700; font-size:clamp(28px,5vw,46px); line-height:1.12; letter-spacing:-.02em; max-width:820px;
+}
+#tab-roadmap .hero h1 span{color:var(--gold);}
+#tab-roadmap .hero p{margin-top:16px; color:var(--text-secondary); font-size:clamp(15px,2vw,17px); max-width:620px;}
+#tab-roadmap .hero-divider{
+  margin-top:32px; height:1px; background:repeating-linear-gradient(90deg,var(--border-strong) 0 10px, transparent 10px 16px);
+}
+
+/* ---------- Cards / grid ---------- */
+#tab-roadmap .section{padding:56px 0;}
+#tab-roadmap .section-head{margin-bottom:28px;}
+#tab-roadmap .section-kicker{font-family:var(--font-mono); font-size:12px; color:var(--gold); font-weight:600; letter-spacing:.05em; text-transform:uppercase; margin-bottom:8px;}
+#tab-roadmap .section-title{font-family:var(--font-display); font-weight:700; font-size:clamp(22px,3vw,30px); letter-spacing:-.01em;}
+#tab-roadmap .section-desc{color:var(--text-secondary); margin-top:8px; max-width:680px; font-size:15px;}
+
+#tab-roadmap .grid{display:grid; gap:16px;}
+#tab-roadmap .grid-6{grid-template-columns:repeat(6,1fr);}
+#tab-roadmap .grid-3{grid-template-columns:repeat(3,1fr);}
+#tab-roadmap .grid-2{grid-template-columns:repeat(2,1fr);}
+#tab-roadmap .grid-4{grid-template-columns:repeat(4,1fr);}
+@media (max-width:900px){#tab-roadmap .grid-6{grid-template-columns:repeat(2,1fr);} #tab-roadmap .grid-4{grid-template-columns:repeat(2,1fr);} #tab-roadmap .grid-3{grid-template-columns:1fr;} #tab-roadmap .grid-2{grid-template-columns:1fr;}}
+@media (max-width:560px){#tab-roadmap .grid-6{grid-template-columns:1fr;}}
+
+#tab-roadmap .card{
+  background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:22px;
+  transition:border-color .2s ease, transform .2s ease;
+}
+#tab-roadmap .card:hover{border-color:var(--border-strong);}
+
+/* Exec summary cards */
+#tab-roadmap .exec-card{grid-column:span 2;}
+@media (max-width:900px){#tab-roadmap .exec-card{grid-column:span 1;}}
+#tab-roadmap .exec-q{font-size:12.5px; color:var(--text-tertiary); font-weight:600; margin-bottom:10px; line-height:1.4;}
+#tab-roadmap .exec-a{font-size:14.5px; line-height:1.55;}
+#tab-roadmap .badge{
+  display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:11px; font-weight:700;
+  padding:3px 9px; border-radius:5px; margin-bottom:10px; letter-spacing:.02em; text-transform:uppercase;
+}
+#tab-roadmap .badge.green{background:var(--green-soft); color:var(--green);}
+#tab-roadmap .badge.yellow{background:var(--gold-soft); color:var(--gold);}
+#tab-roadmap .badge.red{background:var(--red-soft); color:var(--red);}
+#tab-roadmap .badge .sw{width:6px;height:6px;border-radius:50%;background:currentColor;}
+
+/* KPI mini stat cards */
+#tab-roadmap .kpi{padding:18px;}
+#tab-roadmap .kpi-label{font-size:12px; color:var(--text-tertiary); font-weight:600; text-transform:uppercase; letter-spacing:.03em;}
+#tab-roadmap .kpi-value{font-family:var(--font-display); font-size:26px; font-weight:700; margin-top:6px;}
+#tab-roadmap .kpi-value.g{color:var(--green);} #tab-roadmap .kpi-value.r{color:var(--red);} #tab-roadmap .kpi-value.gd{color:var(--gold);} #tab-roadmap .kpi-value.b{color:var(--blue);}
+#tab-roadmap .kpi-note{font-size:12px; color:var(--text-secondary); margin-top:4px;}
+
+/* Tables */
+#tab-roadmap .table-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius); background:var(--bg-card);}
+#tab-roadmap table{width:100%; border-collapse:collapse; min-width:640px; font-size:14px;}
+#tab-roadmap th{
+  text-align:left; font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.04em;
+  color:var(--text-tertiary); background:var(--bg-elevated); padding:12px 16px; border-bottom:1px solid var(--border); font-weight:600; white-space:nowrap;
+}
+#tab-roadmap td{padding:13px 16px; border-bottom:1px solid var(--border); color:var(--text-secondary); vertical-align:top;}
+#tab-roadmap tr:last-child td{border-bottom:none;}
+#tab-roadmap td.strong{color:var(--text-primary); font-weight:600;}
+#tab-roadmap td.num{font-family:var(--font-mono); text-align:center; color:var(--text-primary);}
+#tab-roadmap tbody tr:hover{background:var(--bg-card-hover);}
+#tab-roadmap .total-cell{font-family:var(--font-mono); font-weight:700; color:var(--gold); text-align:center;}
+
+/* Progress bars */
+#tab-roadmap .progress-row{margin-bottom:18px;}
+#tab-roadmap .progress-row:last-child{margin-bottom:0;}
+#tab-roadmap .progress-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; gap:12px;}
+#tab-roadmap .progress-label{font-size:13.5px; font-weight:600; color:var(--text-primary);}
+#tab-roadmap .progress-value{font-family:var(--font-mono); font-size:12.5px; color:var(--text-secondary); flex-shrink:0;}
+#tab-roadmap .progress-track{height:9px; background:var(--bg-elevated); border:1px solid var(--border); border-radius:999px; overflow:hidden;}
+#tab-roadmap .progress-fill{height:100%; border-radius:999px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transition:width 1s cubic-bezier(.2,.8,.2,1);}
+#tab-roadmap .progress-sub{font-size:12px; color:var(--text-tertiary); margin-top:5px;}
+
+/* Timeline */
+#tab-roadmap .timeline{position:relative; padding-left:28px;}
+#tab-roadmap .timeline::before{content:"";position:absolute; left:8px; top:6px; bottom:6px; width:2px; background:var(--border-strong);}
+#tab-roadmap .tl-item{position:relative; padding-bottom:26px;}
+#tab-roadmap .tl-item:last-child{padding-bottom:0;}
+#tab-roadmap .tl-dot{position:absolute; left:-28px; top:3px; width:18px; height:18px; border-radius:50%; background:var(--bg-card); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;}
+#tab-roadmap .tl-dot::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);}
+#tab-roadmap .tl-head{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:6px;}
+#tab-roadmap .tl-period{font-family:var(--font-mono); font-size:12px; color:var(--gold); font-weight:700; background:var(--gold-soft); padding:2px 9px; border-radius:5px;}
+#tab-roadmap .tl-title{font-weight:700; font-size:15px;}
+#tab-roadmap .tl-body{color:var(--text-secondary); font-size:14px; line-height:1.6;}
+#tab-roadmap .tl-body ul{margin-top:6px; padding-left:18px;}
+#tab-roadmap .tl-body li{margin-bottom:3px;}
+
+/* Accordion (details) */
+#tab-roadmap details.acc{background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:12px; overflow:hidden;}
+#tab-roadmap details.acc[open]{border-color:var(--border-strong);}
+#tab-roadmap details.acc summary{
+  list-style:none; cursor:pointer; padding:18px 22px; display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--font-display); font-weight:600; font-size:16px; gap:12px; min-height:44px;
+}
+#tab-roadmap details.acc summary::-webkit-details-marker{display:none;}
+#tab-roadmap details.acc summary .chev{transition:transform .25s ease; color:var(--gold); flex-shrink:0;}
+#tab-roadmap details.acc[open] summary .chev{transform:rotate(180deg);}
+#tab-roadmap .acc-sub{font-size:12px; color:var(--text-tertiary); font-weight:500; font-family:var(--font-body); margin-top:3px;}
+#tab-roadmap .acc-body{padding:0 22px 22px;}
+
+/* Decision path diagram */
+#tab-roadmap .path-diagram{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:8px;}
+@media (max-width:760px){#tab-roadmap .path-diagram{grid-template-columns:1fr;}}
+#tab-roadmap .path-col{background:var(--bg-elevated); border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px;}
+#tab-roadmap .path-col-title{font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; margin-bottom:10px; font-family:var(--font-mono);}
+#tab-roadmap .path-col.keep .path-col-title{color:var(--green);}
+#tab-roadmap .path-col.layer .path-col-title{color:var(--gold);}
+#tab-roadmap .path-col.park .path-col-title{color:var(--red);}
+#tab-roadmap .path-col li{list-style:none; font-size:13.5px; padding:4px 0; color:var(--text-secondary);}
+
+/* Ranked list */
+#tab-roadmap .ranked{display:flex; flex-direction:column; gap:12px;}
+#tab-roadmap .ranked-item{display:flex; gap:16px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px 18px;}
+#tab-roadmap .rank-num{font-family:var(--font-display); font-weight:700; font-size:20px; color:var(--gold); flex-shrink:0; width:34px;}
+#tab-roadmap .rank-body h4{font-size:14.5px; margin-bottom:4px;}
+#tab-roadmap .rank-body p{font-size:13.5px; color:var(--text-secondary); line-height:1.55;}
+
+/* Stop/start/prioritize columns */
+#tab-roadmap .ssp-col h4{font-family:var(--font-display); font-size:14px; margin-bottom:14px; display:flex; align-items:center; gap:8px;}
+#tab-roadmap .ssp-col ul{list-style:none;}
+#tab-roadmap .ssp-col li{font-size:13.5px; color:var(--text-secondary); padding:10px 0; border-bottom:1px solid var(--border); line-height:1.5;}
+#tab-roadmap .ssp-col li:last-child{border-bottom:none;}
+
+/* Callout */
+#tab-roadmap .callout{border-radius:var(--radius); padding:22px 24px; border:1px solid; margin-top:18px;}
+#tab-roadmap .callout.gold{background:var(--gold-soft); border-color:var(--gold);}
+#tab-roadmap .callout.green{background:var(--green-soft); border-color:var(--green);}
+#tab-roadmap .callout p{font-size:14.5px; line-height:1.65;}
+#tab-roadmap .callout strong{color:var(--text-primary);}
+
+/* Featured path card */
+#tab-roadmap .feature-card{
+  background:linear-gradient(160deg,var(--bg-card),var(--bg-elevated)); border:1.5px solid var(--gold); border-radius:var(--radius);
+  padding:32px; position:relative; overflow:hidden;
+}
+#tab-roadmap .feature-card::before{content:"";position:absolute; top:-40%; right:-10%; width:280px; height:280px; background:radial-gradient(circle,var(--gold-soft),transparent 70%); pointer-events:none;}
+#tab-roadmap .feature-tag{font-family:var(--font-mono); font-size:11px; color:var(--gold); font-weight:700; letter-spacing:.04em; text-transform:uppercase;}
+#tab-roadmap .feature-title{font-family:var(--font-display); font-weight:700; font-size:clamp(20px,3vw,26px); margin:10px 0 14px; position:relative;}
+#tab-roadmap .feature-desc{color:var(--text-secondary); font-size:15px; max-width:640px; margin-bottom:20px; position:relative;}
+#tab-roadmap .feature-list{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; position:relative;}
+@media (max-width:640px){#tab-roadmap .feature-list{grid-template-columns:1fr;}}
+#tab-roadmap .feature-list li{list-style:none; font-size:13.5px; color:var(--text-secondary); padding-left:20px; position:relative; line-height:1.5;}
+#tab-roadmap .feature-list li::before{content:"✓"; position:absolute; left:0; color:var(--green); font-weight:700;}
+
+/* Stage flow */
+#tab-roadmap .stage-flow{display:flex; flex-direction:column; gap:0;}
+#tab-roadmap .stage{background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:18px 20px; position:relative;}
+#tab-roadmap .stage + .stage{margin-top:26px;}
+#tab-roadmap .stage + .stage::before{content:"↓"; position:absolute; top:-24px; left:24px; color:var(--gold); font-size:16px; font-weight:700;}
+#tab-roadmap .stage-num{font-family:var(--font-mono); font-size:11px; color:var(--gold); font-weight:700; letter-spacing:.04em;}
+#tab-roadmap .stage-title{font-family:var(--font-display); font-weight:700; font-size:16px; margin:4px 0 6px;}
+#tab-roadmap .stage-desc{font-size:13.5px; color:var(--text-secondary);}
+
+/* Mistakes list */
+#tab-roadmap .mistake-list{display:flex; flex-direction:column; gap:10px;}
+#tab-roadmap .mistake{display:flex; gap:14px; align-items:flex-start; background:var(--red-soft); border:1px solid var(--red); border-radius:var(--radius-sm); padding:14px 16px;}
+#tab-roadmap .mistake-icon{color:var(--red); font-weight:700; flex-shrink:0; font-family:var(--font-mono);}
+#tab-roadmap .mistake p{font-size:13.5px; color:var(--text-primary); line-height:1.5;}
+
+/* Priority checklist */
+#tab-roadmap .priority-list{display:flex; flex-direction:column; gap:0;}
+#tab-roadmap .priority-item{display:flex; gap:16px; padding:16px 0; border-bottom:1px solid var(--border); align-items:flex-start;}
+#tab-roadmap .priority-item:last-child{border-bottom:none;}
+#tab-roadmap .priority-badge{
+  font-family:var(--font-display); font-weight:700; font-size:14px; width:32px; height:32px; border-radius:8px;
+  background:var(--gold-soft); color:var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+#tab-roadmap .priority-item.top1 .priority-badge{background:var(--gold); color:#1A1206;}
+#tab-roadmap .priority-text{font-size:14.5px; padding-top:4px; line-height:1.5;}
+
+/* Footer */
+#tab-roadmap footer{border-top:1px solid var(--border); padding:36px 0 48px; margin-top:20px;}
+#tab-roadmap footer p{font-size:12.5px; color:var(--text-tertiary); line-height:1.7; max-width:760px;}
+
+#tab-roadmap h2 .hash{color:var(--text-tertiary); font-family:var(--font-mono); font-weight:400; font-size:.6em; margin-right:8px;}
 </style>
 </head>
 <body>
@@ -906,6 +1152,7 @@ textarea.inp{resize:none;}
       <div class="nav-item" onclick="sw('mindset',this)"><span class="nav-icon nb-purple"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11" fill="#fff" stroke="none"/></svg></span> Mindset Hub</div>
       <div class="nav-item" onclick="sw('journal',this)"><span class="nav-icon nb-green"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5c3-1.5 6-1.5 9 0v14c-3-1.5-6-1.5-9 0V5z"/><path d="M21 5c-3-1.5-6-1.5-9 0v14c3-1.5 6-1.5 9 0V5z"/></svg></span> Journal</div>
       <div class="nav-item" onclick="sw('books',this)"><span class="nav-icon" style="background:#7c3aed;border-radius:6px;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> Books</div>
+      <div class="nav-item" onclick="sw('roadmap',this)"><span class="nav-icon nb-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c4-8 8-11 18-15"/><circle cx="19" cy="5" r="2.4"/><path d="M7 17l-3 3M11 15l-2 5"/></svg></span> Roadmap</div>
       <div class="sidebar-divider"></div>
       <div class="sidebar-streak">
         <div class="sb-streak-fire">🔥</div>
@@ -1443,6 +1690,523 @@ textarea.inp{resize:none;}
         <div id="bk-list"></div>
       </div><!-- end tab-books -->
 
+      <div id="tab-roadmap" class="tab-content">
+        <div class="page-header"><div><div class="page-title">5-Year Wealth & Business Roadmap 🧭</div><div class="page-sub">Ethiopia → Remote Income → Trading Capital → Multi-Business Portfolio</div></div></div>
+
+        <div class="ticker" aria-hidden="true" style="margin-bottom:16px;">
+          <div class="ticker-track" id="rm-tickerTrack"></div>
+        </div>
+
+        <nav class="subnav" aria-label="Roadmap section navigation">
+          <div class="subnav-scroll">
+            <a href="#rm-summary">Summary</a>
+            <a href="#rm-careers">Top 20 Careers</a>
+            <a href="#rm-path">Fastest Path</a>
+            <a href="#rm-forex">Forex Reality</a>
+            <a href="#rm-roadmap36">36-Mo Roadmap</a>
+            <a href="#rm-platforms">Platforms</a>
+            <a href="#rm-milestones">$ Milestones</a>
+            <a href="#rm-ai">AI Impact</a>
+            <a href="#rm-payments">Getting Paid</a>
+            <a href="#rm-weakness">Stop/Start</a>
+            <a href="#rm-onepath">The One Path</a>
+            <a href="#rm-entrepreneur">Business Track</a>
+            <a href="#rm-priorities">Priorities</a>
+            <a href="#rm-plans">Action Plans</a>
+            <a href="#rm-mistakes">Mistakes</a>
+            <a href="#rm-final">Final Word</a>
+          </div>
+        </nav>
+
+        <div class="wrap" style="padding:0;max-width:100%;">
+          <div class="hero" style="padding:20px 0 8px;">
+            <div class="hero-eyebrow">⚡ Brutal honesty mode: on</div>
+            <h1>Ethiopia → Remote Income → Trading Capital → <span>Multi-Business Portfolio</span></h1>
+            <p>Every number on this page is grounded in 2026 market data. Where the data is uncertain, this dashboard says so out loud instead of hiding it.</p>
+            <div class="hero-divider"></div>
+          </div>
+
+          <section class="section" id="rm-summary">
+            <div class="section-head">
+              <div class="section-kicker">Start here</div>
+              <h2 class="section-title">Executive Summary</h2>
+              <p class="section-desc">Five questions, five honest answers — the rest of this page is the reasoning behind each one.</p>
+            </div>
+            <div class="grid grid-2">
+              <div class="card exec-card">
+                <div class="badge yellow"><span class="sw"></span>R&D, not income</div>
+                <div class="exec-q">Should you keep trading forex?</div>
+                <div class="exec-a"><strong>Yes — but as a skill-build project, not a paycheck.</strong> 70–90% of retail traders lose money long-term; only 5–7% stay consistently profitable after 5 years. Fund it with design income until your edge is verified.</div>
+              </div>
+              <div class="card exec-card">
+                <div class="badge red"><span class="sw"></span>Not your main bet</div>
+                <div class="exec-q">Should you pivot to full web development?</div>
+                <div class="exec-a">Junior dev hiring is down ~35% since 2023 globally. Keep AI vibe-coding as a support skill layered onto design — not a standalone career bet.</div>
+              </div>
+              <div class="card exec-card">
+                <div class="badge green"><span class="sw"></span>Start month 1</div>
+                <div class="exec-q">What's your fastest path to real money?</div>
+                <div class="exec-a"><strong>Graphic Design + AI fluency + Brand/UI systems</strong>, sold as productized services to international clients.</div>
+              </div>
+              <div class="card exec-card">
+                <div class="badge green"><span class="sw"></span>Highest 5-yr odds</div>
+                <div class="exec-q">What's the ONE path with the best odds?</div>
+                <div class="exec-a"><strong>"Design-Led Brand Systems Studio"</strong> — you do high-value creative/strategy work, hire juniors for execution, reinvest profit into trading capital and NibNova.</div>
+              </div>
+              <div class="card exec-card" style="grid-column:span 2;">
+                <div class="badge green"><span class="sw"></span>Genuine tailwind</div>
+                <div class="exec-q">Is Ethiopia's new FX policy good news for you?</div>
+                <div class="exec-a">Yes. Under the 2026 NBE directive, Ethiopian <strong>service exporters (IT, design, consulting) can retain 100% of foreign currency earnings indefinitely</strong> in a retention account — a real structural advantage that didn't exist two years ago.</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="rm-careers">
+            <div class="section-head">
+              <div class="section-kicker">Section 01</div>
+              <h2 class="section-title">Top 20 Online Careers, Ranked</h2>
+              <p class="section-desc">Scored 1–5 on each factor. "Ease" = ease of reaching paid-client level from where you're starting today.</p>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr>
+                  <th>#</th><th>Career</th><th>Demand</th><th>Income</th><th>AI-Resist</th><th>Ease</th><th>Remote</th><th>Total</th>
+                </tr></thead>
+                <tbody id="rm-careerTable"></tbody>
+              </table>
+            </div>
+            <div class="callout green" style="margin-top:20px;">
+              <p>🟢 <strong>Pattern:</strong> the winners all combine a visual/creative core skill + AI fluency + business communication. Pure technical execution (junior coding, data entry, generic design) is being commoditized fastest.</p>
+            </div>
+          </section>
+
+          <section class="section" id="rm-path">
+            <div class="section-head">
+              <div class="section-kicker">Section 02</div>
+              <h2 class="section-title">Fastest Path From Your Current Skills</h2>
+              <p class="section-desc">Graphic Design (intermediate) + Forex (5 months) is your starting point. Here's where each direction leads.</p>
+            </div>
+            <div class="path-diagram">
+              <div class="path-col keep">
+                <div class="path-col-title">🟢 Keep as core</div>
+                <li>Graphic Design</li><li>UI/UX (adjacent)</li><li>AI Vibe-Coding (sites, small apps)</li>
+              </div>
+              <div class="path-col layer">
+                <div class="path-col-title">🟡 Layer on top</div>
+                <li>Brand Identity Systems</li><li>AI Design tools</li><li>Digital Marketing (later)</li>
+              </div>
+              <div class="path-col park">
+                <div class="path-col-title">🔴 Park for now</div>
+                <li>Hand-written full codebase / CS-heavy engineering</li><li>Advanced motion graphics</li><li>Content creation as primary income</li>
+              </div>
+            </div>
+
+            <div class="ranked" style="margin-top:26px;">
+              <div class="ranked-item">
+                <div class="rank-num">🥇</div>
+                <div class="rank-body"><h4>Graphic Design → Brand Identity Systems</h4><p>You already have a portfolio, a channel, and reps. Fastest to first paid client. AI hasn't killed strategic brand work — only "make it look decent" execution work.</p></div>
+              </div>
+              <div class="ranked-item">
+                <div class="rank-num">🥈</div>
+                <div class="rank-body"><h4>UI/UX Design (light layer on design)</h4><p>Same visual-thinking muscle as graphic design, but 2–3x the hourly rate — one of the few design categories still growing (7–8%/year) while pure graphic design employment shrinks.</p></div>
+              </div>
+              <div class="ranked-item">
+                <div class="rank-num">🥉</div>
+                <div class="rank-body"><h4>AI Vibe-Coding (Claude Code, Cursor, Lovable, Replit)</h4><p>A better fit for you than traditional no-code tools or hand-written development. Lets you sell "design + working site/app" as one package and sidesteps the saturated junior-coding market entirely.</p></div>
+              </div>
+              <div class="ranked-item">
+                <div class="rank-num">4</div>
+                <div class="rank-body"><h4>AI Design Tools (Midjourney, Firefly, Figma AI)</h4><p>Not a separate career — a multiplier on #1–3. 75% of designers now use AI tools; job listings requiring AI fluency jumped from 3% to 32% in two years.</p></div>
+              </div>
+              <div class="ranked-item">
+                <div class="rank-num">5</div>
+                <div class="rank-body"><h4>Digital Marketing (later)</h4><p>Natural extension once you have design + a brand — offer "design + the campaign that uses it" as a bundled retainer.</p></div>
+              </div>
+            </div>
+
+            <div class="callout gold">
+              <p>🟡 <strong>Honest caution on vibe-coding:</strong> it's a real skill, not a shortcut. Clients will hit bugs, need a form that actually sends email, or want something outside the AI tool's defaults. Build the judgment to catch and fix wrong output — that's what separates "can prompt a website" from "can be trusted with a client's real project."</p>
+            </div>
+          </section>
+
+          <section class="section" id="rm-forex">
+            <div class="section-head">
+              <div class="section-kicker">Section 03</div>
+              <h2 class="section-title">Should You Keep Trading Forex?</h2>
+              <p class="section-desc">The unfiltered data, then the honest call.</p>
+            </div>
+            <div class="grid grid-4">
+              <div class="card kpi"><div class="kpi-label">CFTC (US)</div><div class="kpi-value r">70–80%</div><div class="kpi-note">of retail traders lose money</div></div>
+              <div class="card kpi"><div class="kpi-label">ESMA (EU, 2025)</div><div class="kpi-value r">74–89%</div><div class="kpi-note">of retail accounts lose money</div></div>
+              <div class="card kpi"><div class="kpi-label">FCA (UK)</div><div class="kpi-value r">~63%</div><div class="kpi-note">of retail traders lose money</div></div>
+              <div class="card kpi"><div class="kpi-label">After 5 years</div><div class="kpi-value gd">5–7%</div><div class="kpi-note">remain net-profitable long-term</div></div>
+            </div>
+
+            <div class="grid grid-2" style="margin-top:20px;">
+              <div class="card">
+                <h4 style="color:var(--red); font-family:var(--font-display); margin-bottom:12px;">🔴 Risk factors specific to you</h4>
+                <ul style="padding-left:18px; color:var(--text-secondary); font-size:13.5px; line-height:1.8;">
+                  <li>5 months of study is early — most who become consistent took 2–4 years and blew multiple accounts along the way</li>
+                  <li>No verified profitable strategy yet — that's just where you are in the sample-collection process</li>
+                  <li>No trading capital — actually protective right now, no way to blow up real savings while learning</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h4 style="color:var(--green); font-family:var(--font-display); margin-bottom:12px;">✅ Why you shouldn't quit</h4>
+                <ul style="padding-left:18px; color:var(--text-secondary); font-size:13.5px; line-height:1.8;">
+                  <li>Backtesting (not live trading) is the correct, nearly-free way to build edge</li>
+                  <li>Prop firms offer $10K–$200K simulated capital, 70–95% profit split — no personal deposit at risk, once edge is verified</li>
+                  <li>Trading is one of the only AI-resistant, unlimited-upside, no-degree skills on this list — <em>if</em> you get there</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="callout gold">
+              <p>🎯 <strong>Recommendation:</strong> Forex stays side R&D funded by design income — not a job — until two conditions are met: (1) 100+ backtested trades with verified positive expectancy, and (2) 3+ months of forward-testing that matches the backtest. Only then touch a prop firm challenge with real intent.</p>
+            </div>
+          </section>
+
+          <section class="section" id="rm-roadmap36">
+            <div class="section-head">
+              <div class="section-kicker">Section 04</div>
+              <h2 class="section-title">36-Month Roadmap</h2>
+              <p class="section-desc">Year 1 is monthly detail. Years 2–3 are quarterly. Tap each year to expand.</p>
+            </div>
+
+            <details class="acc" open>
+              <summary>
+                <div><div>Year 1 — Foundation & First Income</div><div class="acc-sub">Months 1–12 · target $1,500–2,500/month by month 12</div></div>
+                <span class="chev">▾</span>
+              </summary>
+              <div class="acc-body">
+                <div class="timeline" id="rm-year1Timeline"></div>
+              </div>
+            </details>
+
+            <details class="acc">
+              <summary>
+                <div><div>Year 2 — Scale & Systemize</div><div class="acc-sub">Months 13–24 · target $3,000–5,000/month combined</div></div>
+                <span class="chev">▾</span>
+              </summary>
+              <div class="acc-body">
+                <div class="timeline" id="rm-year2Timeline"></div>
+              </div>
+            </details>
+
+            <details class="acc">
+              <summary>
+                <div><div>Year 3 — Business Ownership Transition</div><div class="acc-sub">Months 25–36 · target $5,000–8,000/month combined</div></div>
+                <span class="chev">▾</span>
+              </summary>
+              <div class="acc-body">
+                <div class="timeline" id="rm-year3Timeline"></div>
+              </div>
+            </details>
+          </section>
+
+          <section class="section" id="rm-platforms">
+            <div class="section-head">
+              <div class="section-kicker">Section 05</div>
+              <h2 class="section-title">Freelance Platform Comparison</h2>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Platform</th><th>Fee</th><th>Best For</th><th>Beginner?</th><th>Verdict</th></tr></thead>
+                <tbody>
+                  <tr><td class="strong">Upwork</td><td>0–15% variable</td><td>Long-term contracts, higher-quality clients</td><td>🟡 Medium</td><td>🟢 Primary from Month 4</td></tr>
+                  <tr><td class="strong">Fiverr</td><td>Flat 20%</td><td>Fast first gigs, no proposals needed</td><td>🟢 Easiest</td><td>🟢 Use Month 1–2 for first reviews</td></tr>
+                  <tr><td class="strong">Contra</td><td>0% commission</td><td>Direct-client relationships, portfolio hub</td><td>🟡 Medium</td><td>🟢 Set up early, grow by Month 6+</td></tr>
+                  <tr><td class="strong">Toptal</td><td>Client pays premium</td><td>Elite, 5+ yrs exp, top 3% only</td><td>🔴 Not yet</td><td>⏸️ Revisit Year 3</td></tr>
+                  <tr><td class="strong">Freelancer.com</td><td>Flat 10%</td><td>High competition, race-to-bottom pricing</td><td>🔴 Weak signal</td><td>⏸️ Skip</td></tr>
+                  <tr><td class="strong">LinkedIn</td><td>0% direct</td><td>B2B relationships, retainer clients</td><td>🟡 Medium</td><td>🟢 Use in parallel</td></tr>
+                  <tr><td class="strong">PeoplePerHour</td><td>3.5–20% tiered</td><td>UK/EU clients</td><td>🟡 Medium</td><td>🟡 Optional secondary</td></tr>
+                  <tr><td class="strong">DesignCrowd/99designs</td><td>Contest-based</td><td>Design-specific, high volume</td><td>🟡 Hit-or-miss</td><td>🟡 Portfolio contests only</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout gold"><p>🎯 <strong>Sequencing:</strong> Fiverr (Month 1) → Upwork (Month 4) → Contra + LinkedIn outreach (Month 6+) → Toptal (Year 3).</p></div>
+          </section>
+
+          <section class="section" id="rm-milestones">
+            <div class="section-head">
+              <div class="section-kicker">Section 06</div>
+              <h2 class="section-title">Milestone Roadmap: First $100 → $10,000</h2>
+            </div>
+            <div class="card">
+              <div class="progress-row">
+                <div class="progress-top"><span class="progress-label">First $100</span><span class="progress-value">Month 1–2</span></div>
+                <div class="progress-track"><div class="progress-fill" data-w="8"></div></div>
+                <div class="progress-sub">One Fiverr gig: logo or simple brand kit, priced low intentionally for first reviews.</div>
+              </div>
+              <div class="progress-row">
+                <div class="progress-top"><span class="progress-label">First $500</span><span class="progress-value">Month 3–5</span></div>
+                <div class="progress-track"><div class="progress-fill" data-w="18"></div></div>
+                <div class="progress-sub">3–5 more Fiverr/Upwork gigs at $100–150 each as reviews build trust.</div>
+              </div>
+              <div class="progress-row">
+                <div class="progress-top"><span class="progress-label">First $1,000 (cumulative)</span><span class="progress-value">Month 5–7</span></div>
+                <div class="progress-track"><div class="progress-fill" data-w="30"></div></div>
+                <div class="progress-sub">1 Upwork full brand package ($300–500) + smaller gigs.</div>
+              </div>
+              <div class="progress-row">
+                <div class="progress-top"><span class="progress-label">First $1,000/month</span><span class="progress-value">Month 9–12</span></div>
+                <div class="progress-track"><div class="progress-fill" data-w="45"></div></div>
+                <div class="progress-sub">1 retainer client + 2–3 project clients. The real inflection point: recurring revenue.</div>
+              </div>
+              <div class="progress-row">
+                <div class="progress-top"><span class="progress-label">First $3,000/month</span><span class="progress-value">Month 15–20</span></div>
+                <div class="progress-track"><div class="progress-fill" data-w="65"></div></div>
+                <div class="progress-sub">Rates up 30–50%, no-code/vibe-coded website bundle added, 2nd retainer client.</div>
+              </div>
+              <div class="progress-row">
+                <div class="progress-top"><span class="progress-label">First $10,000/month</span><span class="progress-value">Month 30–36 (stretch)</span></div>
+                <div class="progress-track"><div class="progress-fill" data-w="100"></div></div>
+                <div class="progress-sub">Requires a small team + 2+ income legs. Solo freelancing rarely reaches this alone — business ownership does.</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="rm-ai">
+            <div class="section-head">
+              <div class="section-kicker">Section 07</div>
+              <h2 class="section-title">How AI Changes Your Future</h2>
+              <p class="section-desc">Not the doom headlines — what the 2026 data actually shows.</p>
+            </div>
+            <div class="grid grid-4">
+              <div class="card kpi"><div class="kpi-label">Use AI design tools</div><div class="kpi-value gd">88%</div><div class="kpi-note">of businesses — but only 18% say it reduced designer need</div></div>
+              <div class="card kpi"><div class="kpi-label">Top hiring trait</div><div class="kpi-value g">Creativity</div><div class="kpi-note">39% rank it #1 — above speed, cost, strategy</div></div>
+              <div class="card kpi"><div class="kpi-label">Junior dev hiring</div><div class="kpi-value r">−35%</div><div class="kpi-note">since 2023 — a real contraction</div></div>
+              <div class="card kpi"><div class="kpi-label">AI-skilled workers earn</div><div class="kpi-value b">+56%</div><div class="kpi-note">more than peers without AI skills</div></div>
+            </div>
+            <div class="grid grid-2" style="margin-top:20px;">
+              <div class="card">
+                <h4 style="color:var(--green); font-family:var(--font-display); margin-bottom:12px;">🟢 Double down — AI won't replace these</h4>
+                <ul style="padding-left:18px; color:var(--text-secondary); font-size:13.5px; line-height:1.8;">
+                  <li>Strategic brand thinking</li><li>Client relationships & cross-cultural trust</li><li>Creative direction (judging AI output)</li><li>Risk management & psychology</li><li>Business development / sales</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h4 style="color:var(--red); font-family:var(--font-display); margin-bottom:12px;">🔴 Getting commoditized fastest</h4>
+                <ul style="padding-left:18px; color:var(--text-secondary); font-size:13.5px; line-height:1.8;">
+                  <li>Basic logo-only design, generic stock graphics</li><li>Repetitive front-end coding without judgment</li><li>Basic data entry, transcription, simple VA tasks</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="rm-payments">
+            <div class="section-head">
+              <div class="section-kicker">Section 08</div>
+              <h2 class="section-title">Getting Paid in Ethiopia — Legally & Efficiently</h2>
+            </div>
+            <div class="callout green">
+              <p>🟢 <strong>Good news:</strong> the birr floated in July 2024, and under the 2026 NBE directive, registered service exporters (IT, design, consulting) can now retain <strong>100% of foreign currency earnings indefinitely</strong> — a major liberalization from the old surrender-requirement system.</p>
+            </div>
+            <div class="table-wrap" style="margin-top:20px;">
+              <table>
+                <thead><tr><th>Method</th><th>Fees</th><th>Best For</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td class="strong">Payoneer</td><td>~1% receive, 3–4.5% conversion</td><td>Upwork/Fiverr payouts</td><td>Treat as a holding account — move funds out promptly</td></tr>
+                  <tr><td class="strong">Wise</td><td>Low, transparent</td><td>Direct client invoicing</td><td>Mid-market rate, cheaper than PayPal — confirm current ET support</td></tr>
+                  <tr><td class="strong">Local bank FCY account</td><td>Bank-dependent</td><td>Formalized business income</td><td>Strategically important once NibNova is a registered service exporter</td></tr>
+                  <tr><td class="strong">Stablecoins (USDT/USDC)</td><td>Low network fees</td><td>Backup channel, larger volumes</td><td>Fast-growing across Africa — secondary channel for now</td></tr>
+                  <tr><td class="strong">PayPal</td><td>3–4% conversion markup</td><td>Least preferred</td><td>Historically weak support for Ethiopia — verify before relying on it</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout gold"><p>🎯 <strong>Action:</strong> once NibNova has consistent monthly international revenue, register it formally as a service-exporting entity — your highest-leverage administrative move.</p></div>
+          </section>
+
+          <section class="section" id="rm-weakness">
+            <div class="section-head">
+              <div class="section-kicker">Section 09</div>
+              <h2 class="section-title">Honest Weakness Analysis</h2>
+            </div>
+            <div class="grid grid-3">
+              <div class="card ssp-col">
+                <h4 style="color:var(--red);">🛑 STOP</h4>
+                <ul>
+                  <li>Treating forex as a near-term income plan</li>
+                  <li>Learning skills sequentially and slowly ("someday web dev")</li>
+                  <li>Consuming more trading education before finishing your 100-trade sample</li>
+                  <li>Keeping personal, church, trading, and business finances mixed</li>
+                </ul>
+              </div>
+              <div class="card ssp-col">
+                <h4 style="color:var(--gold);">🟡 START</h4>
+                <ul>
+                  <li>Tracking every hour and dollar like a business owner</li>
+                  <li>Charging for value, not lowest price</li>
+                  <li>Building in public — Bini Design is your client acquisition engine</li>
+                  <li>Separating money into 3 pools: personal / business / trading</li>
+                </ul>
+              </div>
+              <div class="card ssp-col">
+                <h4 style="color:var(--green);">✅ PRIORITIZE</h4>
+                <ul>
+                  <li>English communication practice, daily and deliberate</li>
+                  <li>Shipping a finished portfolio piece every 2 weeks</li>
+                  <li>Closing your backtest sample — the actual bottleneck</li>
+                  <li>Getting your FIRST client faster than feels comfortable</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="rm-onepath">
+            <div class="section-head">
+              <div class="section-kicker">Section 10</div>
+              <h2 class="section-title">The ONE Recommended Path</h2>
+            </div>
+            <div class="feature-card">
+              <div class="feature-tag">🏆 Highest 5-year probability of success</div>
+              <div class="feature-title">"AI-Augmented Brand & Digital Systems Studio" — built under NibNova</div>
+              <div class="feature-desc">You become the person who designs a business's entire visual and digital identity — brand system + UI/UX + a working vibe-coded website — faster and more strategically than a generalist designer, using AI as a force-multiplier, not a replacement.</div>
+              <ul class="feature-list">
+                <li>Builds directly on your existing skill and brand — zero cold start</li>
+                <li>Sidesteps the two most AI-pressured lanes: pure execution design, junior web dev</li>
+                <li>Scales naturally: freelancer → studio → agency → business owner</li>
+                <li>Funds trading education safely, then your other written business plans</li>
+                <li>Remote-native, works well even across an English-language gap</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="section" id="rm-entrepreneur">
+            <div class="section-head">
+              <div class="section-kicker">Section 11</div>
+              <h2 class="section-title">Freelancer → Agency → Owner → Investor</h2>
+            </div>
+            <div class="stage-flow">
+              <div class="stage"><div class="stage-num">STAGE 1 · MONTHS 1–12</div><div class="stage-title">Freelancer</div><div class="stage-desc">You do 100% of the work. Income = your hours.</div></div>
+              <div class="stage"><div class="stage-num">STAGE 2 · MONTHS 12–24</div><div class="stage-title">Studio / Agency</div><div class="stage-desc">You hire 1–2 juniors for execution. You do strategy + sales. Income = your hours + a cut of theirs.</div></div>
+              <div class="stage"><div class="stage-num">STAGE 3 · MONTHS 24–36+</div><div class="stage-title">Business Owner</div><div class="stage-desc">NibNova runs on systems/SOPs. You're not the bottleneck. You launch product-based businesses funded by agency profit.</div></div>
+              <div class="stage"><div class="stage-num">STAGE 4 · YEAR 4–5+</div><div class="stage-title">Investor</div><div class="stage-desc">Trading capital + business profit get allocated across your businesses, verified trading edge, and possibly other ventures.</div></div>
+            </div>
+
+            <div class="section-head" style="margin-top:36px;">
+              <h3 class="section-title" style="font-size:20px;">Which Businesses to Start, and When</h3>
+            </div>
+            <div class="grid grid-3">
+              <div class="card">
+                <div class="badge green"><span class="sw"></span>Low-capital · start now</div>
+                <ul style="padding-left:18px; color:var(--text-secondary); font-size:13.5px; line-height:1.9;">
+                  <li>Design/brand services (NibNova core)</li><li>Digital products sold to your Telegram audience</li><li>Vibe-coded website-building service</li><li>Content/personal brand monetization</li>
+                </ul>
+              </div>
+              <div class="card">
+                <div class="badge yellow"><span class="sw"></span>Medium-capital · Year 2–3</div>
+                <ul style="padding-left:18px; color:var(--text-secondary); font-size:13.5px; line-height:1.9;">
+                  <li>Small SaaS or template product</li><li>Paid community/course around your process</li><li>Small team agency with ops person</li><li>2nd venture funded by verified prop income</li>
+                </ul>
+              </div>
+              <div class="card">
+                <div class="badge red"><span class="sw"></span>Wait for capital · Year 3–5+</div>
+                <ul style="padding-left:18px; color:var(--text-secondary); font-size:13.5px; line-height:1.9;">
+                  <li>Physical product / import-export</li><li>Real estate or fixed-capital ventures</li><li>Large inventory/licensing businesses</li><li>Franchise or multi-location businesses</li>
+                </ul>
+              </div>
+            </div>
+            <div class="callout gold"><p>🎯 <strong>Filter rule:</strong> "Can I test a cheap version of this with my current audience/skills before spending real capital?" Yes → Year 1–2 candidate. No → it waits.</p></div>
+          </section>
+
+          <section class="section" id="rm-priorities">
+            <div class="section-head">
+              <div class="section-kicker">🎯</div>
+              <h2 class="section-title">My Top 10 Priorities</h2>
+            </div>
+            <div class="card">
+              <div class="priority-list" id="rm-priorityList"></div>
+            </div>
+          </section>
+
+          <section class="section" id="rm-plans">
+            <div class="section-head">
+              <div class="section-kicker">📅 📆 🚀</div>
+              <h2 class="section-title">Action Plans: 90 Days → 1 Year → 5 Years</h2>
+            </div>
+
+            <h3 style="font-family:var(--font-display); font-size:17px; margin-bottom:14px;">90-Day Plan</h3>
+            <div class="grid grid-3">
+              <div class="card">
+                <div class="badge yellow"><span class="sw"></span>Days 1–30</div>
+                <ul style="padding-left:18px; color:var(--text-secondary); font-size:13.5px; line-height:1.9;">
+                  <li>Rebuild portfolio (3 case studies)</li><li>Fiverr live, 3 gig packages</li><li>Backtest +25 trades</li><li>Daily 20-min English practice</li>
+                </ul>
+              </div>
+              <div class="card">
+                <div class="badge yellow"><span class="sw"></span>Days 31–60</div>
+                <ul style="padding-left:18px; color:var(--text-secondary); font-size:13.5px; line-height:1.9;">
+                  <li>Land first paid gig</li><li>Ship 1 site with your vibe-coding stack</li><li>Upwork live, 5 proposals/week</li><li>Backtest 50/100 total</li>
+                </ul>
+              </div>
+              <div class="card">
+                <div class="badge yellow"><span class="sw"></span>Days 61–90</div>
+                <ul style="padding-left:18px; color:var(--text-secondary); font-size:13.5px; line-height:1.9;">
+                  <li>Land 2nd–3rd client</li><li>Publish "brand + website" bundle case study</li><li>Payoneer/Wise set up properly</li><li>Backtest ~75/100</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 style="font-family:var(--font-display); font-size:17px; margin:32px 0 14px;">1-Year Roadmap</h3>
+            <div class="grid grid-4">
+              <div class="card kpi"><div class="kpi-label">Q1</div><div class="kpi-value gd" style="font-size:16px;">Launch</div><div class="kpi-note">$500–800 cumulative</div></div>
+              <div class="card kpi"><div class="kpi-label">Q2</div><div class="kpi-value gd" style="font-size:16px;">Consistency</div><div class="kpi-note">$800–1,200/mo pace</div></div>
+              <div class="card kpi"><div class="kpi-label">Q3</div><div class="kpi-value gd" style="font-size:16px;">Sample done</div><div class="kpi-note">100-trade backtest complete</div></div>
+              <div class="card kpi"><div class="kpi-label">Q4</div><div class="kpi-value gd" style="font-size:16px;">Scale prep</div><div class="kpi-note">$1,500–2,500/mo</div></div>
+            </div>
+
+            <h3 style="font-family:var(--font-display); font-size:17px; margin:32px 0 14px;">5-Year Master Plan</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Year</th><th>Focus</th><th>Target State</th></tr></thead>
+                <tbody>
+                  <tr><td class="strong">Y1</td><td>Freelance foundation</td><td>$1,500–2,500/mo, backtest complete</td></tr>
+                  <tr><td class="strong">Y2</td><td>Studio + forward-testing</td><td>$3,000–5,000/mo combined, first hire, prop firm attempt</td></tr>
+                  <tr><td class="strong">Y3</td><td>Business owner transition</td><td>$5,000–8,000/mo, NibNova registered, first product business</td></tr>
+                  <tr><td class="strong">Y4</td><td>Diversified income</td><td>Multiple stable income legs, reinvestment discipline</td></tr>
+                  <tr><td class="strong">Y5</td><td>Investor mindset</td><td>$5,000–10,000/mo range, first new venture with real capital</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="section" id="rm-mistakes">
+            <div class="section-head">
+              <div class="section-kicker">❌</div>
+              <h2 class="section-title">Top Mistakes to Avoid</h2>
+            </div>
+            <div class="mistake-list">
+              <div class="mistake"><span class="mistake-icon">✕</span><p>Going live/funded in trading before your edge is statistically verified</p></div>
+              <div class="mistake"><span class="mistake-icon">✕</span><p>Betting your primary income on full-stack web development in a contracting junior-dev market</p></div>
+              <div class="mistake"><span class="mistake-icon">✕</span><p>Pricing yourself as a beginner forever out of fear — undercharging trains clients to undervalue you</p></div>
+              <div class="mistake"><span class="mistake-icon">✕</span><p>Mixing personal, trading, and business money in one account</p></div>
+              <div class="mistake"><span class="mistake-icon">✕</span><p>Chasing every new "high-income skill" instead of going deep on brand + design + vibe-coding first</p></div>
+              <div class="mistake"><span class="mistake-icon">✕</span><p>Waiting for confidence before starting outreach — reviews and confidence come after you start, not before</p></div>
+            </div>
+          </section>
+
+          <section class="section" id="rm-final">
+            <div class="section-head">
+              <div class="section-kicker">💡</div>
+              <h2 class="section-title">Final Recommendation</h2>
+            </div>
+            <div class="feature-card">
+              <div class="feature-desc" style="font-size:15.5px; max-width:100%;">
+                If I could only recommend <strong style="color:var(--text-primary);">one path</strong>: build <strong style="color:var(--text-primary);">NibNova as an AI-augmented brand & digital systems studio</strong> — starting solo, funded by fast early wins on Fiverr/Upwork, scaling into a small team by Year 2, formally registered to capture Ethiopia's new FX retention rules by Year 2–3 — with forex trading running quietly in parallel as a capital-building side project, only touching real/funded money once your 100-trade sample proves it deserves that trust.
+                <br><br>
+                That's the path where your existing skills, your existing audience, current market data, and Ethiopia's specific regulatory tailwinds all point the same direction at once. Everything else on this page is a supporting skill, not the main bet.
+              </div>
+            </div>
+          </section>
+
+          <footer>
+            <p>Compiled from 2026 market data: Upwork In-Demand Skills Report 2026, WEF Future of Jobs Report 2025, BLS occupational projections, ESMA/CFTC/FCA retail trading statistics, National Bank of Ethiopia FX Directive updates (2024–2026), and freelance platform comparison data (2026). This is planning research, not financial or legal advice — verify current FX and payment-provider rules directly before acting on them.</p>
+          </footer>
+        </div>
+      </div>
+
+
     </div>
     <div class="bottom-nav">
     <div class="bnav-items">
@@ -1465,6 +2229,7 @@ textarea.inp{resize:none;}
       <div class="more-item" onclick="sw('mindset',null,true);closeMoreDrawer()"><div class="bnav-icon nb-purple"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11" fill="#fff" stroke="none"/></svg></div><div class="more-lbl">Mindset</div></div>
       <div class="more-item" onclick="sw('journal',null,true);closeMoreDrawer()"><div class="bnav-icon nb-green"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5c3-1.5 6-1.5 9 0v14c-3-1.5-6-1.5-9 0V5z"/><path d="M21 5c-3-1.5-6-1.5-9 0v14c3-1.5 6-1.5 9 0V5z"/></svg></div><div class="more-lbl">Journal</div></div>
       <div class="more-item" onclick="sw('books',null,true);closeMoreDrawer()"><div class="bnav-icon" style="background:#7c3aed;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="more-lbl">Books</div></div>
+      <div class="more-item" onclick="sw('roadmap',null,true);closeMoreDrawer()"><div class="bnav-icon nb-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c4-8 8-11 18-15"/><circle cx="19" cy="5" r="2.4"/></svg></div><div class="more-lbl">Roadmap</div></div>
       <div class="more-item" onclick="openSettings();closeMoreDrawer()"><div class="bnav-icon" style="background:var(--border2);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div><div class="more-lbl">Settings</div></div>
     </div>
   </div>
@@ -3892,6 +4657,134 @@ function renderBooks(){
     </div>`).join('');
 }
 
+
+/* ================= ROADMAP TAB ================= */
+const rmTickerData = [
+  ['TARGET Y1', '$1,500–2,500/mo'], ['BACKTEST', '0/100 trades'], ['FX POLICY', '100% retention for service exporters'],
+  ['FOREX WIN RATE', '5–7% profitable after 5yrs'], ['FIRST GOAL', '$100 by Month 2'], ['TARGET Y3', '$5,000–8,000/mo'],
+  ['AI SKILL PREMIUM', '+56% earnings'], ['PLATFORM', 'Fiverr → Upwork → Contra'], ['STRETCH TARGET', '$10,000/mo by Month 36'],
+  ['JUNIOR DEV HIRING', '−35% since 2023']
+];
+function rmBuildTicker(){
+  const track=document.getElementById('rm-tickerTrack'); if(!track) return;
+  const html = rmTickerData.map(([tag,val]) => `<span class="ticker-item"><span class="tag">${tag}</span><b>${val}</b></span>`).join('');
+  track.innerHTML = html + html;
+}
+const rmCareers = [
+  ["AI-Augmented Brand/UI Designer",5,4,4,4,5,22],
+  ["UI/UX Product Designer",5,5,4,3,5,22],
+  ["AI Vibe-Coder (websites & apps)",5,4,3,4,5,21],
+  ["Motion Graphics / Short-Form Video",5,4,3,3,5,20],
+  ["AI Workflow / Automation Consultant",5,5,5,2,5,22],
+  ["Full-Stack Web Developer (AI-assisted)",4,4,3,2,4,17],
+  ["Digital Marketing / Performance Ads",4,4,3,3,5,19],
+  ["SEO / Content Strategist",3,4,3,3,5,18],
+  ["Brand Identity / Logo Designer (pure)",3,3,2,4,5,17],
+  ["Social Media Management (agency)",4,3,3,4,5,19],
+  ["Data Analyst / BI Dashboarding",4,4,4,2,4,18],
+  ["Copywriting/Ghostwriting + AI editing",3,3,3,4,5,18],
+  ["Video Editor (long-form, YouTube)",4,3,3,4,5,19],
+  ["Prompt Engineering / AI Integration",4,5,3,2,4,18],
+  ["Virtual Assistant / Ops Support",4,2,2,5,5,18],
+  ["Forex/Prop Trading (personal capital)*",2,5,5,1,5,18],
+  ["E-commerce / Dropshipping Brand",3,4,3,2,4,16],
+  ["Online Course Creator / Coach",3,4,3,2,5,17],
+  ["Cybersecurity Analyst",4,5,5,1,4,19],
+  ["Data Entry / Basic VA",2,1,1,5,4,13],
+];
+function rmRenderCareerTable(){
+  const el=document.getElementById('rm-careerTable'); if(!el) return;
+  el.innerHTML = rmCareers.map((c,i) => `
+    <tr>
+      <td class="num">${i+1}</td>
+      <td class="strong">${c[0]}</td>
+      <td class="num">${c[1]}</td><td class="num">${c[2]}</td><td class="num">${c[3]}</td><td class="num">${c[4]}</td><td class="num">${c[5]}</td>
+      <td class="total-cell">${c[6]}</td>
+    </tr>`).join('');
+}
+const rmY1 = [
+  ["Month 1","Brand identity fundamentals, Figma basics","Rebuild portfolio around 3 brand-system case studies","First $100 target · continue chart scanning toward 100-trade sample"],
+  ["Month 2","AI design tools in workflow","Publish 2 case studies to Bini Design channel","First Fiverr gig live · log trades in Backtest Command Center"],
+  ["Month 3","Sharpen vibe-coding workflow (prompting + fixing AI output)","Ship 1 real landing page with your vibe-coding stack","$100–300 cumulative · 25/100 trades logged"],
+  ["Month 4","Client communication in English","Upwork profile live, 5 tailored proposals/week","First Upwork contract"],
+  ["Month 5","Pricing & packaging services","3 productized packages: logo, brand kit, landing page","$500 cumulative · 50/100 trades"],
+  ["Month 6","Basic UI/UX principles","1 full UI/UX case study","$500–800/month pace"],
+  ["Month 7","Contra profile + direct outreach","Portfolio site built with your vibe-coding stack","$1,000 cumulative · 75/100 trades"],
+  ["Month 8","Retainer-pitching skills","Land 1 retainer client","$800–1,200/month pace"],
+  ["Month 9","Light digital marketing basics","Bundle brand + landing page + ad creatives","$1,500 cumulative · 100/100 trades — sample complete"],
+  ["Month 10","Delegation basics","Results-driven case study (metrics, not just visuals)","$1,200–1,800/month pace · analyze full backtest sample"],
+  ["Month 11","Financial basics: saving %, separating funds","Refine NibNova offerings from real feedback","$2,000 cumulative · begin forward-test if verified"],
+  ["Month 12","Review & reset","Full portfolio + LinkedIn overhaul","$1,500–2,500/month by month 12 · forward-test running"],
+];
+const rmY2 = [
+  ["Q1 · 13–15","Raise rates 30–50%; drop lowest-paying clients","First subcontractor/junior designer hired","Forward-test evaluation continues"],
+  ["Q2 · 16–18","Formalize NibNova service lines (design + vibe-coded web)","2–3 small business clients as an agency","Apply to 1 prop firm evaluation if edge confirmed"],
+  ["Q3 · 19–21","Build a specialty (fintech/startup brand systems)","$3,000–5,000/month combined revenue","Manage funded account with strict 1% risk/trade"],
+  ["Q4 · 22–24","Systems: SOPs, templates, contracts","Consider registering NibNova formally in Ethiopia","Reinvest small trading profits — no emotional scaling"],
+];
+const rmY3 = [
+  ["Q1 · 25–27","Shift from doing the work to selling + directing it","2–3 team members handling execution",""],
+  ["Q2 · 28–30","Launch first product business, funded by savings","First non-service revenue stream live",""],
+  ["Q3 · 31–33","Formalize investing: separate capital + reinvestment accounts","Consistent monthly trading contribution to capital pool",""],
+  ["Q4 · 34–36","Evaluate which written business idea has the best data 3 years in","Target $5,000–8,000/month combined, multiple income legs",""],
+];
+function rmRenderTimeline(id, data){
+  const el=document.getElementById(id); if(!el) return;
+  el.innerHTML = data.map(row => `
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-head"><span class="tl-period">${row[0]}</span><span class="tl-title">${row[1]}</span></div>
+      <div class="tl-body">
+        <ul>
+          ${row[2] ? `<li><strong style="color:var(--text-primary);">Build:</strong> ${row[2]}</li>` : ''}
+          ${row[3] ? `<li><strong style="color:var(--text-primary);">Milestone:</strong> ${row[3]}</li>` : ''}
+        </ul>
+      </div>
+    </div>`).join('');
+}
+const rmPriorities = [
+  "🥇 Finish the 100-trade backtest sample — this is the actual unlock, not more trading education",
+  "🥈 Get your first paid Fiverr gig within 30 days — momentum over perfection",
+  "🥉 Rebuild your portfolio around 3 strategic brand-system case studies, not just logos",
+  "Sharpen your vibe-coding workflow (prompting + debugging judgment) by Month 3",
+  "Layer AI design tools into every project from Month 1 — don't learn this later",
+  "Land your first retainer client by Month 9",
+  "Separate your money into 3 accounts: personal / business reinvestment / trading capital",
+  "Practice English communication daily — proposals, calls, emails",
+  "Register NibNova formally once revenue is consistent, to access the 2026 FX retention rules",
+  "Do NOT touch a live/funded trading account until backtest + forward-test both confirm edge",
+];
+function rmRenderPriorities(){
+  const el=document.getElementById('rm-priorityList'); if(!el) return;
+  el.innerHTML = rmPriorities.map((p,i) => `
+    <div class="priority-item ${i===0?'top1':''}">
+      <div class="priority-badge">${i+1}</div>
+      <div class="priority-text">${p}</div>
+    </div>`).join('');
+}
+function rmInitProgressBars(){
+  const bars = document.querySelectorAll('#tab-roadmap .progress-fill');
+  if(!bars.length) return;
+  const rmBarObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.style.width = e.target.dataset.w + '%';
+        rmBarObserver.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.3});
+  bars.forEach(b => { b.style.width='0%'; rmBarObserver.observe(b); });
+}
+function initRoadmapTab(){
+  rmBuildTicker();
+  rmRenderCareerTable();
+  rmRenderTimeline('rm-year1Timeline', rmY1);
+  rmRenderTimeline('rm-year2Timeline', rmY2);
+  rmRenderTimeline('rm-year3Timeline', rmY3);
+  rmRenderPriorities();
+  rmInitProgressBars();
+}
+initRoadmapTab();
 
 if('serviceWorker' in navigator){
   window.addEventListener('load', ()=>{
